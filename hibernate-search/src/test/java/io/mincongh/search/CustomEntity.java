@@ -1,4 +1,4 @@
-package io.mincongh.so;
+package io.mincongh.search;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

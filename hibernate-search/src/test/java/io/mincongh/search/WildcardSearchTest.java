@@ -1,4 +1,4 @@
-package io.mincongh.so;
+package io.mincongh.search;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,6 +16,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Stack Overflow - Question 38851332
+ * Hibernate + Lucene - wildard search returning empty result
+ *
+ * @author Mincong Huang
+ */
 public class WildcardSearchTest {
 
     private EntityManagerFactory emf;

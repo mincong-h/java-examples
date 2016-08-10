@@ -17,6 +17,7 @@
 
     <modules>
         <module>hibernate-search</module>
+        <module>mock</module>
     </modules>
 
     <dependencyManagement>
