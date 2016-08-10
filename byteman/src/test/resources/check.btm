@@ -1,0 +1,8 @@
+RULE check counter
+CLASS io.mincongh.demo1.Counter
+METHOD call
+AT LINE 20
+BIND i = $i
+IF i > 5
+DO throw new java.lang.InterruptedException("Byteman : interrupt the program...")
+ENDRULE
