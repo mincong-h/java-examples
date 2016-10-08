@@ -16,6 +16,7 @@
     </properties>
 
     <modules>
+        <module>basic</module>
         <module>byteman</module>
         <module>hibernate-search</module>
         <module>mock</module>
