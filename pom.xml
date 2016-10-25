@@ -18,6 +18,7 @@
     <modules>
         <module>basic</module>
         <module>byteman</module>
+        <module>hashcode</module>
         <module>hibernate-search</module>
         <module>mock</module>
     </modules>
