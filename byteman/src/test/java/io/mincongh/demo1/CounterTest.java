@@ -1,6 +1,6 @@
 package io.mincongh.demo1;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -10,7 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.jboss.byteman.contrib.bmunit.BMScript;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 /**
@@ -21,29 +23,26 @@ import org.junit.runner.RunWith;
 @BMScript(value = "check.btm")
 public class CounterTest {
 
+    @Rule
+    public ExpectedException expectedEx = ExpectedException.none();
+
     @Test
-    public void textCounter() throws InterruptedException {
+    public void textCounter() throws ExecutionException, InterruptedException {
+
+        expectedEx.expect(ExecutionException.class);
+        expectedEx.expectMessage("Byteman : interrupt the program...");
+
         Counter counter = new Counter(10);
         ExecutorService executor = Executors.newFixedThreadPool(1);
         Future<Integer> future = executor.submit(counter);
         int tries = 0;
+
+        // This method is waiting the future to complete
         while (!future.isDone() && !future.isCancelled() && tries < 15) {
-            System.out.println(tries + " - test is waiting the future to complete");
             TimeUnit.SECONDS.sleep(1);
             tries++;
         }
-        String msgCancel = future.isCancelled() ? "cancelled" : "not cancelled";
-        String msgDone = future.isDone() ? "done" : "not done";
-        System.out.println(msgCancel);
-        System.out.println(msgDone);
-        try {
-            int result = future.get();
-            System.out.println("result is " + result);
-            assertEquals(10, result);
-        } catch (InterruptedException e) {
-            System.err.println("Cannot get result, future is interrupted");
-        } catch (ExecutionException e) {
-            System.err.println("Cannot get result, future has execution pb");
-        }
+        int end = future.get();
+        fail("The future should be interrupted by byteman, but end=" + end);
     }
 }
