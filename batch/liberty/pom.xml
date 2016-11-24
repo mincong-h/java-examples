@@ -10,7 +10,7 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>java-example-batch-liberty-parent</artifactId>
+    <artifactId>java-examples-batch-liberty-parent</artifactId>
     <name>Java Examples - Batch in IBM Liberty: Parent</name>
     <packaging>pom</packaging>
 
