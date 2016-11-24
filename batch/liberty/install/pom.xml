@@ -15,7 +15,6 @@
 
     <properties>
         <shared.resource.directory>${basedir}/shared/resources</shared.resource.directory>
-        <ddl.dir>${shared.resource.directory}/ddls</ddl.dir>
         <!-- Though this property can be set across all projects from the invoker (command line),
              it is convenient to define the default separately to avoid Derby path issues esp. on Windows -->
         <db.url>${shared.resource.directory}/BatchDB</db.url>
@@ -136,7 +135,7 @@
                         <configuration>
                             <autocommit>true</autocommit>
                             <srcFiles>
-                                <srcFile>${ddl.dir}/BonusPayout.derby.ddl</srcFile>
+                                <srcFile>src/test/resources/BonusPayout.derby.ddl</srcFile>
                             </srcFiles>
                             <skip>${reuseDB}</skip>
                         </configuration>
