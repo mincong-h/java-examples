@@ -43,7 +43,7 @@
         <!-- liberty plugin default, passed to integration test -->
         <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>  
 
-        <warName>${artifactId}</warName>
+        <warName>${project.artifactId}</warName>
         <warPath>${project.build.directory}/${warName}-${project.version}.war</warPath>
         <!-- <wlp.user.dir>${project.basedir}/../batch-bonuspayout-wlpcfg</wlp.user.dir> -->
         <wlp.user.dir>${project.basedir}/../install</wlp.user.dir>
