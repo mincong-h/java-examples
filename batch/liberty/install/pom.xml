@@ -16,12 +16,11 @@
     <name>Java Examples - Batch in IBM Liberty: Install</name>
 
     <properties>
-        <fs>${file.separator}</fs>
-        <shared.resource.directory>${basedir}${fs}shared${fs}resources</shared.resource.directory>
-        <ddl.dir>${shared.resource.directory}${fs}ddls</ddl.dir>
+	<shared.resource.directory>${basedir}/shared/resources</shared.resource.directory>
+	<ddl.dir>${shared.resource.directory}/ddls</ddl.dir>
         <!-- Though this property can be set across all projects from the invoker (command line),
              it is convenient to define the default separately to avoid Derby path issues esp. on Windows -->
-        <db.url>${shared.resource.directory}${fs}BatchDB</db.url>
+	<db.url>${shared.resource.directory}/BatchDB</db.url>
         <derby.version>10.11.1.1</derby.version>
     </properties>
 
@@ -139,7 +138,7 @@
                         <configuration>
                             <autocommit>true</autocommit>
                             <srcFiles>
-                                <srcFile>${ddl.dir}${fs}BonusPayout.derby.ddl</srcFile>
+				<srcFile>${ddl.dir}/BonusPayout.derby.ddl</srcFile>
                             </srcFiles>
                             <skip>${reuseDB}</skip>
                         </configuration>
