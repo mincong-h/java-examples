@@ -31,7 +31,7 @@ public class InheritanceTest {
     public void testConstructionOrder() {
         @SuppressWarnings("unused")
         Parent parent = new Child();
-        String expected = "Parent\nChild\n";
+        String expected = String.format("%s%n%s%n", "Parent", "Child");
         assertEquals("Parent's constructor is called first", expected, out.toString());
     }
 
