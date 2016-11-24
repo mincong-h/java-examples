@@ -11,8 +11,6 @@
     </parent>
 
     <artifactId>java-examples-batch-liberty-install</artifactId>
-    <!-- Use 'jar' to get SQL plugin to run -->
-    <packaging>jar</packaging>
     <name>Java Examples - Batch in IBM Liberty: Install</name>
 
     <properties>
