@@ -14,20 +14,6 @@
     <packaging>war</packaging>
     <name>Java Examples - Batch in IBM Liberty: App</name>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>https://raw.github.com/WASdev/sample.batch.bonuspayout/master/LICENSE</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <scm>
-        <connection>scm:git:git@github.com:WASdev/sample.batch.bonuspayout.git</connection>
-        <developerConnection>scm:git@github.com:WASdev/sample.batch.bonuspayout.git</developerConnection>
-        <url>git@github.com:WASdev/sample.batch.bonuspayout.git</url>
-    </scm>
-
     <pluginRepositories>
         <!-- Configure Sonatype OSS Maven snapshots repository -->
         <pluginRepository>
@@ -42,16 +28,6 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
-
-    <!--
-    <repositories>
-        <repository>
-            <id>ibm-maven-repo</id>
-            <name>ibm-maven-repo</name>
-            <url>https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/maven/repository/</url>
-        </repository>
-    </repositories>
--->
 
     <properties>
 
@@ -78,21 +54,18 @@
     </properties>
 
     <dependencies>
-        <!-- Just add one dependency on all EE 7 APIs -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>net.sf.expectit</groupId>
             <artifactId>expectit-core</artifactId>
             <version>0.8.0</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
