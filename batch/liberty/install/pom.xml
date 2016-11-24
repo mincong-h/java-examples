@@ -136,7 +136,7 @@
                         <configuration>
                             <autocommit>true</autocommit>
                             <srcFiles>
-				<srcFile>${ddl.dir}/BonusPayout.derby.ddl</srcFile>
+                                <srcFile>${ddl.dir}/BonusPayout.derby.ddl</srcFile>
                             </srcFiles>
                             <skip>${reuseDB}</skip>
                         </configuration>
