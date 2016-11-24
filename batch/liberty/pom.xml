@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.mincongh</groupId>
+        <artifactId>java-examples-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>java-example-batch-liberty-parent</artifactId>
+    <name>Java Examples - Batch in IBM Liberty: Parent</name>
+    <packaging>pom</packaging>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://raw.github.com/WASdev/sample.batch.bonuspayout/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:WASdev/sample.batch.bonuspayout.git</connection>
+        <developerConnection>scm:git@github.com:WASdev/sample.batch.bonuspayout.git</developerConnection>
+        <url>git@github.com:WASdev/sample.batch.bonuspayout.git</url>
+    </scm>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+    </build>
+
+    <modules>
+        <module>install</module>
+        <module>app</module>
+    </modules>
+
+</project>

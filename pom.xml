@@ -17,6 +17,7 @@
 
     <modules>
         <module>basic</module>
+        <module>batch/liberty</module>
         <module>byteman</module>
         <module>clone</module>
         <module>hashcode</module>

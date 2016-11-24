@@ -1,0 +1,5 @@
+#
+# Job execution will fail after 500 records are processed
+#
+generateFileNameRoot=logs/bonusPayoutGen
+forceFailure=500

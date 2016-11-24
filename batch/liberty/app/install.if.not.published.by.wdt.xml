@@ -1,0 +1,26 @@
+<project name="install.if.not.published.by.wdt" default="installApp">
+
+    <property name="dropinsAppPath" value="${server.config.dir}/dropins/${warName}.war"/>
+    <property name="wdtPublishedAppPath" value="${server.config.dir}/apps/${warName}.war.xml"/>
+    
+    <target name="check.if.published.by.wdt">
+        <available file="${wdtPublishedAppPath}" property="published.by.wdt"/>
+    </target>
+
+    <target name="appNotPublished" depends="check.if.published.by.wdt" unless="published.by.wdt">
+        <echo message="Copying WAR into dropins directory (unless already up-to-date)."/>
+        <!-- Strip off version -->
+        <copy file="${warPath}" tofile="${dropinsAppPath}" />
+    </target>
+    
+    <target name="appPublished" depends="check.if.published.by.wdt" if="published.by.wdt">
+        <echo message="Not copying WAR into apps directory, since it's published by WDT." />
+    </target>
+
+    <target name="unInstallApp">
+        <delete file="${dropinsAppPath}" />
+    </target>
+
+    <target name="installApp" depends="appNotPublished, appPublished"/>
+</project>
+

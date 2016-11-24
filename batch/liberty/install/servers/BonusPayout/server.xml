@@ -1,0 +1,7 @@
+<server description="Server for BonusPayout sample">
+
+    <!-- This is the part that will be version controlled.  Useful since
+         WDT will change the current file we're in. -->
+    <include location="server.versioned.xml"/>
+
+</server>

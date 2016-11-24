@@ -1,0 +1,5 @@
+#
+# Job should complete successfully
+#
+generateFileNameRoot=logs/bonusPayoutGen
+numRecords=100000

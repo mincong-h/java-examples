@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.mincongh</groupId>
+        <artifactId>java-examples-batch-liberty-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>java-examples-batch-liberty-app</artifactId>
+    <packaging>war</packaging>
+    <name>Java Examples - Batch in IBM Liberty: App</name>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://raw.github.com/WASdev/sample.batch.bonuspayout/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:WASdev/sample.batch.bonuspayout.git</connection>
+        <developerConnection>scm:git@github.com:WASdev/sample.batch.bonuspayout.git</developerConnection>
+        <url>git@github.com:WASdev/sample.batch.bonuspayout.git</url>
+    </scm>
+
+    <pluginRepositories>
+        <!-- Configure Sonatype OSS Maven snapshots repository -->
+        <pluginRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!--
+    <repositories>
+        <repository>
+            <id>ibm-maven-repo</id>
+            <name>ibm-maven-repo</name>
+            <url>https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/maven/repository/</url>
+        </repository>
+    </repositories>
+-->
+
+    <properties>
+
+        <!-- EDIT ME (or override on command line) -->
+        <serverHost>localhost</serverHost>
+        <httpsPort>9443</httpsPort>
+        <libertyVersion>16.0.0.3</libertyVersion>
+        <!-- Use commented-out value since empty value doesn't flow as well. -->
+        <startServerJvmOptions>#-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7777</startServerJvmOptions>
+
+        <!-- DON'T EDIT after this point -->
+
+        <!-- liberty plugin default, passed to integration test -->
+        <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>  
+
+        <warName>${artifactId}</warName>
+        <warPath>${project.build.directory}/${warName}-${project.version}.war</warPath>
+        <!-- <wlp.user.dir>${project.basedir}/../batch-bonuspayout-wlpcfg</wlp.user.dir> -->
+        <wlp.user.dir>${project.basedir}/../install</wlp.user.dir>
+        <server.config.dir>${wlp.user.dir}/servers/BonusPayout</server.config.dir>
+        <!-- Though this property can be set across all projects from the invoker (command line),
+             it is convenient to define the default separately to avoid Derby path issues esp. on Windows -->
+        <db.url>${shared.resource.dir}/BatchDB</db.url>
+    </properties>
+
+    <dependencies>
+        <!-- Just add one dependency on all EE 7 APIs -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.expectit</groupId>
+            <artifactId>expectit-core</artifactId>
+            <version>0.8.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- Nothing to run in test phase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.wasdev.wlp.maven.plugins</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <id>install-server</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>install-server</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-features</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>install-feature</goal>
+                        </goals>
+                        <configuration>
+                            <!-- No need to specify any here. Leverage the ability to install needed features from the server.xml -->
+                            <features>
+                                <acceptLicense>true</acceptLicense>
+                            </features>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>start-server</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>start-server</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipTests}</skip>
+                            <applications>${warName}</applications>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-server</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop-server</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skipTests}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- Use skipTests as a signal to skip all the WAS server stuff -->
+                    <skip>${skipTests}</skip>
+                    <assemblyArtifact>
+                        <groupId>com.ibm.websphere.appserver.runtime</groupId>
+                        <artifactId>wlp-webProfile7</artifactId>
+                        <version>${libertyVersion}</version>
+                        <type>zip</type>
+                    </assemblyArtifact>
+                    <installDirectory>${wlp.install.dir}</installDirectory>
+                    <userDirectory>${wlp.user.dir}</userDirectory>
+                    <configFiles>${server.config.dir}/server.xml</configFiles>
+                    <serverName>BonusPayout</serverName>
+                    <bootstrapProperties>
+                         <!-- propagate existing prop -->
+                         <db.url>${db.url}</db.url>
+                    </bootstrapProperties>
+                    <jvmOptions>
+                        <param>${startServerJvmOptions}</param>
+                    </jvmOptions>
+                </configuration>
+            </plugin>
+
+            <!-- Run integration tests against the app in the server -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify-tests</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <wlp.install.dir>${wlpInstallDir}</wlp.install.dir>
+                        <wlp.user.dir>${wlp.user.dir}</wlp.user.dir>
+                        <httpsPort>${httpsPort}</httpsPort>
+                        <serverHost>${serverHost}</serverHost>
+                        <!-- These batch tests require the app name so batchManager knows which 
+                            application hosts the job -->
+                        <warName>${warName}</warName>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>install-app</id>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <skip>${skipTests}</skip>
+                            <target>
+                                <ant dir="${project.basedir}" antfile="install.if.not.published.by.wdt.xml" target="installApp"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>uninstall-app</id>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <skip>${skipTests}</skip>
+                            <target>
+                                <ant dir="${project.basedir}" antfile="install.if.not.published.by.wdt.xml" target="unInstallApp"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>use-existing-liberty-if-present</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property><name>wlp.install.dir</name></property>
+            </activation>
+            <properties>
+                <wlpInstallDir>${wlp.install.dir}</wlpInstallDir>
+            </properties>
+        </profile>
+        <profile>
+            <id>start-liberty-in-debug</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property><name>startDebug</name></property>
+            </activation>
+            <properties>
+                <startServerJvmOptions>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7777</startServerJvmOptions>
+            </properties>
+        </profile>
+    </profiles>
+</project>

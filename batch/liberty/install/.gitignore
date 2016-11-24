@@ -1,0 +1,16 @@
+# Common ignore entries from other samples
+/target/
+.*.swp
+/build/
+/servers/.classCache
+/servers/*/apps
+/servers/*/logs
+/servers/*/workarea
+/servers/.pid
+
+#  For this sample
+/servers/*/dropins
+/servers/*/tranlog
+/servers/*/resources/security
+/shared/resources/BatchDB
+/shared/resources/derby
