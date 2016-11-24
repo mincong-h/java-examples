@@ -43,17 +43,16 @@ import net.sf.expectit.Expect;
 import net.sf.expectit.ExpectBuilder;
 import net.sf.expectit.Result;
 
-
 public class BonusPayoutIT {
 
 	// How long we wait for matching command line output in these tests
 	private int COMMAND_LINE_WAIT_TIME_SECONDS = 25;
-	
+
 	private static enum SHELL_TYPE {UNIX, WINDOWS};
 	private static SHELL_TYPE shellType;
 	public static String WIN_CMD;
-    public static final String BIN_SH = "/bin/sh";
-	
+	public static final String BIN_SH = "/bin/sh";
+
 	private Expect expect;
 	private Process process;
 	private String warName = System.getProperty("warName");
@@ -63,13 +62,13 @@ public class BonusPayoutIT {
 	private String httpsPort = System.getProperty("httpsPort");
 
 	private String CORE_COMMAND_PARMS =
-			"--batchManager=" +	serverHost + ":" + httpsPort + " " +
-					"--trustSslCertificates --user=bob --password=bobpwd " + 			
+			"--batchManager=" + serverHost + ":" + httpsPort + " " +
+					"--trustSslCertificates --user=bob --password=bobpwd " +
 					"--wait --pollingInterval_s=2 ";
 
 	@BeforeClass
 	public static void setupForPlatformShell() {
-		
+
 		if (new File(BIN_SH).canExecute()) {
 			shellType = SHELL_TYPE.UNIX;
 		} else {
@@ -114,7 +113,7 @@ public class BonusPayoutIT {
 		String submitCmd = wlpInstallDir + "/bin/batchManager submit " +
 				CORE_COMMAND_PARMS +   
 				"--jobXMLName=BonusPayoutJob --applicationName=" + warName + " " +
-				"--jobPropertiesFile=" + wlpUserDir + "/shared/resources/runToCompletionParms.txt ";
+				"--jobPropertiesFile=" + wlpUserDir + "/src/test/resources/runToCompletionParms.properties ";
 
 		expect.sendLine(submitCmd);
 
@@ -131,7 +130,7 @@ public class BonusPayoutIT {
 		String submitCmd = wlpInstallDir + "/bin/batchManager submit " +
 				CORE_COMMAND_PARMS +   
 				"--jobXMLName=BonusPayoutJob --applicationName=" + warName + " " +
-				"--jobPropertiesFile=" + wlpUserDir + "/shared/resources/forceFailureParms.txt ";
+				"--jobPropertiesFile=" + wlpUserDir + "/src/test/resources/forceFailureParms.properties ";
 
 		expect.sendLine(submitCmd);
 
@@ -140,10 +139,10 @@ public class BonusPayoutIT {
 		// It doesn't exactly force a failure every time, just after a certain # of records, but we've
 		// gotten far enough to complete on the 1st restart.
 		String restartCmd = wlpInstallDir + "/bin/batchManager restart " +
-				CORE_COMMAND_PARMS + 
+				CORE_COMMAND_PARMS +
 				"--jobInstanceId=" + jobInstanceId + " " +
-				"--jobPropertiesFile=" + wlpUserDir + "/shared/resources/forceFailureParms.txt ";
-		
+				"--jobPropertiesFile=" + wlpUserDir + "/src/test/resources/forceFailureParms.properties ";
+
 		expect.sendLine(restartCmd);
 		assertJobTerminationStatus(BatchStatus.COMPLETED);
 		
