@@ -101,27 +101,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.1</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>********</echo>
-                                <echo>******** Database location will be at URL: </echo>
-                                <echo>******** ${db.url}</echo>
-                                <echo>********</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.6</version>
                 <executions>
@@ -338,6 +317,21 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
                 <executions>
+                    <execution>
+                        <id>install-db</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>********</echo>
+                                <echo>******** Database location will be at URL: </echo>
+                                <echo>******** ${db.url}</echo>
+                                <echo>********</echo>
+                            </tasks>
+                        </configuration>
+                    </execution>
                     <execution>
                         <id>install-app</id>
                         <phase>pre-integration-test</phase>
