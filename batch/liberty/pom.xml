@@ -76,29 +76,6 @@
 
     <build>
         <plugins>
-            <!-- Pasted from module "install" -->
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.6.1</version>
-                <configuration>
-                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                    <filesets>
-                        <fileset>
-                            <directory>target</directory>
-                        </fileset>
-                        <fileset>
-                            <directory>servers</directory>
-                            <followSymlinks>false</followSymlinks>
-                            <includes>
-                                <include>**/logs/**</include>
-                                <include>**/apps/**</include>
-                                <include>**/dropins/**</include>
-                                <include>**/workarea/**</include>
-                            </includes>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
