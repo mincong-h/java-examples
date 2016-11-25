@@ -8,6 +8,7 @@
 /servers/*/workarea
 /servers/.pid
 /servers/**/*.properties
+/servers/**/jvm.options
 
 #  For this sample
 /servers/*/dropins
