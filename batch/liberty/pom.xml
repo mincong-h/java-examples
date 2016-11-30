@@ -37,7 +37,7 @@
         <warName>${project.artifactId}</warName>
         <warPath>${project.build.directory}/${warName}-${project.version}.war</warPath>
         <wlp.user.dir>${project.basedir}</wlp.user.dir>
-        <server.config.dir>${wlp.user.dir}/servers/BonusPayout</server.config.dir>
+        <server.config.dir>${wlp.user.dir}/servers/BatchDemo</server.config.dir>
     </properties>
 
     <dependencies>
@@ -103,7 +103,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Used to create and prime the database with the BonusPayout application-level table. 
+            <!-- Used to create and prime the database with the batch demo application-level table. 
                 By calling it "application-level", we're referring to the fact that this 
                 is data written by the application, not by the runtime. Note the runtime 
                 tables may be created in the same database, as we do in this sample execution. -->
@@ -131,9 +131,7 @@
                         </goals>
                         <configuration>
                             <autocommit>true</autocommit>
-                            <!-- TODO change "drop table BONUSPAYOUT.RECTANGLE" to
-                                "DROP DATABASE DEMO" -->
-                            <sqlCommand>drop table BONUSPAYOUT.RECTANGLE</sqlCommand>
+                            <sqlCommand>drop table DEMO.RECTANGLE</sqlCommand>
                             <onError>continue</onError>
                             <skip>${reuseDB}</skip>
                         </configuration>
@@ -248,7 +246,7 @@
                     <installDirectory>${wlp.install.dir}</installDirectory>
                     <userDirectory>${wlp.user.dir}</userDirectory>
                     <configFiles>${server.config.dir}/server.xml</configFiles>
-                    <serverName>BonusPayout</serverName>
+                    <serverName>BatchDemo</serverName>
                     <bootstrapProperties>
                          <!-- propagate existing prop -->
                          <db.url>${db.url}</db.url>

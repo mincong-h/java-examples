@@ -8,7 +8,7 @@
             <processor ref="rectangleProcessor" />
             <writer ref="dbWriter">
                 <properties>
-                    <property name="dataSourcePath" value="#{jobParameters['dataSourcePath']}?:java:comp/env/jdbc/BonusPayoutDS;" />
+                    <property name="dataSourcePath" value="#{jobParameters['dataSourcePath']}?:java:comp/env/jdbc/BatchDemoDS;" />
                 </properties>
             </writer>
         </chunk>

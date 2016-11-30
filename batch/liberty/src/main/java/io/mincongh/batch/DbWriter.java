@@ -34,7 +34,7 @@ public class DbWriter extends AbstractItemWriter {
     @Override
     public void writeItems(List<Object> items) throws Exception {
         Connection conn = ds.getConnection();
-        String sql = "INSERT INTO BONUSPAYOUT.RECTANGLE VALUES (?, ?)";
+        String sql = "INSERT INTO DEMO.RECTANGLE VALUES (?, ?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         for (Object item : items) {
             Rectangle rectangle = (Rectangle) item;

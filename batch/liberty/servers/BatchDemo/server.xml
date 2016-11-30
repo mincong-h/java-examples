@@ -1,4 +1,5 @@
-<server description="Server for BonusPayout sample">
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Server for batch app demo in IBM WAS Liberty">
 
     <!-- This is the part that will be version controlled.  Useful since
          WDT will change the current file we're in. -->
