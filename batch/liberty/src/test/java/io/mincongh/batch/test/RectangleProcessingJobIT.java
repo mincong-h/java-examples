@@ -43,8 +43,8 @@ public class RectangleProcessingJobIT {
     private String CORE_COMMAND_PARMS =
             "--batchManager=" + serverHost + ":" + httpsPort + " "
                     + "--trustSslCertificates "
-                    + "--user=bob "
-                    + "--password=bobpwd "
+                    + "--user=submitter "
+                    + "--password=pass "
                     + "--wait "
                     + "--pollingInterval_s=2 ";
 
