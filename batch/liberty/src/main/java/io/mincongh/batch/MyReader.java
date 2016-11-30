@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.batch.api.chunk.AbstractItemReader;
+import javax.inject.Named;
 
+@Named
 public class MyReader extends AbstractItemReader {
 
     private static final String NUMBERS = "0,1,2,3,4,5,6,7,8,9";

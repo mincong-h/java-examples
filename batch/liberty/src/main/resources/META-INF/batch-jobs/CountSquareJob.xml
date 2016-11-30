@@ -4,9 +4,9 @@
 
     <step id="countSquare">
         <chunk item-count="3">
-            <reader ref="io.mincongh.batch.MyReader" />
-            <processor ref="io.mincongh.batch.MyProcessor"/>
-            <writer ref="io.mincongh.batch.MyWriter"/>
+            <reader ref="myReader" />
+            <processor ref="myProcessor"/>
+            <writer ref="myWriter"/>
         </chunk>
     </step>
 </job>
