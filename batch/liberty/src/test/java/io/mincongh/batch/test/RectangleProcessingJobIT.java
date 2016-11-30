@@ -19,7 +19,7 @@ import net.sf.expectit.Expect;
 import net.sf.expectit.ExpectBuilder;
 import net.sf.expectit.Result;
 
-public class CountSquareJobIT {
+public class RectangleProcessingJobIT {
 
     // How long we wait for matching command line output in these tests
     private int COMMAND_LINE_WAIT_TIME_SECONDS = 25;
@@ -34,6 +34,7 @@ public class CountSquareJobIT {
 
     private Expect expect;
     private Process process;
+    private String jobName = "RectangleProcessingJob";
     private String warName = System.getProperty("warName");
     private String wlpInstallDir = System.getProperty("wlp.install.dir");
     private String serverHost = System.getProperty("serverHost");
@@ -93,7 +94,7 @@ public class CountSquareJobIT {
     public void testRunToCompletion() throws Exception {
         String submitCmd = wlpInstallDir + "/bin/batchManager "
                 + "submit " + CORE_COMMAND_PARMS
-                + "--jobXMLName=CountSquareJob "
+                + "--jobXMLName=" + jobName + " "
                 + "--applicationName=" + warName + " ";
 
         expect.sendLine(submitCmd);

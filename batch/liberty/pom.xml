@@ -137,6 +137,21 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>drop-table-rectangle-if-exists</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <autocommit>true</autocommit>
+                            <!-- TODO change "drop table BONUSPAYOUT.RECTANGLE" to
+                                "DROP DATABASE DEMO" -->
+                            <sqlCommand>drop table BONUSPAYOUT.RECTANGLE</sqlCommand>
+                            <onError>continue</onError>
+                            <skip>${reuseDB}</skip>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>create-db</id>
                         <phase>process-test-resources</phase>
                         <goals>
@@ -146,6 +161,7 @@
                             <autocommit>true</autocommit>
                             <srcFiles>
                                 <srcFile>src/test/resources/BonusPayout.derby.ddl</srcFile>
+                                <srcFile>src/test/resources/Rectangle.derby.ddl</srcFile>
                             </srcFiles>
                             <skip>${reuseDB}</skip>
                         </configuration>

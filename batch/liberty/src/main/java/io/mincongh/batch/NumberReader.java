@@ -9,9 +9,9 @@ import javax.batch.api.chunk.AbstractItemReader;
 import javax.inject.Named;
 
 @Named
-public class MyReader extends AbstractItemReader {
+public class NumberReader extends AbstractItemReader {
 
-    private static final String NUMBERS = "0,1,2,3,4,5,6,7,8,9";
+    private static final String NUMBERS = "1,2,3,4,5,6,7,8,9,10";
     private List<Integer> numbers;
     private Iterator<Integer> numberIterator;
 
