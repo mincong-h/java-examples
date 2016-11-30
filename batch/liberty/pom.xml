@@ -124,19 +124,6 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>drop-db-before-test-if-any</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <autocommit>true</autocommit>
-                            <sqlCommand>drop table BONUSPAYOUT.ACCOUNT</sqlCommand>
-                            <onError>continue</onError>
-                            <skip>${reuseDB}</skip>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>drop-table-rectangle-if-exists</id>
                         <phase>process-test-resources</phase>
                         <goals>
@@ -160,7 +147,6 @@
                         <configuration>
                             <autocommit>true</autocommit>
                             <srcFiles>
-                                <srcFile>src/test/resources/BonusPayout.derby.ddl</srcFile>
                                 <srcFile>src/test/resources/Rectangle.derby.ddl</srcFile>
                             </srcFiles>
                             <skip>${reuseDB}</skip>
