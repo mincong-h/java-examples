@@ -32,7 +32,7 @@
         <!-- DON'T EDIT after this point -->
 
         <!-- liberty plugin default, passed to integration test -->
-        <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>  
+        <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>
 
         <warName>${project.artifactId}</warName>
         <warPath>${project.build.directory}/${warName}-${project.version}.war</warPath>
@@ -103,10 +103,9 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Used to create and prime the database with the batch demo application-level table. 
-                By calling it "application-level", we're referring to the fact that this 
-                is data written by the application, not by the runtime. Note the runtime 
-                tables may be created in the same database, as we do in this sample execution. -->
+            <!-- Used to create and prime the database with the batch demo application-level table. By calling it "application-level", 
+                we're referring to the fact that this is data written by the application, not by the runtime. Note the runtime tables may 
+                be created in the same database, as we do in this sample execution. -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>sql-maven-plugin</artifactId>
@@ -248,8 +247,8 @@
                     <configFiles>${server.config.dir}/server.xml</configFiles>
                     <serverName>BatchDemo</serverName>
                     <bootstrapProperties>
-                         <!-- propagate existing prop -->
-                         <db.url>${db.url}</db.url>
+                        <!-- propagate existing prop -->
+                        <db.url>${db.url}</db.url>
                     </bootstrapProperties>
                     <jvmOptions>
                         <param>${startServerJvmOptions}</param>
@@ -283,8 +282,7 @@
                         <wlp.user.dir>${wlp.user.dir}</wlp.user.dir>
                         <httpsPort>${httpsPort}</httpsPort>
                         <serverHost>${serverHost}</serverHost>
-                        <!-- These batch tests require the app name so batchManager knows which 
-                            application hosts the job -->
+                        <!-- These batch tests require the app name so batchManager knows which application hosts the job -->
                         <warName>${warName}</warName>
                     </systemPropertyVariables>
                 </configuration>
@@ -315,7 +313,8 @@
                         <configuration>
                             <skip>${skipTests}</skip>
                             <target>
-                                <ant dir="${project.basedir}/src/test/resources" antfile="install.if.not.published.by.wdt.xml" target="installApp"/>
+                                <ant dir="${project.basedir}/src/test/resources" antfile="install.if.not.published.by.wdt.xml"
+                                    target="installApp" />
                             </target>
                         </configuration>
                         <goals>
@@ -328,7 +327,8 @@
                         <configuration>
                             <skip>${skipTests}</skip>
                             <target>
-                                <ant dir="${project.basedir}/src/test/resources" antfile="install.if.not.published.by.wdt.xml" target="uninstallApp"/>
+                                <ant dir="${project.basedir}/src/test/resources" antfile="install.if.not.published.by.wdt.xml"
+                                    target="uninstallApp" />
                             </target>
                         </configuration>
                         <goals>
@@ -340,7 +340,8 @@
         </plugins>
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven 
+                    build itself. -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId>
@@ -358,7 +359,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore/>
+                                        <ignore />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
@@ -374,7 +375,9 @@
             <id>use-existing-liberty-if-present</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
-                <property><name>wlp.install.dir</name></property>
+                <property>
+                    <name>wlp.install.dir</name>
+                </property>
             </activation>
             <properties>
                 <wlpInstallDir>${wlp.install.dir}</wlpInstallDir>
@@ -384,7 +387,9 @@
             <id>start-liberty-in-debug</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
-                <property><name>startDebug</name></property>
+                <property>
+                    <name>startDebug</name>
+                </property>
             </activation>
             <properties>
                 <startServerJvmOptions>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7777</startServerJvmOptions>
