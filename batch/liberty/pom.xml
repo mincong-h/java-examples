@@ -17,8 +17,8 @@
 
     <properties>
         <!-- Pasted from module "install" -->
-        <shared.resource.directory>${basedir}/shared/resources</shared.resource.directory>
-        <db.url>${shared.resource.directory}/BatchDB</db.url>
+        <shared.resource.dir>${basedir}/shared/resources</shared.resource.dir>
+        <db.url>${shared.resource.dir}/BatchDB</db.url>
         <derby.version>10.11.1.1</derby.version>
 
         <!-- Pasted from module "app" -->
@@ -95,7 +95,7 @@
                                     <version>${derby.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
-                                    <outputDirectory>${shared.resource.directory}/derby</outputDirectory>
+                                    <outputDirectory>${shared.resource.dir}/derby</outputDirectory>
                                     <destFileName>derby.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
