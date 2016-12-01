@@ -5,43 +5,40 @@
     <featureManager>
         <feature>batchManagement-1.0</feature>
         <feature>localConnector-1.0</feature>
-        <!-- This sample can work with or without CDI configured -->
         <feature>cdi-1.2</feature>
-        <feature>jsf-2.2</feature>
-        <feature>jaxrs-2.0</feature>
     </featureManager>
 
-    <!-- To access this server from a remote client add a host attribute to
-        the following element, e.g. host="*" -->
-    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
 
     <library id="DerbyLib">
-        <fileset dir="${shared.resource.dir}/derby"/>
+        <fileset dir="${shared.resource.dir}/derby" />
     </library>
 
-    <logging traceSpecification="BonusPayout=all=enabled"/>
-    
+    <logging traceSpecification="BonusPayout=all=enabled" />
+
     <dataSource id="batchDB" jndiName="jdbc/batch" type="javax.sql.XADataSource">
-        <jdbcDriver libraryRef="DerbyLib"/>
+        <jdbcDriver libraryRef="DerbyLib" />
         <!-- The 'databaseName' is set in bootstrap.properties -->
-        <properties.derby.embedded createDatabase="false" databaseName="${db.url}" user="user" password="pass"/>
+        <properties.derby.embedded createDatabase="false" databaseName="${db.url}" user="user"
+            password="pass" />
     </dataSource>
 
-    <databaseStore dataSourceRef="batchDB" id="BatchDatabaseStore" schema="JBATCH" tablePrefix=""/>
+    <databaseStore dataSourceRef="batchDB" id="BatchDatabaseStore" schema="JBATCH" tablePrefix="" />
 
-    <batchPersistence jobStoreRef="BatchDatabaseStore"/>
+    <batchPersistence jobStoreRef="BatchDatabaseStore" />
 
-    <applicationMonitor updateTrigger="mbean"/>
+    <applicationMonitor updateTrigger="mbean" />
 
-    <keyStore id="defaultKeyStore" password="Liberty"/>
+    <keyStore id="defaultKeyStore" password="Liberty" />
 
     <basicRegistry id="basic" realm="ibm/api">
-        <user name="submitter" password="pass"/>
+        <user name="submitter" password="pass" />
     </basicRegistry>
 
     <authorization-roles id="com.ibm.ws.batch">
         <security-role name="batchSubmitter">
-            <user name="submitter"/>
+            <user name="submitter" />
         </security-role>
     </authorization-roles>
 
