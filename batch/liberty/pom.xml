@@ -130,7 +130,7 @@
                         </goals>
                         <configuration>
                             <autocommit>true</autocommit>
-                            <sqlCommand>drop table DEMO.RECTANGLE</sqlCommand>
+                            <sqlCommand>DROP TABLE DEMO.RECTANGLE</sqlCommand>
                             <onError>continue</onError>
                             <skip>${reuseDB}</skip>
                         </configuration>
