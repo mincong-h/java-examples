@@ -36,9 +36,13 @@ public class RectangleProcessingJobIT {
     private Process process;
     private String jobName = "RectangleProcessingJob";
     private String warName = System.getProperty("warName");
+    private String wlpUserDir = System.getProperty("wlp.user.dir");
     private String wlpInstallDir = System.getProperty("wlp.install.dir");
     private String serverHost = System.getProperty("serverHost");
     private String httpsPort = System.getProperty("httpsPort");
+    private String jobPropertiesFile = wlpUserDir
+            + "/src/test/resources/"
+            + "ractangle-processing-job.properties";
 
     private String CORE_COMMAND_PARMS =
             "--batchManager=" + serverHost + ":" + httpsPort + " "
@@ -95,14 +99,12 @@ public class RectangleProcessingJobIT {
         String submitCmd = wlpInstallDir + "/bin/batchManager "
                 + "submit " + CORE_COMMAND_PARMS
                 + "--jobXMLName=" + jobName + " "
-                + "--applicationName=" + warName + " ";
+                + "--applicationName=" + warName + " "
+                + "--jobPropertiesFile=" + jobPropertiesFile + " ";
 
         expect.sendLine(submitCmd);
-
         assertJobTerminationStatus(BatchStatus.COMPLETED);
-
         expect.sendLine("exit");
-        // expect the process to finish
         expect.expect(eof());
     }
 
