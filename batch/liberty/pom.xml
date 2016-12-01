@@ -372,18 +372,6 @@
 
     <profiles>
         <profile>
-            <id>use-existing-liberty-if-present</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-                <property>
-                    <name>wlp.install.dir</name>
-                </property>
-            </activation>
-            <properties>
-                <wlpInstallDir>${wlp.install.dir}</wlpInstallDir>
-            </properties>
-        </profile>
-        <profile>
             <id>start-liberty-in-debug</id>
             <activation>
                 <activeByDefault>false</activeByDefault>
