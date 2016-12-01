@@ -26,8 +26,9 @@
         <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>
         <wlp.user.dir>${project.basedir}</wlp.user.dir>
         <shared.resource.dir>${basedir}/shared/resources</shared.resource.dir>
-        <server.config.dir>${wlp.user.dir}/servers/BatchDemo</server.config.dir>
+        <server.config.dir>${wlp.user.dir}/servers/${serverName}</server.config.dir>
         <serverHost>localhost</serverHost>
+        <serverName>BatchDemo</serverName>
         <httpsPort>9443</httpsPort>
     </properties>
 
@@ -221,7 +222,7 @@
                     <installDirectory>${wlp.install.dir}</installDirectory>
                     <userDirectory>${wlp.user.dir}</userDirectory>
                     <configFiles>${server.config.dir}/server.xml</configFiles>
-                    <serverName>BatchDemo</serverName>
+                    <serverName>${serverName}</serverName>
                     <bootstrapProperties>
                         <!-- propagate existing prop -->
                         <db.url>${db.url}</db.url>
