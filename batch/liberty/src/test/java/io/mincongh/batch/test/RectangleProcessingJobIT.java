@@ -45,12 +45,12 @@ public class RectangleProcessingJobIT {
             + "ractangle-processing-job.properties";
 
     private String CORE_COMMAND_PARMS =
-            "--batchManager=" + serverHost + ":" + httpsPort + " "
-                    + "--trustSslCertificates "
-                    + "--user=submitter "
-                    + "--password=pass "
-                    + "--wait "
-                    + "--pollingInterval_s=2 ";
+            "--batchManager=" + serverHost + ":" + httpsPort
+                    + " --trustSslCertificates"
+                    + " --user=submitter"
+                    + " --password=pass"
+                    + " --wait"
+                    + " --pollingInterval_s=2";
 
     @BeforeClass
     public static void setupForPlatformShell() {
@@ -96,11 +96,11 @@ public class RectangleProcessingJobIT {
 
     @Test
     public void testRunToCompletion() throws Exception {
-        String submitCmd = wlpInstallDir + "/bin/batchManager "
-                + "submit " + CORE_COMMAND_PARMS
-                + "--jobXMLName=" + jobName + " "
-                + "--applicationName=" + warName + " "
-                + "--jobPropertiesFile=" + jobPropertiesFile + " ";
+        String submitCmd = wlpInstallDir + "/bin/batchManager"
+                + " submit " + CORE_COMMAND_PARMS
+                + " --jobXMLName=" + jobName
+                + " --applicationName=" + warName
+                + " --jobPropertiesFile=" + jobPropertiesFile;
 
         expect.sendLine(submitCmd);
         assertJobTerminationStatus(BatchStatus.COMPLETED);
