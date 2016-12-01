@@ -16,28 +16,19 @@
     <packaging>war</packaging>
 
     <properties>
-        <!-- Pasted from module "install" -->
-        <shared.resource.dir>${basedir}/shared/resources</shared.resource.dir>
         <db.url>${shared.resource.dir}/BatchDB</db.url>
-        <derby.version>10.11.1.1</derby.version>
-
-        <!-- Pasted from module "app" -->
-        <!-- EDIT ME (or override on command line) -->
-        <serverHost>localhost</serverHost>
-        <httpsPort>9443</httpsPort>
-        <libertyVersion>16.0.0.3</libertyVersion>
-        <!-- Use commented-out value since empty value doesn't flow as well. -->
-        <startServerJvmOptions>#-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7777</startServerJvmOptions>
-
-        <!-- DON'T EDIT after this point -->
-
-        <!-- liberty plugin default, passed to integration test -->
-        <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>
-
+        <version.derby>10.11.1.1</version.derby>
+        <version.liberty>16.0.0.3</version.liberty>
         <warName>${project.artifactId}</warName>
         <warPath>${project.build.directory}/${warName}-${project.version}.war</warPath>
+        <!-- IBM WAS Liberty configuration -->
+        <startServerJvmOptions>#-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=7777</startServerJvmOptions>
+        <wlpInstallDir>${project.build.directory}/liberty/wlp</wlpInstallDir>
         <wlp.user.dir>${project.basedir}</wlp.user.dir>
+        <shared.resource.dir>${basedir}/shared/resources</shared.resource.dir>
         <server.config.dir>${wlp.user.dir}/servers/BatchDemo</server.config.dir>
+        <serverHost>localhost</serverHost>
+        <httpsPort>9443</httpsPort>
     </properties>
 
     <dependencies>
@@ -77,7 +68,7 @@
                                 <artifactItem>
                                     <groupId>org.apache.derby</groupId>
                                     <artifactId>derby</artifactId>
-                                    <version>${derby.version}</version>
+                                    <version>${version.derby}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${shared.resource.dir}/derby</outputDirectory>
@@ -99,7 +90,7 @@
                     <dependency>
                         <groupId>org.apache.derby</groupId>
                         <artifactId>derby</artifactId>
-                        <version>${derby.version}</version>
+                        <version>${version.derby}</version>
                     </dependency>
                 </dependencies>
                 <configuration>
@@ -224,7 +215,7 @@
                     <assemblyArtifact>
                         <groupId>com.ibm.websphere.appserver.runtime</groupId>
                         <artifactId>wlp-webProfile7</artifactId>
-                        <version>${libertyVersion}</version>
+                        <version>${version.liberty}</version>
                         <type>zip</type>
                     </assemblyArtifact>
                     <installDirectory>${wlp.install.dir}</installDirectory>
@@ -263,7 +254,7 @@
                 </executions>
                 <configuration>
                     <systemPropertyVariables>
-                        <wlp.install.dir>${wlpInstallDir}</wlp.install.dir>
+                        <wlp.install.dir>${project.build.directory}/liberty/wlp</wlp.install.dir>
                         <wlp.user.dir>${wlp.user.dir}</wlp.user.dir>
                         <httpsPort>${httpsPort}</httpsPort>
                         <serverHost>${serverHost}</serverHost>
