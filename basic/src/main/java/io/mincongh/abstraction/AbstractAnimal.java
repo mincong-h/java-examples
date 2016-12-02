@@ -10,15 +10,14 @@ package io.mincongh.abstraction;
  * <li>Provide a common interface which allows the subclass to be interchanged
  * with all other subclasses.
  * </ul>
- * From {@link http://stackoverflow.com/questions/1320745/abstract-class-in-java}.
+ * From
+ * {@link http://stackoverflow.com/questions/1320745/abstract-class-in-java}.
  *
  * @author Mincong Huang
  */
 public abstract class AbstractAnimal {
 
-    AbstractAnimal() {
-        System.out.println("AbstractAnimal constructor called.");
-    }
+    AbstractAnimal() {}
 
     /**
      * Abstract method do not have body.
