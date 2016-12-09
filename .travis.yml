@@ -3,6 +3,7 @@ language: java
 jdk:
   - oraclejdk8
 install:
-  - mvn -B install -DskipTests=true
+  # first, download all the Maven dependencies without logging
+  - mvn -B -q install -DskipTests=true
 script:
   - mvn clean verify
