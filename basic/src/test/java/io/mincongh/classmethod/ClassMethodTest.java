@@ -13,10 +13,10 @@ import io.mincongh.abstraction.Dog;
  */
 public class ClassMethodTest {
 
-    @Test
-    public void testMethods() {
-        assertEquals("class io.mincongh.abstraction.Dog", Dog.class.toString());
-        assertEquals("io.mincongh.abstraction.Dog", Dog.class.getName());
-        assertEquals("Dog", Dog.class.getSimpleName());
-    }
+  @Test
+  public void testMethods() {
+    assertEquals("class io.mincongh.abstraction.Dog", Dog.class.toString());
+    assertEquals("io.mincongh.abstraction.Dog", Dog.class.getName());
+    assertEquals("Dog", Dog.class.getSimpleName());
+  }
 }

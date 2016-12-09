@@ -12,34 +12,34 @@ import javax.persistence.Id;
 @Entity
 public class Animal implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
-    private int id;
-    private String name;
+  @Id
+  @GeneratedValue
+  private int id;
+  private String name;
 
-    public Animal() {
+  public Animal() {
 
-    }
+  }
 
-    public Animal(String name) {
-        this.name = name;
-    }
+  public Animal(String name) {
+    this.name = name;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 }

@@ -7,19 +7,19 @@ import java.util.concurrent.Callable;
  */
 public class Counter implements Callable<Integer> {
 
-    private int end;
+  private int end;
 
-    public Counter(int end) {
-        this.end = end;
-    }
+  public Counter(int end) {
+    this.end = end;
+  }
 
-    @Override
-    public Integer call() throws Exception {
-        int i = 0;
-        while (i < end) {
-            System.out.println(i);
-            i++;
-        }
-        return i;
+  @Override
+  public Integer call() throws Exception {
+    int i = 0;
+    while (i < end) {
+      System.out.println(i);
+      i++;
     }
+    return i;
+  }
 }

@@ -6,13 +6,13 @@ package io.mincongh.abstraction;
  */
 public class Dog extends AbstractAnimal {
 
-    @Override
-    public String abstractMethod() {
-        return "Abstract method implemented by Dog.";
-    }
+  @Override
+  public String abstractMethod() {
+    return "Abstract method implemented by Dog.";
+  }
 
-    @Override
-    public String implementedMethod() {
-        return "Implemented by Dog.";
-    }
+  @Override
+  public String implementedMethod() {
+    return "Implemented by Dog.";
+  }
 }

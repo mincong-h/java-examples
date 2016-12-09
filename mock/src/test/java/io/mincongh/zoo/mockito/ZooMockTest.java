@@ -19,32 +19,32 @@ import io.mincongh.zoo.Zoo;
 @RunWith(MockitoJUnitRunner.class)
 public class ZooMockTest {
 
-//  @Mock(name = "queen")
-//  private Animal mockedQueen;
-    @Mock
-    private Animal queen;
+  // @Mock(name = "queen")
+  // private Animal mockedQueen;
+  @Mock
+  private Animal queen;
 
-//  @Mock(name = "king")
-//  private Animal mockedKing;
-    @Mock
-    private Animal king;
+  // @Mock(name = "king")
+  // private Animal mockedKing;
+  @Mock
+  private Animal king;
 
-    @InjectMocks
-    private Zoo zoo;
+  @InjectMocks
+  private Zoo zoo;
 
-    @Before
-    public void setUp() {
-        Mockito.when(king.getName()).thenReturn("TIGER KING ฅ(ٛ•௰• ٛ )");
-        Mockito.when(queen.getName()).thenReturn("TIGER QUEEN ( •̆௰•̆)");
-    }
+  @Before
+  public void setUp() {
+    Mockito.when(king.getName()).thenReturn("TIGER KING ฅ(ٛ•௰• ٛ )");
+    Mockito.when(queen.getName()).thenReturn("TIGER QUEEN ( •̆௰•̆)");
+  }
 
-    @Test
-    public void testHasKing() {
-        assertTrue(zoo.hasKing());
-    }
+  @Test
+  public void testHasKing() {
+    assertTrue(zoo.hasKing());
+  }
 
-    @Test
-    public void testHasQueen() {
-        assertTrue(zoo.hasQueen());
-    }
+  @Test
+  public void testHasQueen() {
+    assertTrue(zoo.hasQueen());
+  }
 }

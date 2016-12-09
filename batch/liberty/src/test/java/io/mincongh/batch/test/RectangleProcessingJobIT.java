@@ -21,105 +21,92 @@ import net.sf.expectit.Result;
 
 public class RectangleProcessingJobIT {
 
-    // How long we wait for matching command line output in these tests
-    private int COMMAND_LINE_WAIT_TIME_SECONDS = 25;
+  // How long we wait for matching command line output in these tests
+  private int COMMAND_LINE_WAIT_TIME_SECONDS = 25;
 
-    private static enum SHELL_TYPE {
-        UNIX, WINDOWS
-    };
+  private static enum SHELL_TYPE {
+    UNIX, WINDOWS
+  };
 
-    private static SHELL_TYPE shellType;
-    public static String WIN_CMD;
-    public static final String BIN_SH = "/bin/sh";
+  private static SHELL_TYPE shellType;
+  public static String WIN_CMD;
+  public static final String BIN_SH = "/bin/sh";
 
-    private Expect expect;
-    private Process process;
-    private String jobName = "RectangleProcessingJob";
-    private String warName = System.getProperty("warName");
-    private String wlpUserDir = System.getProperty("wlp.user.dir");
-    private String wlpInstallDir = System.getProperty("wlp.install.dir");
-    private String serverHost = System.getProperty("serverHost");
-    private String httpsPort = System.getProperty("httpsPort");
-    private String jobPropertiesFile = wlpUserDir
-            + "/src/test/resources/"
-            + "ractangle-processing-job.properties";
+  private Expect expect;
+  private Process process;
+  private String jobName = "RectangleProcessingJob";
+  private String warName = System.getProperty("warName");
+  private String wlpUserDir = System.getProperty("wlp.user.dir");
+  private String wlpInstallDir = System.getProperty("wlp.install.dir");
+  private String serverHost = System.getProperty("serverHost");
+  private String httpsPort = System.getProperty("httpsPort");
+  private String jobPropertiesFile =
+      wlpUserDir + "/src/test/resources/" + "ractangle-processing-job.properties";
 
-    private String CORE_COMMAND_PARMS =
-            "--batchManager=" + serverHost + ":" + httpsPort
-                    + " --trustSslCertificates"
-                    + " --user=submitter"
-                    + " --password=pass"
-                    + " --wait"
-                    + " --pollingInterval_s=2";
+  private String CORE_COMMAND_PARMS =
+      "--batchManager=" + serverHost + ":" + httpsPort + " --trustSslCertificates"
+          + " --user=submitter" + " --password=pass" + " --wait" + " --pollingInterval_s=2";
 
-    @BeforeClass
-    public static void setupForPlatformShell() {
+  @BeforeClass
+  public static void setupForPlatformShell() {
 
-        if (new File(BIN_SH).canExecute()) {
-            shellType = SHELL_TYPE.UNIX;
-            return;
-        }
-        WIN_CMD = System.getenv("COMSPEC");
-        if (WIN_CMD != null && new File(WIN_CMD).canExecute()) {
-            shellType = SHELL_TYPE.WINDOWS;
-            return;
-        }
-        throw new IllegalStateException(
-                "Unable to find either /bin/sh or Windows command shells.");
+    if (new File(BIN_SH).canExecute()) {
+      shellType = SHELL_TYPE.UNIX;
+      return;
     }
-
-    @Before
-    public void setup() throws IOException {
-        ProcessBuilder builder = null;
-        if (shellType == SHELL_TYPE.WINDOWS) {
-            builder = new ProcessBuilder(WIN_CMD, "/Q");
-        } else {
-            builder = new ProcessBuilder(BIN_SH);
-        }
-        process = builder.start();
-        expect = new ExpectBuilder()
-                .withInputs(process.getInputStream(), process.getErrorStream())
-                .withOutput(process.getOutputStream())
-                .withInputFilters(removeNonPrintable())
-                .withEchoInput(System.err)
-                .withEchoOutput(System.out)
-                .withTimeout(COMMAND_LINE_WAIT_TIME_SECONDS, TimeUnit.SECONDS)
-                .build();
+    WIN_CMD = System.getenv("COMSPEC");
+    if (WIN_CMD != null && new File(WIN_CMD).canExecute()) {
+      shellType = SHELL_TYPE.WINDOWS;
+      return;
     }
+    throw new IllegalStateException("Unable to find either /bin/sh or Windows command shells.");
+  }
 
-    @After
-    public void cleanup() throws IOException, InterruptedException {
-        process.destroy();
-        process.waitFor();
-        expect.close();
+  @Before
+  public void setup() throws IOException {
+    ProcessBuilder builder = null;
+    if (shellType == SHELL_TYPE.WINDOWS) {
+      builder = new ProcessBuilder(WIN_CMD, "/Q");
+    } else {
+      builder = new ProcessBuilder(BIN_SH);
     }
+    process = builder.start();
+    expect = new ExpectBuilder().withInputs(process.getInputStream(), process.getErrorStream())
+        .withOutput(process.getOutputStream()).withInputFilters(removeNonPrintable())
+        .withEchoInput(System.err).withEchoOutput(System.out)
+        .withTimeout(COMMAND_LINE_WAIT_TIME_SECONDS, TimeUnit.SECONDS).build();
+  }
 
-    @Test
-    public void testRunToCompletion() throws Exception {
-        String submitCmd = wlpInstallDir + "/bin/batchManager"
-                + " submit " + CORE_COMMAND_PARMS
-                + " --jobXMLName=" + jobName
-                + " --applicationName=" + warName
-                + " --jobPropertiesFile=" + jobPropertiesFile;
+  @After
+  public void cleanup() throws IOException, InterruptedException {
+    process.destroy();
+    process.waitFor();
+    expect.close();
+  }
 
-        expect.sendLine(submitCmd);
-        assertJobTerminationStatus(BatchStatus.COMPLETED);
-        expect.sendLine("exit");
-        expect.expect(eof());
-    }
+  @Test
+  public void testRunToCompletion() throws Exception {
+    String submitCmd = wlpInstallDir + "/bin/batchManager" + " submit " + CORE_COMMAND_PARMS
+        + " --jobXMLName=" + jobName + " --applicationName=" + warName + " --jobPropertiesFile="
+        + jobPropertiesFile;
 
-    /**
-     * @param batchStatus Expected status
-     * @return job instance ID
-     * @throws IOException
-     */
-    private long assertJobTerminationStatus(BatchStatus batchStatus) throws IOException {
-        // CWWKY0105I: Job {0} with instance ID {1} has finished. Batch status:
-        // {2}. Exit status: {3}
-        Result res = expect.expect(regexp(
-                "CWWKY0105I: Job (.*) with instance ID (\\d+) has finished. Batch status: ([A-Z]+)"));
-        assertEquals("Job terminated, but in unexpected state", batchStatus.toString(),
-                res.group(3));
-        return Long.parseLong(res.group(2));
-    }
+    expect.sendLine(submitCmd);
+    assertJobTerminationStatus(BatchStatus.COMPLETED);
+    expect.sendLine("exit");
+    expect.expect(eof());
+  }
+
+  /**
+   * @param batchStatus Expected status
+   * @return job instance ID
+   * @throws IOException
+   */
+  private long assertJobTerminationStatus(BatchStatus batchStatus) throws IOException {
+    // CWWKY0105I: Job {0} with instance ID {1} has finished. Batch status:
+    // {2}. Exit status: {3}
+    Result res = expect.expect(regexp(
+        "CWWKY0105I: Job (.*) with instance ID (\\d+) has finished. Batch status: ([A-Z]+)"));
+    assertEquals("Job terminated, but in unexpected state", batchStatus.toString(), res.group(3));
+    return Long.parseLong(res.group(2));
+  }
 }

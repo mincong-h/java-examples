@@ -6,5 +6,6 @@ package io.mincongh.library;
 public abstract class Book {
 
   public abstract void printContent();
+
   public abstract String getContent();
 }

@@ -22,6 +22,11 @@ application without the need to recompile. In this module, the class `Counter`
 is supposed to count a number from 0 to 10. Due to the bytemen script
 `check.btm`, the counter stops at number 6 (exception thrown at i = 5).
 
+## Code Style
+
+I use [Google Java Code Style][style-java] for this repo.
+
 [bm]: http://byteman.jboss.org
+[style-java]: https://google.github.io/styleguide/javaguide.html
 [travis]: https://travis-ci.org/mincong-h/java-examples
 [travis-img]: https://travis-ci.org/mincong-h/java-examples.svg?branch=master

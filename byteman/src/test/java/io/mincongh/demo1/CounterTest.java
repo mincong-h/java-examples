@@ -23,26 +23,26 @@ import org.junit.runner.RunWith;
 @BMScript(value = "check.btm")
 public class CounterTest {
 
-    @Rule
-    public ExpectedException expectedEx = ExpectedException.none();
+  @Rule
+  public ExpectedException expectedEx = ExpectedException.none();
 
-    @Test
-    public void textCounter() throws ExecutionException, InterruptedException {
+  @Test
+  public void textCounter() throws ExecutionException, InterruptedException {
 
-        expectedEx.expect(ExecutionException.class);
-        expectedEx.expectMessage("Byteman : interrupt the program...");
+    expectedEx.expect(ExecutionException.class);
+    expectedEx.expectMessage("Byteman : interrupt the program...");
 
-        Counter counter = new Counter(10);
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-        Future<Integer> future = executor.submit(counter);
-        int tries = 0;
+    Counter counter = new Counter(10);
+    ExecutorService executor = Executors.newFixedThreadPool(1);
+    Future<Integer> future = executor.submit(counter);
+    int tries = 0;
 
-        // This method is waiting the future to complete
-        while (!future.isDone() && !future.isCancelled() && tries < 15) {
-            TimeUnit.SECONDS.sleep(1);
-            tries++;
-        }
-        int end = future.get();
-        fail("The future should be interrupted by byteman, but end=" + end);
+    // This method is waiting the future to complete
+    while (!future.isDone() && !future.isCancelled() && tries < 15) {
+      TimeUnit.SECONDS.sleep(1);
+      tries++;
     }
+    int end = future.get();
+    fail("The future should be interrupted by byteman, but end=" + end);
+  }
 }
