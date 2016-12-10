@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -30,5 +31,11 @@ public class IterationTest {
     StringBuilder sb = new StringBuilder();
     words.forEach(word -> sb.append(word).append(" "));
     assertEquals("Hello Java 8", sb.toString().trim());
+  }
+
+  @Test
+  public void testStream() {
+    String sentence = words.stream().collect(Collectors.joining(" "));
+    assertEquals("Hello Java 8", sentence);
   }
 }
