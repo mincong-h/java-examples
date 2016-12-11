@@ -23,12 +23,22 @@
         <module>hashcode</module>
         <module>hibernate-search</module>
         <module>java8</module>
+        <module>jsf</module>
         <module>mock</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Test -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.7</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>

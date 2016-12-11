@@ -8,15 +8,15 @@ using:
 
     mvn clean install
 
-### Module clone
+### Module Clone
 
-The module _clone_ tests the behaviors of the method `Clonable#clone()` by
+The module _Clone_ tests the behaviors of the method `Clonable#clone()` by
 comparing the original object and cloned object through different class types.
 So after the clone, what are the differences by reference and by value?
 
-### Module byteman
+### Module Byteman
 
-The module _byteman_ uses the [byteman][bm] tool to change expected behaviour
+The module _Byteman_ uses the [byteman][bm] tool to change expected behaviour
 of the Java application and JDK runtime code. It injects Java code into my
 application without the need to recompile. In this module, the class `Counter`
 is supposed to count a number from 0 to 10. Due to the bytemen script
@@ -26,6 +26,13 @@ is supposed to count a number from 0 to 10. Due to the bytemen script
 
 The module _Java 8_ tests the new functionality of Java 8, including filter,
 map, stream and more.
+
+### Module JSF
+
+The module _JSF_ demonstrated the basic usage of JavaServer Faces, a Java-based
+web application framework intended to simplify development integration of
+web-based user interfaces. JavaServer Faces is a standardized display technology
+which was formalized in a specification through the Java Community Process.
 
 ## Code Style
 
