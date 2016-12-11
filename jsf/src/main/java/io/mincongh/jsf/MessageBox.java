@@ -24,12 +24,6 @@ public class MessageBox {
 
   private static final Logger LOGGER = LogManager.getLogger(MessageBox.class);
 
-  /**
-   * Managed property {@link Message}
-
-  @ManagedProperty(value="#{messageBean}")
-  private Message messageBean;
-   */
   private String name = "Hello JSF";
 
   public MessageBox() {

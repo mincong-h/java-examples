@@ -10,7 +10,6 @@
 
   <artifactId>java-examples-jsf</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
   <name>Java Examples - JSF</name>
 
   <properties>
