@@ -25,6 +25,7 @@
         <module>java8</module>
         <module>jsf</module>
         <module>mock</module>
+        <module>restful-api</module>
     </modules>
 
     <dependencyManagement>

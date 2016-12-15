@@ -34,11 +34,19 @@ web application framework intended to simplify development integration of
 web-based user interfaces. JavaServer Faces is a standardized display technology
 which was formalized in a specification through the Java Community Process.
 
+### Module RESTful API
+
+The module _RESTful API_ tests the basic usage of RESTful API. I'm following
+tutorials from [Mkyong - Jersey hello world example][mkyong-rest] and
+[Jersey - Getting started][jersey-getting-started].
+
 ## Code Style
 
 I use [Google Java Code Style][style-java] for this repo.
 
 [bm]: http://byteman.jboss.org
+[jersey-getting-started]: https://jersey.java.net/documentation/latest/getting-started.html
+[mkyong-rest]: https://www.mkyong.com/webservices/jax-rs/jersey-hello-world-example/
 [style-java]: https://google.github.io/styleguide/javaguide.html
 [travis]: https://travis-ci.org/mincong-h/java-examples
 [travis-img]: https://travis-ci.org/mincong-h/java-examples.svg?branch=master
