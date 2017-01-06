@@ -20,6 +20,7 @@
         <module>batch/liberty</module>
         <module>byteman</module>
         <module>clone</module>
+        <module>date</module>
         <module>hashcode</module>
         <module>hibernate-search</module>
         <module>java8</module>

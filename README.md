@@ -14,6 +14,11 @@ The module _Clone_ tests the behaviors of the method `Clonable#clone()` by
 comparing the original object and cloned object through different class types.
 So after the clone, what are the differences by reference and by value?
 
+### Model Date
+
+The module _Date_ tests the date conversion from String to a Java object using
+different standards, e.g. RFC 822 and ISO 8601.
+
 ### Module Byteman
 
 The module _Byteman_ uses the [byteman][bm] tool to change expected behaviour
