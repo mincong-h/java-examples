@@ -39,6 +39,11 @@ web application framework intended to simplify development integration of
 web-based user interfaces. JavaServer Faces is a standardized display technology
 which was formalized in a specification through the Java Community Process.
 
+### Module JSON
+
+The module _JSON_ demonstrates how to convert Java object(s) to a JSON object /
+array or vice versa using different JSON conversion libraries.
+
 ### Module RESTful API
 
 The module _RESTful API_ tests the basic usage of RESTful API. I'm following
