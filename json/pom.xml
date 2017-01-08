@@ -13,6 +13,7 @@
   <name>Java Examples - JSON</name>
 
   <properties>
+    <version.com.fasterxml.jackson.core>2.8.5</version.com.fasterxml.jackson.core>
     <version.org.json>20160810</version.org.json>
   </properties>
 
@@ -21,6 +22,16 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>${version.org.json}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${version.com.fasterxml.jackson.core}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${version.com.fasterxml.jackson.core}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
