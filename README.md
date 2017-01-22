@@ -44,6 +44,12 @@ which was formalized in a specification through the Java Community Process.
 The module _JSON_ demonstrates how to convert Java object(s) to a JSON object /
 array or vice versa using different JSON conversion libraries.
 
+### Module JUnit
+
+The module _JUnit_ tests the different functionalities of the JUnit testing
+framework. Knowing the best practices of testing is important, because testing
+is the essential part of the software develpment.
+
 ### Module RESTful API
 
 The module _RESTful API_ tests the basic usage of RESTful API. I'm following

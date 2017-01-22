@@ -26,6 +26,7 @@
     <module>java8</module>
     <module>jsf</module>
     <module>json</module>
+    <module>junit</module>
     <module>mock</module>
     <module>restful-api</module>
   </modules>
