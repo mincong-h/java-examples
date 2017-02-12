@@ -54,6 +54,10 @@ The module _JUnit_ tests the different functionalities of the JUnit testing
 framework. Knowing the best practices of testing is important, because testing
 is the essential part of the software develpment.
 
+### Module Mock
+
+The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
+
 ### Module RESTful API
 
 The module _RESTful API_ tests the basic usage of RESTful API. I'm following
