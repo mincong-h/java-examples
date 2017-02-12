@@ -24,8 +24,9 @@ So after the clone, what are the differences by reference and by value?
 
 ### Model Date
 
-The module _Date_ tests the date conversion from String to a Java object using
-different standards, e.g. RFC 822 and ISO 8601.
+The module _Date_ tests the date conversion from String to a Java object or
+vice versa using different standards, e.g. RFC 822 and ISO 8601. It tests
+principally `java.util.Date`, `java.util.Calendar` and `java.time.*`.
 
 ### Module Generic
 
@@ -50,13 +51,14 @@ array or vice versa using different JSON conversion libraries.
 
 ### Module JUnit
 
-The module _JUnit_ tests the different functionalities of the JUnit testing
-framework. Knowing the best practices of testing is important, because testing
-is the essential part of the software develpment.
+The module _JUnit_ tests the functionality of different methods of the JUnit
+testing framework. Knowing the best practices of testing is important,
+because testing is the essential part of the software development.
 
 ### Module Mock
 
-The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
+The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy
+Mock and Power Mock.
 
 ### Module RESTful API
 
