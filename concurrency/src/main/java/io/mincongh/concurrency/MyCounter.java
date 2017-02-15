@@ -10,7 +10,7 @@ public class MyCounter {
 
   private Map<Integer, Integer> map = new HashMap<>();
 
-  public synchronized void incrementKey(int key) throws InterruptedException {
+  public synchronized void incrementKey(int key) {
     int prevValue = map.getOrDefault(key, 0);
     map.put(key, prevValue + 1);
   }
