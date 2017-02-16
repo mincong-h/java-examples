@@ -5,6 +5,9 @@ import static org.junit.Assert.assertEquals;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import org.junit.Test;
 
 /**
@@ -32,6 +35,18 @@ public class JavaDateConversionTest {
     assertEquals(timestamp - 3600_000L, iso8601S.parse("2011-03-10T11:54:30.207+01").getTime());
     assertEquals(timestamp - 3600_000L, iso8601M.parse("2011-03-10T11:54:30.207+0100").getTime());
     assertEquals(timestamp - 3600_000L, iso8601L.parse("2011-03-10T11:54:30.207+01:00").getTime());
+  }
+
+  @Test
+  public void testConvertDateToStringIso8601() {
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(2017, Calendar.FEBRUARY, 16, 20, 22, 28);
+    calendar.set(Calendar.MILLISECOND, 0);
+    Date date = calendar.getTime();
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    sdf.setTimeZone(TimeZone.getTimeZone("CET"));
+    assertEquals("2017-02-16T20:22:28.000+01:00", sdf.format(date));
   }
 
 }
