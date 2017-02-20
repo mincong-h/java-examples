@@ -42,6 +42,7 @@ public class JavaDateConversionTest {
     Calendar calendar = Calendar.getInstance();
     calendar.set(2017, Calendar.FEBRUARY, 16, 20, 22, 28);
     calendar.set(Calendar.MILLISECOND, 0);
+    calendar.setTimeZone(TimeZone.getTimeZone("CET"));
     Date date = calendar.getTime();
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
