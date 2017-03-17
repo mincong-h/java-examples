@@ -22,6 +22,7 @@
     <module>clone</module>
     <module>concurrency</module>
     <module>date</module>
+    <module>file</module>
     <module>generic</module>
     <module>hashcode</module>
     <module>hibernate-search</module>
@@ -49,6 +50,11 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.5</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
