@@ -60,6 +60,10 @@ because testing is the essential part of the software development.
 The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy
 Mock and Power Mock.
 
+### Module Regex
+
+The module _Regex_ tests different regular expressions.
+
 ### Module RESTful API
 
 The module _RESTful API_ tests the basic usage of RESTful API. I'm following
