@@ -20,6 +20,7 @@ Java 8 | The module _Java 8_ tests the new functionality of Java 8, including fi
 JSF | The module _JSF_ demonstrated the basic usage of JavaServer Faces, a Java-based web application framework intended to simplify development integration of web-based user interfaces. JavaServer Faces is a standardized display technology which was formalized in a specification through the Java Community Process.
 JSON | The module _JSON_ demonstrates how to convert Java object(s) to a JSON object / array or vice versa using different JSON conversion libraries.
 JUnit | The module _JUnit_ tests the functionality of different methods of the JUnit testing framework. Knowing the best practices of testing is important, because testing is the essential part of the software development.
+Maven | The module _Maven_ tests the functionality of Maven.
 Mock | The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
 Regex | The module _Regex_ tests different regular expressions.
 RESTful API | The module _RESTful API_ tests the basic usage of RESTful API. I'm following tutorials from [Mkyong - Jersey hello world example][mkyong-rest] and [Jersey - Getting started][jersey-getting-started].

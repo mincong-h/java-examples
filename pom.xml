@@ -31,6 +31,7 @@
     <module>json</module>
     <module>junit</module>
     <module>mock</module>
+    <module>maven</module>
     <module>regex</module>
     <module>restful-api</module>
   </modules>
