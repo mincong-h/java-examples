@@ -24,6 +24,7 @@ Maven | The module _Maven_ tests the functionality of Maven.
 Mock | The module _Mock_ tests the different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
 Regex | The module _Regex_ tests different regular expressions.
 RESTful API | The module _RESTful API_ tests the basic usage of RESTful API. I'm following tutorials from [Mkyong - Jersey hello world example][mkyong-rest] and [Jersey - Getting started][jersey-getting-started].
+Security | The module _Security_ implements some of the best practices provided by OWASP
 
 ## Code Style
 
