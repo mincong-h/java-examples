@@ -10,7 +10,11 @@ import java.nio.file.Path;
  *
  * @author <a href="https://stackoverflow.com/users/226975/wyzard">Wyzard</a>
  */
-public class PathResolver {
+public final class PathResolver {
+
+  private PathResolver() {
+    // Utility class, do not instantiate
+  }
 
   /**
    * Resolves an untrusted user-specified path against the API's base
