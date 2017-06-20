@@ -14,22 +14,46 @@ import org.junit.rules.TemporaryFolder;
  */
 public class PathResolverTest {
 
-  // TODO use another temporary folder to limit to attack directory & ensure the cleanup
-
   @Rule
-  public final TemporaryFolder defaultBaseDir = new TemporaryFolder();
+  public final TemporaryFolder tempDir = new TemporaryFolder();
 
   @Rule
   public final ExpectedException expectedThrown = ExpectedException.none();
 
+  /**
+   * The absolute path of the default base directory of each test.
+   * The directory, matched with this path, is located at the root
+   * level of {@link #tempDir}:
+   *
+   * <pre><code>
+   * $TEMP_DIR/default
+   * </code></pre>
+   */
   private Path defaultBaseDirPath;
 
+  /**
+   * The relative path of the default user file path of each test.
+   * The file, matched with this path, is located at the root
+   * directory of {@link #defaultBaseDirPath}:
+   *
+   * <pre><code>
+   * $TEMP_DIR/default/user.txt
+   * </code></pre>
+   */
   private Path defaultUserPath;
 
   @Before
   public void setUp() throws Exception {
-    defaultBaseDirPath = defaultBaseDir.getRoot().toPath();
-    defaultUserPath = defaultBaseDir.newFile("user.txt").toPath();
+    File baseDir = tempDir.newFolder("default");
+    File userFile = new File(baseDir, "user.txt");
+    defaultBaseDirPath = baseDir.toPath().toAbsolutePath();
+    defaultUserPath = defaultBaseDirPath.relativize(userFile.toPath().toAbsolutePath());
+
+    assertThat(defaultBaseDirPath).isAbsolute();
+    assertThat(defaultBaseDirPath).startsWith(tempDir.getRoot().toPath());
+    assertThat(defaultUserPath).isRelative();
+    Path resolvedPath = defaultBaseDirPath.resolve(defaultUserPath);
+    assertThat(resolvedPath.startsWith(defaultBaseDirPath)).isTrue();
   }
 
   @Test
@@ -63,20 +87,19 @@ public class PathResolverTest {
 
   @Test
   public void invalidUserPath_escapedPath() throws Exception {
-    Path attackPath = null;
-    try {
-      attackPath = defaultBaseDir.newFile("../attack.txt").toPath();
-      Path resolvedAttackPath = defaultBaseDirPath.resolve(attackPath).normalize();
-      assertThat(resolvedAttackPath.startsWith(defaultBaseDirPath)).isFalse();
+    File attackFile = new File(defaultBaseDirPath + "../attack.txt");
+    Path attackPath = defaultBaseDirPath.relativize(attackFile.toPath());
 
-      expectedThrown.expect(IllegalArgumentException.class);
-      expectedThrown.expectMessage("User path escapes the base path.");
-      PathResolver.resolvePath(defaultBaseDirPath, attackPath);
-    } finally {
-      if (attackPath != null) {
-        attackPath.toFile().delete();
-      }
-    }
+    // The attack path is $TEMP_DIR/default/../attack.txt before normalization
+    // The attach path is $TEMP_DIR/default/attack.txt after normalization
+    Path resolvedAttackPath = defaultBaseDirPath.resolve(attackPath).normalize();
+    assertThat(attackPath).isRelative();
+    assertThat(resolvedAttackPath.startsWith(tempDir.getRoot().toPath())).isTrue();
+    assertThat(resolvedAttackPath.startsWith(defaultBaseDirPath)).isFalse();
+
+    expectedThrown.expect(IllegalArgumentException.class);
+    expectedThrown.expectMessage("User path escapes the base path.");
+    PathResolver.resolvePath(defaultBaseDirPath, attackPath);
   }
 
 }
