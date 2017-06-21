@@ -1,6 +1,7 @@
 package io.mincongh.security.input;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Provides valid path resolution.
@@ -14,6 +15,22 @@ public final class PathResolver {
 
   private PathResolver() {
     // Utility class, do not instantiate
+  }
+
+  /**
+   * Resolves an untrusted user-specified path against the API's base
+   * directory. Paths that try to escape the base directory are
+   * rejected.
+   *
+   * @param baseDirPath the string representation of the absolute path of the base directory that
+   * all user-specified paths should be within
+   * @param userPath the string representation of the untrusted path provided by the API user,
+   * expected to be relative to {@code baseDirPath}
+   */
+  public static Path resolvePath(final String baseDirPath, final String userPath) {
+    Path base = Paths.get(baseDirPath);
+    Path user = Paths.get(userPath);
+    return resolvePath(base, user);
   }
 
   /**

@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -113,6 +115,61 @@ public class PathResolverTest {
     expectedThrown.expect(IllegalArgumentException.class);
     expectedThrown.expectMessage("User path escapes the base path.");
     PathResolver.resolvePath(defaultBaseDirPath, attackPath);
+  }
+
+  @Test
+  public void validStrResolution() throws Exception {
+    String baseStr = defaultBaseDirPath.toString();
+    Path resolvedPath = PathResolver.resolvePath(baseStr, "user.txt");
+
+    assertThat(resolvedPath.startsWith(defaultBaseDirPath)).isTrue();
+  }
+
+  @Test
+  public void invalidBaseDirStr_relativePath() throws Exception {
+    expectedThrown.expect(IllegalArgumentException.class);
+    expectedThrown.expectMessage("Base path must be absolute.");
+    PathResolver.resolvePath("basedir", "user.txt");
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void invalidBaseDirStr_nullPath() throws Exception {
+    PathResolver.resolvePath(null, "user.txt");
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void invalidUserStr_nullPath() throws Exception {
+    String baseStr = defaultBaseDirPath.toString();
+    PathResolver.resolvePath(baseStr, null);
+  }
+
+  @Test
+  public void invalidUserStr_absolutePath() throws Exception {
+    String baseStr = defaultBaseDirPath.toString();
+
+    expectedThrown.expect(IllegalArgumentException.class);
+    expectedThrown.expectMessage("User path must be relative.");
+    PathResolver.resolvePath(baseStr, "/user.txt");
+  }
+
+  @Test
+  public void invalidUserStr_escapedPath() throws Exception {
+    List<String> values = new ArrayList<>();
+    values.add("../user.txt");
+    values.add("child/../../user.txt");
+    values.add("%2e%2e%2fuser.txt");
+    values.add("%2e%2e/user.txt");
+    values.add("..%2fuser.txt");
+
+    values.forEach(this::assertEscaped);
+  }
+
+  private void assertEscaped(String userRelativePath) {
+    String baseStr = defaultBaseDirPath.toString();
+
+    expectedThrown.expect(IllegalArgumentException.class);
+    expectedThrown.expectMessage("User path escapes the base path.");
+    PathResolver.resolvePath(baseStr, userRelativePath);
   }
 
 }
