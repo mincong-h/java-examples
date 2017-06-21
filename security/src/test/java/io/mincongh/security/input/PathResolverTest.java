@@ -1,6 +1,7 @@
+package io.mincongh.security.input;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import io.mincongh.security.input.PathResolver;
 import java.io.File;
 import java.nio.file.Path;
 import org.junit.Before;
@@ -57,6 +58,15 @@ public class PathResolverTest {
   }
 
   @Test
+  public void validPathResolution() throws Exception {
+    Path resolvedPath = PathResolver.resolvePath(defaultBaseDirPath, defaultUserPath);
+
+    assertThat(resolvedPath).isAbsolute();
+    assertThat(resolvedPath).isNormalized();
+    assertThat(resolvedPath.startsWith(defaultBaseDirPath)).isTrue();
+  }
+
+  @Test
   public void invalidBaseDirPath_relativePath() throws Exception {
     Path baseDirPath = new File("foo").toPath();
     assertThat(baseDirPath.isAbsolute()).isFalse();
@@ -90,8 +100,11 @@ public class PathResolverTest {
     File attackFile = new File(defaultBaseDirPath + "../attack.txt");
     Path attackPath = defaultBaseDirPath.relativize(attackFile.toPath());
 
-    // The attack path is $TEMP_DIR/default/../attack.txt before normalization
-    // The attach path is $TEMP_DIR/default/attack.txt after normalization
+    /*
+     * The attack path escapes from the base dir:
+     * <li>Before normalization, it is $TEMP_DIR/default/../attack.txt
+     * <li>After normalization, it is $TEMP_DIR/attack.txt
+     */
     Path resolvedAttackPath = defaultBaseDirPath.resolve(attackPath).normalize();
     assertThat(attackPath).isRelative();
     assertThat(resolvedAttackPath.startsWith(tempDir.getRoot().toPath())).isTrue();
