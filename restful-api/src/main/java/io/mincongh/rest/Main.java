@@ -20,7 +20,13 @@ public class Main {
   /**
    * Base URI the Grizzly HTTP server will listen on
    */
-  public static final String BASE_URI = "http://localhost:8080/demo/";
+  static final String BASE_URI = "http://localhost:8080/demo";
+
+  static final String HTTP_METHOD_URI = BASE_URI + "/method";
+
+  static final String HTTP_HEADER_URI = BASE_URI + "/header";
+
+  static final String HTTP_STATUS_CODE_URI = BASE_URI + "/code";
 
   /**
    * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application. Firstly,
@@ -37,9 +43,6 @@ public class Main {
 
   /**
    * Main method.
-   *
-   * @param args
-   * @throws IOException
    */
   public static void main(String[] args) throws IOException {
     final HttpServer server = startServer();
