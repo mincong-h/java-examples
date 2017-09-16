@@ -22,11 +22,25 @@ public class Main {
    */
   static final String BASE_URI = "http://localhost:8080/demo";
 
+  /**
+   * @see MethodExample
+   */
   static final String HTTP_METHOD_URI = BASE_URI + "/method";
 
+  /**
+   * @see HeaderExample
+   */
   static final String HTTP_HEADER_URI = BASE_URI + "/header";
 
+  /**
+   * @see StatusCodeExample
+   */
   static final String HTTP_STATUS_CODE_URI = BASE_URI + "/code";
+
+  /**
+   * @see BasicAuthExample
+   */
+  static final String HTTP_BASIC_AUTH_API = BASE_URI + "/auth";
 
   /**
    * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application. Firstly,
