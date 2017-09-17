@@ -40,7 +40,7 @@ public class Main {
   /**
    * @see BasicAuthExample
    */
-  static final String HTTP_BASIC_AUTH_API = BASE_URI + "/auth";
+  static final String HTTP_BASIC_AUTH_URI = BASE_URI + "/basic-auth";
 
   /**
    * @see JsonExample

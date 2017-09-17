@@ -29,7 +29,7 @@ public class BasicAuthExampleTest {
   @Before
   public void setUp() throws Exception {
     server = Main.startServer();
-    authApi = ClientBuilder.newClient().target(Main.HTTP_BASIC_AUTH_API);
+    authApi = ClientBuilder.newClient().target(Main.HTTP_BASIC_AUTH_URI);
   }
 
   @After

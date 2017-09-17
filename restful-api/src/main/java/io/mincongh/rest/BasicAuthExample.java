@@ -37,7 +37,7 @@ import javax.ws.rs.core.Response.Status;
  *
  * @author Mincong Huang
  */
-@Path("auth")
+@Path("basic-auth")
 @Produces(MediaType.TEXT_PLAIN)
 public class BasicAuthExample {
 
