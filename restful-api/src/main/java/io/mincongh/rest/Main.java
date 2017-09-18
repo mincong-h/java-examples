@@ -43,6 +43,11 @@ public class Main {
   static final String HTTP_BASIC_AUTH_API = BASE_URI + "/auth";
 
   /**
+   * @see JsonExample
+   */
+  static final String JSON_URI = BASE_URI + "/json";
+
+  /**
    * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application. Firstly,
    * create a resource configuration that scans for JAX-RS resources and providers in
    * {@code io.mincongh.rest} package. Then, create and start a new instance of grizzly http server
