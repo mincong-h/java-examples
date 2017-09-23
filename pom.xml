@@ -13,6 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- Dependency versions -->
+    <jgitVersion>4.8.0.201706111038-r</jgitVersion>
   </properties>
 
   <modules>
@@ -27,6 +29,7 @@
     <module>hashcode</module>
     <module>hibernate-search</module>
     <module>java8</module>
+    <module>jgit</module>
     <module>jsf</module>
     <module>json</module>
     <module>junit</module>
@@ -53,6 +56,11 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>2.5</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jgit</groupId>
+        <artifactId>org.eclipse.jgit</artifactId>
+        <version>${jgitVersion}</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
