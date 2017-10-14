@@ -16,6 +16,17 @@
     <!-- Dependency versions -->
     <jgitVersion>4.8.0.201706111038-r</jgitVersion>
     <xstreamVersion>1.4.10</xstreamVersion>
+    <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
+    <hibernateSearchVersion>5.5.4.Final</hibernateSearchVersion>
+    <hibernateJpaVersion>1.0.0.Final</hibernateJpaVersion>
+    <luceneVersion>5.3.1</luceneVersion>
+    <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
+    <myFacesVersion>2.2.11</myFacesVersion>
+    <powermockVersion>1.6.4</powermockVersion>
+    <easymockVersion>3.4</easymockVersion>
+    <mockitoVersion>1.10.19</mockitoVersion>
+    <javaxWsVersion>2.0.1</javaxWsVersion>
+    <grizzlyServerVersion>2.3.28</grizzlyServerVersion>
   </properties>
 
   <modules>
@@ -45,6 +56,31 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-core</artifactId>
+        <version>${luceneVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate.javax.persistence</groupId>
+        <artifactId>hibernate-jpa-2.1-api</artifactId>
+        <version>${hibernateJpaVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-search-engine</artifactId>
+        <version>${hibernateSearchVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernateOrmVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${hibernateOrmVersion}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
         <version>2.7</version>
@@ -53,6 +89,11 @@
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
         <version>2.7</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.myfaces.core</groupId>
+        <artifactId>myfaces-api</artifactId>
+        <version>${myFacesVersion}</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
@@ -70,6 +111,11 @@
         <version>${xstreamVersion}</version>
       </dependency>
       <dependency>
+        <groupId>javax.ws.rs</groupId>
+        <artifactId>javax.ws.rs-api</artifactId>
+        <version>${javaxWsVersion}</version>
+      </dependency>
+      <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <scope>test</scope>
@@ -79,6 +125,44 @@
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>3.8.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>${mockitoVersion}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.easymock</groupId>
+        <artifactId>easymock</artifactId>
+        <version>${easymockVersion}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>${powermockVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-mockito</artifactId>
+        <version>${powermockVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-core</artifactId>
+        <version>${powermockVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.grizzly</groupId>
+        <artifactId>grizzly-http-server</artifactId>
+        <version>${grizzlyServerVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2DatabaseVersion}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -177,5 +261,28 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.0.2</version>
+        <executions>
+          <execution>
+            <id>analyze</id>
+            <goals>
+              <goal>analyze-only</goal>
+            </goals>
+            <configuration>
+              <failOnWarning>true</failOnWarning>
+              <ignoredUnusedDeclaredDependencies>
+                <dependency>com.h2database:h2:jar:${h2DatabaseVersion}</dependency>
+                <dependency>org.hibernate:hibernate-core</dependency>
+                <dependency>org.hibernate:hibernate-entitymanager</dependency>
+              </ignoredUnusedDeclaredDependencies>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>

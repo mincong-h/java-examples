@@ -12,40 +12,55 @@
     <artifactId>java-examples-hsearch</artifactId>
     <name>Java Examples - Hibernate Search</name>
 
-    <properties>
-        <version.org.hibernate>5.1.0.Final</version.org.hibernate>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-search-orm</artifactId>
-            <version>5.5.4.Final</version>
+            <version>${hibernateSearchVersion}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${version.org.hibernate}</version>
+            <version>${hibernateOrmVersion}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>${version.org.hibernate}</version>
+            <version>${hibernateOrmVersion}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>${version.org.hibernate}</version>
+            <version>${hibernateOrmVersion}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.192</version>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- unit test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

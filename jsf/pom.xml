@@ -12,11 +12,6 @@
   <packaging>war</packaging>
   <name>Java Examples - JSF</name>
 
-  <properties>
-    <version.javax.servlet>1.2</version.javax.servlet>
-    <version.org.apache.myfaces.core>2.2.11</version.org.apache.myfaces.core>
-  </properties>
-
   <dependencies>
     <!--
       How to properly install and configure JSF libraries via Maven?
@@ -25,30 +20,10 @@
     <dependency>
       <groupId>org.apache.myfaces.core</groupId>
       <artifactId>myfaces-api</artifactId>
-      <version>${version.org.apache.myfaces.core}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.myfaces.core</groupId>
-      <artifactId>myfaces-impl</artifactId>
-      <version>${version.org.apache.myfaces.core}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>${version.javax.servlet}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
