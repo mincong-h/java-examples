@@ -15,6 +15,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <!-- Dependency versions -->
     <jgitVersion>4.8.0.201706111038-r</jgitVersion>
+    <xstreamVersion>1.4.10</xstreamVersion>
   </properties>
 
   <modules>
@@ -38,6 +39,7 @@
     <module>regex</module>
     <module>restful-api</module>
     <module>security</module>
+    <module>xml</module>
   </modules>
 
   <dependencyManagement>
@@ -61,6 +63,11 @@
         <groupId>org.eclipse.jgit</groupId>
         <artifactId>org.eclipse.jgit</artifactId>
         <version>${jgitVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.thoughtworks.xstream</groupId>
+        <artifactId>xstream</artifactId>
+        <version>${xstreamVersion}</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>

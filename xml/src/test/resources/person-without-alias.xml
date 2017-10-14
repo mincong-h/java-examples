@@ -1,0 +1,9 @@
+<io.mincongh.xml.xstream.model.Person>
+  <firstName>Foo</firstName>
+  <lastName>Bar</lastName>
+  <age>10</age>
+  <phoneNumber>
+    <code>86</code>
+    <number>123456</number>
+  </phoneNumber>
+</io.mincongh.xml.xstream.model.Person>
