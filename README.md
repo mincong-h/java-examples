@@ -26,6 +26,7 @@ Mock | Different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
 Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
 Security | Best practices provided by OWASP.
+XML | XML conversion libraries in Java.
 
 ## Code Style
 
