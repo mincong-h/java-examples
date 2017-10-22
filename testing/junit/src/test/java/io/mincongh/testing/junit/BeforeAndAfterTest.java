@@ -1,4 +1,4 @@
-package io.mincongh.junit;
+package io.mincongh.testing.junit;
 
 import static org.junit.Assert.assertEquals;
 

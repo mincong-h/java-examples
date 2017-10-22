@@ -44,12 +44,12 @@
     <module>jgit</module>
     <module>jsf</module>
     <module>json</module>
-    <module>junit</module>
     <module>mock</module>
     <module>maven</module>
     <module>regex</module>
     <module>restful-api</module>
     <module>security</module>
+    <module>testing/junit</module>
     <module>xml</module>
   </modules>
 
