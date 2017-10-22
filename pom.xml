@@ -49,6 +49,7 @@
     <module>regex</module>
     <module>restful-api</module>
     <module>security</module>
+    <module>testing/assertj</module>
     <module>testing/junit</module>
     <module>xml</module>
   </modules>

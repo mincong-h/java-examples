@@ -12,6 +12,7 @@ in different frameworks. You can run these tests using:
 
 Module | Description
 :--- | :---
+AssertJ | [AssertJ][assertj] testing framework.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
 Clone | Test behavior of `java.lang.Clonable#clone()`.
 Date | Date manipulation using `java.util.*` and `java.time.*`.
@@ -32,6 +33,7 @@ XML | XML conversion libraries in Java.
 
 I use [Google Java Code Style][style-java] for this repo.
 
+[assertj]: http://joel-costigliola.github.io/assertj/
 [bm]: http://byteman.jboss.org
 [jersey]: https://jersey.github.io
 [jgit]: https://github.com/eclipse/jgit
