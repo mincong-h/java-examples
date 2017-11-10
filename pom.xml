@@ -13,6 +13,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     <!-- Dependency versions -->
     <jgitVersion>4.8.0.201706111038-r</jgitVersion>
     <xstreamVersion>1.4.10</xstreamVersion>
@@ -27,6 +28,11 @@
     <mockitoVersion>1.10.19</mockitoVersion>
     <javaxWsVersion>2.0.1</javaxWsVersion>
     <grizzlyServerVersion>2.3.28</grizzlyServerVersion>
+    <sonarVersion>3.3.0.603</sonarVersion>
+    <jacocoVersion>0.7.8</jacocoVersion>
+
+    <!-- Code Quality configurations -->
+    <sonar.jacoco.itReportPath>${project.basedir}/../target/jacoco-it.exec</sonar.jacoco.itReportPath>
   </properties>
 
   <modules>
@@ -260,6 +266,16 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>${sonarVersion}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacocoVersion}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -281,6 +297,34 @@
                 <dependency>org.hibernate:hibernate-entitymanager</dependency>
               </ignoredUnusedDeclaredDependencies>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <configuration>
+          <append>true</append>
+        </configuration>
+        <executions>
+          <execution>
+            <id>agent-for-ut</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>agent-for-it</id>
+            <goals>
+              <goal>prepare-agent-integration</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-site</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
