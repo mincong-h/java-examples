@@ -24,7 +24,7 @@ public class StatusCodeExample {
   @Consumes(MediaType.TEXT_PLAIN)
   public Response getCode(@PathParam("code") String code) {
     try {
-      int i = Integer.valueOf(code);
+      int i = Integer.parseInt(code);
       return Response.status(Status.OK).entity("HTTP code: " + i).build();
     } catch (NumberFormatException e) {
       /*
