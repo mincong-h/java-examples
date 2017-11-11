@@ -10,6 +10,10 @@ import java.util.List;
  */
 public class CollectionHelper {
 
+  private CollectionHelper() {
+    // Utility class, do not instantiate
+  }
+
   public static int sumOfList(List<Integer> numbers) {
     int sum = 0;
     for (int number : numbers) {

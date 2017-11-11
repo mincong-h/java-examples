@@ -7,6 +7,10 @@ import java.util.Map;
  */
 public class MapUtil {
 
+  private MapUtil() {
+    // Utility class,  do not instantiate
+  }
+
   public static <K, V> V getValueAsString(Map<K, V> map, String key) {
     return map.get(key);
   }

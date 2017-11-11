@@ -15,6 +15,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 public class GregorianCalenderUtil {
 
+  private GregorianCalenderUtil() {
+    // Utility class, do not instantiate
+  }
+
   public static XMLGregorianCalendar unmarshal(String value)
       throws ParseException, DatatypeConfigurationException {
 

@@ -12,6 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public class JsonUtil {
 
+  private JsonUtil() {
+    // Utility class, do not instantiate
+  }
+
   public static int getTotalCount(String jsonStr) throws JsonProcessingException, IOException {
     JsonNode jsonNode = new ObjectMapper().readTree(jsonStr);
     return jsonNode.at("/searchResults/@totalCount").asInt();

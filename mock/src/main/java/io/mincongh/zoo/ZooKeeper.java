@@ -15,6 +15,10 @@ import org.hibernate.criterion.Projections;
  */
 public class ZooKeeper {
 
+  private ZooKeeper() {
+    // Utility class, do not instantiate
+  }
+
   public static int doubleCountAnimal(Session session) {
     Criteria criteria = session.createCriteria(Animal.class);
     criteria = criteria.setProjection(Projections.rowCount());

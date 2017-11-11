@@ -9,6 +9,10 @@ import org.apache.commons.io.FileUtils;
  */
 public class MyFileUtils {
 
+  private MyFileUtils() {
+    // Utility class, do not instantiate
+  }
+
   public static void deleteDirectory(File directory) throws IOException {
     if (directory.exists()) {
       FileUtils.deleteDirectory(directory);
