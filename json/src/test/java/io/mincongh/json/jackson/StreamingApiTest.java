@@ -2,17 +2,13 @@ package io.mincongh.json.jackson;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
-
-import org.junit.Test;
-
 import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.mincongh.json.Person;
+import java.io.IOException;
+import org.junit.Test;
 
 /**
  * Data Binding converts JSON to and from POJOs based either on property accessor conventions or
@@ -30,12 +26,12 @@ public class StreamingApiTest {
   private static final String JSON_OBJ = "{\"name\":\"baby\",\"age\":3}";
 
   @Test
-  public void testFullDataBinding() throws JsonParseException, IOException {
+  public void testFullDataBinding() throws IOException {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(JSON_OBJ);
     ObjectMapper mapper = new ObjectMapper();
 
-    assertEquals(jsonParser.nextToken(), JsonToken.START_OBJECT);
+    assertEquals(JsonToken.START_OBJECT, jsonParser.nextToken());
 
     Person person = mapper.readValue(jsonParser, Person.class);
     assertEquals("baby", person.getName());

@@ -15,8 +15,8 @@ public class GenericHelperTest {
   @Test
   public void toList() {
     List<String> words = GenericHelper.toList("Hello", "World");
-    assertEquals(words.get(0), "Hello");
-    assertEquals(words.get(1), "World");
+    assertEquals("Hello", words.get(0));
+    assertEquals("World", words.get(1));
   }
 
   @Test
