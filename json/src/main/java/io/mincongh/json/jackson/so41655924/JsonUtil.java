@@ -1,10 +1,8 @@
 package io.mincongh.json.jackson.so41655924;
 
-import java.io.IOException;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 
 /**
  * @author Mincong Huang
@@ -16,13 +14,12 @@ public class JsonUtil {
     // Utility class, do not instantiate
   }
 
-  public static int getTotalCount(String jsonStr) throws JsonProcessingException, IOException {
+  public static int getTotalCount(String jsonStr) throws IOException {
     JsonNode jsonNode = new ObjectMapper().readTree(jsonStr);
     return jsonNode.at("/searchResults/@totalCount").asInt();
   }
 
-  public static String getContentUrl(String jsonStr, String targetRepoName)
-      throws JsonProcessingException, IOException {
+  public static String getContentUrl(String jsonStr, String targetRepoName) throws IOException {
     JsonNode jsonNode = new ObjectMapper().readTree(jsonStr);
     JsonNode filesNode = jsonNode.at("/searchResults/file");
     if (filesNode.isArray()) {
