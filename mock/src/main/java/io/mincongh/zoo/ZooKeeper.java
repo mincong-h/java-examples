@@ -41,15 +41,11 @@ public class ZooKeeper {
         i++;
       }
     } finally {
-      try {
+      if (scroll != null) {
         scroll.close();
-      } catch (Exception e) {
-        e.printStackTrace();
       }
-      try {
+      if (ss != null) {
         ss.close();
-      } catch (Exception e) {
-        e.printStackTrace();
       }
     }
     return animals;
