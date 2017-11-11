@@ -13,21 +13,31 @@ import org.junit.Test;
 public class GenericHelperTest {
 
   @Test
-  public void testToList() {
+  public void toList() {
     List<String> words = GenericHelper.toList("Hello", "World");
     assertEquals(words.get(0), "Hello");
     assertEquals(words.get(1), "World");
   }
 
   @Test
-  public void testBuildMap() {
-    Map<String, Integer> scores = GenericHelper.buildMap("Player Tom", 100);
-    assertEquals(1, scores.entrySet().size());
-    assertEquals(100, scores.get("Player Tom").intValue());
+  public void buildMap_keyString_valueInt() {
+    Map<String, Integer> words = GenericHelper.buildMap("one", 1);
+    assertEquals(1, words.entrySet().size());
+    assertEquals(1, words.get("one").intValue());
   }
 
   @Test
-  public void testGetClass() {
-    assertEquals(String.class, GenericHelper.getClass("Hello"));
+  public void buildMap_keyInt_valueString() {
+    Map<Integer, String> words = GenericHelper.buildMap(1, "one");
+    assertEquals(1, words.entrySet().size());
+    assertEquals("one", words.get(1));
   }
+
+  @Test
+  public void getClassByType() {
+    assertEquals(String.class, GenericHelper.getClass("Hello"));
+    assertEquals(Integer.class, GenericHelper.getClass(1));
+    assertEquals(Long.class, GenericHelper.getClass(1L));
+  }
+
 }
