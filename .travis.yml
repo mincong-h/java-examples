@@ -5,5 +5,18 @@ jdk:
 install:
   # first, download all the Maven dependencies without logging
   - mvn -B -q install -DskipTests=true
+addons:
+  sonarcloud:
+    organization: 'mincong-h-github'
+    token:
+      secure: '4a1815c2e5f051f3dd6bd7a48e37917ef8da048d'
+    branches:
+      - master
+      - sonar
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
 script:
-  - mvn clean verify
+  # JaCoCo is used to have code coverage, the agent has to be activated
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
