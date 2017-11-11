@@ -5,12 +5,12 @@ package io.mincongh.hashcode.bad;
  * but not the {@code equals()}
  *
  * @author Mincong Huang
- * @see AthleteTest
  */
 public class AthleteOnlyOverrideHashcode {
 
-  public String email;
-  public String name;
+  private String email;
+
+  private String name;
 
   public AthleteOnlyOverrideHashcode(String email, String name) {
     this.email = email;

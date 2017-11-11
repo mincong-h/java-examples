@@ -4,12 +4,12 @@ package io.mincongh.hashcode.good;
  * The class model correctly implemented both the {@code equals()} and the {@code hashcode()}.
  *
  * @author Mincong Huang
- * @see AthleteTest
  */
 public class Athlete {
 
-  public String email;
-  public String name;
+  private String email;
+
+  private String name;
 
   public Athlete(String email, String name) {
     this.email = email;
