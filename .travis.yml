@@ -8,8 +8,7 @@ install:
 addons:
   sonarcloud:
     organization: 'mincong-h-github'
-    token:
-      secure: SONAR_TOKEN
+    token: $SONAR_TOKEN
 cache:
   directories:
     - '$HOME/.m2/repository'
