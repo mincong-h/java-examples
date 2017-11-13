@@ -9,7 +9,7 @@ addons:
   sonarcloud:
     organization: 'mincong-h-github'
     token:
-      secure: '4a1815c2e5f051f3dd6bd7a48e37917ef8da048d'
+      secure: SONAR_TOKEN
 cache:
   directories:
     - '$HOME/.m2/repository'
