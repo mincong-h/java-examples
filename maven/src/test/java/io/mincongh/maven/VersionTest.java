@@ -2,6 +2,7 @@ package io.mincongh.maven;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -30,6 +31,13 @@ public class VersionTest {
   @Test(expected = IllegalArgumentException.class)
   public void constructor_allZeros() throws Exception {
     Version.of(0, 0, 0);
+  }
+
+  @Test
+  public void constructor_notAllZeros() throws Exception {
+    Version.of(1, 0, 0);
+    Version.of(0, 1, 0);
+    Version.of(0, 0, 1);
   }
 
   @Test
@@ -98,6 +106,34 @@ public class VersionTest {
     Version v1_1_1 = Version.of(1, 1, 1);
     Arrays.asList(Version.of(1, 0, 1), Version.of(1, 0, 1), Version.of(0, 1, 1))
         .forEach(v -> assertTrue("Version " + v + " must be before " + v1_1_1, v.isBefore(v1_1_1)));
+  }
+
+  @Test
+  public void sameHashCode() throws Exception {
+    Version a = Version.of(1, 0, 0);
+    Version b = Version.of(1, 0, 0);
+    assertEquals(a.hashCode(), b.hashCode());
+    assertEquals(0, a.compareTo(b));
+  }
+
+  @Test
+  public void equals_diffMajor() throws Exception {
+    assertThat(Version.of(1, 1, 1)).isNotEqualTo(Version.of(0, 1, 1));
+  }
+
+  @Test
+  public void equals_diffMinor() throws Exception {
+    assertThat(Version.of(1, 1, 1)).isNotEqualTo(Version.of(1, 0, 1));
+  }
+
+  @Test
+  public void equals_diffPatch() throws Exception {
+    assertThat(Version.of(1, 1, 1)).isNotEqualTo(Version.of(1, 1, 0));
+  }
+
+  @Test
+  public void equals_diffObject() throws Exception {
+    assertThat(Version.of(1, 1, 1)).isNotEqualTo("1.1.1");
   }
 
 }
