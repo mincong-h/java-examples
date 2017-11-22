@@ -7,7 +7,7 @@
   <artifactId>java-examples-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Java Examples - Aggregator</name>
+  <name>Java Examples</name>
   <description>Java Examples</description>
 
   <properties>
@@ -30,9 +30,6 @@
     <grizzlyServerVersion>2.3.28</grizzlyServerVersion>
     <sonarVersion>3.3.0.603</sonarVersion>
     <jacocoVersion>0.7.8</jacocoVersion>
-
-    <!-- Code quality configurations -->
-    <sonar.projectName>Java Examples</sonar.projectName>
   </properties>
 
   <modules>
