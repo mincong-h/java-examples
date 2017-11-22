@@ -1,5 +1,8 @@
 package io.mincongh.maven;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Mincong Huang
  */
@@ -10,6 +13,14 @@ public class Version implements Comparable<Version> {
   private final int minor;
 
   private final int patch;
+
+  /**
+   * A version contains 3 groups of digits, separated by char '.'.
+   * Each group of digits should be a positive integer, without
+   * leading zeros.
+   */
+  private static final Pattern PATTERN =
+      Pattern.compile("(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)");
 
   private Version(int major, int minor, int patch) {
     if (major < 0) {
@@ -34,12 +45,23 @@ public class Version implements Comparable<Version> {
     return new Version(major, minor, patch);
   }
 
+  public static Version parse(String version) {
+    Matcher matcher = PATTERN.matcher(version);
+    if (!matcher.matches()) {
+      throw new IllegalArgumentException("Cannot parse version: " + version);
+    }
+    int major = Integer.parseInt(matcher.group(1));
+    int minor = Integer.parseInt(matcher.group(2));
+    int patch = Integer.parseInt(matcher.group(3));
+    return new Version(major, minor, patch);
+  }
+
   public Version nextMajor() {
-    return new Version(major + 1, minor, patch);
+    return new Version(major + 1, 0, 0);
   }
 
   public Version nextMinor() {
-    return new Version(major, minor + 1, patch);
+    return new Version(major, minor + 1, 0);
   }
 
   public Version nextPatch() {

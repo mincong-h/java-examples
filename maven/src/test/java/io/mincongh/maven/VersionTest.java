@@ -57,20 +57,23 @@ public class VersionTest {
 
   @Test
   public void nextMajor() throws Exception {
-    Version v = Version.of(1, 0, 0);
-    assertThat(v.nextMajor()).isEqualTo(Version.of(2, 0, 0));
+    assertThat(Version.of(1, 0, 0).nextMajor()).isEqualTo(Version.of(2, 0, 0));
+    assertThat(Version.of(1, 1, 0).nextMajor()).isEqualTo(Version.of(2, 0, 0));
+    assertThat(Version.of(1, 1, 1).nextMajor()).isEqualTo(Version.of(2, 0, 0));
   }
 
   @Test
   public void nextMinor() throws Exception {
-    Version v = Version.of(1, 0, 0);
-    assertThat(v.nextMinor()).isEqualTo(Version.of(1, 1, 0));
+    assertThat(Version.of(1, 0, 0).nextMinor()).isEqualTo(Version.of(1, 1, 0));
+    assertThat(Version.of(1, 1, 0).nextMinor()).isEqualTo(Version.of(1, 2, 0));
+    assertThat(Version.of(1, 1, 1).nextMinor()).isEqualTo(Version.of(1, 2, 0));
   }
 
   @Test
   public void nextPatch() throws Exception {
-    Version v = Version.of(1, 0, 0);
-    assertThat(v.nextPatch()).isEqualTo(Version.of(1, 0, 1));
+    assertThat(Version.of(1, 0, 0).nextPatch()).isEqualTo(Version.of(1, 0, 1));
+    assertThat(Version.of(1, 1, 0).nextPatch()).isEqualTo(Version.of(1, 1, 1));
+    assertThat(Version.of(1, 1, 1).nextPatch()).isEqualTo(Version.of(1, 1, 2));
   }
 
   @Test
@@ -134,6 +137,28 @@ public class VersionTest {
   @Test
   public void equals_diffObject() throws Exception {
     assertThat(Version.of(1, 1, 1)).isNotEqualTo("1.1.1");
+  }
+
+  @Test
+  public void parse_success() throws Exception {
+    assertThat(Version.parse("1.0.0")).isEqualTo(Version.of(1, 0, 0));
+    assertThat(Version.parse("0.1.0")).isEqualTo(Version.of(0, 1, 0));
+    assertThat(Version.parse("0.0.1")).isEqualTo(Version.of(0, 0, 1));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parse_leadingZeroAtMajor() throws Exception {
+    Version.parse("01.0.0");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parse_leadingZeroAtMinor() throws Exception {
+    Version.parse("0.01.0");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void parse_leadingZeroAtPatch() throws Exception {
+    Version.parse("0.0.01");
   }
 
 }
