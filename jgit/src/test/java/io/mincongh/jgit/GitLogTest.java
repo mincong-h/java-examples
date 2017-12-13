@@ -2,36 +2,11 @@ package io.mincongh.jgit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.ObjectId;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
-public class GitLogTest {
-
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
-
-  private Git git;
-
-  private Repository repo;
-
-  @Before
-  public void setUp() throws Exception {
-    git = Git.init().setDirectory(tempFolder.getRoot()).call();
-    repo = git.getRepository();
-    commit("Initial commit");
-  }
-
-  @After
-  public void tearDown() throws Exception {
-    repo.close();
-  }
+public class GitLogTest extends JGitTest {
 
   /**
    * Given a Git repository with 2 branches:
@@ -66,11 +41,6 @@ public class GitLogTest {
     assertThat(git.log().addRange(topic, master).call())
         .flatExtracting(RevCommit::getShortMessage)
         .containsExactly("M2", "M1");
-  }
-
-  private void commit(String message) throws Exception {
-    git.add().addFilepattern(".").call();
-    git.commit().setMessage(message).setAllowEmpty(true).call();
   }
 
 }

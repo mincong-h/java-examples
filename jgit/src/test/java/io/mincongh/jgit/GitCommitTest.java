@@ -7,43 +7,25 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Collections;
-import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.PersonIdent;
-import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 /**
  * "git-commit" - Record changes to the repository
  *
  * @author Mincong Huang
  */
-public class GitCommitTest {
-
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
-
-  private Git git;
-
-  private Repository repo;
+public class GitCommitTest extends JGitTest {
 
   @Before
+  @Override
   public void setUp() throws Exception {
-    git = Git.init().setDirectory(tempFolder.getRoot()).call();
-    repo = git.getRepository();
-
+    super.setUp();
     Path readMe = new File(repo.getWorkTree(), "README.md").toPath();
     Files.write(readMe, Collections.singletonList("Hello world!"), StandardOpenOption.CREATE);
     git.add().addFilepattern(".").call();
-  }
-
-  @After
-  public void tearDown() throws Exception {
-    repo.close();
   }
 
   @Test

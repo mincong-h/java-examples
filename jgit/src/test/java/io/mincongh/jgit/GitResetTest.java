@@ -6,40 +6,16 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ResetCommand.ResetType;
 import org.eclipse.jgit.api.Status;
-import org.eclipse.jgit.lib.Repository;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 
 /**
  * "git-reset" - Reset current HEAD to the specified state
  *
  * @author Mincong Huang
  */
-public class GitResetTest {
-
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
-
-  private Git git;
-
-  private Repository repo;
-
-  @Before
-  public void setUp() throws Exception {
-    git = Git.init().setDirectory(tempFolder.getRoot()).call();
-    repo = git.getRepository();
-  }
-
-  @After
-  public void tearDown() throws Exception {
-    repo.close();
-  }
+public class GitResetTest extends JGitTest {
 
   @Test
   public void resetPath() throws Exception {

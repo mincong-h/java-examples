@@ -48,30 +48,12 @@ import org.junit.rules.TemporaryFolder;
  * @see <a href="https://stackoverflow.com/questions/46368062">Git show file in target branch in
  * JGit?</a>
  */
-public class GitShowTest {
-
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
-
-  private Git git;
-
-  private Repository repo;
-
-  @Before
-  public void setUp() throws GitAPIException {
-    git = Git.init().setDirectory(tempFolder.getRoot()).call();
-    repo = git.getRepository();
-  }
-
-  @After
-  public void tearDown() {
-    repo.close();
-  }
+public class GitShowTest extends JGitTest {
 
   @Test
   public void gitShowTree_master() throws Exception {
     writeFile("readme", "Hello world!");
-    commitAll("Add readme file");
+    commit("Add readme file");
 
     ObjectId masterTreeId = git.getRepository().resolve("refs/heads/master^{tree}");
 
@@ -81,11 +63,6 @@ public class GitShowTest {
       byte[] bytes = objectLoader.getBytes();
       assertThat(new String(bytes, StandardCharsets.UTF_8)).isEqualTo("Hello world!");
     }
-  }
-
-  private void commitAll(String message) throws Exception {
-    git.add().addFilepattern(".").call();
-    git.commit().setMessage(message).call();
   }
 
   private ObjectLoader loadObject(ObjectId objectId) throws IOException {
