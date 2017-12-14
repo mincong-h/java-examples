@@ -2,6 +2,7 @@ package io.mincongh.jgit;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,9 +32,9 @@ public abstract class JGitTest {
     repo.close();
   }
 
-  void commit(String message) throws Exception {
+  RevCommit commit(String message) throws Exception {
     git.add().addFilepattern(".").call();
-    git.commit().setMessage(message).setAllowEmpty(true).call();
+    return git.commit().setMessage(message).setAllowEmpty(true).call();
   }
 
 }
