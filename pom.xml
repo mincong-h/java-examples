@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -28,8 +29,7 @@
     <mockitoVersion>1.10.19</mockitoVersion>
     <javaxWsVersion>2.0.1</javaxWsVersion>
     <grizzlyServerVersion>2.3.28</grizzlyServerVersion>
-    <sonarVersion>3.3.0.603</sonarVersion>
-    <jacocoVersion>0.7.8</jacocoVersion>
+    <jacksonVersion>2.8.5</jacksonVersion>
   </properties>
 
   <modules>
@@ -60,9 +60,36 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jacksonVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jacksonVersion}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
         <version>${luceneVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.byteman</groupId>
+        <artifactId>byteman-bmunit</artifactId>
+        <version>3.0.6</version>
+      </dependency>
+      <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20160810</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey</groupId>
+        <artifactId>jersey-bom</artifactId>
+        <version>2.25</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.hibernate.javax.persistence</groupId>
@@ -122,26 +149,22 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <scope>test</scope>
         <version>4.12</version>
       </dependency>
       <dependency>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>3.8.0</version>
-        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
         <version>${mockitoVersion}</version>
-        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.easymock</groupId>
         <artifactId>easymock</artifactId>
         <version>${easymockVersion}</version>
-        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
@@ -167,7 +190,6 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${h2DatabaseVersion}</version>
-        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -185,88 +207,14 @@
           </configuration>
         </plugin>
         <plugin>
-          <!-- This plugin's configuration is used in m2e only. -->
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <versionRange>[2.1,)</versionRange>
-                    <goals>
-                      <goal>unpack</goal>
-                      <goal>build-classpath</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <versionRange>[2.3.7,)</versionRange>
-                    <goals>
-                      <goal>manifest</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.servicemix.tooling</groupId>
-                    <artifactId>depends-maven-plugin</artifactId>
-                    <versionRange>[1.2,)</versionRange>
-                    <goals>
-                      <goal>generate-depends-file</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <versionRange>[1.9.1,)</versionRange>
-                    <goals>
-                      <goal>parse-version</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>de.thetaphi</groupId>
-                    <artifactId>forbiddenapis</artifactId>
-                    <versionRange>[1.8,)</versionRange>
-                    <goals>
-                      <goal>check</goal>
-                      <goal>testCheck</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.0.2</version>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>${sonarVersion}</version>
+          <version>3.3.0.603</version>
           <executions>
             <execution>
               <phase>verify</phase>
@@ -279,7 +227,7 @@
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>${jacocoVersion}</version>
+          <version>0.7.8</version>
           <configuration>
             <append>true</append>
           </configuration>
@@ -320,11 +268,6 @@
             </goals>
             <configuration>
               <failOnWarning>true</failOnWarning>
-              <ignoredUnusedDeclaredDependencies>
-                <dependency>com.h2database:h2:jar:${h2DatabaseVersion}</dependency>
-                <dependency>org.hibernate:hibernate-core</dependency>
-                <dependency>org.hibernate:hibernate-entitymanager</dependency>
-              </ignoredUnusedDeclaredDependencies>
             </configuration>
           </execution>
         </executions>
