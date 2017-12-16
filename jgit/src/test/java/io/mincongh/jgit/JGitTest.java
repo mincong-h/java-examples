@@ -1,6 +1,7 @@
 package io.mincongh.jgit;
 
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.After;
@@ -32,7 +33,7 @@ public abstract class JGitTest {
     repo.close();
   }
 
-  RevCommit commit(String message) throws Exception {
+  RevCommit commit(String message) throws GitAPIException {
     git.add().addFilepattern(".").call();
     return git.commit().setMessage(message).setAllowEmpty(true).call();
   }
