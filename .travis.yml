@@ -14,4 +14,4 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
 script:
-  - mvn clean verify -P sonar
+  - mvn clean verify -P sonar,analyze
