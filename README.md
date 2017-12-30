@@ -28,7 +28,7 @@ Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
 Security | Best practices provided by OWASP.
 Selenium | Functional tests using Selenium.
-XML | XML conversion libraries in Java.
+XML | XML serialization and XML path language (XPath).
 
 ## Code Style
 
