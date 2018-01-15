@@ -52,7 +52,6 @@
     <module>maven</module>
     <module>regex</module>
     <module>restful-api</module>
-    <module>security</module>
     <module>selenium</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>
