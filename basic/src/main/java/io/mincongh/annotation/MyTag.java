@@ -15,5 +15,15 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface MyTag {
-  String name();
+  /*
+   * When using 'value' as method name, you don't need to precise
+   * the key 'value' in caller. The following usage:
+   *
+   *     @MyTag(value = "A")
+   *
+   * can be simplified to:
+   *
+   *     @MyTag("A")
+   */
+  String value();
 }

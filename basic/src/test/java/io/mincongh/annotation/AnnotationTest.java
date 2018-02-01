@@ -9,8 +9,8 @@ import org.junit.Test;
  * @author Mincong Huang
  */
 @TestForIssue(jira = "JIRA-123")
-@MyTag(name = "A")
-@MyTag(name = "B")
+@MyTag("A")
+@MyTag("B")
 public class AnnotationTest {
 
   @Test
@@ -25,7 +25,7 @@ public class AnnotationTest {
   @Test
   public void getRepeatableAnnotation() throws Exception {
     MyTag[] myTags = getClass().getDeclaredAnnotationsByType(MyTag.class);
-    assertThat(Arrays.asList(myTags)).flatExtracting(MyTag::name).containsExactly("A", "B");
+    assertThat(Arrays.asList(myTags)).flatExtracting(MyTag::value).containsExactly("A", "B");
   }
 
 }

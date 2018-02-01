@@ -15,14 +15,14 @@ public @interface MyTags {
    * Implicitly used for storing multiple annotations as an array.
    * It means that:
    *
-   *     @MyTag(jira = "A")
-   *     @MyTag(jira = "B")
+   *     @MyTag("A")
+   *     @MyTag("B")
    *
    * is equivalent to:
    *
    *     @MyTags({
-   *         @MyTag(jira = "A"),
-   *         @MyTag(jira = "B")
+   *         @MyTag("A"),
+   *         @MyTag("B")
    *     })
    *
    */
