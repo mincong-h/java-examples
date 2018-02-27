@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Stack Overflow - Question 38851332 Hibernate + Lucene - wildard search returning empty result
+ * Stack Overflow - Question 38851332 Hibernate + Lucene - wildcard search returning empty result
  *
  * @author Mincong Huang
  */

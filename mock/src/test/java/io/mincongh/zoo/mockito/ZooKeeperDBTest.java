@@ -15,7 +15,7 @@ import io.mincongh.zoo.Animal;
 import io.mincongh.zoo.ZooKeeper;
 
 /**
- * Test {@link io.mincongh.zoo.Zeekeeper} with database.
+ * Test {@code io.mincongh.zoo.Zeekeeper} with database.
  *
  * @author Mincong Huang
  */

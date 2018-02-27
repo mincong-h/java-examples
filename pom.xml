@@ -12,8 +12,15 @@
   <description>Java Examples</description>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>9</maven.compiler.source>
+    <maven.compiler.target>9</maven.compiler.target>
+    <!--
+      Skip Maven dependency plugin because Java 9 bytecode analysis
+      is not supported yet. Waiting release 3.1.0 to resolve the
+      problem. See https://issues.apache.org/jira/browse/MDEP-559.
+     -->
+    <mdep.analyze.skip>true</mdep.analyze.skip>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -212,6 +219,35 @@
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>htmlunit-driver</artifactId>
         <version>2.28.5</version>
+      </dependency>
+      <!--
+        Includes JAXB APIs because they're not part of the JDK APIs
+        anymore. See:
+
+            How to resolve java.lang.NoClassDefFoundError:
+            javax/xml/bind/JAXBException in Java 9
+
+            https://stackoverflow.com/questions/43574426
+       -->
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.2.11</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>2.2.11</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>2.2.11</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>1.1.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

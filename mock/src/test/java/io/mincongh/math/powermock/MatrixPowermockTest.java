@@ -2,6 +2,7 @@ package io.mincongh.math.powermock;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -15,6 +16,7 @@ import io.mincongh.math.Vector;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(MatrixHelper.class)
+@Ignore("Failed since JDK 9. PowerMock 2.0 is required: https://github.com/powermock/powermock/issues/725")
 public class MatrixPowermockTest {
 
   private Vector v1 = new Vector(1, 1);

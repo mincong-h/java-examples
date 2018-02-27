@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.jboss.byteman.contrib.bmunit.BMScript;
 import org.jboss.byteman.contrib.bmunit.BMUnitConfig;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -21,6 +22,7 @@ import org.junit.runner.RunWith;
 @RunWith(org.jboss.byteman.contrib.bmunit.BMUnitRunner.class)
 @BMUnitConfig(loadDirectory = "target/test-classes")
 @BMScript(value = "check.btm")
+@Ignore("Failed since JDK 9. BMUnit : Unable to identify test JVM process during agent load")
 public class CounterTest {
 
   @Rule
