@@ -53,6 +53,7 @@
     <module>hashcode</module>
     <module>hibernate-search</module>
     <module>java8</module>
+    <module>java9</module>
     <module>jgit</module>
     <module>jsf</module>
     <module>json</module>
