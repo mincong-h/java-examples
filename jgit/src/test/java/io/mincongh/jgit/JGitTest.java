@@ -21,11 +21,13 @@ public abstract class JGitTest {
 
   Repository repo;
 
+  RevCommit initialCommit;
+
   @Before
   public void setUp() throws Exception {
     git = Git.init().setDirectory(tempFolder.getRoot()).call();
     repo = git.getRepository();
-    commit("Initial commit");
+    initialCommit = commit("Initial commit");
   }
 
   @After
