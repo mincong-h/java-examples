@@ -1,7 +1,8 @@
 sudo: required
 language: java
 jdk:
-  - oraclejdk9
+- oraclejdk8
+- oraclejdk9
 install:
   # first, download all the Maven dependencies without logging
   - mvn -B -q install -DskipTests=true
