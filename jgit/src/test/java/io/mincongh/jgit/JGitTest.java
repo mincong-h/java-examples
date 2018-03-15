@@ -10,12 +10,13 @@ import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
 
 /**
+ * Base class for JGit unit tests.
+ *
  * @author Mincong Huang
  */
 public abstract class JGitTest {
 
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
+  @Rule public final TemporaryFolder tempFolder = new TemporaryFolder();
 
   Git git;
 
@@ -39,5 +40,4 @@ public abstract class JGitTest {
     git.add().addFilepattern(".").call();
     return git.commit().setMessage(message).setAllowEmpty(true).call();
   }
-
 }
