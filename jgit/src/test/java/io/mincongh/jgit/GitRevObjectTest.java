@@ -3,7 +3,10 @@ package io.mincongh.jgit;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevObject;
+import org.eclipse.jgit.revwalk.RevTag;
+import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.junit.Test;
 
@@ -45,9 +48,14 @@ public class GitRevObjectTest extends JGitTest {
     String revStr = initialCommit.name() + "^{tree}";
     ObjectId treeId = repo.resolve(revStr);
     try (RevWalk walk = new RevWalk(repo)) {
+      // Unknown type (any)
       RevObject object = walk.parseAny(treeId);
       assertThat(object.getType()).isEqualTo(Constants.OBJ_TREE);
       assertThat(object).isEqualTo(initialCommit.getTree());
+
+      // Known type (tree)
+      RevTree tree = walk.parseTree(treeId);
+      assertThat(tree).isEqualTo(initialCommit.getTree());
     }
   }
 
@@ -56,9 +64,14 @@ public class GitRevObjectTest extends JGitTest {
   public void resolveBranch() throws Exception {
     ObjectId commitId = repo.resolve(Constants.MASTER);
     try (RevWalk walk = new RevWalk(repo)) {
+      // Unknown type (any)
       RevObject object = walk.parseAny(commitId);
       assertThat(object.getType()).isEqualTo(Constants.OBJ_COMMIT);
       assertThat(object).isEqualTo(initialCommit);
+
+      // Known type (commit)
+      RevCommit commit = walk.parseCommit(commitId);
+      assertThat(commit).isEqualTo(initialCommit);
     }
   }
 
@@ -68,9 +81,14 @@ public class GitRevObjectTest extends JGitTest {
     Ref tagRef = git.tag().setAnnotated(true).setName("1.0").call();
     ObjectId tagId = repo.resolve("1.0");
     try (RevWalk walk = new RevWalk(repo)) {
+      // Unknown type (any)
       RevObject object = walk.parseAny(tagId);
       assertThat(object.getType()).isEqualTo(Constants.OBJ_TAG);
       assertThat(object.getId()).isEqualTo(tagRef.getObjectId());
+
+      // Known type (commit)
+      RevTag tag = walk.parseTag(tagId);
+      assertThat(tag.getTagName()).isEqualTo("1.0");
     }
   }
 
@@ -89,12 +107,17 @@ public class GitRevObjectTest extends JGitTest {
   /** Resolving lightweight tag points to commit. */
   @Test
   public void resolveTag_lightweightTag() throws Exception {
-    git.tag().setAnnotated(false).setName("1.0").call();
-    ObjectId tagId = repo.resolve("1.0");
+    git.tag().setAnnotated(false).setName("1.0-lw").call();
+    ObjectId tagId = repo.resolve("1.0-lw");
     try (RevWalk walk = new RevWalk(repo)) {
+      // Unknown type (any)
       RevObject object = walk.parseAny(tagId);
       assertThat(object.getType()).isEqualTo(Constants.OBJ_COMMIT);
       assertThat(object).isEqualTo(initialCommit);
+
+      // Known type (commit)
+      RevCommit commit = walk.parseCommit(tagId);
+      assertThat(commit).isEqualTo(initialCommit);
     }
   }
 }
