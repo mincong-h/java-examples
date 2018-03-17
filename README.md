@@ -14,6 +14,7 @@ Module | Description
 :--- | :---
 AssertJ | [AssertJ][assertj] testing framework.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
+CLI | A fake command-line interface (CLI).
 Clone | Test behavior of `java.lang.Clonable#clone()`.
 Date | Date manipulation using `java.util.*` and `java.time.*`.
 Generic | Basic usages of Java Generic.
