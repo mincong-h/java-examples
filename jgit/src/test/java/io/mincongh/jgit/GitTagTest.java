@@ -3,6 +3,7 @@ package io.mincongh.jgit;
 import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevObject;
@@ -86,6 +87,17 @@ public class GitTagTest extends JGitTest {
     Ref tagL = git.tag().setAnnotated(false).setName("lightweight").call();
     Ref tagA = git.tag().setAnnotated(true).setName("annotated").call();
     assertThat(git.tagList().call()).containsExactly(tagA, tagL);
+    assertThat(git.tagList().call())
+        .extracting(Ref::getName)
+        .containsExactly("refs/tags/annotated", "refs/tags/lightweight");
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void getTag_nonexistent() throws Exception {
+    ObjectId tagId = repo.resolve("nonexistent");
+    try (RevWalk walk = new RevWalk(repo)) {
+      walk.parseTag(tagId);
+    }
   }
 
   @Test
