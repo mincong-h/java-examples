@@ -3,6 +3,8 @@ package io.mincongh.jgit;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.jgit.api.CloneCommand;
@@ -13,7 +15,9 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.transport.PushResult;
 import org.eclipse.jgit.transport.RemoteRefUpdate;
 import org.eclipse.jgit.transport.RemoteRefUpdate.Status;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -138,6 +142,30 @@ public class GitPushTest {
     try (Git git = Git.open(remoteDir.toFile())) {
       List<Ref> tags = git.tagList().call();
       assertThat(tags).flatExtracting(Ref::getName).containsOnly("refs/tags/1.0");
+    }
+  }
+
+  @Test
+  @Ignore("Manual test in localhost")
+  public void pushHttp() throws Exception {
+    CloneCommand cloneCmd =
+        Git.cloneRepository()
+            .setDirectory(clonedFolder.getRoot())
+            .setCredentialsProvider(new UsernamePasswordCredentialsProvider("user", "pwd"))
+            .setURI("http://localhost/studio/junit.git");
+
+    try (Git git = cloneCmd.call()) {
+      String msg = DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now());
+      git.commit().setAllowEmpty(true).setMessage(msg).call();
+      Iterable<PushResult> results =
+          git.push()
+              .setRemote("origin")
+              .setPushAll()
+              .setCredentialsProvider(new UsernamePasswordCredentialsProvider("user", "pwd"))
+              .call();
+      for (PushResult result : results) {
+        System.out.println(result);
+      }
     }
   }
 
