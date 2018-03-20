@@ -86,10 +86,16 @@ public class GitPushTest {
       commit2 = git.commit().setAllowEmpty(true).setMessage("2nd commit").call();
       git.tag().setName("1.0").setAnnotated(false).setObjectId(commit1).call();
       git.tag().setName("2.0").setAnnotated(false).setObjectId(commit2).call();
-      git.push().setRemote("origin").setPushTags().call();
+      Iterable<PushResult> results = git.push().setRemote("origin").setPushTags().call();
+
+      // Then remote should receive the commit
+      for (PushResult result : results) {
+        assertStatus(result.getRemoteUpdate("refs/tags/2.0"), Status.OK);
+        assertStatus(result.getRemoteUpdate("refs/tags/1.0"), Status.OK);
+      }
     }
 
-    // Then remote should receive the commit
+    // Then remote should receive the tags
     try (Git git = Git.open(remoteDir.toFile())) {
       List<Ref> tags = git.tagList().call();
       assertThat(tags).flatExtracting(Ref::getName).containsOnly("refs/tags/1.0", "refs/tags/2.0");
@@ -104,6 +110,34 @@ public class GitPushTest {
         assertStatus(result.getRemoteUpdate("refs/tags/2.0"), Status.UP_TO_DATE);
         assertStatus(result.getRemoteUpdate("refs/tags/1.0"), Status.REJECTED_NONFASTFORWARD);
       }
+    }
+  }
+
+  @Test
+  public void pushSingleTag() throws Exception {
+    // Given a cloned repository
+    CloneCommand cloneCmd =
+        Git.cloneRepository()
+            .setDirectory(clonedFolder.getRoot())
+            .setURI(remoteDir.toUri().toString());
+
+    // When create tags and push to remote
+    final RevCommit commit1;
+    try (Git git = cloneCmd.call()) {
+      commit1 = git.commit().setAllowEmpty(true).setMessage("1st commit").call();
+      Ref ref1 = git.tag().setName("1.0").setAnnotated(false).setObjectId(commit1).call();
+      git.tag().setName("2.0").setAnnotated(false).setObjectId(commit1).call();
+      Iterable<PushResult> results = git.push().setRemote("origin").add(ref1).call();
+      // Then the push result is successful
+      for (PushResult result : results) {
+        assertStatus(result.getRemoteUpdate("refs/tags/1.0"), Status.OK);
+      }
+    }
+
+    // Then remote should receive one tag
+    try (Git git = Git.open(remoteDir.toFile())) {
+      List<Ref> tags = git.tagList().call();
+      assertThat(tags).flatExtracting(Ref::getName).containsOnly("refs/tags/1.0");
     }
   }
 
