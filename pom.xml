@@ -337,6 +337,16 @@
 
   <profiles>
     <profile>
+      <id>java8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+      </properties>
+    </profile>
+    <profile>
       <id>java9</id>
       <activation>
         <jdk>9</jdk>
@@ -352,40 +362,29 @@
         <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
-        <module>basic</module>
-        <module>byteman</module>
-        <module>clone</module>
-        <module>concurrency</module>
-        <module>date</module>
-        <module>file</module>
-        <module>generic</module>
-        <module>hashcode</module>
-        <module>hibernate-search</module>
-        <module>java8</module>
         <!-- Include Java 9 -->
         <module>java9</module>
-        <module>jgit</module>
-        <module>jsf</module>
-        <module>json</module>
-        <module>mock</module>
-        <module>maven</module>
-        <module>regex</module>
-        <module>restful-api</module>
-        <module>selenium</module>
-        <module>testing/assertj</module>
-        <module>testing/junit</module>
-        <module>xml</module>
       </modules>
     </profile>
     <profile>
-      <id>java8</id>
+      <id>java10</id>
       <activation>
-        <jdk>1.8</jdk>
+        <jdk>10</jdk>
       </activation>
       <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>10</maven.compiler.source>
+        <maven.compiler.target>10</maven.compiler.target>
+        <!--
+          Skip Maven dependency plugin because Java 9 bytecode analysis
+          is not supported yet. Waiting release 3.1.0 to resolve the
+          problem. See https://issues.apache.org/jira/browse/MDEP-559.
+         -->
+        <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
+      <modules>
+        <!-- Include Java 9 -->
+        <module>java9</module>
+      </modules>
     </profile>
     <profile>
       <id>sonar</id>
