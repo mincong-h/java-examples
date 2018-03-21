@@ -362,7 +362,6 @@
         <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
-        <!-- Include Java 9 -->
         <module>java9</module>
       </modules>
     </profile>
@@ -382,8 +381,8 @@
         <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
-        <!-- Include Java 9 -->
         <module>java9</module>
+        <module>java10</module>
       </modules>
     </profile>
     <profile>
