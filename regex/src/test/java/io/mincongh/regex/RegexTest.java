@@ -24,4 +24,11 @@ public class RegexTest {
       assertTrue(pattern.matcher(name).matches());
     }
   }
+
+  /** Regex pattern does not accept null value. */
+  @Test(expected = NullPointerException.class)
+  public void nullValue() {
+    Pattern pattern = Pattern.compile("\\d+");
+    pattern.matcher(null);
+  }
 }
