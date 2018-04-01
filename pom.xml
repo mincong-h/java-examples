@@ -50,8 +50,6 @@
     <module>mock</module>
     <module>maven</module>
     <module>regex</module>
-    <module>restful-api</module>
-    <module>selenium</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>
     <module>xml</module>
@@ -345,6 +343,10 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
       </properties>
+      <modules>
+        <module>restful-api</module>
+        <module>selenium</module>
+      </modules>
     </profile>
     <profile>
       <id>java9</id>
@@ -363,6 +365,8 @@
       </properties>
       <modules>
         <module>java9</module>
+        <module>restful-api</module>
+        <module>selenium</module>
       </modules>
     </profile>
     <profile>

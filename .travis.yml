@@ -1,11 +1,33 @@
 sudo: required
 language: java
-jdk:
-- oraclejdk8
-- oraclejdk9
+matrix:
+  include:
+  - env: J=Java8
+    jdk: oraclejdk8
+  - env: J=Java9
+    jdk: oraclejdk9
+  - env: J=Java10
+
+before_install:
+  - case $J in
+    Java10)
+      wget https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz ;
+      tar -xzf openjdk-10_linux-x64_bin.tar.gz ;
+      export JAVA_HOME=$(pwd)/jdk-10 ;
+      ;;
+    esac
 install:
   # first, download all the Maven dependencies without logging
   - mvn -B -q install -DskipTests=true
+before_script:
+  - PROFILE_OPTS=''
+  - case $J in
+    Java8) PROFILE_OPTS+='-P sonar,analyze' ;;
+    Java9) PROFILE_OPTS+='-P sonar,analyze' ;;
+    Java10) ;;
+    esac
+script:
+  - mvn clean verify $PROFILE_OPTS
 addons:
   sonarcloud:
     organization: 'mincong-h-github'
@@ -14,5 +36,3 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
-script:
-  - mvn clean verify -P sonar,analyze
