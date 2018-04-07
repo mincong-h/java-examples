@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DTD: DocType Definition
+
+  ATTLIST
+      Attribute list declarations. For each possible attribute, it
+      contains:
+        - the declared name of the attribute,
+        - its data type (or an enumeration of its possible values),
+        - and its default value.
+      Here are some attribute types supported by both SGML and XML:
+        - CDATA. This type means characters data and indicates that
+          the effective value of the attribute can be any textual
+          value.
+        - ID
+        - IDREF or IDREFS
+        - NMTOKEN or NMTOKENS
+        - ENTITY or ENTITIES
+        - (value1|...)
+        - NOTATION (notation1|...)
+ -->
+<!DOCTYPE books [
+  <!ELEMENT books (book+)>
+  <!ELEMENT book (name, author, price)>
+  <!ATTLIST book
+    id CDATA #REQUIRED
+    published (true | false) 'true'
+    >
+  <!ELEMENT name (#PCDATA)>
+  <!ELEMENT author (#PCDATA)>
+  <!ELEMENT price (#PCDATA)>
+  ]>
+<!--
+  Element "books" does not declare attribute list, thus attributes
+  are not allowed here. However, according to constraint definition
+  `<!ELEMENT books (book+)>`, element "books" must contain at least
+  one element `book`.
+ -->
+<books>
+  <!--
+    Element "book" must contain character-data attribute "id",
+    enumerated attribute "published" (default to "true").
+   -->
+  <book id="1">
+    <name>OCA Java SE 8</name>
+    <author>Mala Gupta</author>
+    <price>49.0</price>
+  </book>
+  <book id="2">
+    <!--
+      Elements "name", "author", and "price" must always be declared
+      in the same order, as specified in the DTD.
+     -->
+    <name>Code Complete 2</name>
+    <author>McConnell</author>
+    <price>59.0</price>
+  </book>
+  <!--
+    Element "id" is valid, because it is declared (even though its
+    value is empty). Value "false" matches the possible values in
+    enumerated list.
+   -->
+  <book id="" published="false">
+    <name>XML Introduction</name>
+    <author>Foo</author>
+    <price>0.0</price>
+  </book>
+</books>
