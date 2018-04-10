@@ -6,17 +6,19 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.mincongh</groupId>
-    <artifactId>java-examples-parent</artifactId>
+    <artifactId>java-examples-java9</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <artifactId>java-examples-java9</artifactId>
-  <name>Java Examples - Java 9</name>
-  <packaging>pom</packaging>
+  <artifactId>java-examples-dev-api</artifactId>
+  <name>Java Examples - Java 9 Dev API</name>
 
-  <modules>
-    <module>dev-api</module>
-    <module>dev-core</module>
-  </modules>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>
