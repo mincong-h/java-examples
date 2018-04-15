@@ -1,5 +1,6 @@
 package io.mincongh.jgit;
 
+import java.nio.file.Path;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
@@ -24,9 +25,12 @@ public abstract class JGitTest {
 
   RevCommit initialCommit;
 
+  Path root;
+
   @Before
   public void setUp() throws Exception {
     git = Git.init().setDirectory(tempFolder.getRoot()).call();
+    root = tempFolder.getRoot().toPath();
     repo = git.getRepository();
     initialCommit = commit("Initial commit");
   }
