@@ -16,7 +16,6 @@ The following options are understood:
 
 **-h,--help**
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Show detailed help.
 
 ## Commands
@@ -51,7 +50,22 @@ The following commands are understood:
 
 **mp-init**
 
-**mp-install**
+#### mp-install
+
+    mp-install PACKAGES...
+    mp-install (-f | --file) PACKAGE
+
+Run Marketplace package installation. You must provide at least one package
+value. A package value can be a package name or a package ID. Multiple values
+are supported. When giving a package name, it will be resolved to an ID before
+doing an effective installation.
+
+If file flag `-f,--file` is present, then the command refers to a local
+installation command. It will lookup the package file in file system. Only one
+file is allowed.
+
+This command is automatically called at startup if `installAfterRestart.log`
+file exists in data directory.
 
 **mp-list**
 
@@ -125,9 +139,10 @@ OS level variables read by `fakectl`.
 
 ### Package
 
-- Remote package: package stored in remote and can be downloaded.
-- Local package: package started in local. (TODO: how to distinguish
-  local-stored and local-used packages?)
+- Remote package: package stored in remote repository and can be downloaded.
+- Local package: package started in local repository or being used.
+
+
 
 ## Unclear
 
@@ -136,5 +151,9 @@ What're operations:
 - purge:
 - remove:
 - uninstall:
+
+## References
+
+- [Manual `systemctl`](https://www.freedesktop.org/software/systemd/man/systemctl.html)
 
 [commons-cli]: https://github.com/apache/commons-cli
