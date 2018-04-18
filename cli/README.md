@@ -125,44 +125,66 @@ OS level variables read by `fakectl`.
 Launcher lifecycle is defined as following stages:
 
 - `init`: Launcher initialization.
-- `pre-command`: Operations before launching the command.
+- `before-command`: Operations before launching the command.
 - `command`: Command execution.
-- `post-command`: Operations after launching the command.
+- `after-command`: Operations after launching the command.
 - `exit`: Launcher tear down and exit.
 
 If multiple commands exist, the lifecycle will be:
 
 ```
-Launcher::init
-CommandA::pre-command
-CommandA::command
-CommandA::post-command
-CommandB::pre-command
-CommandB::command
-CommandB::post-command
-CommandC::pre-command
-CommandC::command
-CommandC::post-command
-Launcher::exit
+launcher::init
+cmd-a::before-command
+cmd-a::command
+cmd-b::after-command
+cmd-b::before-command
+cmd-b::command
+cmd-b::after-command
+cmd-c::before-command
+cmd-c::command
+cmd-c::after-command
+launcher::exit
 ```
+
+## Command Type
+
+By execution logic:
+
+- Unit command
+- Composite command
+
+By business logic:
+
+- Marketplace command
+- Server command
 
 ## Pending Commands
 
 Pending commands are commands given by users but not yet executed. Pending
 commands consists 2 parts:
 
-1. given by previous launcher execution, left in a persistent file
-2. given by current launcher execution, entered by user
+- Part 1: commands given by previous launcher execution
+- Part 2: commands given by current launcher execution
 
-Part 1 has higher priority for execution. Part 2 will execute once part 1 is
+Part 1 take precedence over part 2: part 2 will be executed only after part 1 is
 finished.
 
-During a normal lifecycle, pending commands are consumed one by one by launcher and
-nothing left at the end. In the event of an anomaly, the pending commands are
-serialized and persisted into file system. Thus, launcher can resume the command
-executions after its restart. When restarting launcher, the pending commands are
-deserialized from the persistent file. Then, file will be backed up for further
-usages.
+During a normal lifecycle, pending commands are queued. They will be consumed
+one by one by launcher until nothing left. In the event of an anomaly, the
+pending commands are serialized and persisted into file system. Thus, launcher
+can resume the command executions after its restart. When restarting launcher,
+the pending commands are deserialized and enqued as part 1. Then, persistent
+file will be backed up—which means the original file does not exist anymore.
+
+## Pending Commands File
+
+- Empty line will not be executed
+- Line starting with `#` is considered as comment, will not be executed
+
+## Dry Run
+
+You might want to do a dry-run without executing any commands in real. The
+estimated output will be displayed, but the server itself won't be modified.
 
 ## OS Support
 
@@ -171,11 +193,11 @@ Launcher can be used for Windows, macOS, and Linux.
 ## Exception Handling
 
 Launcher should never exit during a command execution. If any failure occurs,
-the command stops and raise an exception. Exception will be caught by an
+the command will stop and raise an exception. Exception will be caught by an
 exception mapper, which handles it properly. The handling mechanism is triggered
-in _post-command_ phase. If any severe error happens, launcher can decide to quit
-the Java process: an explicit error message should be displayed in the console, and a
-non-zero exit code should be returned.
+in _after-command_ phase. If any severe error happens, launcher might quit the
+Java process: an explicit error message will be displayed in the console, and a
+non-zero exit code will be returned.
 
 # Implementation
 
@@ -200,6 +222,7 @@ non-zero exit code should be returned.
 - Command can be created in 2 ways: by passing arguments or by constructing a
   Java object. The 1st case refers to the real world scenario, and the 2nd case
   refers to programatical scenario (e.g. tests).
+- What is the difference between command and task?
 
 ### i18n
 
@@ -207,6 +230,8 @@ non-zero exit code should be returned.
 
 - Remote package: package stored in remote repository and can be downloaded.
 - Local package: package started in local repository or being used.
+
+### Package Resolution
 
 ## Unclear
 
