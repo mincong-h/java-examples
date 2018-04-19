@@ -46,7 +46,9 @@ The following commands are understood:
 
 **mp-add**
 
-**mp-hotfix**
+#### mp-hotfix
+
+Composite command, package resolution required.
 
 **mp-init**
 
@@ -73,9 +75,13 @@ file exists in data directory.
 
 **mp-update**
 
-**mp-upgrade**
+#### mp-upgrade
 
-**mp-purge**
+Composite command, package resolution required.
+
+#### mp-purge
+
+Composite command, package resolution required.
 
 **mp-remove**
 
@@ -146,19 +152,26 @@ cmd-c::after-command
 launcher::exit
 ```
 
-## Command Type
+## Command
+
+A command execution should return a result, an instance of type T to allow
+launcher follow its evolution. Void is also a valid result.
+
+### Command Type
 
 By execution logic:
 
 - Unit command
 - Composite command
 
+A composite command can be resolved as multiple unit commands.
+
 By business logic:
 
 - Marketplace command
 - Server command
 
-## Pending Commands
+### Pending Commands
 
 Pending commands are commands given by users but not yet executed. Pending
 commands consists 2 parts:
@@ -176,10 +189,21 @@ can resume the command executions after its restart. When restarting launcher,
 the pending commands are deserialized and enqued as part 1. Then, persistent
 file will be backed up—which means the original file does not exist anymore.
 
-## Pending Commands File
+### Pending Commands File
 
 - Empty line will not be executed
 - Line starting with `#` is considered as comment, will not be executed
+
+## Task
+
+Task is the lowest level of work in launcher. One command contains one or more
+tasks.
+
+### Pending Tasks
+
+Pending tasks are tasks which are not yet executed by a command. They are
+serializable. Pending tasks should be executed before pending commands. You can
+consider pending tasks as a « partial » pending command.
 
 ## Dry Run
 
@@ -233,13 +257,29 @@ non-zero exit code will be returned.
 
 ### Package Resolution
 
-## Unclear
+# Current Pain Points
 
-What're operations:
+Here're the current pain points in the actual launcher solution.
 
-- purge:
-- remove:
-- uninstall:
+## Method pkgRequest
+
+The method `pkgRequest` is very confusing. Actually:
+
+- **mp-hotfix** is resolved as a mp-request before being executed.
+- **mp-purge** is resolved as a mp-request before being executed.
+- **mp-upgrade** is resolved as a mp-request before being executed.
+
+So it means that **mp-hotfix**, **mp-purge**, **mp-upgrade** are all composite
+commands. Composite commands are composed by multiple unit commands. Among these
+unit commands, some of them might require launcher to restart—a pending queue is
+required to resume the remaining actions.
+
+Confusing points:
+
+- Too many inputs for a `pkgRequest`.
+- Notion of composite command and unit command.
+- `pkgRequest` is not only a request, but also implies resolution.
+- How to resume pending tasks or pending commands?
 
 ## References
 
