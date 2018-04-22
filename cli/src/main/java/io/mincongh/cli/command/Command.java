@@ -1,5 +1,7 @@
 package io.mincongh.cli.command;
 
+import io.mincongh.cli.option.HasOption;
+import io.mincongh.cli.option.HasOptions;
 import java.util.concurrent.Callable;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.cli.CommandLine;
@@ -55,8 +57,9 @@ public abstract class Command<T> implements Callable<T>, HasOption, HasOptions {
     return cmd;
   }
 
-  /**
-   * Validates the command line arguments.
-   */
+  @Override
+  public abstract T call();
+
+  /** Validates the command line arguments. */
   abstract void validate();
 }

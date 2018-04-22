@@ -1,9 +1,9 @@
-package io.mincongh.cli.command;
+package io.mincongh.cli.option;
 
 import org.apache.commons.cli.Option;
 
 /**
- * Desired behaviors when having option "quiet".
+ * Suppress information messages.
  *
  * @author Mincong Huang
  */

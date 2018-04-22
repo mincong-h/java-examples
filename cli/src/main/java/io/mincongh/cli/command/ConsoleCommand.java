@@ -1,6 +1,7 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.util.Constants;
+import io.mincongh.cli.option.HasServerOptions;
+import io.mincongh.cli.util.Messages;
 
 /**
  * Starts fake server in a console mode.
@@ -17,7 +18,7 @@ public class ConsoleCommand extends Command<Void> implements HasServerOptions {
 
   @Override
   String name() {
-    return Constants.COMMAND_CONSOLE;
+    return Commands.CONSOLE;
   }
 
   @Override
@@ -28,5 +29,10 @@ public class ConsoleCommand extends Command<Void> implements HasServerOptions {
   @Override
   public Void call() {
     return null;
+  }
+
+  @Override
+  public String getHelpMessage() {
+    return Messages.consoleCommandDescription();
   }
 }

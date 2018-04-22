@@ -14,9 +14,32 @@ Fake CLI is a fake command-line interface for command line self training.
 
 The following options are understood:
 
-**-h,--help**
-
-Show detailed help.
+Option                                                            | Description
+:---------------------------------------------------------------- | :---
+`-h,--help`                                                       | Show detailed help.
+`-q,--quiet`                                                      | Suppress information messages.
+`-d,--debug <categories>`                                         | Activate debug messages. (Since Fake 7.4) `<categories>`: comma-separated Java categories to debug.
+~~`-dc <categories>`~~                                            | (Since Fake 5.6) Deprecated: see `--debug <categories>`.
+`--debug-launcher`                                                | (Since Fake 5.9.4) Linux-only. Activate Java debugging mode on the Launcher.
+`--clid <arg>`                                                    | (Since Fake 6.0) Use the provided instance CLID file.
+`--xml`                                                           | (Since Fake 5.6) Output XML for marketplace commands.
+`--json`                                                          | (Since Fake 5.6) Output JSON for marketplace commands.
+<code>--gui <true&#124;false&#124;yes&#124;no></code>             | (Since Fake 5.6) Start the Graphical User Interface (aka Fake Control Panel). Default is true on Windows and false on other platforms.
+`--nodeps`                                                        | (Since Fake 5.6) Ignore package dependencies and constraints.
+<code>--relax <true&#124;false&#124;yes&#124;no&#124;ask></code>  | (Since Fake 5.6) Allow relax constraint on current platform (default: ask).
+<code>--accept <true&#124;false&#124;yes&#124;no&#124;ask></code> | (Since Fake 5.6) Accept, refuse or ask confirmation for all changes (default: ask). In non interactive mode, `--accept=true` also sets `--relax=true` if needed.
+`-s,--snapshot`                                                   | (Since Fake 5.9.1) Allow use of SNAPSHOT Marketplace packages. This option is implicit: on SNAPSHOT distributions (daily builds), if the command explicitly requests a SNAPSHOT package.
+`-f,--force`                                                      | (Since Fake 5.9.1) Deprecated: use --strict option instead.
+`--strict`                                                        | (Since Fake 7.4) Abort in error the start command when a component cannot be activated or if a server is already running.
+`-im,--ignore-missing`                                            | (Since Fake 6.0) Ignore unknown packages on mp-add, mp-install and mp-set commands.
+`-hdw,--hide-deprecation-warnings`                                | (Since Fake 5.6) Hide deprecation warnings.
+`--encrypt <algorithm>`                                           | (Since Fake 7.4) Activate encryption on the config command. This option can be used on the encrypt command to customize the encryption algorithm. `<algorithm>` is a cipher transformation of the form: "algorithm/mode/padding" or "algorithm". Default value is "AES/ECB/PKCS5Padding" (Advanced Encryption Standard, Electronic Cookbook Mode, PKCS5-style padding).
+`--gzip`                                                          | Compress the output.
+`--pretty-print`                                                  | Pretty print the output.
+`--output <file>`                                                 | Write output in specified file.
+`--set <template>`                                                | (Since Fake 7.4) Set the value for a given key. The value is stored in fake.conf by default unless a template name is provided; if so, it is then stored in the template's fake.defaults file. If the value is empty (''), then the property is unset. This option is implicit if no `--get` or `--get-regexp` option is used and there are exactly two parameters (key value).
+`--get-regexp`                                                    | (Since Fake 7.4) Get the value for all keys matching the given regular expression(s).
+`--get`                                                           | (Since Fake 7.4) Get the value for a given key. Returns error code 6 if the key was not found. This option is implicit if `--set` option is not used and there are more or less than two parameters.
 
 ## Commands
 
@@ -24,13 +47,22 @@ The following commands are understood:
 
 ### Server Commands
 
-**start**
+#### start
 
-**stop**
+Start Fake Server in background, waiting
+for effective start. Useful for batch executions requiring the server being
+immediately available after the script returned. Note: on Windows, the
+`start` command launches the Control Panel.
+
+#### stop
+
+Stop any Fake Server started with the same `fake.conf` file.
 
 **restart**
 
-**console**
+#### console
+
+Start Fake Server in a console mode. <kbd>CTRL</kbd> + <kbd>C</kbd> will stop it.
 
 **status**
 
@@ -280,6 +312,17 @@ non-zero exit code will be returned.
 - Local package: package started in local repository or being used.
 
 ### Package Resolution
+
+## Null Check
+
+By default, all objects served as input parameter or returned value are
+considered as non-null. If you're using nullable object, you must declare
+annotation `@Nullable`:
+
+```java
+@Nullable
+public Foo getFoo() { ... }
+```
 
 # Current Pain Points
 

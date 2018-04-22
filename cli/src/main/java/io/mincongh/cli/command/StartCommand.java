@@ -1,6 +1,7 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.util.Constants;
+import io.mincongh.cli.option.HasServerOptions;
+import io.mincongh.cli.util.Messages;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -86,6 +87,11 @@ public class StartCommand extends Command<Void> implements HasServerOptions {
 
   @Override
   public @NotNull String name() {
-    return Constants.COMMAND_START;
+    return Commands.START;
+  }
+
+  @Override
+  public String getHelpMessage() {
+    return Messages.startCommandDescription();
   }
 }

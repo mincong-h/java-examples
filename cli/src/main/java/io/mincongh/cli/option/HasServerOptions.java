@@ -1,4 +1,4 @@
-package io.mincongh.cli.command;
+package io.mincongh.cli.option;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,19 +13,21 @@ import org.apache.commons.cli.Option;
  */
 public interface HasServerOptions
     extends HasOptions,
-        HasQuietOption,
+        HasClidOption,
         HasDebugOption,
         HasGuiOption,
-        HasStrictOption,
-        HasClidOption {
+        HasHelpOption,
+        HasQuietOption,
+        HasStrictOption {
 
   default Iterable<Option> newOptions() {
     Set<Option> options = new HashSet<>();
-    options.add(newQuietOption());
+    options.add(newClidOption());
     options.add(newDebugOption());
     options.add(newGuiOption());
+    options.add(newHelpOption());
+    options.add(newQuietOption());
     options.add(newStrictOption());
-    options.add(newClidOption());
     return options;
   }
 }

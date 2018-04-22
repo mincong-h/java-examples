@@ -1,6 +1,7 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.util.Constants;
+import io.mincongh.cli.option.HasServerOptions;
+import io.mincongh.cli.util.Messages;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +22,7 @@ import org.apache.commons.cli.Option;
  *
  * @author Mincong Huang
  */
-public class StopCommand extends Command<Void>
-    implements HasQuietOption, HasDebugOption, HasGuiOption {
+public class StopCommand extends Command<Void> implements HasServerOptions {
 
   private static final Logger LOGGER = Logger.getLogger(StopCommand.class.getName());
 
@@ -32,7 +32,7 @@ public class StopCommand extends Command<Void>
 
   @Override
   public @NotNull String name() {
-    return Constants.COMMAND_STOP;
+    return Commands.STOP;
   }
 
   @Override
@@ -62,5 +62,10 @@ public class StopCommand extends Command<Void>
         LOGGER.info("Checking debug category: " + category);
       }
     }
+  }
+
+  @Override
+  public String getHelpMessage() {
+    return Messages.stopCommandDescription();
   }
 }

@@ -1,4 +1,4 @@
-package io.mincongh.cli.command;
+package io.mincongh.cli.option;
 
 import org.apache.commons.cli.CommandLine;
 

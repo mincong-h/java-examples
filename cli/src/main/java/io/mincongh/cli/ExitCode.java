@@ -58,7 +58,7 @@ public class ExitCode {
   public static final int ERR_INVALID_ARGS = 2;
 
   /** Unimplemented feature. */
-  public static final int ERR_UNKONWN_FEATURE = 3;
+  public static final int ERR_UNKNOWN_FEATURE = 3;
 
   /** User had insufficient privilege. */
   public static final int ERR_INSUFFICIENT_PRIV = 4;
