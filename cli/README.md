@@ -118,7 +118,31 @@ Deprecated. Use `--gui` option instead.
 
 **register**
 
-## Exit Status
+## Exit Value
+
+Launcher exit codes. These values follow the [Linux Standard Base Core
+Specification 4.1][LSB-20.2].
+
+If the status command is requested, launcher will turn the following exit status codes:
+
+Value | Description
+:---: | :---
+0     | Program is running or service is OK.
+3     | Program is not running.
+4     | Program or service status is unknown.
+
+In case of an error while processing any action except for status, launcher
+will print an error message and exit with a non-zero status code:
+
+Value | Description
+:---: | :---
+1     | Generic or unspecified error
+2     | Invalid or excess argument(s)
+3     | Unimplemented feature
+4     | User had insufficient privilege
+5     | Program is not installed
+6     | Program is not configured
+7     | Program is not running
 
 ## Environment Variables
 
@@ -286,3 +310,4 @@ Confusing points:
 - [Manual `systemctl`](https://www.freedesktop.org/software/systemd/man/systemctl.html)
 
 [commons-cli]: https://github.com/apache/commons-cli
+[LSB-20.2]: http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html

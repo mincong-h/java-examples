@@ -24,21 +24,21 @@ public final class FakeLauncher {
    *
    * @param commandName the name of target command
    * @param args the additional arguments for target command, can be empty.
-   * @return exit status
+   * @return exit code
    * @throws IllegalStateException if failed to parse the command name
    */
-  private static ExitStatus run(String commandName, String... args) {
+  private static int run(String commandName, String... args) {
     if (Constants.COMMAND_CONSOLE.equals(commandName)) {
       new ConsoleCommand(args).call();
-      return ExitStatus.ERR_NOT_INSTALLED;
+      return ExitCode.ERR_NOT_INSTALLED;
     }
     if (Constants.COMMAND_START.equals(commandName)) {
       new StartCommand(args).call();
-      return ExitStatus.ERR_NOT_INSTALLED;
+      return ExitCode.ERR_NOT_INSTALLED;
     }
     if (Constants.COMMAND_STOP.equals(commandName)) {
       new StopCommand(args).call();
-      return ExitStatus.ERR_NOT_INSTALLED;
+      return ExitCode.ERR_NOT_INSTALLED;
     }
     throw new IllegalStateException("Failed to parse command '" + commandName + "'");
   }
@@ -49,14 +49,14 @@ public final class FakeLauncher {
   public static void main(String[] args) {
     String commandName = args[0];
     String[] arguments = Arrays.copyOfRange(args, 1, args.length);
-    ExitStatus status;
+    int status;
     try {
       status = run(commandName, arguments);
     } catch (IllegalStateException e) {
-      status = ExitStatus.ERR_INVALID_ARGS;
+      status = ExitCode.ERR_INVALID_ARGS;
     }
-    if (status != ExitStatus.OK) {
-      System.exit(status.getCode());
+    if (status != ExitCode.OK) {
+      System.exit(status);
     }
   }
 }
