@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
 import io.mincongh.cli.option.HasMarketplaceOptions;
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 
 /**
  * Mp-install command: Run Marketplace package installation. It is automatically called at startup

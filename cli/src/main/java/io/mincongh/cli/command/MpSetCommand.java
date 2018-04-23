@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
 import io.mincongh.cli.option.HasMarketplaceOptions;
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 
 /**
  * Mp-set: (Since Fake 5.9.2) Install a list of Marketplace packages and remove those not in the list.

@@ -1,4 +1,4 @@
-package io.mincongh.cli.util;
+package io.mincongh.cli;
 
 import java.util.ResourceBundle;
 
@@ -146,11 +146,11 @@ public final class Messages {
     return r.getString("launcher.command.wizard.description");
   }
 
-  public static String getCommandMessage(String cmd) {
+  public static String getCommandDesc(String cmd) {
     return r.getString("launcher.command." + cmd + ".description");
   }
 
-  public static String getMessage(String key) {
-    return r.getString(key);
+  public static String getOptionDesc(String opt) {
+    return r.getString("launcher.option." + opt + ".description");
   }
 }

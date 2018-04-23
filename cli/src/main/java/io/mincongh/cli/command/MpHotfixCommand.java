@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
 import io.mincongh.cli.option.HasMarketplaceOptions;
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 
 /**
  * Mp-hotfix: Install all the available hot-fixes for the current platform, but do not upgrade

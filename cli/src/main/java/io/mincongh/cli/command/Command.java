@@ -19,7 +19,7 @@ import org.apache.commons.cli.ParseException;
  */
 public abstract class Command<T> implements Callable<T>, HasOption, HasOptions {
 
-  private final CommandLine cmd;
+  protected final CommandLine cmd;
 
   private final Options options = new Options();
 

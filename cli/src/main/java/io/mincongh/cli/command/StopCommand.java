@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
 import io.mincongh.cli.option.HasServerOptions;
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

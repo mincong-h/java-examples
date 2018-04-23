@@ -1,6 +1,6 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 import java.util.Collections;
 import org.apache.commons.cli.Option;
 
@@ -37,7 +37,7 @@ public class HelpCommand extends Command<String> {
         .stream()
         .sorted()
         .forEach(
-            cmd -> sb.append(String.format("%-17s  %s%n", cmd, Messages.getCommandMessage(cmd))));
+            cmd -> sb.append(String.format("%-17s  %s%n", cmd, Messages.getCommandDesc(cmd))));
     return sb.toString();
   }
 }

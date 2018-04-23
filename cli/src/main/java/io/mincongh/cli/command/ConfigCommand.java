@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
 import io.mincongh.cli.option.HasHelpOption;
-import io.mincongh.cli.util.Messages;
+import io.mincongh.cli.Messages;
 import java.util.Collections;
 import org.apache.commons.cli.Option;
 

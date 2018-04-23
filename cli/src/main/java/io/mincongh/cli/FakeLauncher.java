@@ -31,6 +31,7 @@ import io.mincongh.cli.command.StatusCommand;
 import io.mincongh.cli.command.StopCommand;
 import io.mincongh.cli.command.WizardCommand;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Fake launcher is located in the "bin" folder of your server installation. It enables various
@@ -67,6 +68,7 @@ public final class FakeLauncher {
    * @return exit code
    * @throws IllegalStateException if failed to parse the command name
    */
+  @SuppressWarnings("squid:S106")
   private static int run(String cmd, String... args) {
     // Server commands
     if (Commands.CONSOLE.equals(cmd)) {
@@ -167,7 +169,7 @@ public final class FakeLauncher {
     // Other commands
     if (Commands.HELP.equals(cmd)) {
       String s = new HelpCommand(args).call();
-      System.out.println(s); //NOSONAR
+      System.out.println(s);
       return ExitCode.OK;
     }
     if (Commands.GUI.equals(cmd)) {
@@ -179,8 +181,9 @@ public final class FakeLauncher {
       return ExitCode.ERR_UNKNOWN_FEATURE;
     }
     if (Commands.ENCRYPT.equals(cmd)) {
-      new EncryptCommand(args).call();
-      return ExitCode.ERR_UNKNOWN_FEATURE;
+      List<String> values = new EncryptCommand(args).call();
+      values.forEach(System.out::println);
+      return ExitCode.OK;
     }
     if (Commands.DECRYPT.equals(cmd)) {
       new DecryptCommand(args).call();

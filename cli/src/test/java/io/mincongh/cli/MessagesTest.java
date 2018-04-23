@@ -1,10 +1,9 @@
-package io.mincongh.cli.util;
+package io.mincongh.cli;
 
 import io.mincongh.cli.command.Commands;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 /**
  * Test i18n message loading.
@@ -14,11 +13,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MessagesTest {
 
   @Test
-  public void description() {
+  public void commandDescription() {
     for (String cmd : Commands.supportedCommands()) {
-      String key = "launcher.command." + cmd + ".description";
-      String msg = "Command '" + cmd + "' is supported, but its key is missing in properties file.";
-      assertThat(Messages.getMessage(key)).as(msg).isNotEmpty();
+      assertThat(Messages.getCommandDesc(cmd)).isNotEmpty();
     }
+  }
+
+  @Test
+  public void optionDescription() {
+    assertThat(Messages.getOptionDesc("encrypt")).isNotEmpty();
   }
 }
