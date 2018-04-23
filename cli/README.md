@@ -1,6 +1,8 @@
-# Fake CLI
+# FakeCTL
 
-Fake CLI is a fake command-line interface for command line self training.
+FakeCTL is a fake command-line interface for command line self training. It
+consists 2 parts: Fake Launcher, a Java application for different command line
+usages; `fakectl`, a bash script to interact with Fake Launcher.
 
 ## Synopsis
 
@@ -58,31 +60,31 @@ immediately available after the script returned. Note: on Windows, the
 
 Stop any Fake Server started with the same `fake.conf` file.
 
-**restart**
+#### restart
 
 #### console
 
 Start Fake Server in a console mode. <kbd>CTRL</kbd> + <kbd>C</kbd> will stop it.
 
-**status**
+#### status
 
-**startbg**
+#### startbg
 
-**restartbg**
+#### restartbg
 
 ### Environment Commands
 
-**showconf**
+#### showconf
 
 ### Marketplace Commands
 
-**mp-add**
+#### mp-add
 
 #### mp-hotfix
 
 Composite command, package resolution required.
 
-**mp-init**
+#### mp-init
 
 #### mp-install
 
@@ -96,16 +98,26 @@ doing an effective installation.
 
 If file flag `-f,--file` is present, then the command refers to a local
 installation command. It will lookup the package file in file system. Only one
-file is allowed.
+file is allowed. Local installation command connte be mixed with remote
+installation command.
 
 This command is automatically called at startup if `installAfterRestart.log`
 file exists in data directory.
 
-**mp-list**
+#### mp-list
 
-**mp-uninstall**
+#### mp-listall
 
-**mp-update**
+**mp-listall** is not supported by fake launcher. Please use the following
+alternatives:
+
+- `mp-list -a` to list both local and remote packages.
+- `mp-list --all` to list both local and remote packages.
+- `mp-list --remote` to list remote packages.
+
+#### mp-uninstall
+
+#### mp-update
 
 #### mp-upgrade
 
@@ -115,40 +127,39 @@ Composite command, package resolution required.
 
 Composite command, package resolution required.
 
-**mp-remove**
+#### mp-remove
 
-**mp-request**
+#### mp-request
 
-**mp-reset**
+#### mp-reset
 
-**mp-show**
+#### mp-show
 
 ### Other Commands
 
 TODO Should be categorized properly
 
-**help**
+#### help
 
-~~**gui**~~
+#### gui
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Deprecated. Use `--gui` option instead.
 
-**config**
+#### config
 
-**encrypt**
+#### encrypt
 
-**decrypt**
+#### decrypt
 
-**configure**
+#### configure
 
-**wizard**
+#### wizard
 
-**pack**
+#### pack
 
-**connect-report**
+#### connect-report
 
-**register**
+#### register
 
 ## Exit Value
 
@@ -215,17 +226,22 @@ launcher follow its evolution. Void is also a valid result.
 
 ### Command Type
 
+By business logic:
+
+- Marketplace command
+- Server command
+
 By execution logic:
 
 - Unit command
 - Composite command
 
-A composite command can be resolved as multiple unit commands.
+A composite command can be resolved as multiple unit commands. Regardless unit
+or composite commands, each command has its own lifecycle. If a command fails to
+handle its lifecycle, a lifecycle exception will be thrown. Such exception
+should be handled by the higher lifecycle. For more detail, please refer to
+[Exception Handling](#exception-handling).
 
-By business logic:
-
-- Marketplace command
-- Server command
 
 ### Pending Commands
 
@@ -247,8 +263,8 @@ file will be backed up—which means the original file does not exist anymore.
 
 ### Pending Commands File
 
-- Empty line will not be executed
-- Line starting with `#` is considered as comment, will not be executed
+- Empty line will not be executed.
+- Comment line will not be executed (line starting with symbol `#`).
 
 ## Task
 
@@ -263,8 +279,8 @@ consider pending tasks as a « partial » pending command.
 
 ## Dry Run
 
-You might want to do a dry-run without executing any commands in real. The
-estimated output will be displayed, but the server itself won't be modified.
+You can do a dry-run without executing any commands in real. The
+estimated output will be displayed, but fake server itself won't be modified.
 
 ## OS Support
 
@@ -304,9 +320,9 @@ non-zero exit code will be returned.
   refers to programatical scenario (e.g. tests).
 - What is the difference between command and task?
 
-### i18n
+## i18n
 
-### Package
+## Package
 
 - Remote package: package stored in remote repository and can be downloaded.
 - Local package: package started in local repository or being used.
@@ -323,6 +339,8 @@ annotation `@Nullable`:
 @Nullable
 public Foo getFoo() { ... }
 ```
+
+## Testing
 
 # Current Pain Points
 
