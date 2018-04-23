@@ -1,5 +1,6 @@
 package io.mincongh.cli;
 
+import io.mincongh.cli.command.Commands;
 import io.mincongh.cli.command.ConfigCommand;
 import io.mincongh.cli.command.ConfigureCommand;
 import io.mincongh.cli.command.ConnectReportCommand;
@@ -28,7 +29,6 @@ import io.mincongh.cli.command.ShowConfCommand;
 import io.mincongh.cli.command.StartCommand;
 import io.mincongh.cli.command.StatusCommand;
 import io.mincongh.cli.command.StopCommand;
-import io.mincongh.cli.command.Commands;
 import io.mincongh.cli.command.WizardCommand;
 import java.util.Arrays;
 
@@ -38,7 +38,6 @@ import java.util.Arrays;
  *
  * @author Mincong Huang
  */
-@SuppressWarnings("unused")
 public final class FakeLauncher {
 
   private FakeLauncher() {
@@ -167,8 +166,9 @@ public final class FakeLauncher {
 
     // Other commands
     if (Commands.HELP.equals(cmd)) {
-      new HelpCommand(args).call();
-      return ExitCode.ERR_UNKNOWN_FEATURE;
+      String s = new HelpCommand(args).call();
+      System.out.println(s); //NOSONAR
+      return ExitCode.OK;
     }
     if (Commands.GUI.equals(cmd)) {
       // TODO Deprecated command

@@ -146,6 +146,10 @@ public final class Messages {
     return r.getString("launcher.command.wizard.description");
   }
 
+  public static String getCommandMessage(String cmd) {
+    return r.getString("launcher.command." + cmd + ".description");
+  }
+
   public static String getMessage(String key) {
     return r.getString(key);
   }

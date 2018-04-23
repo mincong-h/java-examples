@@ -34,13 +34,14 @@ public abstract class Command<T> implements Callable<T>, HasOption, HasOptions {
     // Parse arguments
     CommandLineParser parser = new DefaultParser();
     HelpFormatter formatter = new HelpFormatter();
-
     try {
       cmd = parser.parse(options, args);
     } catch (ParseException e) {
       formatter.printHelp("fake-ctl " + name(), options);
       throw new IllegalStateException(e);
     }
+
+    validate();
   }
 
   /**

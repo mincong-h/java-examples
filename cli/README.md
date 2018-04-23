@@ -141,6 +141,8 @@ TODO Should be categorized properly
 
 #### help
 
+Print help message.
+
 #### gui
 
 Deprecated. Use `--gui` option instead.
@@ -341,30 +343,6 @@ public Foo getFoo() { ... }
 ```
 
 ## Testing
-
-# Current Pain Points
-
-Here're the current pain points in the actual launcher solution.
-
-## Method pkgRequest
-
-The method `pkgRequest` is very confusing. Actually:
-
-- **mp-hotfix** is resolved as a mp-request before being executed.
-- **mp-purge** is resolved as a mp-request before being executed.
-- **mp-upgrade** is resolved as a mp-request before being executed.
-
-So it means that **mp-hotfix**, **mp-purge**, **mp-upgrade** are all composite
-commands. Composite commands are composed by multiple unit commands. Among these
-unit commands, some of them might require launcher to restart—a pending queue is
-required to resume the remaining actions.
-
-Confusing points:
-
-- Too many inputs for a `pkgRequest`.
-- Notion of composite command and unit command.
-- `pkgRequest` is not only a request, but also implies resolution.
-- How to resume pending tasks or pending commands?
 
 ## References
 

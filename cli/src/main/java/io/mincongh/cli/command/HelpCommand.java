@@ -1,13 +1,15 @@
 package io.mincongh.cli.command;
 
+import io.mincongh.cli.util.Messages;
+import java.util.Collections;
 import org.apache.commons.cli.Option;
 
 /**
- * Print this message.
+ * Print help message.
  *
  * @author Mincong Huang
  */
-public class HelpCommand extends Command<Void> {
+public class HelpCommand extends Command<String> {
 
   public HelpCommand(String... args) {
     super(args);
@@ -20,18 +22,22 @@ public class HelpCommand extends Command<Void> {
 
   @Override
   void validate() {
-    // TODO
+    // Do nothing
   }
 
   @Override
   public Iterable<Option> newOptions() {
-    // TODO
-    return null;
+    return Collections.emptyList();
   }
 
   @Override
-  public Void call() {
-    // TODO
-    return null;
+  public String call() {
+    StringBuilder sb = new StringBuilder();
+    Commands.supportedCommands()
+        .stream()
+        .sorted()
+        .forEach(
+            cmd -> sb.append(String.format("%-17s  %s%n", cmd, Messages.getCommandMessage(cmd))));
+    return sb.toString();
   }
 }
