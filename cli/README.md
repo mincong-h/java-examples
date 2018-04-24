@@ -8,6 +8,11 @@ usages; `fakectl`, a bash script to interact with Fake Launcher.
 
     fakectl COMMAND [OPTIONS...]
 
+You can also build it from the source:
+
+    $ mvn clean install
+    $ java -jar java-examples-cli-0.0.1-SNAPSHOT.jar <COMMAND> [OPTIONS...]
+
 ## Description
 
 **fakectl** may be used to introspect and control the state of a fake server.

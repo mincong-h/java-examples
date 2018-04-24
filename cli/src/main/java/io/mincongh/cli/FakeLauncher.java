@@ -32,6 +32,7 @@ import io.mincongh.cli.command.StopCommand;
 import io.mincongh.cli.command.WizardCommand;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Fake launcher is located in the "bin" folder of your server installation. It enables various
@@ -40,6 +41,8 @@ import java.util.List;
  * @author Mincong Huang
  */
 public final class FakeLauncher {
+
+  private static final Logger LOGGER = Logger.getLogger(FakeLauncher.class.getName());
 
   private FakeLauncher() {}
 
@@ -211,6 +214,7 @@ public final class FakeLauncher {
     try {
       status = run(commandName, arguments);
     } catch (IllegalStateException e) {
+      LOGGER.severe(e.getMessage());
       status = ExitCode.ERR_INVALID_ARGS;
     }
     if (status != ExitCode.OK) {
