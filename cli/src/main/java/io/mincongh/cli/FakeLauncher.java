@@ -41,25 +41,15 @@ import java.util.List;
  */
 public final class FakeLauncher {
 
-  private FakeLauncher() {
-    // Utility class, do not instantiate.
+  private FakeLauncher() {}
+
+  public void start() {
+    // TODO Implement this method
   }
 
-  /** Entry point of the application. */
-  public static void main(String[] args) {
-    String commandName = args[0];
-    String[] arguments = Arrays.copyOfRange(args, 1, args.length);
-    int status;
-    try {
-      status = run(commandName, arguments);
-    } catch (IllegalStateException e) {
-      status = ExitCode.ERR_INVALID_ARGS;
-    }
-    if (status != ExitCode.OK) {
-      System.exit(status);
-    }
+  public void stop() {
+    // TODO Implement this method
   }
-
   /**
    * Runs target command with arguments.
    *
@@ -70,10 +60,11 @@ public final class FakeLauncher {
    */
   @SuppressWarnings("squid:S106")
   private static int run(String cmd, String... args) {
+    FakeLauncher launcher = new FakeLauncher();
+
     // Server commands
     if (Commands.CONSOLE.equals(cmd)) {
-      new ConsoleCommand(args).call();
-      return ExitCode.ERR_UNKNOWN_FEATURE;
+      return new ConsoleCommand(args).setLauncher(launcher).call();
     }
     if (Commands.RESTART.equals(cmd)) {
       new RestartCommand(args).call();
@@ -210,5 +201,20 @@ public final class FakeLauncher {
       return ExitCode.ERR_UNKNOWN_FEATURE;
     }
     throw new IllegalStateException("Failed to parse command '" + cmd + "'");
+  }
+
+  /** Entry point of the application. */
+  public static void main(String[] args) {
+    String commandName = args[0];
+    String[] arguments = Arrays.copyOfRange(args, 1, args.length);
+    int status;
+    try {
+      status = run(commandName, arguments);
+    } catch (IllegalStateException e) {
+      status = ExitCode.ERR_INVALID_ARGS;
+    }
+    if (status != ExitCode.OK) {
+      System.exit(status);
+    }
   }
 }
