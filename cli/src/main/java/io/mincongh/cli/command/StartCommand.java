@@ -1,7 +1,7 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.option.HasServerOptions;
 import io.mincongh.cli.Messages;
+import io.mincongh.cli.option.HasServerOptions;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,15 +13,6 @@ import org.apache.commons.cli.Option;
 
 /**
  * Start-command is used to start a server.
- *
- * <pre>
- * start [-d, --debug &lt;categories&gt;]
- *       [-q, --quiet]
- *       [-hdw, --hide-deprecation-warnings]
- *       [--clid &lt;clid&gt;]
- *       [--gui]
- *       [--strict]
- * </pre>
  *
  * @author Mincong Huang
  */
@@ -53,10 +44,20 @@ public class StartCommand extends Command<Void> implements HasServerOptions {
 
   @Override
   public Void call() {
-    validate();
+    boolean started = doStart();
+    if (started && !isQuiet()) {
+      LOGGER.info("Go to " + getUrl());
+    }
+    return null;
+  }
 
+  // TODO Implement configuration generator
+  private String getUrl() {
+    return "http://localhost:8080";
+  }
+
+  private boolean doStart() {
     String javaCommand = "java";
-    String initCommand = name() + ' ' + String.join(" ", args);
 
     // Java command
     if (hasGui()) {
@@ -79,10 +80,10 @@ public class StartCommand extends Command<Void> implements HasServerOptions {
     javaCommand += ' ' + String.join(" ", javaOpts);
 
     if (!isQuiet() && LOGGER.isLoggable(Level.INFO)) {
-      LOGGER.info("Initial command: " + initCommand);
-      LOGGER.info("Current command: " + javaCommand);
+      LOGGER.info("Starting server...");
+      LOGGER.info("command=\"" + javaCommand + "\"");
     }
-    return null;
+    return true;
   }
 
   @Override
