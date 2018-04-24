@@ -1,8 +1,12 @@
 package io.mincongh.io;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.DosFileAttributeView;
+import java.nio.file.attribute.PosixFileAttributeView;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,6 +15,11 @@ import org.junit.rules.TemporaryFolder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Tests File NIO 2
+ *
+ * @author Mincong Huang
+ */
 public class PathTest {
 
   @Rule public TemporaryFolder folder = new TemporaryFolder();
@@ -46,5 +55,34 @@ public class PathTest {
 
     Files.write(foo, Arrays.asList("3", "4"), StandardOpenOption.APPEND);
     assertThat(Files.readAllLines(foo)).containsExactly("1", "2", "3", "4");
+  }
+
+  @Test
+  public void readOnly() throws Exception {
+    Path foo = root.resolve("foo");
+    Files.createFile(foo);
+    assertThat(foo).exists();
+
+    if (Files.getFileStore(foo).supportsFileAttributeView(DosFileAttributeView.class)) {
+      Files.getFileAttributeView(foo, DosFileAttributeView.class) //
+          .setReadOnly(true);
+    } else {
+      Files.getFileAttributeView(foo, PosixFileAttributeView.class) //
+          .setPermissions(PosixFilePermissions.fromString("r--r-----"));
+    }
+    assertThat(foo.toFile().canRead()).isTrue();
+    assertThat(foo.toFile().canWrite()).isFalse();
+    assertThat(foo.toFile().canExecute()).isFalse();
+  }
+
+  @Test
+  public void readOnly2() throws Exception {
+    File foo = root.resolve("foo").toFile();
+    boolean isCreated = foo.createNewFile();
+    boolean isReadOnly = foo.setReadOnly();
+
+    assertThat(isCreated).isTrue();
+    assertThat(isReadOnly).isTrue();
+    assertThat(foo).exists();
   }
 }
