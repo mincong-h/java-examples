@@ -3,6 +3,7 @@ package io.mincongh.io;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.PosixFileAttributeView;
@@ -55,6 +56,35 @@ public class PathTest {
 
     Files.write(foo, Arrays.asList("3", "4"), StandardOpenOption.APPEND);
     assertThat(Files.readAllLines(foo)).containsExactly("1", "2", "3", "4");
+  }
+
+  @Test
+  public void move_optionReplaceExiting_targetExists() throws Exception {
+    // Given an existing source file and an existing target file
+    Path source = root.resolve("source");
+    Path target = root.resolve("target");
+    Files.write(source, Arrays.asList("S1", "S2"));
+    Files.write(target, Arrays.asList("T1", "T2"));
+
+    // When moving the source file to target file
+    Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
+
+    // Then the target file is replaced
+    assertThat(Files.readAllLines(target)).containsExactly("S1", "S2");
+  }
+
+  @Test
+  public void move_optionReplaceExiting_targetDoesNotExist() throws Exception {
+    // Given an existing source file and a non-existent target file
+    Path source = root.resolve("source");
+    Path target = root.resolve("target");
+    Files.write(source, Arrays.asList("S1", "S2"));
+
+    // When moving the source file to target file
+    Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
+
+    // Then the target file is replaced
+    assertThat(Files.readAllLines(target)).containsExactly("S1", "S2");
   }
 
   @Test
