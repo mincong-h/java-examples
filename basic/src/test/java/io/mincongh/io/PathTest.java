@@ -1,6 +1,8 @@
 package io.mincongh.io;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.DirectoryStream.Filter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -8,7 +10,9 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.PosixFileAttributeView;
 import java.nio.file.attribute.PosixFilePermissions;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -114,5 +118,66 @@ public class PathTest {
     assertThat(isCreated).isTrue();
     assertThat(isReadOnly).isTrue();
     assertThat(foo).exists();
+  }
+
+  @Test
+  public void newDirectoryStream() throws Exception {
+    createFiles();
+    List<Path> paths = new ArrayList<>();
+    Files.newDirectoryStream(root).iterator().forEachRemaining(paths::add);
+    assertThat(paths)
+        .flatExtracting(this::getName)
+        .containsOnly("file1.txt", "file2.txt", "file2.md", "sub");
+  }
+
+  @Test
+  public void newDirectoryStream_globFilter() throws Exception {
+    createFiles();
+    List<Path> paths = new ArrayList<>();
+
+    // *.txt
+    Files.newDirectoryStream(root, "*.txt").iterator().forEachRemaining(paths::add);
+    assertThat(paths).flatExtracting(this::getName).containsOnly("file1.txt", "file2.txt");
+
+    paths.clear();
+    // *.md
+    Files.newDirectoryStream(root, "*.md").iterator().forEachRemaining(paths::add);
+    assertThat(paths).flatExtracting(this::getName).containsOnly("file2.md");
+  }
+
+  @Test
+  public void newDirectoryStream_lambdaFilter() throws Exception {
+    createFiles();
+    List<Path> paths = new ArrayList<>();
+
+    // *.txt
+    Filter<Path> filter = p -> p.getFileName().toString().endsWith(".txt");
+    Files.newDirectoryStream(root, filter).iterator().forEachRemaining(paths::add);
+    assertThat(paths).flatExtracting(this::getName).containsOnly("file1.txt", "file2.txt");
+  }
+
+  /**
+   * Create folder with the following structure for tests.
+   *
+   * <pre>
+   * root/
+   * root/file1.txt
+   * root/file2.txt
+   * root/file2.md
+   * root/sub/file1.txt
+   * root/sub/file2.md
+   * </pre>
+   */
+  private void createFiles() throws IOException {
+    Path sub = Files.createDirectory(root.resolve("sub"));
+    Files.createFile(root.resolve("file1.txt"));
+    Files.createFile(root.resolve("file2.txt"));
+    Files.createFile(root.resolve("file2.md"));
+    Files.createFile(sub.resolve("file1.txt"));
+    Files.createFile(sub.resolve("file2.md"));
+  }
+
+  private String getName(Path p) {
+    return p.toFile().getName();
   }
 }
