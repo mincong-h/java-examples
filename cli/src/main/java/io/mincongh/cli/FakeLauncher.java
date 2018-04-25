@@ -32,6 +32,7 @@ import io.mincongh.cli.command.StopCommand;
 import io.mincongh.cli.command.WizardCommand;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 /**
@@ -67,7 +68,15 @@ public final class FakeLauncher {
 
     // Server commands
     if (Commands.CONSOLE.equals(cmd)) {
-      return new ConsoleCommand(args).setLauncher(launcher).call();
+      try (ConsoleCommand c = new ConsoleCommand(args).withLauncher(launcher)) {
+        c.call().get();
+        return ExitCode.OK;
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      } catch (ExecutionException e) {
+        LOGGER.severe(e.getMessage());
+        return ExitCode.ERR_UNKNOWN_ERROR;
+      }
     }
     if (Commands.RESTART.equals(cmd)) {
       new RestartCommand(args).call();

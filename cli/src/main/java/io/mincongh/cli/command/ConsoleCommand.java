@@ -1,11 +1,11 @@
 package io.mincongh.cli.command;
 
-import io.mincongh.cli.ExitCode;
 import io.mincongh.cli.FakeLauncher;
 import io.mincongh.cli.Messages;
 import io.mincongh.cli.option.HasServerOptions;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
@@ -18,11 +18,11 @@ import java.util.logging.Logger;
  *
  * @author Mincong Huang
  */
-public class ConsoleCommand extends Command<Integer> implements HasServerOptions {
+public class ConsoleCommand extends Command<Future<?>> implements HasServerOptions, AutoCloseable {
 
   private static final Logger LOGGER = Logger.getLogger(ConsoleCommand.class.getName());
 
-  private ExecutorService executor = Executors.newSingleThreadExecutor(new SimpleThreadFactory());
+  private ExecutorService executor = Executors.newSingleThreadExecutor(new ProcessThreadFactory());
 
   private FakeLauncher launcher;
 
@@ -45,8 +45,8 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
   }
 
   @Override
-  public Integer call() {
-    executor.execute(
+  public Future<?> call() {
+    return executor.submit(
         () -> {
           launcher.start();
           shutdownHook = new LauncherShutdownHook();
@@ -59,7 +59,6 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
           await();
           stop();
         });
-    return ExitCode.OK;
   }
 
   private void await() {
@@ -70,7 +69,7 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
         String msg = duration + " ms";
         LOGGER.info(msg);
         Thread.sleep(1000);
-      } catch (InterruptedException e) {
+      } catch (InterruptedException e) { // NOSONAR: use transient boolean 'stopAwait'
         stopAwait = true;
       }
       if (duration > 15_000) {
@@ -81,8 +80,10 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
   }
 
   private void stop() {
+    LOGGER.info("Stopping launcher...");
     Runtime.getRuntime().removeShutdownHook(shutdownHook);
     launcher.stop();
+    LOGGER.info("Stopped.");
   }
 
   @Override
@@ -90,16 +91,17 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
     return Messages.consoleCommandDescription();
   }
 
-  public FakeLauncher getLauncher() {
-    return launcher;
-  }
-
-  public ConsoleCommand setLauncher(FakeLauncher launcher) {
+  public ConsoleCommand withLauncher(FakeLauncher launcher) {
     this.launcher = launcher;
     return this;
   }
 
-  private static class SimpleThreadFactory implements ThreadFactory {
+  @Override
+  public void close() {
+    executor.shutdownNow();
+  }
+
+  private static class ProcessThreadFactory implements ThreadFactory {
 
     private static final AtomicInteger COUNT = new AtomicInteger(0);
 
@@ -122,7 +124,7 @@ public class ConsoleCommand extends Command<Integer> implements HasServerOptions
         LOGGER.fine("Shutting down...");
       }
 
-      if (getLauncher() != null) {
+      if (launcher != null) {
         launcher.stop();
       }
 
