@@ -10,6 +10,7 @@ import org.junit.Test;
 public class NumberTest {
 
   @Test
+  @SuppressWarnings("squid:S3415")
   public void testUnderscore() {
     assertEquals(10, 1_0);
     assertEquals(1000, 1_000);
