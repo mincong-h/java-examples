@@ -3,6 +3,7 @@ package io.mincongh.regex;
 import java.util.regex.Pattern;
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class RegexTest {
@@ -30,5 +31,12 @@ public class RegexTest {
   public void nullValue() {
     Pattern pattern = Pattern.compile("\\d+");
     pattern.matcher(null);
+  }
+
+  @Test
+  // Replacing a specific string in javReplacing a specific string in java
+  public void so50196946() {
+    assertThat("hellol lol".replaceAll("\\blol\\b", "laugh out loud"))
+        .isEqualTo("hellol laugh out loud");
   }
 }
