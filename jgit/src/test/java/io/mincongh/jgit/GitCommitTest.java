@@ -1,19 +1,26 @@
 package io.mincongh.jgit;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Collections;
 import org.eclipse.jgit.api.MergeResult;
+import org.eclipse.jgit.api.errors.AbortedByHookException;
+import org.eclipse.jgit.hooks.CommitMsgHook;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * "git-commit" - Record changes to the repository
@@ -65,6 +72,7 @@ public class GitCommitTest extends JGitTest {
 
   /**
    * Commit graph:
+   *
    * <pre>
    * M0 --- M1 --- M2 (HEAD -> master)
    *   \          /
@@ -96,4 +104,33 @@ public class GitCommitTest extends JGitTest {
     }
   }
 
+  @Test
+  public void commitMsgHook() throws Exception {
+    // Given an always-failed commit-msg hook
+    writeHookFile(CommitMsgHook.NAME, "#!/bin/sh\necho \"test\"\n\necho 1>&2 \"stderr\"\nexit 1");
+
+    // When adding content and commit
+    String path = "a.txt";
+    Files.write(root.resolve(path), Collections.singletonList("content"));
+    git.add().addFilepattern(path).call();
+    ByteArrayOutputStream out = new ByteArrayOutputStream();
+    try {
+      git.commit().setMessage("commit").setHookOutputStream(new PrintStream(out)).call();
+      fail("expected commit-msg hook to abort commit");
+    } catch (AbortedByHookException e) {
+      // Then the commit hook is triggered
+      assertThat(e.getMessage())
+          .as("unexpected error message from commit-msg hook")
+          .isEqualTo("Rejected by \"commit-msg\" hook.\nstderr\n");
+      assertThat("test\n")
+          .as("unexpected output from commit-msg hook", "test\n")
+          .isEqualTo(out.toString());
+    }
+  }
+
+  private void writeHookFile(String name, String data) throws IOException {
+    Path path = repo.getWorkTree().toPath().resolve(".git/hooks").resolve(name);
+    Files.write(path, Collections.singletonList(data), StandardOpenOption.CREATE);
+    Files.setPosixFilePermissions(path, PosixFilePermissions.fromString("rwxr-xr-x"));
+  }
 }
