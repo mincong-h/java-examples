@@ -57,5 +57,11 @@ public class TestSo50255561 {
     assertThat(nodeList.getLength()).isEqualTo(2);
     assertThat(f.apply(0)).isEqualTo("0");
     assertThat(f.apply(1)).isEqualTo("Success");
+
+    // demo
+    for (int i = 0; i < nodeList.getLength(); i++) {
+      Node node = nodeList.item(i);
+      System.out.println(node.getNodeName() + ": " + node.getTextContent());
+    }
   }
 }
