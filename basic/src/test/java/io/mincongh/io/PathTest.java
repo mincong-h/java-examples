@@ -121,6 +121,17 @@ public class PathTest {
   }
 
   @Test
+  public void setPosixFilePermissions() throws Exception {
+    Path foo = root.resolve("foo");
+    Files.createFile(foo);
+
+    Files.setPosixFilePermissions(foo, PosixFilePermissions.fromString("rwxr-xr-x"));
+    assertThat(foo.toFile().canRead()).isTrue();
+    assertThat(foo.toFile().canWrite()).isTrue();
+    assertThat(foo.toFile().canExecute()).isTrue();
+  }
+
+  @Test
   public void newDirectoryStream() throws Exception {
     createFiles();
     List<Path> paths = new ArrayList<>();
