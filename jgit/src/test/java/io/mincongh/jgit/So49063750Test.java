@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Mincong Huang
  */
-public class TestSo49063750 extends JGitTest {
+public class So49063750Test extends JGitTest {
 
   @Test
   public void fileMoved() throws Exception {

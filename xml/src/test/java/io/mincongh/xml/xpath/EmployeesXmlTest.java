@@ -23,7 +23,7 @@ import org.w3c.dom.NodeList;
  * @see <a href="http://viralpatel.net/blogs/java-xml-xpath-tutorial-parse-xml/"> Java XPath
  * Tutorial: How to Parse XML File using XPath in Java</a>
  */
-public class TestEmployeesXml {
+public class EmployeesXmlTest {
 
   private static final String XML = "<?xml version=\"1.0\"?>\n"
       + "<employees>\n"

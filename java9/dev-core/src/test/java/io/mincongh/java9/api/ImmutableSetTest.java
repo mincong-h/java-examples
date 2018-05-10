@@ -13,7 +13,7 @@ import static org.junit.Assert.fail;
  *
  * @author Mincong Huang
  */
-public class TestImmutableSet {
+public class ImmutableSetTest {
 
   @Test
   public void createImmutableSet() {

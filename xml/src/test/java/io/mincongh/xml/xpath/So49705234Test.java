@@ -26,7 +26,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Mincong Huang
  */
-public class TestSo49705234 {
+public class So49705234Test {
 
   private static final String XML =
       "<?xml version=\"1.0\"?>\n"

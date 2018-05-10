@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see <a href="http://www.baeldung.com/assertJ-java-8-features">AssertJ’s Java 8 Features</a>
  */
-public class TestAssertJFeaturesJava8 {
+public class AssertJFeaturesJava8Test {
 
   @Test
   public void optionalAssertions() throws Exception {

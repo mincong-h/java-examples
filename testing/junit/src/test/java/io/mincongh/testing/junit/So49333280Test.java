@@ -10,7 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
  *
  * @author Mincong Huang
  */
-public class TestSo49333280 {
+public class So49333280Test {
 
   @Test
   public void quickSort() {

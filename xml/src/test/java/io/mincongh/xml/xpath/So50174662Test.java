@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class TestSo50174662 {
+public class So50174662Test {
 
   private static final String XML =
       ""

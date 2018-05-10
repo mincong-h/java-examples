@@ -13,7 +13,7 @@ import org.junit.Test;
  * @see <a href="https://stackoverflow.com/questions/46013681">DateFormat parse() method Converting
  * invalid date to valid one in java</a>
  */
-public class TestSo46013681 {
+public class So46013681Test {
 
   @Test
   public void question() throws Exception {

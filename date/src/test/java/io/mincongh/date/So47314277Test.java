@@ -16,7 +16,7 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class TestSo47314277 {
+public class So47314277Test {
 
   /**
    * A set of federal holidays. Compared to iteration, using a

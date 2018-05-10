@@ -9,7 +9,7 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see <a href="http://openjdk.java.net/jeps/286">JEP 286: Local-Variable Type Inference</a>
  */
-public class TestLocalTypeInference {
+public class LocalTypeInferenceTest {
 
   @Test
   public void string() {

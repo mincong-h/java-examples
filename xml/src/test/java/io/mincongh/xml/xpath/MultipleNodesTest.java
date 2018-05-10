@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Mincong Huang
  */
-public class TestMultipleNodes {
+public class MultipleNodesTest {
 
   private static final String HTML = "<div>\n"
       + "  <div id=\"target\">\n"

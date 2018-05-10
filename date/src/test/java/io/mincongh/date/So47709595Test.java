@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * @author Mincong Huang
  */
-public class TestSo47709595 {
+public class So47709595Test {
 
   @Test(expected = ParseException.class)
   public void withExtraSpaces() throws Exception {

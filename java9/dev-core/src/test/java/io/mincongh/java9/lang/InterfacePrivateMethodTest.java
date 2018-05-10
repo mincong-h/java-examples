@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-9.html#jls-9.4">9.4. Method
  *     Declarations</a>
  */
-public class TestInterfacePrivateMethod {
+public class InterfacePrivateMethodTest {
 
   @Test
   public void interfacePrivateMethod() {

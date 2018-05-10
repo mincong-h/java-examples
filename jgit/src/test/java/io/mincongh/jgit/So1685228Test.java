@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class TestSo1685228 extends JGitTest {
+public class So1685228Test extends JGitTest {
 
   @Test
   public void readFile() throws Exception {

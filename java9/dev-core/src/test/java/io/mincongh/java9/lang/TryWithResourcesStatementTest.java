@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
  *     href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20.3.1">14.20.3.1.
  *     Basic try-with-resources</a>
  */
-public class TestTryWithResourcesStatement {
+public class TryWithResourcesStatementTest {
 
   @Test
   public void autoCloseableSyntax() {

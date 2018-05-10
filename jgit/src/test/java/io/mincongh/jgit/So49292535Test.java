@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
  * @see <a href="https://stackoverflow.com/questions/49292535">How to do git push using JGit
  *     API?</a>
  */
-public class TestSo49292535 {
+public class So49292535Test {
 
   @Rule public final TemporaryFolder tempDir = new TemporaryFolder();
 

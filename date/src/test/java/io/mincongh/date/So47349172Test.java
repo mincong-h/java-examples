@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * @author Mincong Huang
  */
-public class TestSo47349172 {
+public class So47349172Test {
 
   @Test
   public void original() throws Exception {

@@ -22,7 +22,7 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class TestSo45793800 extends JGitTest {
+public class So45793800Test extends JGitTest {
 
   @Test
   public void name() throws Exception {

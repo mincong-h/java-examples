@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNull;
  * @see <a href="https://docs.oracle.com/javase/specs/jls/se9/html/jls-15.html#jls-15.9.1">15.9.1.
  *     Determining the Class being Instantiated</a>
  */
-public class TestDiamondOperatorExtension {
+public class DiamondOperatorExtensionTest {
 
   @Test
   public void diamondOperatorExtension() {
