@@ -22,8 +22,8 @@ install:
 before_script:
   - PROFILE_OPTS=''
   - case $J in
-    Java8) PROFILE_OPTS+='-P sonar,analyze' ;;
-    Java9) PROFILE_OPTS+='-P sonar,analyze' ;;
+    Java8) PROFILE_OPTS+='-P sonar' ;;
+    Java9) PROFILE_OPTS+='-P sonar' ;;
     Java10) ;;
     esac
 script:

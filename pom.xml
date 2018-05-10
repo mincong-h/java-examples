@@ -279,7 +279,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -358,6 +358,20 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>analyze</id>
+            <goals>
+              <goal>analyze-only</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
@@ -383,12 +397,6 @@
       <properties>
         <maven.compiler.source>9</maven.compiler.source>
         <maven.compiler.target>9</maven.compiler.target>
-        <!--
-          Skip Maven dependency plugin because Java 9 bytecode analysis
-          is not supported yet. Waiting release 3.1.0 to resolve the
-          problem. See https://issues.apache.org/jira/browse/MDEP-559.
-         -->
-        <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
         <module>java9</module>
@@ -404,12 +412,6 @@
       <properties>
         <maven.compiler.source>10</maven.compiler.source>
         <maven.compiler.target>10</maven.compiler.target>
-        <!--
-          Skip Maven dependency plugin because Java 9 bytecode analysis
-          is not supported yet. Waiting release 3.1.0 to resolve the
-          problem. See https://issues.apache.org/jira/browse/MDEP-559.
-         -->
-        <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
         <module>java9</module>
@@ -431,25 +433,6 @@
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>analyze</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>analyze</id>
-                <goals>
-                  <goal>analyze-only</goal>
-                </goals>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
