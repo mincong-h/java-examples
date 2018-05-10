@@ -7,6 +7,7 @@ matrix:
   - env: J=Java9
     jdk: oraclejdk9
   - env: J=Java10
+  - env: J=Java11
 
 before_install:
   - case $J in
@@ -14,6 +15,11 @@ before_install:
       wget https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz ;
       tar -xzf openjdk-10_linux-x64_bin.tar.gz ;
       export JAVA_HOME=$(pwd)/jdk-10 ;
+      ;;
+    Java11)
+      wget https://download.java.net/java/early_access/jdk11/12/GPL/openjdk-11-ea+12_linux-x64_bin.tar.gz ;
+      tar -xzf openjdk-11-ea+12_linux-x64_bin.tar.gz ;
+      export JAVA_HOME=$(pwd)/jdk-11 ;
       ;;
     esac
 install:
@@ -25,6 +31,7 @@ before_script:
     Java8) PROFILE_OPTS+='-P sonar' ;;
     Java9) PROFILE_OPTS+='-P sonar' ;;
     Java10) ;;
+    Java11) ;;
     esac
 script:
   - mvn clean verify $PROFILE_OPTS

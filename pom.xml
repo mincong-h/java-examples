@@ -419,6 +419,32 @@
       </modules>
     </profile>
     <profile>
+      <id>java11</id>
+      <activation>
+        <jdk>11</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <!--
+          Skip Maven dependency plugin because Java 11 bytecode analysis
+          is not supported yet. Waiting release ? to resolve the
+          problem. See https://issues.apache.org/jira/browse/?.
+         -->
+        <mdep.analyze.skip>true</mdep.analyze.skip>
+      </properties>
+      <modules>
+        <!--
+          [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile
+            (default-compile) on project java-examples-dev-core: Execution default-compile of goal
+            org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile failed: Unsupported class
+            file major version 55 -> [Help 1]
+         -->
+        <!--<module>java9</module>-->
+        <module>java10</module>
+      </modules>
+    </profile>
+    <profile>
       <id>sonar</id>
       <properties>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
