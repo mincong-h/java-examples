@@ -11,9 +11,10 @@ This project is tested under the following Java versions:
 - Java 8
 - Java 9
 - Java 10
+- Java 11
 
-However, it does not mean this project is fully compatible to Java 10.
-Some modules cannot be ran in Java 9 or newer—they're skipped.
+However, it does not mean this project is fully compatible to the latest versions.
+Some modules cannot be executed are just skipped.
 
 ## Module List
 
