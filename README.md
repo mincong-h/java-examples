@@ -1,10 +1,19 @@
 # Java Examples [![Build Status][travis-img]][travis]
 
 A Maven project for learning Java during my free time. Most of the explanations are
-written directly in the code as javadoc. I use tests to understand technical detail
+written directly in the code as Javadoc. I use tests to understand technical detail
 in different frameworks. You can run these tests using:
 
     mvn clean install
+
+This project is tested under the following Java versions:
+
+- Java 8
+- Java 9
+- Java 10
+
+However, it does not mean this project is fully compatible to Java 10.
+Some modules cannot be ran in Java 9 or newer—they're skipped.
 
 ## Module List
 
