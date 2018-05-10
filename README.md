@@ -1,6 +1,4 @@
-[![Build Status][travis-img]][travis]
-
-# Java Examples
+# Java Examples [![Build Status][travis-img]][travis]
 
 A Maven project for learning Java during my free time. Most of the explanations are
 written directly in the code as javadoc. I use tests to understand technical detail
