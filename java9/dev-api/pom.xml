@@ -13,12 +13,4 @@
   <artifactId>java-examples-dev-api</artifactId>
   <name>Java Examples - Java 9 Dev API</name>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-
 </project>
