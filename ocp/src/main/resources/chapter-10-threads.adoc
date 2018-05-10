@@ -1,0 +1,228 @@
+= Chapter 10 Threads
+
+== Create and use threads
+
+. All non trivial Java applications are multi-threaded.
+. Multiple threads can be supported by an underlying system by using multiple hardware processors,
+  by time-slicing a single processor, or by time-slicing multiple processors.
+. Implementation of Java threads is JVM-specific.
+. Though related, a `Thread` instance and a thread of execution are not the same. A `Thread`
+  instance is a Java object.
+. The main thread is named `main` by the JVM. Do not confuse it with the method `main()`.
+. Class `Thread` and interface `Runnable` can be used to create and start a new thread of execution.
+. To create your own thread objects using class `Thread`, you must extend it and override its method
+  `run()`.
+. When you call `start()` on a `Thread` instance, it creates a new thread of execution.
+. When a new thread of execution starts, it will execute the code defined in the thread instance's
+  method `run()`. Method `start()` will trigger the creation of a new thread of execution,
+  allocating resources to it.
+. Because you cannot be sure of the order of execution of threads by an underlying OS, multithreaded
+  code might output different results when executed on the same or a different system.
+. When you create a thread class by extending class `Thread`, you lost the flexibility of inheriting
+  any other class.
+. When you implement the `Runnable` interface, then you should pass its instance to the constructor
+  of class `Thread`.
+. The `Thread` constructor accepts a `Runnable` object. A `Thread` instance stores a reference to a
+  `Runnable` object and uses it when you start its execution (by calling `start()`).
+. Because class `Thread` implements the `Runnable` interface, you can instantiate a thread by
+  passing it another `Thread` instance.
+. Each thread is created with a priority. Its range varies from 1 to 10, with 1 being the lowest
+  priority and 10 the highest priority. By default, a thread creates another thread with the same
+  priority as its own.
+
+== Thread lifecycle
+
+. You can control the transition of a thread from one state to another by calling its methods.
+. The exact time of thread state transition is controlled by a thread scheduler, which is bound to
+  very across platforms.
+. A thread can exist in multiple states: `NEW`, `RUNNABLE`, `WAIT`, `TIMED_WAITING`, `BLOCKED`, or
+  `TERMINATED`.
+. A thread that has not yet started is in a `NEW` state.
+. Calling `start()` on a new thread instance implicitly calls its method `run()`, which transitions
+  its state from `NEW` to `READY`.
+. A thread in the `RUNNABLE` state is all set to be executed. It's just waiting to be chosen by the
+  thread scheduler so that it gets the processor time.
+. As a programmer, you cannot control or determine when a particular thread transitions from the
+  `READY` state to the `RUNNING` state, and when it actually gets to execute.
+. The states `READY` and `RUNNING` are together referred to as the `RUNNABLE` state.
+. A thread in the `RUNNABLE` state is executing in the JVM, but it may be waiting for other
+  resources from the OS, such as a processor.
+. A thread that's blocked waiting for a monitor lock is in the `BLOCKED` state.
+. A thread that is waiting for another thread to perform an action for up to a specified waiting
+  time is in the `TIME_WAITING` state.
+. A `RUNNING` thread enters the `TIMED_WAITING` state when you call `sleep(int)`, `join(int)`, or
+  `wait(int)` on it.
+. A thread that is waiting indefinitely for another thread to perform a particular action is in the
+  `TIMED_WAITING` state.
+. A `RUNNING` thread enters the `TIMED_WAITING` state when you call `sleep(int)`. It can change back
+  to the `READY` state when `notify()` or `notifyAll()` is called.
+. A `RUNNING` thread might enter the `BLOCKED` state when it is waiting for other system resources
+  like network connections or to acquire an object lock to execute a synchronized method or code
+  block. Depending on whether the thread is able to acquire the monitor lock or resources, it
+  returns back to the `READY` state.
+. With the successful completion of `run()`, a thread is in the `TERMINATED` state.
+. A thread might transition from any state to the `TERMINATED` state due to an exception.
+
+== Methods of class Thread
+
+. Calling `start()` on a `Thread` instance creates a new thread of execution, which executes `run()`
+. You can call `start()` on a thread that is in the `NEW` state. calling `start()` from any other
+  thread state will throw an `IllegalThreadStateException`.
+. Calling `run()` on a `thread` instance does not start a new thread of execution. The `run()`
+  continues to execute in the same thread.
+. A thread might pause its execution due to the calling of an explicitly method or when its time
+  slice with the processor expires.
+. Method `yield()` makes the currently executing thread pause its execution and give up its current
+  use of the processor. But it only acts as a hint to the scheduler. The scheduler might also ignore
+  it.
+. Method `yield()` is static. It can be called from any method, and it does not throw any
+  exceptions.
+. Method `yield()` can be placed literally anywhere in your code—not only in method `run()`.
+. Method `sleep()` is guaranteed to cause the currently executing thread to temporarily give up its
+  execution for at least the specified number of milliseconds (and nanoseconds)
+. Unless interrupted, the currently executing thread will sleep for at least the specified duration.
+  it might not start its execution immediately after the specified time elapses.
+. Method `sleep()` is `Thread`'s static method and it makes the currently executing thread give up
+  its execution. Because all code is executed by some thread, placement of `sleep() will determine
+  which `Thread` instance will give up its execution.
+. A thread that is suspended due to a call to `sleep()` does not lose ownership of any monitors.
+. If thread `A` calls `join()` on a `Thread` instance `B`, `A` will wait for `B` to complete its
+  execution before `A` can proceed to its own completion.
+. A thread can pause its execution and wait on an object, a queue in this case, by calling `wait()`,
+  until another thread calls `notify()` or `notifyAll()` on the same object.
+. Methods `wait()`, `notify()`, and `notifyAll()` can be called on all Java objects, because they
+  are defined in class `Object` and not class `Thread`.
+. A thread completes its execution when its method `run()` completes.
+
+== Protect shared data
+
+. Interleaving of multiple threads that manipulate shared data using multiple steps leads to thread
+  interference.
+. A simple statement like incrementing a variable value might involve multiple steps like loading of
+  the variable value from memory to registers (working space), incrementing the value, and reloading
+  the new value in memory.
+. When multiple threads execute this seemingly atomic statement, they might interleave, resulting in
+  incorrect variable values.
+. Making your applications thread safe means securing your shared data so that it stores correct
+  data, even when it's accessed by multiple threads.
+. Thread safety is not about safe threads—it is about safeguarding your shared data that might b
+  accessible to multiple threads.
+. A thread-safe class stores correct data without requiring calling classes to guard it.
+. You can lock objects by defining synchronized methods and synchronized statements.
+. Synchronized methods are defined by prefixing the definition of a method with the keyword
+  `synchronized`. You can define both instance and static methods as synchronized methods.
+. For non-static synchronized methods, a thread locks the monitor of the object on which the
+  synchronized is called. To execute static synchronized methods, a thread locks the monitor
+  associated with the `Class` object of its class.
+. A thread releases the lock on an object monitor after it exits a synchronized method, whether due
+  to successful completion or due to an exception.
+. To execute synchronized statements, a thread must acquire a lock on an object monitor. For
+  instance methods an implicit lock is acquired on the object on which it is called. For
+  synchronized statements, you can specify an object to acquire a lock on.
+. To execute synchronized statements, a lock must be acquired before the execution of the statements
+. Multiple threads can concurrently execute methods with synchronized statements if they acquire a
+  lock on monitors of separate objects.
+. A thread releases the lock on the object monitor once it exits the synchronized statement block
+  due to successful completion or an exception.
+. Immutable objects like an instance of class `String` and the wrapper classes like `Boolean`,
+  `Long`, are thread safe because their contents cannot be modified.
+. You can define an immutable class by limiting access to its attributes within the class and not
+  defining any methods to modify its state.
+. Once initialized, an immutable instance des not allow modification to its value.
+. You can use volatile variables to synchronize access to data.
+. When a thread reads from or writes to a variable (both primitive and reference variables) marked
+  with the keyword `volatile`, it accesses it from the main memory, as opposed to storing its copy
+  in the thread's cache memory. This prevents multiple threads from storing a local copy of shared
+  values that might not be consistent across threads.
+
+== Identify and fix code in a multithreaded environment
+
+. Threading issues arise when multiple threads work with shared data and when they are dependent on
+  other threads.
+. Local variables, method parameters, and exception handler parameters are always safe in a
+  multi-threaded application.
+. Class and instance variables might not always be safe in a multi-threaded application.
+. Methods `wait()`, `notify()`, and `notifyAll()` can be used for inter-thread notification.
+. To call `wait()` or `notify()` a thread must own the object's monitor lock. So calls to these
+  methods should be placed within synchronized methods or blocks or else an
+  `IllegalMonitorStateException` will be thrown by the JVM.
+. All overloaded versions of `wait()` throw a checked `InterruptedException`. Methods
+  `notify()` and `notifyAll()` do not throw an `InterruptedException`.
+. Unlike `Thread` 's method `join()`, which waits for another thread to complete its execution,
+  methods `wait()` and `notify()` don't require a thread to complete their execution.
+. Multiple threads might deadlock when they have acquired a lock on objects and are waiting to
+  acquire locks on additional objects that are owned by other waiting threads.
+. All threads are assigned a priority, either implicitly or explicitly. Usually threads with a
+  higher priority are preferred to execute by the thread scheduler. But this preference might leave
+  threads with a lower priority staved to be scheduled.
+. A thread can also starve to be scheduled when it's waiting to acquire a lock on an object monitor
+  that has been acquired by another thread that usually takes long to execute and is invoked
+  frequently.
+. Threads in a live lock are not blocked; they are responding to each other, but they are not able
+  to move to completion.
+. With threads, there's little that can be guaranteed. The Java language uses a happens-before
+  relationship, which is when one task is guaranteed to happen before another in a multi-threading
+  environment.
+. The execution of `start()` happens-before any action in a thread is started.
+. When code is defined in a sequence, step 1 happens-before step 2.
+. Unlocking of an object monitor happens-before any other thread acquires a lock on it.
+. A write to a volatile field happens-before every subsequent read of that field.
+. All actions in a thread happens-before any other thread returns from a join on that thread.
+
+== Sample Example Questions (Correction)
+
+=== Q 10-6
+
+Selvan is testing a multi-threaded application in which thread A downloads data in a hash map.
+Thread B uses the data from the same hash map and displays it to a user for modification. Thread C
+is supposed to save the modified data and replace the existing data in the hash map. When a user
+tries to save the data, the application stops responding. What could be the probable reasons?
+
+. Thread A and thread C deadlock.
+. Thread B and thread C deadlock.
+. Thread C is discovered to be a high-priority thread that performs complex calculations and doesn't
+  allow other threads to execute.
+. Thread C throws an exception.
+
+The answer is ABC. The application stops responding after a user tries to save data. So the issues
+is the series of actions that execute when thread C is initiated. All the three issues, A, B and C,
+are sharing the same data set. Thread C might try write data that is being modified by thread A or
+thread B, so thread C might deadlock with thread A or B.
+
+Option C is correct. Saving the data is supposed to start thread C. An application might appear to
+stop responding if it doesn't respond to user events. A scheduler chooses from a pool of threads to
+execute the threads that are ready for execution. Though OS-specific, threads of high priority are
+usually preferred over threads with lower priority.
+
+Option D is incorrect. An unhandled exception should make the application exit.
+
+=== Q 10-7
+
+Instances of which of the following classes will always be safe to use in a multi-threaded
+environments?
+
+. `class ESafe { final int value; /* constructor to init value */ }`
+. `class ESafe { final Object value; /* constructor to init value */ }`
+. Option C:
+[source,java]
+----
+final class ESafe {
+    ESafe(Object obj) {
+        value = obj;
+    }
+    private final Object value;
+    synchronized Object read() { return value; }
+    synchronized void modify(Object obj) {}
+}
+----
+. `class ESafe { final String value; /* constructor to init value */ }`
+
+The answer is ACD. Options A is correct. Once assigned a value, a primitive variable cannot be
+changed. So it is safe from reading and writing inconsistent or dirty values. Option B is incorrect.
+Even though defining the instance variable value of class `ESafe` as a `final` member prevents
+reassigning a value to it, it does not prevent modifications to its state. The reference variable
+`value` is not private, so it is accessible outside class `ESafe`. Option C is correct. Marked with
+the keyword `private`, `value` is not accessible outside class `ESafe`. Also, access to the state of
+`ESafe` is synchronized and is safe from concurrent reading or writing by multiple threads. Option D
+is correct. Once initialized, the state of class `ESafe` (value of variable value) cannot be
+modified because class `String` in immutable.

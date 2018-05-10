@@ -33,6 +33,8 @@ JSON | JSON conversion libraries in Java.
 JUnit | JUnit testing framework.
 Maven | Basic functionality of Maven.
 Mock | Different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
+OCA | Oracle Certified Associate Java SE 8
+OCP | Oracle Certified Professional Java SE 8
 Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
 Selenium | Functional tests using Selenium.

@@ -1,0 +1,319 @@
+= Exception and Assertions
+
+There're different kinds of exceptions:
+
+* _Exception class_—Refers to `Throwable` class and all its subclasses.
+* _Error classes_—Refers to `Error` class and all its subclasses
+* _Runtime exception classes_—Refers to runtime exception classes and error classes
+* _Unchecked exception classes_—Refers to runtime exception classes and error classes
+* _Checked exception classes_—Refers to all exception classes other than the unchecked
+exception classes. Class `Throwable` and any of its subclasses that aren't a subclass
+of either `Error` or `RuntimeException` are checked exceptions.
+
+Here's the exception hierarchy:
+
+* `java.lang.Throwable`
+** `java.lang.Error`
+** `java.lang.Exception`
+*** `java.lang.RuntimeException`
+
+== Exercise 6.1
+
+Which answer correctly shows the output of class `TwistThrowsException`?
+
+. `useReadFile`; `readFile`; `FileNotFoundException` thrown at runtime
+. `useReadFile`; `FileNotFoundException` thrown at runtime
+. Compilation error
+. `FileNotFoundException` thrown at runtime
+. `useReadFile`; `readFile`
+
+.TwistThrowsException.java
+[source,java]
+----
+import java.io.*;
+
+class TwistThrowsException {
+
+    public void readFile(String file) throws FileNotFoundException { // <2>
+        System.out.println("readFile");
+        throw new FileNotFoundException(); // <1>
+    }
+
+    void useReadFile(String name) throws FileNotFoundException { // <4>
+        System.out.println("useReadFile");
+        try {
+            readFile(name);
+        } catch (FileNotFoundException e) { // <3>
+            // code
+        }
+    }
+
+    public static void main(String args[]) {
+        new TwistThrowsException).useReadFile("a"); // <5>
+    }
+}
+----
+<1> The exception `FileNotFoundException` is instantiated.
+<2> It is thrown outside of the method `readFile(String)`.
+<3> It is caught by method `useReadFile(String)`.
+<4> Method `useReadFile(String)` declares also a `FileNotFoundException`, which is a checked exception.
+<5> This method is used inside `main(String[])`, but it is never handled. `main(String[])` need to
+  handle it using a try-catch block, or declare it in the method signature. *So the answer is C:
+  "Compilation error"*.
+
+== Exercise 6.3
+
+Which answer correctly show the output of class `TestMultiCatch`?
+
+.TestMultiCatch.java
+[source,java]
+----
+import java.io.*;
+
+class Exception1 extends IOException {}
+class Exception2 extends Exception {}
+
+class TestMultiCatch {
+    public static void main(String args[]) {
+        try {
+            int a = 10;
+            if (a <= 10) {
+                throw new Exception1();
+            } else {
+                throw new Exception2();
+            }
+        } catch (Exception1 | Exception2 ex) {
+            System.out.println(ex);
+        }
+    }
+}
+----
+
+. Value similar to `Exception1@96a34`
+. Value similar to `Exception2@45a86e`
+. `Exception1`
+. `Exception2`
+
+The answer is C. An attempt to retrieve the value of a reference
+variable itself calls its method `toString()`. The common base class
+of classes `Exception1` and `Exception2` is `Exception`. Class
+`Exception` inherits class `Throwable`, which overrides method
+`toString()`. The default implementation of method `toString()` in
+class `Throwable` returns the fully qualified name of the `Throwable`
+instance (all `Exception` and `Error` classes) together with its
+exception message.
+
+== Exercise 6.4
+
+Which answer correctly shows the output of class `AssertionTwist`?
+
+[source,java]
+----
+public class AssertionTwist {
+    public static void main(String args[]) {
+        evenOdd(-11);
+    }
+    static void evenOdd(int num) {
+        if (num % 2 == 0) {
+            System.out.println("Even");
+        } else if (num % 2 == 1) {
+            System.out.println("Odd");
+        } else {
+            System.out.println("This should never be printed");
+            assert false : new Person();
+        }
+    }
+}
+class Person {
+    private String toString() {
+        return "Pirates of the Caribean";
+    }
+}
+----
+
+. `Odd`
+. This should never be printed: `AssertionError: Pirates of the Caribbean`
+. This should never be printed: `AssertionError: Person@6b97fd0dd`
+. Compilation error
+. A runtime exception
+
+The answer is D. The code won't compile because while overriding `toString()`,
+class `Person` assigns a weaker access level (`private`) to it. When you override a
+base class method, you can assign the same or wider access level to it, but you
+cannot make it more restrictive.
+
+== Sample Exam Questions
+
+=== Question 6.2
+
+Given the following line of code
+
+[source,java]
+----
+String s = "assert";
+----
+
+which of the following code options will compile successfully? (Choose all that apply).
+
+. `assert(s == null : s = new String());`
+. `assert s == null : s = new String();`
+. `assert(s == null) : s = new String();`
+. `assert(s.equals("assert"));`
+. `assert s.equals("assert");`
+. `assert s == "assert" ; s.replace('a', 'z');`
+. `assert s = new String("Assert") : s.toString();`
+. `assert s == new String("Assert") : System.out.println(s);`
+. `assert(s = new String("Assert") : System.out.println(s));`
+
+The answer is B C D E F. Option A is incorrect. For the longer form of the `assert`
+statement that uses two expressions, you can't enclose both expressions within a single
+parentheses. Option B is correct. It's optional to include the individual expressions
+used in the longer form within a single parentheses. Options D and E are correct. The
+shorter form of the `assert` statement uses only one expression, which might or might
+not be included within parentheses. Option F is correct. The semicolon (;) placed after
+the condition `s == "assert"` delimits the `assert` statement, and the statement
+following the semicolon is treated as a separate statement. It's equivalent to an
+`assert` statement using its shorter form followed by another statement, as follows:
+
+[source,java]
+----
+assert s == "assert";
+s.replace('a', 'z');
+----
+
+Option G is incorrect because the first expression in an `assert` statement must return
+a `boolean` value. In this code, the first expression returns an object of class `String`.
+Option H is incorrect because the second expression in an `assert` statement must return
+a value of any type. In this code, the return type of method `println()` is `void`.
+Option I is incorrect. it incorrectly encloses both expressions of the `assert` statement
+with in a single pair of parentheses. If parentheses were removed, it's also an illegal
+usage of the long form because it uses an expression that doesn't return a `boolean` value
+for its first expression and its second expression doesn't return any value.
+
+=== Question 6.5
+
+Which of the following options show appropriate usage of assertions? (Choose all that apply.)
+
+[source,java]
+----
+// INSERT CODE HERE
+    assert (b != 0) : "Can't divide with zero";
+    return (a / b);
+}
+----
+
+. `public float divide(int a, int b) {`
+. `public static float divide(int a, int b) {`
+. `private static float divide(int a, int b) {`
+. `private float divide(int a, int b) {`
+
+The answer is CD. Options A and B are incorrect because assertions must not be used to
+check method arguments for non-private methods. Non-private methods can be called by
+objects of other classes, and you can't validate their method arguments by using
+assertions. Assertions can be disabled at runtime, so they aren't the right option to
+validate method arguments to public methods. You should throw exceptions in this case.
+For example, when you come across invalid values that are passed to a non-private method,
+you can throw an `IllegalArgumentException`.
+
+IMPORTANT: Assertions can be disabled at runtime, so they aren't the right option to
+           validate method arguments to public methods.
+
+=== Question 6.11
+
+What's the output of the following code?
+
+[source,java]
+----
+class Box implements AutoCloseable {
+    public void open() throws Exception {
+        throw new Exception();
+    }
+    public void close() throws Exception {
+        System.out.println("close");
+    }
+}
+class EJavaFactory {
+    public static void main(String[] args) {
+        try (Box box = new Box()) {
+            box.open();
+        } catch (Exception e) {
+            System.out.println("catch: " + e);
+        } finally {
+            System.out.println("finally");
+        }
+    }
+}
+----
+
+. `catch: java.lang.Exception`, `finally`
+. `catch: java.lang.Exception`
+. `close`, `finally`
+. `close`, `catch: java.lang.Exception`, `finally`
+. `close`, `catch: java.lang.Exception`, `catch: java.lang.Exception`, `finally`
+
+The answer is D. The code `box.open()` within the `try` block throws an `Exception`.
+Before the control is transferred to the exception handler, the resource `box` is
+implicitly closed by calling its `close()` method, which also throws an `Exception`.
+
+If an exception is thrown from the `try` block and one or more exceptions are thrown
+from the try-with-resources statement, then those exceptions thrown from the
+try-with-resources statement are suppressed. So the exception thrown by the implicit
+call to `box.close()` is suppressed. A suppressed exception forms the cause of the
+exception that suppresses it. It can be retrieved by using method `getSuppressed()`
+on the exception handler, as follows:
+
+[source,java]
+----
+catch (Exception e) {
+    System.out.println("catch: " + e);
+    for (Throwable th : e.getSuppressed()) {
+        System.out.println(th);
+    }
+}
+----
+
+It prints the following:
+
+----
+catch: java.lang.Exception
+java.lang.Exception
+----
+
+IMPORTANT: If an exception is thrown from the `try` block and one or more exceptions are thrown
+           from the try-with-resources statement, then those exceptions thrown from the
+           try-with-resources statement are suppressed.
+
+=== Exercise 6.16
+
+What's the output of the following code?
+
+[source,java]
+----
+class Admission implements AutoCloseable {
+    String id;
+    Admissison(String id) {
+        this.id = id;
+    }
+    public void close() {
+        System.out.println("close:" + id);
+    }
+}
+class CloseableResource {
+    public stativ void main(String... args) {
+        try (Admission a1 = new Admission("2765");
+             Admission a2 = new Admission("8562");) {}
+    }
+}
+----
+
+. `close:8562`, `close:2765`
+. `close:2765`, `close:8562`
+. Compilation error
+. Runtime exception
+
+The answer is A. The code compiles successfully, and no runtime exceptions are thrown during its
+execution, The resources initialized in a try-with-resources statement are closed in the reverse
+order.
+
+IMPORTANT: The resources initialized in a try-with-resources statement are closed in the reverse
+order.

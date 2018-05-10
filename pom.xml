@@ -49,6 +49,8 @@
     <module>json</module>
     <module>mock</module>
     <module>maven</module>
+    <module>oca</module>
+    <module>ocp</module>
     <module>regex</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>

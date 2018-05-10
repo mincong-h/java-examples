@@ -1,0 +1,183 @@
+= String Processing
+
+== Sample Exam Questions
+
+=== 5.3
+
+Given the following variables, which options will throw exceptions at runtime?
+
+[source,java]
+----
+String eJava = "Guru";
+Integer start = 100;
+boolean wim = true;
+Float duration = new Float(-1099.9999);
+----
+
+. `System.out.format("%d", eJava);`
+. `System.out.format("%s", start);`
+. `System.out.format("[%-12b]", win);`
+. `System.out.format("%s12", eJava);`
+. `System.out.format("%d", duration);`
+. `System.out.format("[%+,-(20f]", duration);`
+
+Here's the analyse of the answers:
+
+* Option A is wrong. Variable `eJava` has type `String`, but the conversion
+character is `d`, which stands for digit: they are mismatched.
+* Option B is correct. It prints `"Guru"`.
+* Option C is correct. The formatting is actually `%-12b`, where
+** `-` stands for left-justify the current argument; it must be used with a
+  given width as well.
+** `12` stands for the given width, allocated for this argument.
+** `b` stands for boolean conversion.
+** So it prints `"        true"`.
+* Option D is correct. It prints `"Guru12"`. Please notice that the general syntax
+of string formatting is:
+
+....
+%[arg_index$][flags][width][.precision]conversion_char
+....
+
+So conversion character is the last argument of the string formatting. In
+expression `%s12`, 12 is considered as an integer.
+
+* Option E is wrong, because float is not integer. This is a conversion
+mismatched.
+
+* Option F is correct. In the formatting syntax `%+,-(20f`,
+
+** `+` is the sign inclusion (+ or -) before the float.
+** `,` is the local-specific grouping separator.
+** `-` is the left-justify.
+** `(` is the negative number enclosure.
+** `20` is the width for this value.
+** So it prints `"[(1,099.999878)      ]"`.
+
+=== 5.5
+
+Which options will output the following code?
+
+....
+Hello true 123456
+....
+
+. `System.out.print("%s %b %d", new StringBuilder("Hello"), "false", 123456);`
+. `System.out.printf("%s %b %d", new String("Hello"), "false", 123456);`
+. `System.out.format("%s %b %d", new StringBuilder("Hello"), "false", 123456);`
+. `System.out.println("%s %b %d", new StringBuilder("Hello"), "false", 123456.70);`
+. `System.out.printf("%s %b %d", new StringTokenizer("Hello"), "false", 123456);`
+. `System.out.format("%s %b %d", ("Hello"), "FALSE", new Integer(123456));`
+
+Options A, D won't compile, because method `#print` and `#println` do not accept
+string formatting. Option B is correct because the *format specifier `%b` returns
+value true for non-null values for object references other than Boolean or boolean*.
+Option C is correct too, because the format specifier `%s` calls `#toString()`
+method of the class `StringBuilder`. However, option E is wrong because method
+`StringTokenizer#toString()` does not return the String value of which it is
+tokenizing. For option E, method `#printf` calls method `#format`, so everything
+is correct.
+
+=== 5.6
+
+What is the output of the following code?
+
+.StringCompare.java
+[source,java]
+----
+class StringCompare {
+    public static void main(String[] args) {
+        String mgr1 = "Paul & Harry's new officer";
+        StringBuilder emp = new StringBuilder("Harry");
+        System.out.println(mgr1.contains(emp));
+    }
+}
+----
+
+. true
+. false
+. Compilation error
+. Runtime exception
+
+The answer is A. Method `contains` accepts parameter of type `CharSequence`, and so an object
+of class `StringBuilder` is acceptable (class `StringBuilder` implements the interface
+`CharSequence`). Method `String#contains(CharSequence)` returns `true`, if the specified `String`
+*equivalent* can be found in the `String` object on which this method is called.
+
+=== 5.7
+
+Given that the content of the file `data.txt` is
+
+....
+Harry;8765,Per[fect
+....
+
+which options are correct for the following code?
+
+.StrToken.java
+[source, java]
+----
+public class StrToken {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("data.txt");
+        String line;
+        StringTokenizer st;
+        while ((line = br.readLine()) != null) {
+            st = new StringTokenizer(line, "[,;]"); // line 1
+            while (st.hasMoreElements()) {
+                System.out.println(st.nextElement());
+            }
+        }
+        br.close();
+    }
+}
+----
+
+. The code prints `Harry`, `8765`, `Per`, `fect`.
+. The code prints `Harry`, `8765`, `Per[fect`.
+. The code prints `Harry;8765`, `Per[fect`.
+. If the code on the line `// line 1` is changed to the following, it'll output the same results:
+
+  st = new StringTokenizer(line, "[,;$]");
+
+. Code fails to compile.
+. Code throws a runtime exception.
+
+The answer is options A and D. Class `StringTokenizer` doesn't accept the delimiter as a regex
+pattern. When `[,;]` is passed as a delimiter to class `StringTokenizer`, *the occurrence of either
+of these characters acts as a delimiter.* So the line read from file `data.txt` is delimited using
+`,`, `;`, `[` and `]`. Because the text in file `data.text` doesn't include `$`, changing the
+delimiter text to `[,;$]` won't affect the output.
+
+WARNING: Class `StringTokenizer` doesn't accept the delimiter as a regex pattern.
+
+=== 5.8
+
+What is the output of the following code?
+
+[source, java]
+----
+String eJava = "e Java Guru";
+if (eJava.matches("u.u")) {
+    String[] tokens = eJava.split("\\Bu");
+    for (String token : tokens) {
+        System.out.println(token);
+    }
+} else {
+    System.out.println(eJava.replace(eJava.sebSequence(3, 4), eJava.substring(11)));
+}
+----
+
+. `e Java G`; `r`
+. `e Java Guru`
+. `e Jv Guru`
+. `e Juvu Guru`
+. `java.lang.StringIndexOutOfBoundsException: String index out of range: 11`
+. Code fails to compile.
+
+The answer is C. Method `matches()` doesn't look for a matching sub-sequence. It matches the
+complete string value against the given regex pattern. Because the regex pattern `u.u` matches
+a sub-sequence and not then entire string value `e Java Guru`, it returns `false`. The length of
+string `eJava` is 11, so `eJava.substring(11)` doesn't throw `StringIndexOutOfBoundException`.
+It returns an empty string, which replaces string `"a"` in string value `e Java Guru`,
+resulting in `e Jv Guru`.
