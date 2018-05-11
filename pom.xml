@@ -27,8 +27,9 @@
     <powermockVersion>1.6.4</powermockVersion>
     <easymockVersion>3.4</easymockVersion>
     <mockitoVersion>1.10.19</mockitoVersion>
-    <javaxWsVersion>2.0.1</javaxWsVersion>
-    <grizzlyServerVersion>2.3.28</grizzlyServerVersion>
+    <jaxrsVersion>2.1</jaxrsVersion>
+    <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
+    <jerseyVersion>2.27</jerseyVersion>
     <jacksonVersion>2.8.5</jacksonVersion>
     <seleniumVersion>3.8.1</seleniumVersion>
   </properties>
@@ -55,6 +56,7 @@
     <module>testing/assertj</module>
     <module>testing/junit</module>
     <module>xml</module>
+    <module>restful-api</module>
   </modules>
 
   <dependencyManagement>
@@ -83,13 +85,6 @@
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
         <version>20160810</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey</groupId>
-        <artifactId>jersey-bom</artifactId>
-        <version>2.25</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.hibernate.javax.persistence</groupId>
@@ -144,7 +139,7 @@
       <dependency>
         <groupId>javax.ws.rs</groupId>
         <artifactId>javax.ws.rs-api</artifactId>
-        <version>${javaxWsVersion}</version>
+        <version>${jaxrsVersion}</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -181,11 +176,40 @@
         <artifactId>powermock-core</artifactId>
         <version>${powermockVersion}</version>
       </dependency>
+      <!-- JAX RS API and reference implementation Jersey (start) -->
       <dependency>
         <groupId>org.glassfish.grizzly</groupId>
         <artifactId>grizzly-http-server</artifactId>
-        <version>${grizzlyServerVersion}</version>
+        <version>${gizzlyServerVersion}</version>
       </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-client</artifactId>
+        <version>${jerseyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>${jerseyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.ext</groupId>
+        <artifactId>jersey-proxy-client</artifactId>
+        <version>${jerseyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.inject</groupId>
+        <artifactId>jersey-hk2</artifactId>
+        <version>${jerseyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey</groupId>
+        <artifactId>jersey-bom</artifactId>
+        <version>${jerseyVersion}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- JAX RS API and reference implementation Jersey (end) -->
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
@@ -387,7 +411,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
       </properties>
       <modules>
-        <module>restful-api</module>
         <module>selenium</module>
       </modules>
     </profile>
@@ -402,7 +425,6 @@
       </properties>
       <modules>
         <module>java9</module>
-        <module>restful-api</module>
         <module>selenium</module>
       </modules>
     </profile>

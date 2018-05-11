@@ -1,7 +1,5 @@
 package io.mincongh.rest;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -13,9 +11,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+import static org.assertj.core.api.Assertions.assertThat;
+
+/** @author Mincong Huang */
 public class JsonExampleTest {
 
   private HttpServer server;
@@ -41,5 +39,4 @@ public class JsonExampleTest {
     assertThat(r.getMediaType()).isEqualTo(MediaType.APPLICATION_JSON_TYPE);
     assertThat(r.readEntity(String.class)).isEqualTo("{\"message\":\"Hello\"}");
   }
-
 }

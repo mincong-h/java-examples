@@ -56,7 +56,18 @@ public class Main {
    * @return Grizzly HTTP server.
    */
   public static HttpServer startServer() {
-    final ResourceConfig rc = new ResourceConfig().packages("io.mincongh.rest");
+    // This is a Jersey-specific way
+    // See https://blog.dejavu.sk/2013/11/19/registering-resources-and-providers-in-jersey-2/
+    // Stop using the auto-scan, which discovers both the interface and implementation
+    ResourceConfig rc = new ResourceConfig();
+    rc.register(UserResourceImpl.class);
+    rc.register(HelloService.class);
+    // examples
+    rc.register(BasicAuthExample.class);
+    rc.register(HeaderExample.class);
+    rc.register(JsonExample.class);
+    rc.register(MethodExample.class);
+    rc.register(StatusCodeExample.class);
     return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
   }
 

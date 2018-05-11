@@ -10,6 +10,7 @@ matrix:
   - env: J=Java11
 
 before_install:
+  # See http://jdk.java.net/11/
   - case $J in
     Java10)
       wget https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz ;
@@ -17,8 +18,8 @@ before_install:
       export JAVA_HOME=$(pwd)/jdk-10 ;
       ;;
     Java11)
-      wget https://download.java.net/java/early_access/jdk11/12/GPL/openjdk-11-ea+12_linux-x64_bin.tar.gz ;
-      tar -xzf openjdk-11-ea+12_linux-x64_bin.tar.gz ;
+      wget https://download.java.net/java/early_access/jdk11/13/GPL/openjdk-11-ea+13_linux-x64_bin.tar.gz ;
+      tar -xzf openjdk-11-ea+13_linux-x64_bin.tar.gz ;
       export JAVA_HOME=$(pwd)/jdk-11 ;
       ;;
     esac
