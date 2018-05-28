@@ -16,6 +16,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- Dependency versions -->
+    <asmVersion>6.2</asmVersion>
     <jgitVersion>4.8.0.201706111038-r</jgitVersion>
     <xstreamVersion>1.4.10</xstreamVersion>
     <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
@@ -267,7 +268,7 @@
       <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
-        <version>6.2</version>
+        <version>${asmVersion}</version>
       </dependency>
       <dependency>
         <groupId>javax.validation</groupId>
@@ -293,7 +294,7 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>6.2</version>
+              <version>${asmVersion}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -306,6 +307,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.1.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm</artifactId>
+              <version>${asmVersion}</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -450,12 +458,6 @@
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <!--
-          Skip Maven dependency plugin because Java 11 bytecode analysis
-          is not supported yet. Waiting release ? to resolve the
-          problem. See https://issues.apache.org/jira/browse/?.
-         -->
-        <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
         <module>java9</module>
