@@ -267,7 +267,7 @@
       <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
-        <version>6.1.1</version>
+        <version>6.2</version>
       </dependency>
       <dependency>
         <groupId>javax.validation</groupId>
@@ -293,7 +293,7 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>6.1.1</version>
+              <version>6.2</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -458,13 +458,7 @@
         <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
-        <!--
-          [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile
-            (default-compile) on project java-examples-dev-core: Execution default-compile of goal
-            org.apache.maven.plugins:maven-compiler-plugin:3.7.0:compile failed: Unsupported class
-            file major version 55 -> [Help 1]
-         -->
-        <!--<module>java9</module>-->
+        <module>java9</module>
         <module>java10</module>
       </modules>
     </profile>
