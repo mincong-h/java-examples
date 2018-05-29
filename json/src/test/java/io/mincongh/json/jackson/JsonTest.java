@@ -1,14 +1,15 @@
 package io.mincongh.json.jackson;
 
-import static org.junit.Assert.assertEquals;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mincongh.json.Person;
-import java.io.IOException;
 import org.junit.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Data Binding converts JSON to and from POJOs based either on property accessor conventions or
@@ -19,14 +20,14 @@ import org.junit.Test;
  * (reading JSON) for both variants. Inspired by the annotation-based (code-first) variant of JAXB.
  *
  * @author Mincong Huang
- * @see http://wiki.fasterxml.com/JacksonInFiveMinutes
+ * @see <a href="http://wiki.fasterxml.com/JacksonInFiveMinutes">Jackson in five minutes</a>
  */
-public class StreamingApiTest {
+public class JsonTest {
 
   private static final String JSON_OBJ = "{\"name\":\"baby\",\"age\":3}";
 
   @Test
-  public void testFullDataBinding() throws IOException {
+  public void testFullDataBinding() throws Exception {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(JSON_OBJ);
     ObjectMapper mapper = new ObjectMapper();
@@ -38,5 +39,23 @@ public class StreamingApiTest {
     assertEquals(3, person.getAge());
   }
 
-  // TODO test simple data binding
+  @Test
+  public void serializeObject() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    String str = mapper.writeValueAsString(new MyExceptionDTO());
+    assertThat(str).isEqualTo("{\"code\":1,\"msg\":\"hi\"}");
+  }
+
+  /*
+   * Do not extend Exception or RuntimeException,
+   * otherwise all the fields will be serialized.
+   */
+  @SuppressWarnings("unused")
+  private static class MyExceptionDTO {
+    @JsonProperty("code")
+    private int errorCode = 1;
+
+    @JsonProperty("msg")
+    private String errorMessage = "hi";
+  }
 }
