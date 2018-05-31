@@ -43,10 +43,10 @@ public class GitPreReceiveHookIT {
 
   private static final int PORT = 18080;
 
-  private Server server;
-
   @Rule public TemporaryFolder serverDir = new TemporaryFolder();
   @Rule public TemporaryFolder clientDir = new TemporaryFolder();
+
+  private Server server;
 
   @Before
   @SuppressWarnings("unused")
@@ -119,21 +119,21 @@ public class GitPreReceiveHookIT {
     // Given a cloned repository
     String uri = "http://localhost:" + PORT + "/git/app.git";
     try (Git git = Git.cloneRepository().setURI(uri).setDirectory(clientDir.getRoot()).call()) {
-      // When amend to existing commit and push to remote
+      // When amend to existing commit and force push to remote
       File readme = new File(clientDir.getRoot(), "readme");
       Files.write(readme.toPath(), Arrays.asList("L3", "L4"), StandardOpenOption.TRUNCATE_EXISTING);
       git.commit().setAmend(true).setAll(true).setMessage("M0'").call();
-      git.push().setRemote("origin").setPushAll().call().forEach(pushResults::add);
+      git.push().setRemote("origin").setForce(true).setPushAll().call().forEach(pushResults::add);
     }
 
     // Then the commits are pushed
     assertThat(pushResults).hasSize(1);
     assertThat(pushResults.get(0).getRemoteUpdate(Constants.R_HEADS + "master").getStatus())
-        .isEqualTo(Status.REJECTED_NONFASTFORWARD);
+        .isEqualTo(Status.OK);
     try (Git git = Git.open(new File(serverDir.getRoot(), "app.git"))) {
       AnyObjectId head = git.getRepository().resolve(Constants.HEAD);
       RevCommit last = git.log().setMaxCount(1).add(head).call().iterator().next();
-      assertThat(last.getShortMessage()).isEqualTo("M0");
+      assertThat(last.getShortMessage()).isEqualTo("M0'");
     }
   }
 
@@ -188,6 +188,8 @@ public class GitPreReceiveHookIT {
                 break;
               case UPDATE_NONFASTFORWARD:
                 logger.info("{} non fast forward", cmd.getRefName());
+                break;
+              default:
                 break;
             }
           } catch (IOException e) {
