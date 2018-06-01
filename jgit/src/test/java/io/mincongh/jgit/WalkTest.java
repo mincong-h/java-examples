@@ -1,7 +1,10 @@
 package io.mincongh.jgit;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.revwalk.ObjectWalk;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -37,7 +40,7 @@ public class WalkTest extends JGitTest {
   }
 
   @Test
-  public void treeWalk() throws Exception {
+  public void treeWalk_singleTree() throws Exception {
     git.checkout().setCreateBranch(true).setName("topic").call();
 
     Files.write(root.resolve("readme"), singletonList("L1"));
@@ -46,8 +49,6 @@ public class WalkTest extends JGitTest {
     Files.write(root.resolve("readme"), singletonList("L2"));
     RevCommit t2 = commit("T2");
 
-    git.log().all().call().forEach(System.out::println);
-
     try (RevWalk revWalk = new RevWalk(repo)) {
       ObjectWalk objWalk = revWalk.toObjectWalkWithSameObjects();
       objWalk.markStart(revWalk.parseCommit(t2.getId()));
@@ -55,7 +56,6 @@ public class WalkTest extends JGitTest {
 
       RevObject rev = objWalk.next();
       while (rev != null) {
-        System.out.println(rev);
         rev = objWalk.next();
       }
 
@@ -76,6 +76,43 @@ public class WalkTest extends JGitTest {
         rev = objWalk.nextObject();
       }
       assertThat(blobs).isEqualTo(2);
+    }
+  }
+
+  @Test
+  public void treeWalk_multipleTrees() throws Exception {
+    git.checkout().setCreateBranch(true).setName("topic").call();
+
+    Files.write(root.resolve("readme"), singletonList("L1"));
+    Path docDir = Files.createDirectory(root.resolve("doc"));
+    Files.write(docDir.resolve("user-guide"), singletonList("Do this, do that"));
+    RevCommit t1 = commit("T1");
+
+    try (RevWalk revWalk = new RevWalk(repo)) {
+      revWalk.markStart(revWalk.parseCommit(t1.getId()));
+      revWalk.markUninteresting(revWalk.parseCommit(initialCommit.getId()));
+
+      int skips = 0;
+      List<String> paths = new ArrayList<>();
+
+      RevObject rev = revWalk.next();
+      while (rev != null) {
+        if (rev.getType() == Constants.OBJ_COMMIT) {
+          RevCommit commit = (RevCommit) rev;
+          try (TreeWalk treeWalk = new TreeWalk(repo)) {
+            treeWalk.addTree(commit.getTree());
+            treeWalk.setRecursive(true);
+            while (treeWalk.next()) {
+              paths.add(treeWalk.getPathString());
+            }
+          }
+        } else {
+          skips++;
+        }
+        rev = revWalk.next();
+      }
+      assertThat(skips).isZero();
+      assertThat(paths).containsExactlyInAnyOrder("readme", "doc/user-guide");
     }
   }
 }
