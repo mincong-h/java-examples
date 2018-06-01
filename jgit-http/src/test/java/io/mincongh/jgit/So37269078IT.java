@@ -2,6 +2,7 @@ package io.mincongh.jgit;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +19,9 @@ import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.transport.PostReceiveHook;
+import org.eclipse.jgit.transport.PreReceiveHook;
 import org.eclipse.jgit.transport.PushResult;
 import org.eclipse.jgit.transport.ReceiveCommand;
-import org.eclipse.jgit.transport.ReceiveCommand.Result;
 import org.eclipse.jgit.transport.ReceivePack;
 import org.eclipse.jgit.transport.RemoteRefUpdate.Status;
 import org.eclipse.jgit.transport.resolver.FileResolver;
@@ -47,21 +48,24 @@ public class So37269078IT {
 
   private Server server;
 
-  private int calls;
+  private int preCommands = 0;
+  private int postCommands = 0;
 
   @Before
-  @SuppressWarnings("unused")
   public void setUp() throws Exception {
     // Git repositories setup
     File appServer = serverDir.newFolder("app.git");
     Git serverGit = Git.init().setBare(true).setDirectory(appServer).call();
     serverGit.close();
 
+    // Set counts
+    preCommands = 0;
+    postCommands = 0;
+
     // Server setup
     GitServlet gitServlet = new GitServlet();
     gitServlet.setRepositoryResolver(new FileResolver<>(serverDir.getRoot(), true));
     gitServlet.setReceivePackFactory(new DummyReceivePackFactory());
-    calls = 0;
 
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
@@ -78,7 +82,7 @@ public class So37269078IT {
   }
 
   @Test
-  public void updateRef() throws Exception { // NOSONAR
+  public void name() throws Exception { // NOSONAR
     List<PushResult> pushResults = new ArrayList<>();
 
     // Given a cloned repository
@@ -92,7 +96,8 @@ public class So37269078IT {
     }
 
     // Then the commits are pushed
-    assertThat(calls).isEqualTo(1);
+    assertThat(preCommands).isEqualTo(1);
+    assertThat(postCommands).isEqualTo(1);
     assertThat(pushResults).hasSize(1);
     assertThat(pushResults.get(0).getRemoteUpdate(Constants.R_HEADS + "master").getStatus())
         .isEqualTo(Status.OK);
@@ -101,17 +106,41 @@ public class So37269078IT {
       RevCommit last = git.log().setMaxCount(1).add(head).call().iterator().next();
       assertThat(last.getShortMessage()).isEqualTo("M1");
     }
+
+    // Reset
+    pushResults.clear();
+    preCommands = 0;
+    postCommands = 0;
+
+    // When change master and push again (without force)
+    try (Git git = Git.open(clientDir.getRoot())) {
+      File readme = new File(clientDir.getRoot(), "readme");
+      Files.write(readme.toPath(), Arrays.asList("L3", "L4"), StandardOpenOption.TRUNCATE_EXISTING);
+      git.add().addFilepattern(".").call();
+      git.commit().setAmend(true).setMessage("M1'").call();
+      git.push().setRemote("origin").add("master").call().forEach(pushResults::add);
+    }
+
+    // Then the push is failed
+    assertThat(pushResults.get(0).getRemoteUpdate(Constants.R_HEADS + "master").getStatus())
+        .isEqualTo(Status.REJECTED_NONFASTFORWARD);
+    assertThat(preCommands).as("Rejected command shouldn't pass pre-receive hook").isEqualTo(0);
+    assertThat(postCommands).as("Rejected command shouldn't pass post-receive hook").isEqualTo(0);
   }
 
-  private class NotificationHook implements PostReceiveHook {
+  private class MyPreReceiveHook implements PreReceiveHook {
+
+    @Override
+    public void onPreReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
+      preCommands = commands.size();
+    }
+  }
+
+  private class MyPostReceiveHook implements PostReceiveHook {
 
     @Override
     public void onPostReceive(ReceivePack rp, Collection<ReceiveCommand> commands) {
-      for (ReceiveCommand cmd : commands) {
-        if (cmd.getResult() == Result.OK) {
-          calls++;
-        }
-      }
+      postCommands = commands.size();
     }
   }
 
@@ -119,7 +148,8 @@ public class So37269078IT {
     @Override
     public ReceivePack create(HttpServletRequest req, Repository db) {
       ReceivePack pack = new ReceivePack(db);
-      pack.setPostReceiveHook(new NotificationHook());
+      pack.setPreReceiveHook(new MyPreReceiveHook());
+      pack.setPostReceiveHook(new MyPostReceiveHook());
       pack.setRefLogIdent(new PersonIdent("Test", "test@locahost"));
       return pack;
     }
