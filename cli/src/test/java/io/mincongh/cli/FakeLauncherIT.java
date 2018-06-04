@@ -34,7 +34,7 @@ public class FakeLauncherIT {
     processBuilder.command(javaBin, "-cp", classPath, launcher, "start");
     Process p = processBuilder.start();
     p.waitFor();
-    assertThat(p.exitValue()).isEqualTo(ExitCode.ERR_NOT_INSTALLED);
+    assertThat(p.exitValue()).isEqualTo(ExitCode.ERR_UNKNOWN_FEATURE);
   }
 
 }
