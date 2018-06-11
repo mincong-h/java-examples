@@ -18,8 +18,8 @@ before_install:
       export JAVA_HOME=$(pwd)/jdk-10 ;
       ;;
     Java11)
-      wget https://download.java.net/java/early_access/jdk11/13/GPL/openjdk-11-ea+13_linux-x64_bin.tar.gz ;
-      tar -xzf openjdk-11-ea+13_linux-x64_bin.tar.gz ;
+      wget https://download.java.net/java/early_access/jdk11/17/GPL/openjdk-11-ea+17_linux-x64_bin.tar.gz ;
+      tar -xzf openjdk-11-ea+17_linux-x64_bin.tar.gz ;
       export JAVA_HOME=$(pwd)/jdk-11 ;
       ;;
     esac
