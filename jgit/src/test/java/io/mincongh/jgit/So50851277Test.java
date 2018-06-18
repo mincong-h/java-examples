@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.PullResult;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.Before;
@@ -57,17 +58,21 @@ public class So50851277Test {
       git.push().setRemote("origin").add("master").call();
     }
 
-    // When fetching changes on client 2
+    // When pulling changes on client 2
     try (Git git = Git.open(client2.getRoot())) {
       Repository repo = git.getRepository();
-      git.pull().setRemote("origin").setRemoteBranchName("master").call();
+      PullResult result = git.pull().setRemote("origin").setRemoteBranchName("master").call();
 
-      // Then origin/master contains changes
+      // Then the pull operation is successful
+      // 1. pull result is successful
+      assertThat(result.isSuccessful()).isTrue();
+
+      // 2. origin/master contains changes
       List<RevCommit> history = new ArrayList<>();
       git.log().add(repo.resolve("origin/master")).setMaxCount(1).call().forEach(history::add);
       assertThat(history).flatExtracting(RevCommit::getFullMessage).containsExactly("M1");
 
-      // and workspace contains changes, too
+      // 3. workspace contains changes, too
       List<String> lines = Files.readAllLines(new File(client2.getRoot(), "abc.txt").toPath());
       assertThat(lines).containsExactly("L1", "L2", "L3", "L4");
     }
