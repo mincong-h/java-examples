@@ -7,22 +7,10 @@ matrix:
   - env: J=Java9
     jdk: oraclejdk9
   - env: J=Java10
+    jdk: openjdk10
   - env: J=Java11
+    jdk: openjdk11
 
-before_install:
-  # See http://jdk.java.net/11/
-  - case $J in
-    Java10)
-      wget https://download.java.net/java/GA/jdk10/10/binaries/openjdk-10_linux-x64_bin.tar.gz ;
-      tar -xzf openjdk-10_linux-x64_bin.tar.gz ;
-      export JAVA_HOME=$(pwd)/jdk-10 ;
-      ;;
-    Java11)
-      wget https://download.java.net/java/early_access/jdk11/17/GPL/openjdk-11-ea+17_linux-x64_bin.tar.gz ;
-      tar -xzf openjdk-11-ea+17_linux-x64_bin.tar.gz ;
-      export JAVA_HOME=$(pwd)/jdk-11 ;
-      ;;
-    esac
 install:
   # first, download all the Maven dependencies without logging
   - mvn -B -q install -DskipTests=true
