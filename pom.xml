@@ -52,7 +52,6 @@
     <module>basic</module>
     <module>byteman</module>
     <module>cli</module>
-    <module>clone</module>
     <module>concurrency</module>
     <module>date</module>
     <module>hashcode</module>
