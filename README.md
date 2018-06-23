@@ -21,11 +21,11 @@ Some modules cannot be executed are just skipped.
 Module | Description
 :--- | :---
 AssertJ | [AssertJ][assertj] testing framework.
+Basic | Basic usage of Java core APIs.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
 CLI | A fake command-line interface (CLI).
 Clone | Test behavior of `java.lang.Clonable#clone()`.
 Date | Date manipulation using `java.util.*` and `java.time.*`.
-Generic | Basic usages of Java Generic.
 Java 8 | New functionality of Java 8, including filter, map, stream.
 JGit | Basic usages of [JGit][jgit].
 JSF | Basic usage of JavaServer Faces, a Java-based web application framework.
