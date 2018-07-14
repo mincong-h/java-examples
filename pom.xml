@@ -494,6 +494,7 @@
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
       <modules>
         <module>java9</module>
