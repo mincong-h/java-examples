@@ -45,6 +45,7 @@
     <powermockVersion>1.6.4</powermockVersion>
     <seleniumVersion>3.8.1</seleniumVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
+    <vavrVersion>0.9.3</vavrVersion>
     <xstreamVersion>1.4.10</xstreamVersion>
   </properties>
 
@@ -68,6 +69,7 @@
     <module>regex</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>
+    <module>vavr</module>
     <module>xml</module>
     <module>restful-api</module>
   </modules>
@@ -311,6 +313,11 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-servlet</artifactId>
         <version>${jettyVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.vavr</groupId>
+        <artifactId>vavr</artifactId>
+        <version>${vavrVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
