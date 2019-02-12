@@ -7,7 +7,6 @@ import io.vavr.collection.List;
 import io.vavr.collection.Map;
 import io.vavr.collection.Stream;
 import io.vavr.control.Option;
-import java.util.function.Function;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -78,22 +77,5 @@ public class VavrMapTest {
             .map(String::valueOf)
             .toList();
     assertThat(strings).containsExactly("0", "1", "2");
-  }
-
-  @Test
-  public void stream_flatMap() {
-    List<String> cats = List.of("🐱", "🐈");
-    List<String> dogs = List.of("🐶", "🐕");
-    List<List<String>> animalLists = List.of(cats, dogs);
-    List<String> animals = animalLists.flatMap(Function.identity()).toList();
-    assertThat(animals).containsExactly("🐱", "🐈", "🐶", "🐕");
-  }
-
-  @Test
-  public void immutable() {
-    List<String> immutableList = List.of("🤔");
-    List<String> anotherList = immutableList.append("😅");
-    assertThat(immutableList).containsExactly("🤔");
-    assertThat(anotherList).containsExactly("🤔", "😅");
   }
 }

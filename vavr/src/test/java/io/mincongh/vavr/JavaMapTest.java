@@ -76,19 +76,6 @@ public class JavaMapTest {
   }
 
   @Test
-  public void stream_flatMap() {
-    List<String> cats = Arrays.asList("🐱", "🐈");
-    List<String> dogs = Arrays.asList("🐶", "🐕");
-    List<List<String>> animalLists = Arrays.asList(cats, dogs);
-    List<String> animals =
-        animalLists //
-            .stream()
-            .flatMap(Collection::stream)
-            .collect(Collectors.toList());
-    assertThat(animals).containsExactly("🐱", "🐈", "🐶", "🐕");
-  }
-
-  @Test
   public void immutable() {
     List<String> immutableList = Collections.singletonList("🤔");
     assertThatExceptionOfType(UnsupportedOperationException.class)
