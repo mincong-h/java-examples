@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.entry;
  * @author Mincong Huang
  * @since 1.0
  */
-public class JavaCollectionTest {
+public class JavaMapTest {
 
   private Map<String, String> map;
 
