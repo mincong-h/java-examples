@@ -18,6 +18,12 @@ public class VavrListTest {
   public void of() {
     List<String> animals = List.of("🐱", "🐶");
     assertThat(animals).containsExactly("🐱", "🐶");
+
+    List<String> another = List.ofAll(animals);
+    assertThat(another).containsExactly("🐱", "🐶");
+
+    List<String> empty = List.empty();
+    assertThat(empty).isEmpty();
   }
 
   @Test
@@ -31,6 +37,7 @@ public class VavrListTest {
   public void prepend() {
     List<String> animals = List.of("🐱", "🐶");
     List<String> another = animals.prepend("🙂");
+    assertThat(animals).containsExactly("🐱", "🐶");
     assertThat(another).containsExactly("🙂", "🐱", "🐶");
   }
 
@@ -40,6 +47,18 @@ public class VavrListTest {
     assertThat(animals.get()).isEqualTo("🐱");
     assertThat(animals.get(0)).isEqualTo("🐱");
     assertThat(animals.get(1)).isEqualTo("🐶");
+  }
+
+  @Test
+  public void head() {
+    List<String> animals = List.of("🐱", "🐶");
+    assertThat(animals.head()).isEqualTo("🐱");
+  }
+
+  @Test
+  public void last() {
+    List<String> animals = List.of("🐱", "🐶");
+    assertThat(animals.last()).isEqualTo("🐶");
   }
 
   @Test

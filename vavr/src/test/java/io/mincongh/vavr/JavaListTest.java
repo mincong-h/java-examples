@@ -26,6 +26,9 @@ public class JavaListTest {
     animals.add("🐱");
     animals.add("🐶");
     assertThat(animals).containsExactly("🐱", "🐶");
+
+    List<String> another = new ArrayList<>(animals);
+    assertThat(another).containsExactly("🐱", "🐶");
   }
 
   @Test
@@ -33,6 +36,21 @@ public class JavaListTest {
     List<String> animals = new LinkedList<>();
     animals.add("🐱");
     animals.add("🐶");
+    assertThat(animals).containsExactly("🐱", "🐶");
+
+    List<String> another = new LinkedList<>(animals);
+    assertThat(another).containsExactly("🐱", "🐶");
+  }
+
+  @Test
+  public void new_SingletonList() {
+    List<String> animals = Collections.singletonList("🐱");
+    assertThat(animals).containsExactly("🐱");
+  }
+
+  @Test
+  public void new_ArraysArrayList() {
+    List<String> animals = Arrays.asList("🐱", "🐶");
     assertThat(animals).containsExactly("🐱", "🐶");
   }
 
@@ -42,6 +60,16 @@ public class JavaListTest {
     animals.add("🐱");
     animals.add("🐶");
     assertThat(animals).containsExactly("🐱", "🐶");
+  }
+
+  @Test
+  public void add_LinkedList() {
+    LinkedList<String> animals = new LinkedList<>();
+    animals.add("🐱");
+    animals.add("🐶");
+    animals.addFirst("🙂");
+    animals.addLast("😌");
+    assertThat(animals).containsExactly("🙂", "🐱", "🐶", "😌");
   }
 
   @Test
@@ -67,6 +95,17 @@ public class JavaListTest {
   }
 
   @Test
+  public void add_SingletonList() {
+    List<String> animals = Collections.singletonList("🐱");
+    try {
+      animals.add("💥");
+      fail();
+    } catch (UnsupportedOperationException e) {
+      // ok
+    }
+  }
+
+  @Test
   public void get() {
     List<String> animals = Arrays.asList("🐱", "🐶");
     assertThat(animals.get(0)).isEqualTo("🐱");
@@ -77,6 +116,31 @@ public class JavaListTest {
     } catch (IndexOutOfBoundsException e) {
       // ok
     }
+  }
+
+  @Test
+  public void getFirst_LinkedList() {
+    LinkedList<String> animals = new LinkedList<>();
+    animals.add("🐱");
+    animals.add("🐶");
+    assertThat(animals.getFirst()).isEqualTo("🐱");
+  }
+
+  @Test
+  public void getLast_LinkedList() {
+    LinkedList<String> animals = new LinkedList<>();
+    animals.add("🐱");
+    animals.add("🐶");
+    assertThat(animals.getLast()).isEqualTo("🐶");
+  }
+
+  @Test
+  public void set() {
+    List<String> animals = new ArrayList<>();
+    animals.add("🐱");
+    animals.add("🐶");
+    animals.set(1, "🐱");
+    assertThat(animals).containsExactly("🐱", "🐱");
   }
 
   @Test
@@ -106,6 +170,8 @@ public class JavaListTest {
     List<Integer> numbers = new ArrayList<>();
     numbers.add(2);
     numbers.add(3);
+    numbers.remove(Integer.valueOf(1));
+    assertThat(numbers).containsExactly(2, 3);
     numbers.remove(1);
     assertThat(numbers).containsExactly(2);
   }
