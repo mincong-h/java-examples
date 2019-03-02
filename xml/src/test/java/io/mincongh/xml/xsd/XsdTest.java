@@ -23,31 +23,40 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class XsdTest {
 
-  private XSModel model;
+  private XSModel modelV1;
+  private XSModel modelV2;
 
   @Before
   public void setUp() throws Exception {
     // Java API to parse XSD schema file
     // https://stackoverflow.com/questions/3996857
-//    System.setProperty(
-//        DOMImplementationRegistry.PROPERTY,
-//        "com.sun.org.apache.xerces.internal.dom.DOMXSImplementationSourceImpl");
     DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
     XSImplementationImpl impl = (XSImplementationImpl) registry.getDOMImplementation("XS-Loader");
     XSLoader schemaLoader = impl.createXSLoader(null);
-    model = schemaLoader.loadURI("src/test/resources/note.xsd");
+    modelV1 = schemaLoader.loadURI("src/test/resources/note.v1.xsd");
+    modelV2 = schemaLoader.loadURI("src/test/resources/note.v2.xsd");
   }
 
   @Test
   public void xsElement() {
-    XSElementDeclaration xsElement = model.getElementDeclaration("note", null);
-    assertThat(xsElement.getName()).isEqualTo("note");
+    XSElementDeclaration xsElementV1 = modelV1.getElementDeclaration("note", null);
+    assertThat(xsElementV1.getName()).isEqualTo("note");
+
+    XSElementDeclaration xsElementV2 = modelV2.getElementDeclaration("note", null);
+    assertThat(xsElementV2.getName()).isEqualTo("note");
   }
 
   @Test
-  public void xsComplexType() {
-    XSElementDeclaration elementDeclaration = model.getElementDeclaration("note", null);
+  public void xsComplexType_v1() {
+    testComplexType(modelV1.getElementDeclaration("note", null));
+  }
 
+  @Test
+  public void xsComplexType_v2() {
+    testComplexType(modelV2.getElementDeclaration("note", null));
+  }
+
+  private void testComplexType(XSElementDeclaration elementDeclaration) {
     // xs:complexType
     XSComplexTypeDecl complexTypeDecl = (XSComplexTypeDecl) elementDeclaration.getTypeDefinition();
     assertThat(complexTypeDecl.getTypeCategory()).isEqualTo(XSTypeDefinition.COMPLEX_TYPE);
