@@ -1,16 +1,16 @@
 package io.mincongh.xml.xsd;
 
-import com.sun.org.apache.xerces.internal.impl.xs.XSComplexTypeDecl;
-import com.sun.org.apache.xerces.internal.impl.xs.XSImplementationImpl;
-import com.sun.org.apache.xerces.internal.impl.xs.XSParticleDecl;
-import com.sun.org.apache.xerces.internal.xs.XSConstants;
-import com.sun.org.apache.xerces.internal.xs.XSElementDeclaration;
-import com.sun.org.apache.xerces.internal.xs.XSLoader;
-import com.sun.org.apache.xerces.internal.xs.XSModel;
-import com.sun.org.apache.xerces.internal.xs.XSModelGroup;
-import com.sun.org.apache.xerces.internal.xs.XSObjectList;
-import com.sun.org.apache.xerces.internal.xs.XSParticle;
-import com.sun.org.apache.xerces.internal.xs.XSTypeDefinition;
+import org.apache.xerces.impl.xs.XSComplexTypeDecl;
+import org.apache.xerces.impl.xs.XSImplementationImpl;
+import org.apache.xerces.impl.xs.XSParticleDecl;
+import org.apache.xerces.xs.XSConstants;
+import org.apache.xerces.xs.XSElementDeclaration;
+import org.apache.xerces.xs.XSLoader;
+import org.apache.xerces.xs.XSModel;
+import org.apache.xerces.xs.XSModelGroup;
+import org.apache.xerces.xs.XSObjectList;
+import org.apache.xerces.xs.XSParticle;
+import org.apache.xerces.xs.XSTypeDefinition;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
@@ -29,9 +29,9 @@ public class XsdTest {
   public void setUp() throws Exception {
     // Java API to parse XSD schema file
     // https://stackoverflow.com/questions/3996857
-    System.setProperty(
-        DOMImplementationRegistry.PROPERTY,
-        "com.sun.org.apache.xerces.internal.dom.DOMXSImplementationSourceImpl");
+//    System.setProperty(
+//        DOMImplementationRegistry.PROPERTY,
+//        "com.sun.org.apache.xerces.internal.dom.DOMXSImplementationSourceImpl");
     DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
     XSImplementationImpl impl = (XSImplementationImpl) registry.getDOMImplementation("XS-Loader");
     XSLoader schemaLoader = impl.createXSLoader(null);

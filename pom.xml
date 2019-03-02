@@ -46,6 +46,7 @@
     <seleniumVersion>3.8.1</seleniumVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
     <vavrVersion>0.9.3</vavrVersion>
+    <xercesVersion>2.12.0</xercesVersion>
     <xstreamVersion>1.4.10</xstreamVersion>
   </properties>
 
@@ -318,6 +319,11 @@
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
         <version>${vavrVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>xerces</groupId>
+        <artifactId>xercesImpl</artifactId>
+        <version>${xercesVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
