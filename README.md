@@ -37,7 +37,7 @@ OCP | Oracle Certified Professional Java SE 8
 Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
 Selenium | Functional tests using Selenium.
-XML | XML serialization and XML path language (XPath).
+XML | XML serialization, XPath, XSD.
 VAVR | Functional component library that provides persistent data types and functional control structures.
 
 ## Code Style
