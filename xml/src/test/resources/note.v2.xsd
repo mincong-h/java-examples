@@ -5,6 +5,12 @@
 
   <xs:complexType name="noteType">
     <xs:sequence>
+      <!--
+        Attribute "minOccurs" is not set. Default value is "1".
+
+        Attribute "maxOccurs" is not set. Default value is "1". Set
+        to "unbounded" so that the max occurs is not bounded.
+       -->
       <xs:element name="to" type="xs:string"/>
       <xs:element name="from" type="xs:string"/>
       <xs:element name="heading" type="xs:string"/>

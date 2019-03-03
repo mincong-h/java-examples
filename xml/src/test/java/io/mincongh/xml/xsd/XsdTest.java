@@ -71,17 +71,33 @@ public class XsdTest {
     // <xs:element name="from" type="xs:string"/>
     // <xs:element name="heading" type="xs:string"/>
     // <xs:element name="body" type="xs:string"/>
+
     XSParticleDecl item0 = (XSParticleDecl) particles.item(0);
     assertThat(item0.getTerm().getName()).isEqualTo("to");
     assertThat(item0.getTerm().getType()).isEqualTo(XSConstants.STRING_DT);
+    assertThat(item0.getMinOccurs()).isEqualTo(1);
+    assertThat(item0.getMaxOccurs()).isEqualTo(1);
+    assertThat(item0.getMaxOccursUnbounded()).isFalse();
+
     XSParticleDecl item1 = (XSParticleDecl) particles.item(1);
     assertThat(item1.getTerm().getName()).isEqualTo("from");
     assertThat(item1.getTerm().getType()).isEqualTo(XSConstants.STRING_DT);
+    assertThat(item1.getMinOccurs()).isEqualTo(1);
+    assertThat(item1.getMaxOccurs()).isEqualTo(1);
+    assertThat(item1.getMaxOccursUnbounded()).isFalse();
+
     XSParticleDecl item2 = (XSParticleDecl) particles.item(2);
     assertThat(item2.getTerm().getName()).isEqualTo("heading");
     assertThat(item2.getTerm().getType()).isEqualTo(XSConstants.STRING_DT);
+    assertThat(item2.getMinOccurs()).isEqualTo(1);
+    assertThat(item2.getMaxOccurs()).isEqualTo(1);
+    assertThat(item2.getMaxOccursUnbounded()).isFalse();
+
     XSParticleDecl item3 = (XSParticleDecl) particles.item(3);
     assertThat(item3.getTerm().getName()).isEqualTo("body");
     assertThat(item3.getTerm().getType()).isEqualTo(XSConstants.STRING_DT);
+    assertThat(item3.getMinOccurs()).isEqualTo(1);
+    assertThat(item3.getMaxOccurs()).isEqualTo(1);
+    assertThat(item3.getMaxOccursUnbounded()).isFalse();
   }
 }
