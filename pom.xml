@@ -56,6 +56,7 @@
     <module>cli</module>
     <module>concurrency</module>
     <module>date</module>
+    <module>encoding</module>
     <module>hashcode</module>
     <module>hibernate-search</module>
     <module>java8</module>
