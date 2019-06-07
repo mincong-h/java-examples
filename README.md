@@ -9,8 +9,6 @@ in different frameworks. You can run these tests using:
 This project is tested under the following Java versions:
 
 - Java 8
-- Java 9
-- Java 10
 - Java 11
 
 However, it does not mean this project is fully compatible to the latest versions.

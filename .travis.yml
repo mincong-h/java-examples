@@ -3,11 +3,7 @@ language: java
 matrix:
   include:
   - env: J=Java8
-    jdk: oraclejdk8
-  - env: J=Java9
-    jdk: oraclejdk9
-  - env: J=Java10
-    jdk: openjdk10
+    jdk: openjdk8
   - env: J=Java11
     jdk: openjdk11
 
@@ -18,8 +14,6 @@ before_script:
   - PROFILE_OPTS=''
   - case $J in
     Java8) PROFILE_OPTS+='-P sonar' ;;
-    Java9) PROFILE_OPTS+='-P sonar' ;;
-    Java10) ;;
     Java11) ;;
     esac
 script:
