@@ -21,7 +21,7 @@ Module | Description
 AssertJ | [AssertJ][assertj] testing framework.
 Basic | Basic usage of Java core APIs.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
-CLI | A fake command-line interface (CLI).
+CLI | [Apache Commons CLI][commons-cli].
 Date | Date manipulation using `java.util.*` and `java.time.*`.
 Encoding | Encoding challenge in Java.
 Java 8 | New functionality of Java 8, including filter, map, stream.
@@ -45,6 +45,7 @@ I use [Google Java Code Style][style-java] for this repo.
 
 [assertj]: http://joel-costigliola.github.io/assertj/
 [bm]: http://byteman.jboss.org
+[commons-cli]: https://commons.apache.org/proper/commons-cli/
 [jersey]: https://jersey.github.io
 [jgit]: https://github.com/eclipse/jgit
 [style-java]: https://google.github.io/styleguide/javaguide.html
