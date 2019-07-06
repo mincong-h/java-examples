@@ -576,8 +576,10 @@
     <profile>
       <id>sonar</id>
       <properties>
+        <coverage.reports.dir>${basedir}/target/coverage-reports</coverage.reports.dir>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>mincong-h-github</sonar.organization>
+        <sonar.jacoco.reportPaths>${coverage.reports.dir}/jacoco-ut.exec,${coverage.reports.dir}/jacoco-it.exec</sonar.jacoco.reportPaths>
       </properties>
       <build>
         <plugins>
