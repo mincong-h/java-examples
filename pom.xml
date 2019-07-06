@@ -407,10 +407,6 @@
               <goals>
                 <goal>prepare-agent</goal>
               </goals>
-              <configuration>
-                <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-                <propertyName>jacocoSurefireAgent</propertyName>
-              </configuration>
             </execution>
             <execution>
               <id>post-unit-test</id>
@@ -418,10 +414,6 @@
               <goals>
                 <goal>report</goal>
               </goals>
-              <configuration>
-                <dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
-                <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-              </configuration>
             </execution>
             <execution>
               <id>pre-integration-test</id>
@@ -429,10 +421,6 @@
               <goals>
                 <goal>prepare-agent-integration</goal>
               </goals>
-              <configuration>
-                <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
-                <propertyName>jacocoFailsafeAgent</propertyName>
-              </configuration>
             </execution>
             <execution>
               <id>post-integration-test</id>
@@ -440,13 +428,16 @@
               <goals>
                 <goal>report</goal>
               </goals>
-              <configuration>
-                <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
-                <outputDirectory>${project.reporting.outputDirectory}/jacoco-it</outputDirectory>
-              </configuration>
             </execution>
             <execution>
-              <id>jacoco-site</id>
+              <id>aggregate-report</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>report-aggregate</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
               <phase>verify</phase>
               <goals>
                 <goal>report</goal>
@@ -473,12 +464,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <argLine>${jacocoSurefireAgent}</argLine>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <executions>
@@ -487,9 +472,6 @@
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
-            <configuration>
-              <argLine>${jacocoFailsafeAgent}</argLine>
-            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -576,10 +558,11 @@
     <profile>
       <id>sonar</id>
       <properties>
-        <coverage.reports.dir>${basedir}/target/coverage-reports</coverage.reports.dir>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>mincong-h-github</sonar.organization>
-        <sonar.jacoco.reportPaths>${coverage.reports.dir}/jacoco-ut.exec,${coverage.reports.dir}/jacoco-it.exec</sonar.jacoco.reportPaths>
+        <sonar.jacoco.xmlReportPaths>
+          ${project.build.directory}/site/jacoco/jacoco.xml,${project.build.directory}/site/jacoco-aggregate/jacoco.xml
+        </sonar.jacoco.xmlReportPaths>
       </properties>
       <build>
         <plugins>
