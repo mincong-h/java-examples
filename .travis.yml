@@ -1,5 +1,6 @@
 sudo: required
 language: java
+dist: trusty
 matrix:
   include:
   - env: J=Java8
