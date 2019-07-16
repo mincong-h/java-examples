@@ -3,7 +3,7 @@ language: java
 matrix:
   include:
   - env: J=Java8
-    jdk: openjdk8
+    jdk: oraclejdk8
   - env: J=Java11
     jdk: openjdk11
 
