@@ -25,6 +25,7 @@ CLI | [Apache Commons CLI][commons-cli].
 Date | Date manipulation using `java.util.*` and `java.time.*`.
 Encoding | Encoding challenge in Java.
 Java 8 | New functionality of Java 8, including filter, map, stream.
+Jersey 1.x | Jersey 1.x demo.
 JGit | Basic usages of [JGit][jgit].
 JSF | Basic usage of JavaServer Faces, a Java-based web application framework.
 JSON | JSON conversion libraries in Java.

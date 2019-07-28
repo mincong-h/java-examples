@@ -60,6 +60,7 @@
     <module>hashcode</module>
     <module>hibernate-search</module>
     <module>java8</module>
+    <module>jersey-1.x</module>
     <module>jgit</module>
     <module>jgit-http</module>
     <module>jsf</module>
