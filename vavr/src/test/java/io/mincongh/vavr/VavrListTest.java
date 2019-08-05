@@ -101,4 +101,13 @@ public class VavrListTest {
     List<String> list = lists.flatMap(Function.identity());
     assertThat(list).containsExactly("🐱", "🐈", "🐶", "🐕");
   }
+
+  /* ----- Javadoc ----- */
+
+  @Test
+  public void javadoc_of() {
+    List<Integer> list1 = List.of(1, 2, 3, 4);
+    List<Integer> list2 = List.of(4).prepend(3).prepend(2).prepend(1);
+    assertThat(list1.equals(list2)).isTrue();
+  }
 }
