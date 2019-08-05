@@ -1,4 +1,4 @@
-package io.mincongh.commons_cli;
+package io.mincongh.commons.cli;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
