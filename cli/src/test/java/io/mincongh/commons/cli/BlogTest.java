@@ -3,8 +3,10 @@ package io.mincongh.commons.cli;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,14 +21,7 @@ public class BlogTest {
 
   @Test
   public void createOptions() {
-    // create "options"
-    Options options = new Options();
-
-    // add new option
-    options.addOption("v", "Enable verbose mode");
-    options.addOption("f", true, "Config filepath");
-    options.addOption("i", "ignore", false, "Ignore case");
-    options.addOption(Option.builder("a").longOpt("all").desc("Display all").build());
+    Options options = newOptions();
 
     assertThat(options.hasOption("v")).isTrue();
     assertThat(options.getOption("v").hasArg()).isFalse();
@@ -49,24 +44,58 @@ public class BlogTest {
 
   @Test
   public void parseCommandLineArguments() throws Exception {
-    Options options = new Options();
-    options.addOption("v", "Enable verbose mode");
-    options.addOption("f", true, "Config filepath");
+    Options options = newOptions();
 
-    // parse arguments
+    // Parse Arguments
     CommandLineParser parser = new DefaultParser();
     String[] args = {"-v", "-f", "/path/to/file"};
-    CommandLine cmd = parser.parse(options, args);
+    CommandLine cmd;
 
-    // status
+    try {
+      cmd = parser.parse(options, args);
+    } catch (ParseException e) {
+      // Parse Exception
+      // ---
+      // A checked exception `ParseException` is thrown if parsing failed
+      throw new IllegalStateException(e);
+    }
+
+    // Query Command Line
     assertThat(cmd.getArgList()).isEmpty(); // remaining
     assertThat(cmd.hasOption("v")).isTrue();
     assertThat(cmd.hasOption("f")).isTrue();
     assertThat(cmd.hasOption("encoding")).isFalse();
 
-    // retrieve arguments
+    // Retrieve Arguments
+    // ---
+    // 1. null if not exist
+    // 2. string if exist
+    // 3. fall back on default value
     assertThat(cmd.getOptionValue("v")).isNull();
     assertThat(cmd.getOptionValue("f")).isEqualTo("/path/to/file");
     assertThat(cmd.getOptionValue("encoding", "utf-8")).isEqualTo("utf-8");
+  }
+
+  @Test
+  public void usageAndHelp() {
+    // Print usage and help
+    HelpFormatter formatter = new HelpFormatter();
+    formatter.printHelp("cmd", newOptions());
+  }
+
+  private static Options newOptions() {
+    // Create "Options" object
+    // ---
+    // For more detail, check Javadoc
+    Options options = new Options();
+
+    // Create new option
+    // --
+    // Different ways to create a new option
+    options.addOption("v", "Enable verbose mode");
+    options.addOption("f", true, "Config filepath");
+    options.addOption("i", "ignore", false, "Ignore case");
+    options.addOption(Option.builder("a").longOpt("all").desc("Display all").build());
+    return options;
   }
 }
