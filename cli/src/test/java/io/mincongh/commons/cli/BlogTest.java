@@ -43,7 +43,7 @@ public class BlogTest {
   }
 
   @Test
-  public void parseCommandLineArguments() throws Exception {
+  public void parseCommandLineArguments() {
     Options options = newOptions();
 
     // Parse Arguments
@@ -81,6 +81,7 @@ public class BlogTest {
     // Print usage and help
     HelpFormatter formatter = new HelpFormatter();
     formatter.printHelp("cmd", newOptions());
+    formatter.printHelp("cmd", newOptions(), true);
   }
 
   private static Options newOptions() {
