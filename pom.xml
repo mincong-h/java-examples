@@ -8,7 +8,7 @@
   <artifactId>java-examples-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Java Examples</name>
+  <name>Java Examples - Parent</name>
   <description>Java Examples</description>
 
   <properties>
