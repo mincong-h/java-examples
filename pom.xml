@@ -47,7 +47,7 @@
     <slf4jVersion>1.7.25</slf4jVersion>
     <vavrVersion>1.0.0-alpha-3</vavrVersion>
     <xercesVersion>2.12.0</xercesVersion>
-    <xstreamVersion>1.4.10</xstreamVersion>
+    <xstreamVersion>1.4.11</xstreamVersion>
   </properties>
 
   <modules>
