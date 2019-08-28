@@ -1,25 +1,30 @@
-package io.mincongh.library.mockito;
-
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
+package io.mincongh.library.mockito.init;
 
 import io.mincongh.library.Book;
 import io.mincongh.library.BookReader;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertEquals;
 
 /**
+ * Mock object {@code mockedBook} is created by {@link MockitoJUnitRunner}.
+ *
  * @author Mincong Huang
  */
-public class BookReaderTest {
+@RunWith(MockitoJUnitRunner.class)
+public class BookReaderAnnotationWithRunnerTest {
 
   private BookReader reader;
-  private Book mockedBook;
+
+  @Mock Book mockedBook;
 
   @Before
   public void setUp() {
-    mockedBook = Mockito.mock(Book.class);
     reader = new BookReader(mockedBook);
   }
 
