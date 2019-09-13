@@ -21,7 +21,7 @@ public class BookReaderAnnotationWithRunnerTest {
 
   private BookReader reader;
 
-  @Mock Book mockedBook;
+  @Mock private Book mockedBook;
 
   @Before
   public void setUp() {
