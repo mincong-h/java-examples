@@ -55,7 +55,10 @@ public class MyTest {
 
 ### Verify Simple Invocation
 
-Defaults to once (time=1).
+Useful when having to ensure the interactions with target mock instance,
+without having the possibility the refactor the existing source code.
+
+Defaults to once (times=1).
 
 ```java
 Context mockContext = Mockito.mock(Context.class);
@@ -63,7 +66,7 @@ Context mockContext = Mockito.mock(Context.class);
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
 
-verify(mockContext).addError(anyString());
+verify(mockContext).addError("No space allowed.");
 ```
 
 N times:
@@ -75,11 +78,54 @@ Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
 validator.validate("Hello Java!");
 
-verify(mockContext, times(2)).addError(anyString());
+verify(mockContext, times(2)).addError("No space allowed.");
 ```
 
-Useful when having to ensure the interactions with target mock instance,
-without having the possibility the refactor the existing source code.
+At least once (times=1):
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.validate("Hello world!");
+validator.validate("Hello Java!");
+
+verify(mockContext, atLeastOnce()).addError("No space allowed.");
+```
+
+At least N times:
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.validate("Hello world!");
+validator.validate("Hello Java!");
+
+verify(mockContext, atLeast(2)).addError("No space allowed.");
+```
+
+At most N times:
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.validate("Hello world!");
+validator.validate("Hello Java!");
+
+verify(mockContext, atMost(2)).addError("No space allowed.");
+```
+
+Never (times=0):
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+new Validator(mockContext);
+
+verify(mockContext, never()).addError("No space allowed.");
+```
 
 ### Verify Zero Interactions
 

@@ -7,11 +7,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.*;
 
 /**
  * @author Mincong Huang
@@ -32,34 +28,76 @@ public class MockitoVerifyTest {
   }
 
   @Test
-  public void testVerifyTimesDefault() {
+  public void testVerify_modeTimesDefault() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
 
-    verify(mockContext).addError(anyString());
+    verify(mockContext).addError("No space allowed.");
   }
 
   @Test
-  public void testVerifyTimes1() {
+  public void testVerify_modeTimes1() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
 
-    verify(mockContext, times(1)).addError(anyString());
+    verify(mockContext, times(1)).addError("No space allowed.");
   }
 
   @Test
-  public void testVerifyTimes2() {
+  public void testVerify_modeTimes2() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
     validator.validate("Hello Java!");
 
-    verify(mockContext, times(2)).addError(anyString());
+    verify(mockContext, times(2)).addError("No space allowed.");
+  }
+
+  @Test
+  public void testVerify_modeAtLeastOnce() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello world!");
+    validator.validate("Hello Java!");
+
+    verify(mockContext, atLeastOnce()).addError("No space allowed.");
+  }
+
+  @Test
+  public void testVerify_modeAtLeast2() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello world!");
+    validator.validate("Hello Java!");
+
+    verify(mockContext, atLeast(2)).addError("No space allowed.");
+  }
+
+  @Test
+  public void testVerify_modeAtMost2() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello world!");
+    validator.validate("Hello Java!");
+
+    verify(mockContext, atMost(2)).addError("No space allowed.");
+  }
+
+  @Test
+  public void testVerify_modeNever() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    new Validator(mockContext);
+
+    verify(mockContext, never()).addError("No space allowed.");
   }
 
   @Test
