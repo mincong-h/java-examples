@@ -53,7 +53,9 @@ public class MyTest {
 
 ## Verify
 
-**Verify simple invocation**. Defaults to once (time=1).
+### Verify Simple Invocation
+
+Defaults to once (time=1).
 
 ```java
 Context mockContext = Mockito.mock(Context.class);
@@ -79,7 +81,34 @@ verify(mockContext, times(2)).addError(anyString());
 Useful when having to ensure the interactions with target mock instance,
 without having the possibility the refactor the existing source code.
 
-**Verify with argument captor.** Create an "Argument Captor" instance so that
+### Verify Zero Interactions
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.doSomethingElse();
+
+verifyZeroInteractions(mockContext);
+```
+
+### Verify No More Interactions
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.validate("Hello world");
+
+verify(mockContext).addError("No space allowed.");
+// Ensure there is no more interaction with other
+// methods, such as `validator#doSomethingElse()`
+verifyNoMoreInteractions(mockContext);
+```
+
+### Verify With Argument Captor
+
+Create an "Argument Captor" instance so that
 whenever target method of mock instance is called, the input argument will be
 captured by the captor. It allows verification of that argument.
 

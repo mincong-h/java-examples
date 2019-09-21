@@ -10,6 +10,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 /**
  * @author Mincong Huang
@@ -18,7 +20,7 @@ import static org.mockito.Mockito.verify;
 public class MockitoVerifyTest {
 
   @Test
-  public void argumentCaptor() {
+  public void testArgumentCaptor() {
     Context mockContext = Mockito.mock(Context.class);
     ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 
@@ -30,7 +32,7 @@ public class MockitoVerifyTest {
   }
 
   @Test
-  public void verifyTimesDefault() {
+  public void testVerifyTimesDefault() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
@@ -40,7 +42,7 @@ public class MockitoVerifyTest {
   }
 
   @Test
-  public void verifyTimes1() {
+  public void testVerifyTimes1() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
@@ -50,7 +52,7 @@ public class MockitoVerifyTest {
   }
 
   @Test
-  public void verifyTimes2() {
+  public void testVerifyTimes2() {
     Context mockContext = Mockito.mock(Context.class);
 
     Validator validator = new Validator(mockContext);
@@ -58,5 +60,28 @@ public class MockitoVerifyTest {
     validator.validate("Hello Java!");
 
     verify(mockContext, times(2)).addError(anyString());
+  }
+
+  @Test
+  public void testVerifyZeroInteractions() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.doSomethingElse();
+
+    verifyZeroInteractions(mockContext);
+  }
+
+  @Test
+  public void testVerifyNoMoreInteractions() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello world");
+
+    verify(mockContext).addError("No space allowed.");
+    // Ensure there is no more interaction with other
+    // methods, such as `validator#doSomethingElse()`
+    verifyNoMoreInteractions(mockContext);
   }
 }
