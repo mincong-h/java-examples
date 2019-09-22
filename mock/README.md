@@ -51,7 +51,7 @@ public class MyTest {
 }
 ```
 
-## Verify
+## Mockito: Verify
 
 ### Verify Simple Invocation
 
