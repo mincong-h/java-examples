@@ -127,6 +127,18 @@ new Validator(mockContext);
 verify(mockContext, never()).addError("No space allowed.");
 ```
 
+Only (times=1) and no more interactions:
+
+```java
+Context mockContext = Mockito.mock(Context.class);
+
+Validator validator = new Validator(mockContext);
+validator.validate("Hello world!");
+
+// verify happen only once and no more interactions
+verify(mockContext, only()).addError("No space allowed.");
+```
+
 ### Verify Zero Interactions
 
 ```java

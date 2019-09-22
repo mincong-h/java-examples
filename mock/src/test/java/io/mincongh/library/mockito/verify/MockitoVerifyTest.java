@@ -101,6 +101,17 @@ public class MockitoVerifyTest {
   }
 
   @Test
+  public void testVerify_modeOnly() {
+    Context mockContext = Mockito.mock(Context.class);
+
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello world!");
+
+    // verify happen only once and no more interactions
+    verify(mockContext, only()).addError("No space allowed.");
+  }
+
+  @Test
   public void testVerifyZeroInteractions() {
     Context mockContext = Mockito.mock(Context.class);
 
