@@ -4,7 +4,7 @@ import io.mincongh.library.Validator;
 import io.mincongh.library.Validator.Context;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mockito;
+import org.mockito.InOrder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -132,5 +132,22 @@ public class MockitoVerifyTest {
     // Ensure there is no more interaction with other
     // methods, such as `validator#doSomethingElse()`
     verifyNoMoreInteractions(mockContext);
+  }
+
+  @Test
+  public void testInOrder() {
+    Context ctx1 = mock(Context.class);
+    Context ctx2 = mock(Context.class);
+
+    ctx1.addError("A");
+    ctx2.addError("B");
+    ctx2.addError("C");
+
+    // all verifications done in same InOrder instance
+    InOrder inOrder = inOrder(ctx1, ctx2);
+    inOrder.verify(ctx1).addError("A");
+    // you don't have to verify all interactions, but only
+    // mocks that are relevant for in-order verification
+    inOrder.verify(ctx2).addError("C");
   }
 }

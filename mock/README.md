@@ -164,6 +164,26 @@ verify(mockContext).addError("No space allowed.");
 verifyNoMoreInteractions(mockContext);
 ```
 
+### Verify Order
+
+Creates `org.mockito.InOrder` object that allows verifying mocks in order.
+
+```java
+Context ctx1 = mock(Context.class);
+Context ctx2 = mock(Context.class);
+
+ctx1.addError("A");
+ctx2.addError("B");
+ctx2.addError("C");
+
+// all verifications done in same InOrder instance
+InOrder inOrder = inOrder(ctx1, ctx2);
+inOrder.verify(ctx1).addError("A");
+// you don't have to verify all interactions, but only
+// mocks that are relevant for in-order verification
+inOrder.verify(ctx2).addError("C");
+```
+
 ### Verify With Argument Captor
 
 Create an "Argument Captor" instance so that
