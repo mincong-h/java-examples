@@ -17,7 +17,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testArgumentCaptor() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
     ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 
     Validator validator = new Validator(mockContext);
@@ -29,7 +29,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeTimesDefault() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -39,7 +39,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeTimes1() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -49,7 +49,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeTimes2() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -60,7 +60,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeAtLeastOnce() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -71,7 +71,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeAtLeast2() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -82,7 +82,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeAtMost2() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -93,7 +93,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeNever() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     new Validator(mockContext);
 
@@ -102,7 +102,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerify_modeOnly() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
@@ -113,7 +113,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerifyZeroInteractions() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.doSomethingElse();
@@ -123,7 +123,7 @@ public class MockitoVerifyTest {
 
   @Test
   public void testVerifyNoMoreInteractions() {
-    Context mockContext = Mockito.mock(Context.class);
+    Context mockContext = mock(Context.class);
 
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world");

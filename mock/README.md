@@ -61,7 +61,7 @@ without having the possibility the refactor the existing source code.
 Defaults to once (times=1).
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -72,7 +72,7 @@ verify(mockContext).addError("No space allowed.");
 N times:
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -84,7 +84,7 @@ verify(mockContext, times(2)).addError("No space allowed.");
 At least once (times=1):
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -96,7 +96,7 @@ verify(mockContext, atLeastOnce()).addError("No space allowed.");
 At least N times:
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -108,7 +108,7 @@ verify(mockContext, atLeast(2)).addError("No space allowed.");
 At most N times:
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -120,7 +120,7 @@ verify(mockContext, atMost(2)).addError("No space allowed.");
 Never (times=0):
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 new Validator(mockContext);
 
@@ -130,7 +130,7 @@ verify(mockContext, never()).addError("No space allowed.");
 Only (times=1) and no more interactions:
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world!");
@@ -142,7 +142,7 @@ verify(mockContext, only()).addError("No space allowed.");
 ### Verify Zero Interactions
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.doSomethingElse();
@@ -153,7 +153,7 @@ verifyZeroInteractions(mockContext);
 ### Verify No More Interactions
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 
 Validator validator = new Validator(mockContext);
 validator.validate("Hello world");
@@ -171,7 +171,7 @@ whenever target method of mock instance is called, the input argument will be
 captured by the captor. It allows verification of that argument.
 
 ```java
-Context mockContext = Mockito.mock(Context.class);
+Context mockContext = mock(Context.class);
 ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
 
 Validator validator = new Validator(mockContext);
