@@ -19,12 +19,14 @@ public class Validator {
     }
   }
 
-  @SuppressWarnings("unused")
   public void doSomethingElse() {
-    // no interaction with context
+    // no interaction with Context
   }
 
   public interface Context {
     void addError(String error);
+
+    @SuppressWarnings("unused")
+    void neverCalled();
   }
 }

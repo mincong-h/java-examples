@@ -54,6 +54,7 @@ public class MockitoVerifyTest {
     Validator validator = new Validator(mockContext);
     validator.validate("Hello world!");
     validator.validate("Hello Java!");
+    validator.validate("Hello!");
 
     verify(mockContext, times(2)).addError("No space allowed.");
   }
@@ -95,7 +96,8 @@ public class MockitoVerifyTest {
   public void testVerify_modeNever() {
     Context mockContext = mock(Context.class);
 
-    new Validator(mockContext);
+    Validator validator = new Validator(mockContext);
+    validator.validate("Hello!");
 
     verify(mockContext, never()).addError("No space allowed.");
   }
@@ -129,8 +131,8 @@ public class MockitoVerifyTest {
     validator.validate("Hello world");
 
     verify(mockContext).addError("No space allowed.");
-    // Ensure there is no more interaction with other
-    // methods, such as `validator#doSomethingElse()`
+    // Ensure there is no more interaction with mock,
+    // such as `Context#neverCalled()`
     verifyNoMoreInteractions(mockContext);
   }
 
