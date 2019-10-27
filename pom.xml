@@ -59,6 +59,7 @@
     <module>encoding</module>
     <module>hashcode</module>
     <module>hibernate-search</module>
+    <module>io</module>
     <module>java8</module>
     <module>jersey-1.x</module>
     <module>jgit</module>
