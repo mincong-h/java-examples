@@ -44,6 +44,22 @@ VAVR | Functional component library that provides persistent data types and func
 
 I use [Google Java Code Style][style-java] for this repo.
 
+## Generation
+
+Generate a new module, e.g. `java-examples-io`, using [Maven Archetype
+Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html):
+
+```sh
+mvn archetype:generate \
+    -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DinteractiveMode=false \
+    -DgroupId=io.mincongh \
+    -DartifactId=java-examples-io
+```
+
+Then, rename module by removing prefix "java-examples-" so that the naming of the new module is
+consistent with the existing ones.
+
 [assertj]: http://joel-costigliola.github.io/assertj/
 [bm]: http://byteman.jboss.org
 [commons-cli]: https://commons.apache.org/proper/commons-cli/
