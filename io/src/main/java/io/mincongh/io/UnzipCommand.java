@@ -54,13 +54,13 @@ public class UnzipCommand {
     }
 
     /**
-     * (OPTIONAL) Byte-size for the unzip buffer. The value must be positive. Default to 1024 bytes.
+     * (OPTIONAL) Byte size for the unzip buffer. The value must be positive. Default to 1024 bytes.
      *
-     * @param size byte size for the unzip buffer
+     * @param byteSize byte size for the unzip buffer
      * @return this
      */
-    public Builder byteSize(int size) {
-      this.byteSize = size;
+    public Builder bufferSize(int byteSize) {
+      this.byteSize = byteSize;
       return this;
     }
 

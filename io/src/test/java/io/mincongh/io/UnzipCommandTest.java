@@ -52,7 +52,7 @@ public class UnzipCommandTest {
     UnzipCommand.newBuilder() //
         .sourceZip(sourceZip)
         .targetDir(targetDir)
-        .byteSize(-1)
+        .bufferSize(-1)
         .build();
   }
 
@@ -61,7 +61,7 @@ public class UnzipCommandTest {
     UnzipCommand.newBuilder() //
         .sourceZip(sourceZip)
         .targetDir(targetDir)
-        .byteSize(-1)
+        .bufferSize(0)
         .build();
   }
 
@@ -71,7 +71,7 @@ public class UnzipCommandTest {
         UnzipCommand.newBuilder() //
             .sourceZip(sourceZip)
             .targetDir(targetDir)
-            .byteSize(2048)
+            .bufferSize(2048)
             .build();
     cmd.exec();
 
