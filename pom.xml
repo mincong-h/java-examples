@@ -27,8 +27,7 @@
     <hibernateSearchVersion>5.5.4.Final</hibernateSearchVersion>
     <hibernateJpaVersion>1.0.0.Final</hibernateJpaVersion>
     <htmlunitVersion>2.28.5</htmlunitVersion>
-    <jacksonVersion>2.9.9</jacksonVersion>
-    <jacksonDatabindVersion>2.9.9.2</jacksonDatabindVersion>
+    <jacksonVersion>2.9.10</jacksonVersion>
     <javaxValidationVersion>2.0.1.Final</javaxValidationVersion>
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
@@ -88,7 +87,7 @@
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>${jacksonDatabindVersion}</version>
+        <version>${jacksonVersion}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.dataformat</groupId>
