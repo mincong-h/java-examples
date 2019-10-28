@@ -39,8 +39,8 @@ public class UnzipCommand {
     }
 
     /**
-     * (REQUIRED) Target directory where the unzipped files should be placed. If not defined, file
-     * will be unzipped to the same directory.
+     * (REQUIRED) Target directory where the unzipped files should be placed. The given input has to
+     * be an existing directory.
      *
      * <p>Example: Unzipping "/source/foo.zip" to target directory "/target/", the results will be
      * found in directory "/target/foo/".
