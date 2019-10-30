@@ -89,15 +89,18 @@ public class UnzipCommand {
    * @throws IOException if any I/O error occurs
    */
   public void exec() throws IOException {
+    Path root = targetDir.normalize();
     try (InputStream is = Files.newInputStream(sourceZip);
         ZipInputStream zis = new ZipInputStream(is)) {
       ZipEntry entry = zis.getNextEntry();
       while (entry != null) {
+        Path path = root.resolve(entry.getName()).normalize();
+        if (!path.startsWith(root)) {
+          throw new IOException("Invalid ZIP");
+        }
         if (entry.isDirectory()) {
-          Path dir = targetDir.resolve(entry.getName());
-          Files.createDirectories(dir);
+          Files.createDirectories(path);
         } else {
-          Path path = targetDir.resolve(entry.getName());
           try (OutputStream os = Files.newOutputStream(path)) {
             byte[] buffer = new byte[byteSize];
             int len;
