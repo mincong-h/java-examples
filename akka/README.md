@@ -2,6 +2,10 @@
 
 Build highly concurrent, distributed, and resilient message-driven applications on the JVM. <https://github.com/akka/akka>
 
+## Run
+
+    mvn compile exec:exec
+
 ## References
 
 - Akka, "What is an Actor?", _Akka Documentation_, 2019.
