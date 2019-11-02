@@ -1,8 +1,8 @@
-package io.mincongh.akka;
+package io.mincongh.akka.official;
 
 import akka.actor.typed.ActorSystem;
 import akka.actor.typed.Behavior;
-import io.mincongh.akka.GreeterMain.Start;
+import io.mincongh.akka.official.GreeterMain.Start;
 import java.io.IOException;
 
 /**

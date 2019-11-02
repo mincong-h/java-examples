@@ -4,7 +4,13 @@ Build highly concurrent, distributed, and resilient message-driven applications 
 
 ## Run
 
-    mvn compile exec:exec
+Running the [official quickstart demo](https://developer.lightbend.com/guides/akka-quickstart-java/) provided by Lightend:
+
+    mvn compile exec:exec@official
+
+Running my Game of Throne demo to see the Army of the Dead (Night King and White Walkers):
+
+    mvn compile exec:exec@game-of-throne
 
 ## References
 

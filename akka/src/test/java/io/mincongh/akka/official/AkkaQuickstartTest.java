@@ -1,10 +1,10 @@
-package io.mincongh.akka;
+package io.mincongh.akka.official;
 
 import akka.actor.testkit.typed.javadsl.TestKitJunitResource;
 import akka.actor.testkit.typed.javadsl.TestProbe;
 import akka.actor.typed.ActorRef;
-import io.mincongh.akka.Greeter.Greet;
-import io.mincongh.akka.Greeter.Greeted;
+import io.mincongh.akka.official.Greeter.Greet;
+import io.mincongh.akka.official.Greeter.Greeted;
 import org.junit.ClassRule;
 import org.junit.Test;
 

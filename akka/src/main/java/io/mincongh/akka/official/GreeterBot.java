@@ -1,11 +1,11 @@
-package io.mincongh.akka;
+package io.mincongh.akka.official;
 
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.AbstractBehavior;
 import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
-import io.mincongh.akka.Greeter.Greeted;
+import io.mincongh.akka.official.Greeter.Greeted;
 
 /**
  * @author Akka Authors
