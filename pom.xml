@@ -50,6 +50,7 @@
   </properties>
 
   <modules>
+    <module>akka</module>
     <module>basic</module>
     <module>byteman</module>
     <module>cli</module>
@@ -70,11 +71,11 @@
     <module>oca</module>
     <module>ocp</module>
     <module>regex</module>
+    <module>restful-api</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>
     <module>vavr</module>
     <module>xml</module>
-    <module>restful-api</module>
   </modules>
 
   <dependencyManagement>

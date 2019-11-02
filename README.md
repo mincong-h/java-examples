@@ -18,6 +18,7 @@ Some modules cannot be executed are just skipped.
 
 Module | Description
 :--- | :---
+Akka | Build highly concurrent, distributed, and resilient message-driven applications on the JVM <https://akka.io>
 AssertJ | [AssertJ][assertj] testing framework.
 Basic | Basic usage of Java core APIs.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
