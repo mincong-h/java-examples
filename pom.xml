@@ -38,7 +38,7 @@
     <jsonVersion>20160810</jsonVersion>
     <junitVersion>4.12</junitVersion>
     <log4jVersion>2.7</log4jVersion>
-    <luceneVersion>5.3.1</luceneVersion>
+    <luceneVersion>7.1.0</luceneVersion>
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
     <powermockVersion>1.6.4</powermockVersion>
