@@ -10,7 +10,8 @@ import io.mincongh.akka.Greeter.Greet;
 import java.util.Objects;
 
 /**
- * @author Akka authors
+ * @author Akka Authors
+ * @author Mincong Huang
  * @since 0.1.0
  */
 public class Greeter extends AbstractBehavior<Greet> {
@@ -34,7 +35,6 @@ public class Greeter extends AbstractBehavior<Greet> {
       this.from = from;
     }
 
-// #greeter
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
@@ -56,7 +56,6 @@ public class Greeter extends AbstractBehavior<Greet> {
               ", from=" + from +
               '}';
     }
-// #greeter
   }
 
   public static Behavior<Greet> create() {
@@ -74,11 +73,9 @@ public class Greeter extends AbstractBehavior<Greet> {
 
   private Behavior<Greet> onGreet(Greet command) {
     getContext().getLog().info("Hello {}!", command.whom);
-    //#greeter-send-message
+    // greeter sends message
     command.replyTo.tell(new Greeted(command.whom, getContext().getSelf()));
-    //#greeter-send-message
     return this;
   }
 }
-// #greeter
 

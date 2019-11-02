@@ -9,7 +9,8 @@ import org.junit.ClassRule;
 import org.junit.Test;
 
 /**
- * @author Akka authors
+ * @author Akka Authors
+ * @author Mincong Huang
  * @since 0.1.0
  */
 public class AkkaQuickstartTest {
