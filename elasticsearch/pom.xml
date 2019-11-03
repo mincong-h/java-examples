@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.mincongh</groupId>
+    <artifactId>java-examples-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>java-examples-elasticsearch</artifactId>
+  <name>Java Examples - Elasticsearch</name>
+
+  <properties>
+    <elasticsearchVersion>7.4.2</elasticsearchVersion>
+  </properties>
+
+  <dependencies>
+    <!-- test -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.javacrumbs.json-unit</groupId>
+      <artifactId>json-unit-assertj</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.fabric8</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <watchInterval>500</watchInterval>
+          <logDate>default</logDate>
+          <verbose>true</verbose>
+          <images>
+            <image>
+              <name>docker.elastic.co/elasticsearch/elasticsearch:${elasticsearchVersion}</name>
+              <run>
+                <ports>
+                  <port>9200:9200</port>
+                  <port>9300:9300</port>
+                </ports>
+                <env>
+                  <!-- specify single-node discovery to bypass the bootstrap checks -->
+                  <discovery.type>single-node</discovery.type>
+                </env>
+                <log>
+                  <prefix>Elasticsearch:</prefix>
+                  <enabled>true</enabled>
+                  <color>yellow</color>
+                </log>
+                <wait>
+                  <time>60000</time><!-- 60 seconds max -->
+                  <log>.*"message": "started".*</log>
+                </wait>
+              </run>
+            </image>
+          </images>
+        </configuration>
+        <!--
+          Connect this plugin to the maven lifecycle around the integration-test phase:
+          start the container in pre-integration-test and stop it in post-integration-test.
+        -->
+        <executions>
+          <execution>
+            <id>start</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>build</goal>
+              <goal>start</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>stop</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

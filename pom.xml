@@ -17,7 +17,7 @@
 
     <!-- Dependency versions -->
     <asmVersion>6.2</asmVersion>
-    <assertjVersion>3.8.0</assertjVersion>
+    <assertjVersion>3.13.2</assertjVersion>
     <bytemanVersion>3.0.6</bytemanVersion>
     <commonsIoVersion>2.5</commonsIoVersion>
     <easymockVersion>3.4</easymockVersion>
@@ -36,6 +36,7 @@
     <jettyVersion>9.4.22.v20191022</jettyVersion>
     <jgitVersion>4.11.0.201803080745-r</jgitVersion>
     <jsonVersion>20160810</jsonVersion>
+    <jsonUnitVersion>2.11.1</jsonUnitVersion>
     <junitVersion>4.12</junitVersion>
     <log4jVersion>2.7</log4jVersion>
     <luceneVersion>5.3.1</luceneVersion>
@@ -56,6 +57,7 @@
     <module>cli</module>
     <module>concurrency</module>
     <module>date</module>
+    <module>elasticsearch</module>
     <module>encoding</module>
     <module>hashcode</module>
     <module>hibernate-search</module>
@@ -179,6 +181,16 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junitVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.javacrumbs.json-unit</groupId>
+        <artifactId>json-unit</artifactId>
+        <version>${jsonUnitVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.javacrumbs.json-unit</groupId>
+        <artifactId>json-unit-assertj</artifactId>
+        <version>${jsonUnitVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.assertj</groupId>
@@ -441,6 +453,11 @@
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
           <version>1.6.6</version>
+        </plugin>
+        <plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.26.0</version>
         </plugin>
       </plugins>
     </pluginManagement>

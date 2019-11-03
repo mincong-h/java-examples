@@ -24,6 +24,7 @@ Basic | Basic usage of Java core APIs.
 Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
 CLI | [Apache Commons CLI][commons-cli].
 Date | Date manipulation using `java.util.*` and `java.time.*`.
+Elasticsearch | [Elasticsearch](https://github.com/elastic/elasticsearch): Open source, distributed, RESTful search engine
 Encoding | Encoding challenge in Java.
 IO | Java File I/O.
 Java 8 | New functionality of Java 8, including filter, map, stream.
