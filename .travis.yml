@@ -7,10 +7,6 @@ matrix:
     jdk: oraclejdk8
   - env: J=Java11
     jdk: openjdk11
-
-install:
-  # first, download all the Maven dependencies without logging
-  - mvn -B -q install -DskipTests=true
 before_script:
   - PROFILE_OPTS=''
   - case $J in
