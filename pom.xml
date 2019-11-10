@@ -68,8 +68,9 @@
     <module>jgit-http</module>
     <module>jsf</module>
     <module>json</module>
-    <module>mock</module>
     <module>maven</module>
+    <module>mock</module>
+    <module>mongo</module>
     <module>oca</module>
     <module>ocp</module>
     <module>regex</module>

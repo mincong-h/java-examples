@@ -34,6 +34,7 @@ JSF | Basic usage of JavaServer Faces, a Java-based web application framework.
 JSON | JSON conversion libraries in Java.
 JUnit | JUnit testing framework.
 Maven | Basic functionality of Maven.
+Mongo | The MongoDB database
 Mock | Different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
 OCA | Oracle Certified Associate Java SE 8
 OCP | Oracle Certified Professional Java SE 8
