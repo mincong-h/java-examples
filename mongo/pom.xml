@@ -13,7 +13,7 @@
   <name>Java Examples - MongoDB</name>
 
   <properties>
-    <mongoVersion>3.2</mongoVersion>
+    <mongoVersion>3.6</mongoVersion>
     <mongoDriverVersion>3.11.2</mongoDriverVersion>
   </properties>
 
@@ -22,6 +22,12 @@
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-sync</artifactId>
+      <version>${mongoDriverVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>bson</artifactId>
       <version>${mongoDriverVersion}</version>
       <scope>test</scope>
     </dependency>
