@@ -43,7 +43,6 @@
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
     <powermockVersion>1.6.4</powermockVersion>
-    <seleniumVersion>3.8.1</seleniumVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
     <vavrVersion>1.0.0-alpha-3</vavrVersion>
     <xercesVersion>2.12.0</xercesVersion>
@@ -262,26 +261,6 @@
         <artifactId>h2</artifactId>
         <version>${h2DatabaseVersion}</version>
       </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-api</artifactId>
-        <version>${seleniumVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-remote-driver</artifactId>
-        <version>${seleniumVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-firefox-driver</artifactId>
-        <version>${seleniumVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>htmlunit-driver</artifactId>
-        <version>${htmlunitVersion}</version>
-      </dependency>
       <!--
         Includes JAXB APIs because they're not part of the JDK APIs
         anymore. See:
@@ -442,11 +421,6 @@
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
-          <artifactId>selenium-maven-plugin</artifactId>
-          <version>2.3</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.6.0</version>
         </plugin>
@@ -500,9 +474,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
       </properties>
-      <modules>
-        <module>selenium</module>
-      </modules>
       <build>
         <plugins>
           <plugin>
@@ -523,7 +494,6 @@
       </properties>
       <modules>
         <module>java9</module>
-        <module>selenium</module>
       </modules>
     </profile>
     <profile>
