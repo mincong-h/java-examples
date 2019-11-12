@@ -97,4 +97,18 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>skip-tests</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>skipTests</name>
+        </property>
+      </activation>
+      <properties>
+        <docker.skip>true</docker.skip>
+      </properties>
+    </profile>
+  </profiles>
 </project>
