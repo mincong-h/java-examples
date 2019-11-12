@@ -62,6 +62,8 @@
     <module>hibernate-search</module>
     <module>io</module>
     <module>java8</module>
+    <module>java9</module>
+    <module>java10</module>
     <module>jgit</module>
     <module>jgit-http</module>
     <module>jsf</module>
@@ -460,55 +462,14 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
-    <profile>
-      <id>java8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>java9</id>
-      <activation>
-        <jdk>9</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
-      </properties>
-      <modules>
-        <module>java9</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>java10</id>
-      <activation>
-        <jdk>10</jdk>
-      </activation>
-      <properties>
-        <maven.compiler.source>10</maven.compiler.source>
-        <maven.compiler.target>10</maven.compiler.target>
-      </properties>
-      <modules>
-        <module>java9</module>
-        <module>java10</module>
-      </modules>
-    </profile>
     <profile>
       <id>java11</id>
       <activation>
@@ -519,10 +480,6 @@
         <maven.compiler.target>11</maven.compiler.target>
         <mdep.analyze.skip>true</mdep.analyze.skip>
       </properties>
-      <modules>
-        <module>java9</module>
-        <module>java10</module>
-      </modules>
     </profile>
     <profile>
       <id>sonar</id>

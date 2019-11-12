@@ -6,13 +6,7 @@ in different frameworks. You can run these tests using:
 
     mvn clean install
 
-This project is tested under the following Java versions:
-
-- Java 8
-- Java 11
-
-However, it does not mean this project is fully compatible to the latest versions.
-Some modules cannot be executed are just skipped.
+This project is tested under Java 11.
 
 ## Module List
 

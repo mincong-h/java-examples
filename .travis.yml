@@ -1,20 +1,8 @@
 sudo: required
 language: java
-dist: trusty
-matrix:
-  include:
-  - env: J=Java8
-    jdk: oraclejdk8
-  - env: J=Java11
-    jdk: openjdk11
-before_script:
-  - PROFILE_OPTS=''
-  - case $J in
-    Java8) PROFILE_OPTS+='-P sonar' ;;
-    Java11) ;;
-    esac
+jdk: openjdk11
 script:
-  - mvn clean verify $PROFILE_OPTS
+  - mvn clean verify -Psonar
 addons:
   sonarcloud:
     organization: 'mincong-h-github'
