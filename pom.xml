@@ -66,7 +66,6 @@
     <module>java10</module>
     <module>jgit</module>
     <module>jgit-http</module>
-    <module>jsf</module>
     <module>json</module>
     <module>maven</module>
     <module>mock</module>
@@ -147,11 +146,6 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.myfaces.core</groupId>
-        <artifactId>myfaces-api</artifactId>
-        <version>${myFacesVersion}</version>
       </dependency>
       <dependency>
         <groupId>commons-io</groupId>
