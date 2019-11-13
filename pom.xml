@@ -39,7 +39,6 @@
     <jsonUnitVersion>2.11.1</jsonUnitVersion>
     <junitVersion>4.12</junitVersion>
     <log4jVersion>2.7</log4jVersion>
-    <luceneVersion>5.3.1</luceneVersion>
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
     <powermockVersion>1.6.4</powermockVersion>
@@ -59,7 +58,6 @@
     <module>elasticsearch</module>
     <module>encoding</module>
     <module>hashcode</module>
-    <module>hibernate-search</module>
     <module>io</module>
     <module>java8</module>
     <module>java9</module>
@@ -96,11 +94,6 @@
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-xml</artifactId>
         <version>${jacksonVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-core</artifactId>
-        <version>${luceneVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.jboss.byteman</groupId>
