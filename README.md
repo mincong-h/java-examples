@@ -47,6 +47,7 @@ Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.
 ```sh
 mvn archetype:generate \
     -DarchetypeArtifactId=maven-archetype-quickstart \
+    -DarchetypeVersion=1.4 \
     -DinteractiveMode=false \
     -DgroupId=io.mincongh \
     -DartifactId=java-examples-io
