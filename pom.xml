@@ -55,7 +55,6 @@
     <module>cli</module>
     <module>concurrency</module>
     <module>date</module>
-    <module>elasticsearch</module>
     <module>encoding</module>
     <module>hashcode</module>
     <module>io</module>

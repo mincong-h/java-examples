@@ -5,9 +5,4 @@ addressing a growing number of use cases. As the heart of the Elastic Stack,
 it centrally stores your data so you can discover the expected and uncover the
 unexpected.
 
-## References
-
-- Elastic, "Getting started with Elasticsearch", Elastic, 2019.
-  <https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html>
-- Elastic, "Install Elasticsearch with Docker", Elastic, 2019.
-  <https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html>
+This module is no longer part of the Java Examples mono repository. Content has been transferred to <https://github.com/mincong-h/learning-elasticsearch>.
