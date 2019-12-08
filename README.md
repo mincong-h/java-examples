@@ -32,6 +32,7 @@ OCA | Oracle Certified Associate Java SE 8
 OCP | Oracle Certified Professional Java SE 8
 Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
+Typesafe Config | [Typesafe Config](https://github.com/lightbend/config), configuration library for JVM languages.
 XML | XML serialization, XPath, XSD.
 VAVR | Functional component library that provides persistent data types and functional control structures.
 
