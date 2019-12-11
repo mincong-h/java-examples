@@ -80,6 +80,24 @@ public class ConfigTest {
   }
 
   @Test
+  public void itShouldRecognizeInlineStructure() {
+    Config u1 = ConfigFactory.parseString("user { firstName: Foo, lastName: Bar }");
+    assertThat(u1.getString("user.firstName")).isEqualTo("Foo");
+    assertThat(u1.getString("user.lastName")).isEqualTo("Bar");
+    Config u2 = ConfigFactory.parseString("user { firstName = Foo, lastName = Bar }");
+    assertThat(u2.getString("user.firstName")).isEqualTo("Foo");
+    assertThat(u2.getString("user.lastName")).isEqualTo("Bar");
+  }
+
+  @Test
+  public void itShouldHandleInclude() {
+    Config cfg = ConfigFactory.load("myApp");
+    assertThat(cfg.getString("moduleA.msg")).isEqualTo("Hello from Module A");
+    assertThat(cfg.getString("moduleB.msg")).isEqualTo("Hello from Module B");
+    assertThat(cfg.getString("app.msg")).isEqualTo("Hello from App");
+  }
+
+  @Test
   public void itShouldSupportCombination() {
     Config config = ConfigFactory.load();
     assertThat(config.getString("demo.firstName")).isEqualTo("Mincong");
