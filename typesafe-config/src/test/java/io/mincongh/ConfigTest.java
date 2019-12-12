@@ -3,6 +3,7 @@ package io.mincongh;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigMemorySize;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
@@ -136,7 +137,9 @@ public class ConfigTest {
     Config config = ConfigFactory.parseString(s);
     assertThat(config.getDuration("minDuration", TimeUnit.SECONDS))
         .isEqualTo(TimeUnit.SECONDS.toSeconds(1));
+    assertThat(config.getDuration("minDuration")).isEqualTo(Duration.ofSeconds(1));
     assertThat(config.getDuration("maxDuration", TimeUnit.SECONDS))
         .isEqualTo(TimeUnit.SECONDS.toSeconds(60));
+    assertThat(config.getDuration("maxDuration")).isEqualTo(Duration.ofMinutes(1));
   }
 }
