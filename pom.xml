@@ -61,6 +61,7 @@
     <module>java10</module>
     <module>jgit</module>
     <module>jgit-http</module>
+    <module>jmh</module>
     <module>json</module>
     <module>maven</module>
     <module>mock</module>

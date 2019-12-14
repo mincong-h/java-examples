@@ -23,6 +23,7 @@ Encoding | Encoding challenge in Java.
 IO | Java File I/O.
 Java 8 | New functionality of Java 8, including filter, map, stream.
 JGit | Basic usages of [JGit][jgit].
+JMH | Java Microbenchmark Harness (JMH).
 JSON | JSON conversion libraries in Java.
 JUnit | JUnit testing framework.
 Maven | Basic functionality of Maven.
