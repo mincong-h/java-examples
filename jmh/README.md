@@ -2,6 +2,13 @@
 
 Java Microbenchmark Harness
 
+## Annotation
+
+`@Benchmark` annotates the benchmark method. JMH will produce the generated benchmark code for
+this method during compilation, register this method as the benchmark in the benchmark list, read
+out the default values from the annotations, and generally prepare the environment for the
+benchmark to run.
+
 ## Results
 
     Benchmark                 Mode  Cnt  Score   Error  Units
