@@ -42,6 +42,47 @@ to 12 seconds because there are 2 warm-up iterations (1 second per iteration) an
 iterations (1 second per iteration). Then, iterations started one-after-another, a score is
 displayed to show the speed of each iteration.
 
+## Options
+
+Options can be configured from JMH command line, JMH runner (`org.openjdk.jmh.runner.Runner`) or JMH
+annotations (`org.openjdk.jmh.annotations.*`). More precisely, the options of JMH runner are
+configured via Options Builder (`org.openjdk.jmh.runner.options.OptionsBuilder`). Here is a
+comparison of different options from these three sources:
+
+CLI | Options Builder | Annotations | Description
+:---: | :---- | :---- | :---
+`-i` | `#measurementIterations` | `@Measurement#interations` | Number of measurement to do.
+`-bs` | `#measurementBatchSize` | `@Measurement#batchSize` | Batch size: number of benchmark method calls per operation.
+`-r` | `#measurementTime` | `@Measurement#{time,timeUnit}` | Minimum time to spend at each measurement iteration.
+`-wi` | `#warmupIterations` | `@Warmup#iterations` | Number of warmup iterations to do.
+`-wbs` | `#warmupBatchSize` | `@Warmup#batchSize` | Warmup batch size: number of benchmark method calls per operation.
+`-w` | `#warmupTime` | `@Warmup#{time,timeUnit}` | Minimum time to spend at each warmup iteration.
+`-to` | `#timeout` | `@Timeout` | Timeout for benchmark iteration.
+`-t` | `#threads` | `@Threads` | Number of worker threads to run with.
+`-bm` | `#mode` | `@Mode` | Benchmark mode.
+`-si` | `#syncIterations` | - | Should JMH synchronize iterations?
+`-gc` | `#shouldDoGC` | - | Should JMH force GC between iterations?
+`-foe` | `#shouldFailOnError` || Should JMH fail immediately if any benchmark had experienced an unrecoverable error?
+`-v` | `#verbosity` | - | Verbosity mode.
+_(none)_ | - | `@Benchmark` | Benchmarks to run (regexp+).
+`-f` | `#forks` | `@Fork#value` | How many times to fork a single benchmark.
+`-wf` | `#warmupForks` | `@Foke#warmups` | How many warmup forks to make for a single benchmark.
+`-o` | `#output` | - | Redirect human-readable output to a given file.
+`-rff` | `#result` | - | Write machine-readable results to a given file.
+`-prof` | `#addProfiler` || Use profilers to collect additional benchmark data.
+`-tg` | `#threadGroups` | `GroupThreads` | Override thread group distribution for asymmetric benchmarks.
+`-jvm` | `#jvm` | `@Fork#jvm` | Use given JVM for runs. This option only affects forked runs.
+`-jvmArgs` | `#jvmArgs` | `@Fork#jvmArgs` | Use given JVM arguments. Most options are inherited from the host VM options, but in some cases you want to pass the options only to a forked VM.
+`-jvmArgsAppend` | `#jvmArgsAppend` | `@Fork#jvmAppend` | Same as jvmArgs, but append these options after the already given JVM args.
+`-jvmArgsPrepend` | `#jvmArgsPrepend` | `@Fork#jvmPrepend` | Same as jvmArgs, but prepend these options before the already given JVM arg.
+
+This table may not be up-to-date. To check the latest options available, you can use the following
+classes from JMH Core:
+
+- `org.openjdk.jmh.runner.options.CommandLineOptions` for CLI options
+- `org.openjdk.jmh.runner.options.OptionsBuilder` for Options Builder
+- `org.openjdk.jmh.annotations.*` for annotations
+
 ## References
 
 - Baeldung, "Microbenchmarking with Java", _Baeldung_, 2019.
