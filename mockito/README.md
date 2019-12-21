@@ -1,6 +1,6 @@
-# Mocking Frameworks
+# Mockito
 
-## Mockito: Object Creation
+## Object Creation
 
 Creating mock objects using JUnit annotation `@RunWith` and Mockito JUnit
 Runner. But only one runner is allowed, so you cannot use another runner
@@ -51,7 +51,7 @@ public class MyTest {
 }
 ```
 
-## Mockito: Verify
+## Verify
 
 ### Verify Simple Invocation
 

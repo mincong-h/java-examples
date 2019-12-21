@@ -1,4 +1,4 @@
-package io.mincongh.so42188199;
+package io.mincongh.mockito.stackoverflow.so42188199;
 
 /**
  * @author Mincong Huang

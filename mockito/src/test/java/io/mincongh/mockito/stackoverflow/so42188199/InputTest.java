@@ -1,4 +1,4 @@
-package io.mincongh.so42188199;
+package io.mincongh.mockito.stackoverflow.so42188199;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;

@@ -1,10 +1,9 @@
-package io.mincongh.library.mockito.verify;
+package io.mincongh.mockito.verify;
 
-import io.mincongh.library.Validator;
-import io.mincongh.library.Validator.Context;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -120,7 +119,7 @@ public class MockitoVerifyTest {
     Validator validator = new Validator(mockContext);
     validator.doSomethingElse();
 
-    verifyZeroInteractions(mockContext);
+    Mockito.verifyZeroInteractions(mockContext);
   }
 
   @Test
@@ -133,7 +132,7 @@ public class MockitoVerifyTest {
     verify(mockContext).addError("No space allowed.");
     // Ensure there is no more interaction with mock,
     // such as `Context#neverCalled()`
-    verifyNoMoreInteractions(mockContext);
+    Mockito.verifyNoMoreInteractions(mockContext);
   }
 
   @Test
@@ -151,5 +150,30 @@ public class MockitoVerifyTest {
     // you don't have to verify all interactions, but only
     // mocks that are relevant for in-order verification
     inOrder.verify(ctx2).addError("C");
+  }
+
+  private static class Validator {
+    private final Context context;
+
+    public Validator(Context context) {
+      this.context = context;
+    }
+
+    public void validate(String input) {
+      if (input.contains(" ")) {
+        context.addError("No space allowed.");
+      }
+    }
+
+    public void doSomethingElse() {
+      // no interaction with Context
+    }
+  }
+
+  interface Context {
+    void addError(String error);
+
+    @SuppressWarnings("unused")
+    void neverCalled();
   }
 }

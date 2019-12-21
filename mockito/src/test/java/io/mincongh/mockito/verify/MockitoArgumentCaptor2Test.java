@@ -1,4 +1,4 @@
-package io.mincongh.library.mockito;
+package io.mincongh.mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.mockito.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
 
 /** @author Mincong Huang */
 public class MockitoArgumentCaptor2Test {
@@ -27,5 +26,4 @@ public class MockitoArgumentCaptor2Test {
     assertThat(stringCaptor.getValue()).isEqualTo("Foo");
     assertThat(stringCaptor.getAllValues()).containsExactly("Foo");
   }
-
 }
