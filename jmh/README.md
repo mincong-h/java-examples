@@ -83,6 +83,10 @@ classes from JMH Core:
 - `org.openjdk.jmh.runner.options.OptionsBuilder` for Options Builder
 - `org.openjdk.jmh.annotations.*` for annotations
 
+## Samples
+
+https://github.com/openjdk/jmh/tree/master/jmh-samples check the official samples.
+
 ## References
 
 - Baeldung, "Microbenchmarking with Java", _Baeldung_, 2019.
