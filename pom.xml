@@ -65,6 +65,7 @@
     <module>json</module>
     <module>maven</module>
     <module>mock</module>
+    <module>mockito</module>
     <module>mongo</module>
     <module>oca</module>
     <module>ocp</module>

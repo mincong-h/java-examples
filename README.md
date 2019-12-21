@@ -29,6 +29,7 @@ JUnit | JUnit testing framework.
 Maven | Basic functionality of Maven.
 Mongo | The MongoDB database
 Mock | Different mocking frameworks, e.g. Mockito, Easy Mock and Power Mock.
+Mockito | [Mockito](https://site.mockito.org/), the most popular Mocking framework for Java unit tests
 OCA | Oracle Certified Associate Java SE 8
 OCP | Oracle Certified Professional Java SE 8
 Regex | Regular expressions.
