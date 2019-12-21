@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>java-examples-mock</artifactId>
-  <name>Java Examples - Mocking Frameworks</name>
+  <name>Java Examples - Mocking Frameworks (deprecated)</name>
 
   <dependencies>
     <dependency>
