@@ -42,6 +42,24 @@ to 12 seconds because there are 2 warm-up iterations (1 second per iteration) an
 iterations (1 second per iteration). Then, iterations started one-after-another, a score is
 displayed to show the speed of each iteration.
 
+## Runner
+
+Use Options Builder to build options, then create runner to run the benchmarks.
+
+```java
+public static void main(String[] args) throws RunnerException {
+    Options opt = new OptionsBuilder()
+            .include(MyBenchmarkClass.class.getSimpleName())
+            .threads(4)
+            .forks(1)
+            .build();
+
+    new Runner(opt).run();
+}
+```
+
+See section [Options](#options) for more detail about options configuration.
+
 ## Options
 
 Options can be configured from JMH command line, JMH runner (`org.openjdk.jmh.runner.Runner`) or JMH
