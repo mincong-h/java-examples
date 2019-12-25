@@ -56,6 +56,7 @@
     <module>encoding</module>
     <module>hashcode</module>
     <module>io</module>
+    <module>jackson</module>
     <module>java8</module>
     <module>java9</module>
     <module>java10</module>

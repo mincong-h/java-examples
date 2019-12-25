@@ -21,6 +21,7 @@ Date | Date manipulation using `java.util.*` and `java.time.*`.
 Elasticsearch | [Elasticsearch](https://github.com/elastic/elasticsearch): Open source, distributed, RESTful search engine
 Encoding | Encoding challenge in Java.
 IO | Java File I/O.
+Jackson | Jackson, a high-performance JSON processor for Java.
 Java 8 | New functionality of Java 8, including filter, map, stream.
 JGit | Basic usages of [JGit][jgit].
 JMH | Java Microbenchmark Harness (JMH).
