@@ -12,6 +12,16 @@ Running my Game of Throne demo to see the Army of the Dead (Night King and White
 
     mvn compile exec:exec@game-of-throne
 
+
+## Actor Path
+
+    akka://sys@hostA:2552          # ActorSystem
+    akka://sys@hostB:2552          # ActorSystem
+    akka://sys@hostC:2552          # ActorSystem
+    akka://sys@hostA:2552/user     # User guardian, parent
+    akka://sys@hostA:2552/user/a   # child
+    akka://sys@hostA:2552/user/b   # child
+
 ## References
 
 - Akka, "What is an Actor?", _Akka Documentation_, 2019.
