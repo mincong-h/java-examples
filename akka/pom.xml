@@ -13,14 +13,14 @@
   <name>Java Examples - Akka</name>
 
   <properties>
-    <akkaVersion>2.6.0-RC1</akkaVersion>
+    <akkaVersion>2.6.1</akkaVersion>
     <logbackVersion>1.2.3</logbackVersion>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.typesafe.akka</groupId>
-      <artifactId>akka-actor-typed_2.12</artifactId>
+      <artifactId>akka-actor-typed_2.13</artifactId>
       <version>${akkaVersion}</version>
     </dependency>
     <dependency>
@@ -31,7 +31,13 @@
     <!-- test -->
     <dependency>
       <groupId>com.typesafe.akka</groupId>
-      <artifactId>akka-actor-testkit-typed_2.12</artifactId>
+      <artifactId>akka-actor-testkit-typed_2.13</artifactId>
+      <version>${akkaVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.typesafe.akka</groupId>
+      <artifactId>akka-testkit_2.13</artifactId>
       <version>${akkaVersion}</version>
       <scope>test</scope>
     </dependency>
@@ -52,28 +58,28 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
-<execution>
-  <id>official</id>
-        <configuration>
-          <executable>java</executable>
-          <arguments>
-            <argument>-classpath</argument>
-            <classpath/>
-            <argument>io.mincongh.akka.official.AkkaQuickstart</argument>
-          </arguments>
-        </configuration>
-</execution>
-<execution>
-  <id>game-of-throne</id>
-        <configuration>
-          <executable>java</executable>
-          <arguments>
-            <argument>-classpath</argument>
-            <classpath/>
-            <argument>io.mincongh.akka.got.GameOfThrone</argument>
-          </arguments>
-        </configuration>
-</execution>
+          <execution>
+            <id>official</id>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath/>
+                <argument>io.mincongh.akka.official.AkkaQuickstart</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>game-of-throne</id>
+            <configuration>
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <classpath/>
+                <argument>io.mincongh.akka.got.GameOfThrone</argument>
+              </arguments>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
