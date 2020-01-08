@@ -3,6 +3,7 @@ package io.mincongh.akka;
 import akka.actor.*;
 import akka.testkit.TestActorRef;
 import akka.testkit.javadsl.TestKit;
+import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.After;
 import org.junit.Before;
@@ -31,6 +32,7 @@ public class TestActorRefTest {
       return receiveBuilder()
           .matchEquals("increment", msg -> value.incrementAndGet())
           .matchEquals("decrement", msg -> value.decrementAndGet())
+          .matchEquals("reply", msg -> sender().tell(value.get(), self()))
           .build();
     }
   }
@@ -49,10 +51,25 @@ public class TestActorRefTest {
   }
 
   @Test
+  public void normalReplyTesting() {
+    // Given an actor under test
+    Props props = Props.create(MyActor.class);
+    TestActorRef<MyActor> myActor = TestActorRef.create(system, props);
+    // And a test kit
+    TestKit probe = new TestKit(system);
+
+    // When asking for reply
+    myActor.tell("reply", probe.getRef());
+
+    // Then the reply is returned
+    probe.expectMsgEquals(Duration.ofSeconds(2), 0);
+  }
+
+  @Test
   public void increment() {
     // Given an actor under test
     Props props = Props.create(MyActor.class);
-    TestActorRef<MyActor> ref = TestActorRef.create(system, props, "myActor");
+    TestActorRef<MyActor> ref = TestActorRef.create(system, props);
 
     // When sending a "increment" message
     /*
@@ -69,7 +86,7 @@ public class TestActorRefTest {
   public void decrement() {
     // Given an actor under test
     Props props = Props.create(MyActor.class);
-    TestActorRef<MyActor> ref = TestActorRef.create(system, props, "myActor");
+    TestActorRef<MyActor> ref = TestActorRef.create(system, props);
     /*
      * Note: one common use case is setting up the actor into a
      * specific internal state before sending the test message.
