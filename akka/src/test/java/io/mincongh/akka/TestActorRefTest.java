@@ -19,7 +19,7 @@ import static org.junit.Assert.assertEquals;
  * friendly.
  *
  * @author Mincong Huang
- * @see <a href="https://doc.akka.io/docs/akka/current/testing.html>Testing Classic Actors</a>
+ * @see <a href="https://doc.akka.io/docs/akka/current/testing.html">Testing Classic Actors</a>
  */
 public class TestActorRefTest {
 
