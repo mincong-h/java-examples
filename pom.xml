@@ -64,6 +64,7 @@
     <module>jgit-http</module>
     <module>jmh</module>
     <module>json</module>
+    <module>logback</module>
     <module>maven</module>
     <module>mock-legacy</module>
     <module>mockito</module>

@@ -27,6 +27,7 @@ JGit | Basic usages of [JGit][jgit].
 JMH | Java Microbenchmark Harness (JMH).
 JSON | JSON conversion libraries in Java.
 JUnit | JUnit testing framework.
+Logback | [Logback](http://logback.qos.ch/) logging framework.
 Maven | Basic functionality of Maven.
 Mongo | The MongoDB database
 Mockito | [Mockito](https://site.mockito.org/), the most popular Mocking framework for Java unit tests
