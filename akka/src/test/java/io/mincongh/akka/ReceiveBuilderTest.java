@@ -24,8 +24,8 @@ public class ReceiveBuilderTest {
     @Override
     public Receive createReceive() {
       return receiveBuilder()
-          .match(String.class, s -> getSender().tell("String: " + s, ActorRef.noSender()))
-          .match(Integer.class, i -> getSender().tell("Integer: " + i, ActorRef.noSender()))
+          .match(String.class, s -> getSender().tell("String: " + s, self()))
+          .match(Integer.class, i -> getSender().tell("Integer: " + i, self()))
           .build();
     }
   }
@@ -40,5 +40,8 @@ public class ReceiveBuilderTest {
 
     myActor.tell(123, probe.getRef());
     probe.expectMsgEquals("Integer: 123");
+
+    myActor.tell(123L, probe.getRef());
+    probe.expectNoMessage();
   }
 }
