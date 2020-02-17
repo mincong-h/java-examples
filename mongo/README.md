@@ -45,6 +45,13 @@ Switch to database `test`:
 switched to db test
 ```
 
+Check the MongoDB version:
+
+```
+> db.version()
+4.0.0
+```
+
 ## Collections
 
 Show collections:
