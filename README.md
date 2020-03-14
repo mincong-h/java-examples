@@ -15,7 +15,6 @@ Module | Description
 Akka | Build highly concurrent, distributed, and resilient message-driven applications on the JVM <https://akka.io>
 AssertJ | [AssertJ][assertj] testing framework.
 Basic | Basic usage of Java core APIs.
-Byteman | [byteman][bm] changes expected Java behavior and JDK runtime code.
 CLI | [Apache Commons CLI][commons-cli].
 Date | Date manipulation using `java.util.*` and `java.time.*`.
 Elasticsearch | [Elasticsearch](https://github.com/elastic/elasticsearch): Open source, distributed, RESTful search engine
