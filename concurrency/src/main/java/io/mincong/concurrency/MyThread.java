@@ -1,4 +1,4 @@
-package io.mincongh.concurrency;
+package io.mincong.concurrency;
 
 import java.util.concurrent.CountDownLatch;
 

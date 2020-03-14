@@ -1,10 +1,10 @@
-package io.mincongh.concurrency;
-
-import static org.junit.Assert.assertEquals;
+package io.mincong.concurrency;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Mincong Huang
