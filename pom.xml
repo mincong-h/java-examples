@@ -16,7 +16,6 @@
     <!-- Dependency versions -->
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.13.2</assertjVersion>
-    <bytemanVersion>3.0.6</bytemanVersion>
     <commonsIoVersion>2.5</commonsIoVersion>
     <easymockVersion>3.4</easymockVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
@@ -49,7 +48,6 @@
   <modules>
     <module>akka</module>
     <module>basic</module>
-    <module>byteman</module>
     <module>cli</module>
     <module>concurrency</module>
     <module>date</module>
@@ -96,11 +94,6 @@
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-xml</artifactId>
         <version>${jacksonVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jboss.byteman</groupId>
-        <artifactId>byteman-bmunit</artifactId>
-        <version>${bytemanVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.json</groupId>
