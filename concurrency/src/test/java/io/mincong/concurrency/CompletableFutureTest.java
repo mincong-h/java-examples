@@ -1,6 +1,7 @@
 package io.mincong.concurrency;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.Test;
 
@@ -97,11 +98,12 @@ public class CompletableFutureTest {
     var future = new CompletableFuture<String>();
 
     submit(
-        () -> future.completeAsync(
-            () -> {
-              latch.countDown();
-              return "Hello, Java";
-            }));
+        () ->
+            future.completeAsync(
+                () -> {
+                  latch.countDown();
+                  return "Hello, Java";
+                }));
 
     latch.await(1, SECONDS);
     assertThat(future.get()).isEqualTo("Hello, Java");
@@ -227,6 +229,45 @@ public class CompletableFutureTest {
     assertThat(future1.get()).isEqualTo("Hello");
     assertThat(future2.get()).isEqualTo("Java");
     assertThat(future3.get()).isEqualTo("Hello, Java");
+  }
+
+  @Test
+  public void whenComplete() throws Exception {
+    var latch = new CountDownLatch(1);
+    var success1 = new AtomicInteger(0);
+    var failure1 = new AtomicInteger(0);
+    var success2 = new AtomicInteger(0);
+    var failure2 = new AtomicInteger(0);
+    var future1 = new CompletableFuture<String>();
+    var future2 = new CompletableFuture<String>();
+    future1.whenComplete(
+        (s, ex) -> {
+          if (ex == null) {
+            success1.incrementAndGet();
+          } else {
+            failure1.incrementAndGet();
+          }
+        });
+    future2.whenComplete(
+        (s, ex) -> {
+          if (ex == null) {
+            success2.incrementAndGet();
+          } else {
+            failure2.incrementAndGet();
+          }
+        });
+    submit(
+        () -> {
+          future1.complete("Hello, Java");
+          future2.completeExceptionally(new IllegalArgumentException());
+          latch.countDown();
+        });
+
+    latch.await(1, SECONDS);
+    assertThat(success1.get()).isEqualTo(1);
+    assertThat(success2.get()).isEqualTo(0);
+    assertThat(failure1.get()).isEqualTo(0);
+    assertThat(failure2.get()).isEqualTo(1);
   }
 
   /* ----- Utility ----- */
