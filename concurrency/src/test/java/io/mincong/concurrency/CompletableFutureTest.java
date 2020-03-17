@@ -2,7 +2,6 @@ package io.mincong.concurrency;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 import org.junit.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
@@ -92,7 +91,6 @@ public class CompletableFutureTest {
         () -> {
           future1.complete("Hello");
           future2.complete("Java");
-          return null;
         });
 
     assertThat(future1.get()).isEqualTo("Hello");
@@ -100,12 +98,12 @@ public class CompletableFutureTest {
     assertThat(future3.get()).isEqualTo("Hello, Java");
   }
 
-  private static void submit(Supplier<?> supplier) {
+  private static void submit(Runnable runnable) {
     Executors.newCachedThreadPool()
         .submit(
             () -> {
               Thread.sleep(100);
-              supplier.get();
+              runnable.run();
               return null;
             });
   }
