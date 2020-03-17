@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Mincong Huang
@@ -29,6 +28,29 @@ public class CompletableFutureTest {
     assertThat(future.get()).isEqualTo("Hello, Java");
   }
 
+  /* ----- exceptionally API ----- */
+
+  @Test
+  public void exceptionally() throws Exception {
+    var latch = new CountDownLatch(1);
+    var future1 = new CompletableFuture<String>();
+    var future2 = future1.exceptionally(ex -> "Enough Java for today");
+
+    submit(
+        () -> {
+          future1.completeExceptionally(new IllegalArgumentException());
+          latch.countDown();
+        });
+
+    latch.await(1, SECONDS);
+    assertThat(future1.isCompletedExceptionally()).isTrue();
+    assertThatThrownBy(future1::get).isInstanceOf(ExecutionException.class);
+    assertThat(future2.isCompletedExceptionally()).isFalse();
+    assertThat(future2.get()).isEqualTo("Enough Java for today");
+  }
+
+  /* ----- get API ----- */
+
   @Test
   public void get_successful() throws Exception {
     var future = new CompletableFuture<String>();
@@ -41,6 +63,8 @@ public class CompletableFutureTest {
     var future = new CompletableFuture<String>();
     assertThatThrownBy(() -> future.get(1, MILLISECONDS)).isInstanceOf(TimeoutException.class);
   }
+
+  /* ----- then{Action} APIs ----- */
 
   @Test
   public void thenAccept() throws Exception {
@@ -125,6 +149,8 @@ public class CompletableFutureTest {
     assertThat(future2.get()).isEqualTo("Java");
     assertThat(future3.get()).isEqualTo("Hello, Java");
   }
+
+  /* ----- Utility ----- */
 
   private static void submit(Runnable runnable) {
     Executors.newCachedThreadPool()
