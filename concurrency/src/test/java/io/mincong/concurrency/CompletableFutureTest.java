@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 /**
  * @author Mincong Huang
  * @see java.util.concurrent.CompletableFuture
+ * @see java.util.concurrent.CompletionStage
  */
 public class CompletableFutureTest {
 
