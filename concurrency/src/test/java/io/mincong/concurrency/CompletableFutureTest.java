@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author Mincong Huang
@@ -15,10 +16,42 @@ import static org.assertj.core.api.Assertions.*;
  */
 public class CompletableFutureTest {
 
+  /*
+   * ----- Completed API -----
+   *
+   * Factory methods used for creating a completed completable future
+   * or stage:
+   *   - Success: completed{Future,Stage}
+   *   - Failure: failed{Future,Stage}
+   */
+
   @Test
-  public void create_completedFuture() throws Exception {
+  public void completedFuture() throws Exception {
     var future = CompletableFuture.completedFuture("Hello, Java");
     assertThat(future.get()).isEqualTo("Hello, Java");
+    assertThat(future.isCompletedExceptionally()).isFalse();
+  }
+
+  @Test
+  public void completedStage() throws Exception {
+    var future = CompletableFuture.completedStage("Hello, Java").toCompletableFuture();
+    assertThat(future.get()).isEqualTo("Hello, Java");
+    assertThat(future.isCompletedExceptionally()).isFalse();
+  }
+
+  @Test
+  public void failedFuture() {
+    var future = CompletableFuture.failedFuture(new IllegalArgumentException());
+    assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
+    assertThat(future.isCompletedExceptionally()).isTrue();
+  }
+
+  @Test
+  public void failedStage() {
+    var future =
+        CompletableFuture.failedStage(new IllegalArgumentException()).toCompletableFuture();
+    assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
+    assertThat(future.isCompletedExceptionally()).isTrue();
   }
 
   @Test
