@@ -60,6 +60,33 @@ public class CompletableFutureTest {
   }
 
   @Test
+  public void thenAcceptBoth() throws Exception {
+    var latch = new CountDownLatch(1);
+    var sentence = new AtomicReference<String>();
+    var future1 = new CompletableFuture<String>();
+    var future2 = new CompletableFuture<String>();
+    var future3 =
+        future1.thenAcceptBoth(
+            future2,
+            (prefix, language) -> {
+              sentence.set(prefix + ", " + language);
+              latch.countDown();
+            });
+
+    submit(
+        () -> {
+          future1.complete("Hello");
+          future2.complete("Java");
+        });
+
+    latch.await(1, SECONDS);
+    assertThat(future1.get()).isEqualTo("Hello");
+    assertThat(future2.get()).isEqualTo("Java");
+    assertThat(future3.get()).isNull();
+    assertThat(sentence.get()).isEqualTo("Hello, Java");
+  }
+
+  @Test
   public void thenApply() throws Exception {
     var future1 = new CompletableFuture<String>();
     var future2 = future1.thenApply(s -> "Hello, " + s);
