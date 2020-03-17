@@ -28,6 +28,7 @@ public class CompletableFutureTest {
   @Test
   public void completedFuture() throws Exception {
     var future = CompletableFuture.completedFuture("Hello, Java");
+    assertThat(future.isDone()).isTrue();
     assertThat(future.get()).isEqualTo("Hello, Java");
     assertThat(future.isCompletedExceptionally()).isFalse();
   }
@@ -35,6 +36,7 @@ public class CompletableFutureTest {
   @Test
   public void completedStage() throws Exception {
     var future = CompletableFuture.completedStage("Hello, Java").toCompletableFuture();
+    assertThat(future.isDone()).isTrue();
     assertThat(future.get()).isEqualTo("Hello, Java");
     assertThat(future.isCompletedExceptionally()).isFalse();
   }
@@ -42,6 +44,7 @@ public class CompletableFutureTest {
   @Test
   public void failedFuture() {
     var future = CompletableFuture.failedFuture(new IllegalArgumentException());
+    assertThat(future.isDone()).isTrue();
     assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
     assertThat(future.isCompletedExceptionally()).isTrue();
   }
@@ -50,14 +53,57 @@ public class CompletableFutureTest {
   public void failedStage() {
     var future =
         CompletableFuture.failedStage(new IllegalArgumentException()).toCompletableFuture();
+    assertThat(future.isDone()).isTrue();
     assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
     assertThat(future.isCompletedExceptionally()).isTrue();
   }
 
+  /* ----- Complete APIs ----- */
+
   @Test
-  public void create_newFuture() throws Exception {
+  public void complete() throws Exception {
+    var latch = new CountDownLatch(1);
     var future = new CompletableFuture<String>();
-    submit(() -> future.complete("Hello, Java"));
+
+    submit(
+        () -> {
+          future.complete("Hello, Java");
+          latch.countDown();
+        });
+
+    latch.await(1, SECONDS);
+    assertThat(future.get()).isEqualTo("Hello, Java");
+  }
+
+  @Test
+  public void completeExceptionally() throws Exception {
+    var latch = new CountDownLatch(1);
+    var future = new CompletableFuture<String>();
+
+    submit(
+        () -> {
+          future.completeExceptionally(new IllegalArgumentException());
+          latch.countDown();
+        });
+
+    latch.await(1, SECONDS);
+    assertThat(future.isCompletedExceptionally()).isTrue();
+    assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
+  }
+
+  @Test
+  public void completeAsync() throws Exception {
+    var latch = new CountDownLatch(1);
+    var future = new CompletableFuture<String>();
+
+    submit(
+        () -> future.completeAsync(
+            () -> {
+              latch.countDown();
+              return "Hello, Java";
+            }));
+
+    latch.await(1, SECONDS);
     assertThat(future.get()).isEqualTo("Hello, Java");
   }
 
