@@ -3,12 +3,7 @@ jdk:
   - openjdk11
   - openjdk14
 script:
-  - mvn clean verify -Psonar
-addons:
-  sonarcloud:
-    organization: 'mincong-h-github'
-    token: $SONAR_TOKEN
+  - mvn clean verify
 cache:
   directories:
     - '$HOME/.m2/repository'
-    - '$HOME/.sonar/cache'
