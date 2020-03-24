@@ -130,6 +130,26 @@ public class CompletableFutureTest {
     assertThat(future2.get()).isEqualTo("Enough Java for today");
   }
 
+  /* ----- handle APIs ----- */
+
+  @Test
+  public void handle() {
+    var future =
+        CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
+            .handle((str, ex) -> ex == null ? str : ex.getMessage())
+            .toCompletableFuture();
+    assertThat(future.join()).isEqualTo("Oops");
+  }
+
+  @Test
+  public void handleAsync() {
+    var future =
+        CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
+            .handleAsync((str, ex) -> ex == null ? str : ex.getMessage())
+            .toCompletableFuture();
+    assertThat(future.join()).isEqualTo("Oops");
+  }
+
   /* ----- get API ----- */
 
   @Test
