@@ -1,6 +1,36 @@
 # MongoDB
 
-## MongoDB Shell
+## Installation
+
+### Docker
+
+Start the MongoDB Docker image via Docker:
+
+```
+$ docker run --rm --name mongo-demos --detach -p 27017:27017 mongo:3.6
+```
+
+Don't forget to stop it when you finish:
+
+```
+$ docker stop mongo-demos
+```
+
+### Maven
+
+Start the MongoDB docker image via Maven:
+
+```
+$ mvn docker:start
+```
+
+Don't forget the stop it once finished:
+
+```
+$ mvn docker:stop
+```
+
+## Mongo Shell
 
 Install MongoDB Shell on macOS:
 
@@ -9,24 +39,10 @@ $ brew tap mongodb/brew
 $ brew install mongodb-community-shell
 ```
 
-Connect to MongoDB Shell:
+Connect to MongoDB via Mongo Shell:
 
 ```
 $ mongo
-```
-
-## Quickstart
-
-Start the MongoDB docker image:
-
-```
-mvn docker:start
-```
-
-Don't forget the stop it once finished:
-
-```
-mvn docker:stop
 ```
 
 Once connected to MongDB via MongDB Shell, you can perform the following commands.
