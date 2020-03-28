@@ -16,9 +16,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-// https://mongodb.github.io/mongo-java-driver/4.0/driver/tutorials/databases-collections/
-public class MongoFindTest {
-  @Rule public FongoRule fongo = new FongoRule();
+public class FindFongoTest {
+  @Rule public FongoRule fongo = new FongoRule(isRealMongo());
+
+  protected boolean isRealMongo() {
+    return false;
+  }
 
   private MongoCollection<BasicDBObject> collection;
   private BasicDBObject foo = new BasicDBObject(Map.of("name", "Foo", "age", 20));
