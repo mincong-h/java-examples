@@ -71,6 +71,6 @@ public class MongoViewIT extends AbstractMongoIT {
     db.createView("view", collectionName(), Collections.<BsonDocument>emptyList());
 
     MongoCollection<Document> users = db.getCollection(collectionName());
-    assertThat(users.countDocuments()).isEqualTo(6);
+    assertThat(users.count()).isEqualTo(6);
   }
 }

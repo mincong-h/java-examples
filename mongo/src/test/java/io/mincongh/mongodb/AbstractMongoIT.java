@@ -1,7 +1,6 @@
 package io.mincongh.mongodb;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+import com.mongodb.MongoClient;
 import org.junit.After;
 import org.junit.Before;
 
@@ -15,7 +14,7 @@ public abstract class AbstractMongoIT {
 
   @Before
   public void setUp() {
-    client = MongoClients.create("mongodb://localhost:27017");
+    client = new MongoClient("localhost:27017");
   }
 
   @After
