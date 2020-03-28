@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public abstract class FindAbstractTest {
+public abstract class FindAbstractIT {
   @Rule public FongoRule fongo = new FongoRule(isRealMongo());
 
   protected abstract boolean isRealMongo();

@@ -1,9 +1,10 @@
 package io.mincongh.mongodb;
 
-public class FindMongoTest extends FindAbstractTest {
+public class FindFongoIT extends FindAbstractIT {
 
   @Override
   protected boolean isRealMongo() {
-    return true;
+    return false;
   }
+
 }
