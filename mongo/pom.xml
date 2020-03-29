@@ -13,15 +13,24 @@
   <name>Java Examples - MongoDB</name>
 
   <properties>
+    <fongoVersion>2.2.0-RC2</fongoVersion>
+    <logbackVersion>1.2.3</logbackVersion>
     <mongoVersion>3.6</mongoVersion>
-    <mongoDriverVersion>3.11.2</mongoDriverVersion>
+    <mongoDriverVersion>3.6.2</mongoDriverVersion>
+    <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
   <dependencies>
     <!-- test -->
     <dependency>
+      <groupId>com.github.fakemongo</groupId>
+      <artifactId>fongo</artifactId>
+      <version>${fongoVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.mongodb</groupId>
-      <artifactId>mongodb-driver-sync</artifactId>
+      <artifactId>mongo-java-driver</artifactId>
       <version>${mongoDriverVersion}</version>
       <scope>test</scope>
     </dependency>
@@ -40,6 +49,21 @@
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logbackVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logbackVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4jVersion}</version>
     </dependency>
   </dependencies>
 
