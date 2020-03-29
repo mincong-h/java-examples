@@ -17,6 +17,7 @@
     <logbackVersion>1.2.3</logbackVersion>
     <mongoVersion>3.6</mongoVersion>
     <mongoDriverVersion>3.6.2</mongoDriverVersion>
+    <mongoJavaServerVersion>1.26.0</mongoJavaServerVersion>
     <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
@@ -26,6 +27,12 @@
       <groupId>com.github.fakemongo</groupId>
       <artifactId>fongo</artifactId>
       <version>${fongoVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.bwaldvogel</groupId>
+      <artifactId>mongo-java-server</artifactId>
+      <version>${mongoJavaServerVersion}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -54,11 +61,13 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>${logbackVersion}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>${logbackVersion}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

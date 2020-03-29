@@ -1,12 +1,12 @@
 package io.mincongh.mongodb;
 
-import com.github.fakemongo.junit.FongoRule;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.util.List;
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,17 +17,27 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  */
 public abstract class FindAbstractIT {
-  @Rule public FongoRule fongo = new FongoRule(isRealMongo());
-
-  protected abstract boolean isRealMongo();
 
   private MongoCollection<BasicDBObject> collection;
 
+  protected abstract MongoDatabase database();
+
+  protected void preSetup() {}
+
+  protected void postTeardown() {}
+
   @Before
   public void setUp() {
-    var db = fongo.getDatabase();
+    preSetup();
+
+    var db = database();
     db.createCollection("users");
     collection = db.getCollection("users", BasicDBObject.class);
+  }
+
+  @After
+  public void tearDown() {
+    postTeardown();
   }
 
   @Test
