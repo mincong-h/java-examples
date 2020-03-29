@@ -1,16 +1,15 @@
 package io.mincongh.mongodb;
 
-import com.github.fakemongo.junit.FongoRule;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.util.List;
 import org.junit.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.assumeThat;
 
 /**
  * Test "update" operation in MongoDB.
@@ -18,9 +17,12 @@ import static org.assertj.core.api.Assumptions.assumeThat;
  * @author Mincong Huang
  */
 public abstract class UpdateAbstractIT {
-  @Rule public FongoRule fongo = new FongoRule(isRealMongo());
 
-  protected abstract boolean isRealMongo();
+  protected abstract MongoDatabase database();
+
+  protected void preSetup() {}
+
+  protected void postTeardown() {}
 
   private MongoCollection<BasicDBObject> collection;
 
@@ -30,13 +32,20 @@ public abstract class UpdateAbstractIT {
 
   @Before
   public void setUp() {
-    var db = fongo.getDatabase();
+    preSetup();
+
+    var db = database();
     db.createCollection("users");
     collection = db.getCollection("users", BasicDBObject.class);
 
     foo = parse("{'name':'Foo', 'exams':[{'type':'C1', score:58}, {'type':'C1', score:80}]}");
     bar = parse("{'name':'Bar', 'exams':[{'type':'B1', score:83}, {'type':'B2', score:85}]}");
     collection.insertMany(List.of(foo, bar));
+  }
+
+  @After
+  public void teadDown() {
+    postTeardown();
   }
 
   @Test
@@ -99,9 +108,6 @@ public abstract class UpdateAbstractIT {
    */
   @Test
   public void update_elemMatch_element() {
-    // bug: disable in Fongo
-    assumeThat(isRealMongo()).isTrue();
-
     // When updating the user having exam score under 60 to 60
     var elemFilter = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
     var filter = Filters.elemMatch("exams", elemFilter);
