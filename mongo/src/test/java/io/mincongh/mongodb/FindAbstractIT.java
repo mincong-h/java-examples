@@ -49,6 +49,9 @@ public abstract class FindAbstractIT {
     var f = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
     var results = collection.find(Filters.elemMatch("exams", f));
     assertThat(results).containsExactly(foo);
+
+    var results2 = collection.find(Filters.elemMatch("exams", Filters.gt("score", 60)));
+    assertThat(results2).containsExactly(foo, bar);
   }
 
   private BasicDBObject parse(String json) {
