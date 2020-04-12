@@ -55,6 +55,7 @@
     <module>date</module>
     <module>encoding</module>
     <module>hashcode</module>
+    <module>immutables</module>
     <module>io</module>
     <module>jackson</module>
     <module>java8</module>
