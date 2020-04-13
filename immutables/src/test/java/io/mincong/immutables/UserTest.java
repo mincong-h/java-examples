@@ -37,6 +37,20 @@ public class UserTest {
   }
 
   @Test
+  public void itCanAddItermsUsingBuilder() {
+    var user =
+        User.builder()
+            .name("Tom")
+            .addEmails("tom@foo.com", "tom@bar.com")
+            .description("Welcome to Immutables")
+            .build();
+
+    assertThat(user.name()).isEqualTo("Tom");
+    assertThat(user.emails()).containsExactly("tom@foo.com", "tom@bar.com");
+    assertThat(user.description()).hasValue("Welcome to Immutables");
+  }
+
+  @Test
   public void itCanGenerateHashCode() {
     var user1 =
         User.builder()
