@@ -113,7 +113,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanCreateNewObjectFromExisting() {
+  public void itCanCreateNewObjectFromExistingViaWith() {
     var user1 =
         User.builder()
             .name("Tom")
@@ -121,6 +121,21 @@ public class UserTest {
             .description("Welcome to Immutables")
             .build();
     var user2 = user1.withName("Thomas");
+
+    assertThat(user2.name()).isEqualTo("Thomas");
+    assertThat(user2.description()).hasValue("Welcome to Immutables");
+    assertThat(user2.emails()).containsExactly("tom@foo.com", "tom@bar.com");
+  }
+
+  @Test
+  public void itCanCreateNewObjectFromExistingViaBuilder() {
+    var user1 =
+        User.builder()
+            .name("Tom")
+            .emails(List.of("tom@foo.com", "tom@bar.com"))
+            .description("Welcome to Immutables")
+            .build();
+    var user2 = ImmutableUser.builder().from(user1).name("Thomas").build();
 
     assertThat(user2.name()).isEqualTo("Thomas");
     assertThat(user2.description()).hasValue("Welcome to Immutables");
