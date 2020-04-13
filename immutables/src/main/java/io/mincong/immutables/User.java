@@ -10,16 +10,16 @@ import org.immutables.value.Value;
  * @author Mincong Huang
  */
 @Value.Immutable
-public abstract class User {
+public interface User {
 
-  public static ImmutableUser.Builder builder() {
+  static ImmutableUser.Builder builder() {
     return ImmutableUser.builder();
   }
 
-  public abstract String name();
+  String name();
 
-  public abstract Set<String> emails();
+  Set<String> emails();
 
-  public abstract Optional<String> description();
+  Optional<String> description();
 
 }
