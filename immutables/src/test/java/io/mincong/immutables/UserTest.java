@@ -9,6 +9,20 @@ import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 public class UserTest {
 
   @Test
+  public void itCanCreateUserUsingImmutableBuilder() {
+    var user =
+        ImmutableUser.builder()
+            .name("Tom")
+            .emails(List.of("tom@foo.com", "tom@bar.com"))
+            .description("Welcome to Immutables")
+            .build();
+
+    assertThat(user.name()).isEqualTo("Tom");
+    assertThat(user.emails()).containsExactly("tom@foo.com", "tom@bar.com");
+    assertThat(user.description()).hasValue("Welcome to Immutables");
+  }
+
+  @Test
   public void itCanCreateUserUsingBuilder() {
     var user =
         User.builder()
