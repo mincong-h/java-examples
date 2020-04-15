@@ -7,8 +7,7 @@ import org.junit.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Mincong Huang
@@ -288,6 +287,32 @@ public class CompletableFutureTest {
     assertThat(success2.get()).isEqualTo(0);
     assertThat(failure1.get()).isEqualTo(0);
     assertThat(failure2.get()).isEqualTo(1);
+  }
+
+  /* ----- Multiple Futures ----- */
+
+  @Test
+  public void allOf_failed() {
+    var f1 = CompletableFuture.completedFuture("F1");
+    var f2 = CompletableFuture.failedFuture(new IllegalStateException("F2"));
+    var f3 = CompletableFuture.failedFuture(new IllegalStateException("F3"));
+    var futures = CompletableFuture.allOf(f1, f2, f3);
+    assertThat(futures.isDone()).isTrue();
+    assertThat(futures.isCompletedExceptionally()).isTrue();
+    assertThatExceptionOfType(ExecutionException.class)
+        .isThrownBy(futures::get)
+        .withCauseInstanceOf(IllegalStateException.class)
+        .withMessageContaining("F2");
+  }
+
+  @Test
+  public void allOf_succeed() throws Exception {
+    var f1 = CompletableFuture.completedFuture("F1");
+    var f2 = CompletableFuture.completedFuture("F2");
+    var futures = CompletableFuture.allOf(f1, f2);
+    assertThat(futures.isDone()).isTrue();
+    assertThat(futures.isCompletedExceptionally()).isFalse();
+    assertThat(futures.get()).isNull();
   }
 
   /* ----- Utility ----- */
