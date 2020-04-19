@@ -3,25 +3,22 @@ package io.mincongh.io;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Mincong Huang
  * @since 1.0
  */
 public class UnzipCommandTest {
-  @Rule public TemporaryFolder tempDir = new TemporaryFolder();
-  private Path targetDir;
+  @TempDir Path targetDir;
   private Path sourceZip;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
-    targetDir = tempDir.getRoot().toPath();
     sourceZip = Paths.get(this.getClass().getResource("/zip/project.zip").toURI());
   }
 
@@ -40,29 +37,38 @@ public class UnzipCommandTest {
     assertThat(Files.readAllLines(file2)).containsExactly("line1", "line2");
   }
 
-  @Test(expected = NullPointerException.class)
+  @Test
   public void sourceOnly() {
-    UnzipCommand.newBuilder() //
-        .sourceZip(sourceZip)
-        .build();
+    assertThatNullPointerException()
+        .isThrownBy(
+            () ->
+                UnzipCommand.newBuilder() //
+                    .sourceZip(sourceZip)
+                    .build());
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void byteSizeNegative() {
-    UnzipCommand.newBuilder() //
-        .sourceZip(sourceZip)
-        .targetDir(targetDir)
-        .bufferSize(-1)
-        .build();
+    assertThatIllegalArgumentException()
+        .isThrownBy(
+            () ->
+                UnzipCommand.newBuilder()
+                    .sourceZip(sourceZip)
+                    .targetDir(targetDir)
+                    .bufferSize(-1)
+                    .build());
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void byteSizeZero() {
-    UnzipCommand.newBuilder() //
-        .sourceZip(sourceZip)
-        .targetDir(targetDir)
-        .bufferSize(0)
-        .build();
+    assertThatIllegalArgumentException()
+        .isThrownBy(
+            () ->
+                UnzipCommand.newBuilder()
+                    .sourceZip(sourceZip)
+                    .targetDir(targetDir)
+                    .bufferSize(0)
+                    .build());
   }
 
   @Test
