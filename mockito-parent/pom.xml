@@ -10,7 +10,11 @@
   <packaging>pom</packaging>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>mockito-parent</artifactId>
+  <artifactId>java-examples-mockito-parent</artifactId>
   <name>Java Examples - Mockito</name>
+
+  <modules>
+    <module>mockito-junit4</module>
+  </modules>
 
 </project>
