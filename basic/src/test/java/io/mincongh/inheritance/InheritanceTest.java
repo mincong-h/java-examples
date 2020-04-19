@@ -1,27 +1,25 @@
 package io.mincongh.inheritance;
 
-import static org.junit.Assert.assertEquals;
-
+import io.mincongh.inheritance2.OuterChild;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import io.mincongh.inheritance2.OuterChild;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Inheritance test.
  *
  * @author Mincong Huang
  */
-public class InheritanceTest {
+class InheritanceTest {
 
   private final ByteArrayOutputStream out = new ByteArrayOutputStream();
   private final ByteArrayOutputStream err = new ByteArrayOutputStream();
 
-  @Before
+  @BeforeEach
   public void setUpStreams() {
     System.setOut(new PrintStream(out));
     System.setErr(new PrintStream(err));
@@ -32,10 +30,12 @@ public class InheritanceTest {
     @SuppressWarnings("unused")
     Parent parent = new Child();
     String expected = String.format("%s%n%s%n", "Parent", "Child");
-    assertEquals("Parent's constructor is called first", expected, out.toString());
+    assertEquals(expected, out.toString(), "Parent's constructor is called first");
   }
 
   /**
+   *
+   *
    * <pre>
    * Modifier    Class Package Subclass World
    * ----------------------------------------
@@ -47,7 +47,6 @@ public class InheritanceTest {
    */
   @Test
   public void testVisibility() {
-
     Parent parent = new Parent();
     // Modifiers are accessible except the private modifier.
     assertEquals("parent no modifier", parent.noModifierAttr);
@@ -80,10 +79,9 @@ public class InheritanceTest {
     assertEquals("parent no modifier", ((Parent) outerChild).noModifierAttr);
     assertEquals("parent protected", ((Parent) outerChild).protectedAttr);
     assertEquals("parent public", ((Parent) outerChild).publicAttr);
-
   }
 
-  @After
+  @AfterEach
   public void cleanUpStreams() {
     System.setOut(null);
     System.setErr(null);

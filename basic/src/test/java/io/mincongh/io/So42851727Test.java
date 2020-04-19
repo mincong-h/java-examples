@@ -2,10 +2,11 @@ package io.mincongh.io;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,13 +15,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So42851727Test {
+class So42851727Test {
 
-  @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
+  @TempDir Path tempDir;
 
   @Test
-  public void testDeleteDirectoryIfExists() throws IOException {
-    File myDir = temporaryFolder.newFolder("myDir");
+  void testDeleteDirectoryIfExists() throws IOException {
+    File myDir = Files.createDirectory(tempDir.resolve("myDir")).toFile();
     assertThat(myDir).exists();
     deleteDirectory(myDir);
     assertThat(myDir).doesNotExist();

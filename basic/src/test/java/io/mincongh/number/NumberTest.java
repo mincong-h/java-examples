@@ -1,16 +1,16 @@
 package io.mincongh.number;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** @author Mincong Huang */
-public class NumberTest {
+class NumberTest {
 
   @Test
   @SuppressWarnings("squid:S3415")
-  public void testUnderscore() {
+  void testUnderscore() {
     assertEquals(10, 1_0);
     assertEquals(1000, 1_000);
     assertEquals(1000000, 1_000_000);
@@ -20,7 +20,7 @@ public class NumberTest {
   /* --- IEEE Standard for Floating-Point Arithmetic (IEEE 754) --- */
 
   @Test
-  public void float_IEEE_754() {
+  void float_IEEE_754() {
     // Long#toBinaryString(float)
     assertThat(Integer.toBinaryString(Float.floatToIntBits(0.1f))) //
         .isEqualTo("111101110011001100110011001101");
@@ -43,7 +43,7 @@ public class NumberTest {
   }
 
   @Test
-  public void double_IEEE_754() {
+  void double_IEEE_754() {
     // Long#toBinaryString(double)
     assertThat(Long.toBinaryString(Double.doubleToLongBits(0.1d))) //
         .isEqualTo("11111110111001100110011001100110011001100110011001100110011010");

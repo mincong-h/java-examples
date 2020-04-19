@@ -1,25 +1,22 @@
 package io.mincongh.collection;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ListIterator;
-import org.junit.Before;
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
  */
-public class So46518241Test {
+class So46518241Test {
 
   private List<String> storedUrlList;
 
   private List<UrlClass> urlClasses;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     storedUrlList = Arrays.asList("A", "B", "E");
 
     urlClasses = new ArrayList<>();
@@ -31,7 +28,7 @@ public class So46518241Test {
   }
 
   @Test
-  public void removeMatched_java7() throws Exception {
+  void removeMatched_java7() throws Exception {
     ListIterator<UrlClass> iterator = urlClasses.listIterator();
     while (iterator.hasNext()) {
       UrlClass u = iterator.next();
@@ -43,7 +40,7 @@ public class So46518241Test {
   }
 
   @Test
-  public void removeMatched_java8() throws Exception {
+  void removeMatched_java8() throws Exception {
     urlClasses.removeIf(u -> storedUrlList.contains(u.getUrl()));
     assertThat(urlClasses).containsExactly(new UrlClass("C"), new UrlClass("D"));
   }

@@ -1,16 +1,16 @@
 package io.mincongh.clone;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This test aims to assert the behavior of {@code clone()} in different situations.
  *
  * @author Mincong Huang
  */
-public class CloneTest {
+class CloneTest {
 
   /**
    * Test the difference-by-reference between {@code array} & {@code clone}. Test the

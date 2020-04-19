@@ -3,7 +3,7 @@ package io.mincongh.map;
 import java.util.Comparator;
 import java.util.NavigableMap;
 import java.util.TreeMap;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,10 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50616806Test {
+class So50616806Test {
 
   @Test
-  public void name() {
+  void name() {
     Comparator<String> comparator =
         Comparator.comparing((String key) -> key.split("#")[0]) //
             .thenComparingLong(key -> Long.parseLong(key.split("#")[1]));

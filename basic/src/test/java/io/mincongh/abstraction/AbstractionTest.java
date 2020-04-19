@@ -1,18 +1,18 @@
 package io.mincongh.abstraction;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Abstraction test.
  *
  * @author Mincong Huang
  */
-public class AbstractionTest {
+class AbstractionTest {
 
   @Test
-  public void testAbstraction() {
+  void testAbstraction() {
     AbstractAnimal animal = new Dog();
     assertEquals("Abstract method implemented by Dog.", animal.abstractMethod());
     assertEquals("Implemented by Dog.", animal.implementedMethod());
@@ -20,7 +20,7 @@ public class AbstractionTest {
   }
 
   @Test
-  public void testDog() {
+  void testDog() {
     Dog dog = new Dog();
     assertEquals("Abstract method implemented by Dog.", dog.abstractMethod());
     assertEquals("Implemented by Dog.", dog.implementedMethod());

@@ -2,8 +2,8 @@ package io.mincongh.collection;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Stack Overflow:
  * @author Mincong Huang
  */
-public class So50675537Test {
+class So50675537Test {
 
   private Queue<String> queue;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     queue = new LinkedList<>();
     queue.add("A");
     queue.add("B");
@@ -24,7 +24,7 @@ public class So50675537Test {
   }
 
   @Test
-  public void notSolution() {
+  void notSolution() {
     StringBuilder sb = new StringBuilder();
     queue.forEach(sb::append);
     assertThat(sb.toString()).isEqualTo("ABC");
