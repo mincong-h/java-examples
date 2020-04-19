@@ -7,7 +7,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  * @since 1.0
  */
-public class BlogTest {
+class BlogTest {
 
   @Test
-  public void createOptions() {
+  void createOptions() {
     Options options = newOptions();
 
     assertThat(options.hasOption("v")).isTrue();
@@ -43,7 +43,7 @@ public class BlogTest {
   }
 
   @Test
-  public void parseCommandLineArguments() {
+  void parseCommandLineArguments() {
     Options options = newOptions();
 
     // Parse Arguments
@@ -77,7 +77,7 @@ public class BlogTest {
   }
 
   @Test
-  public void usageAndHelp() {
+  void usageAndHelp() {
     // Print usage and help
     HelpFormatter formatter = new HelpFormatter();
     formatter.printHelp("cmd", newOptions());

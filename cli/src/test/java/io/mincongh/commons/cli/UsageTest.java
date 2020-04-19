@@ -1,11 +1,7 @@
 package io.mincongh.commons.cli;
 
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.junit.Test;
+import org.apache.commons.cli.*;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @since 1.0
  * @see <a href="http://commons.apache.org/proper/commons-cli/usage.html">Apache Commons CLI</a>
  */
-public class UsageTest {
+class UsageTest {
 
   /** Section: "Create the Options" */
   @Test
-  public void createTheOptions() {
+  void createTheOptions() {
     // create Options object
     Options options = new Options();
 
@@ -33,7 +29,7 @@ public class UsageTest {
 
   /** Section: "Parsing the command line arguments" */
   @Test
-  public void parseCommandLineArguments() throws Exception {
+  void parseCommandLineArguments() throws Exception {
     Options options = new Options();
     options.addOption("t", "display time");
     String[] args = {"-t", "123"};
@@ -45,7 +41,7 @@ public class UsageTest {
 
   /** Section: "Argument Options" */
   @Test
-  public void argumentOptions() {
+  void argumentOptions() {
     Option logfile =
         Option.builder("logfile") //
             .hasArg()
