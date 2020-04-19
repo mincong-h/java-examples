@@ -8,10 +8,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,10 +20,8 @@ import org.w3c.dom.NodeList;
  *
  * @author Mincong Huang
  */
-@Ignore("Only for demo")
+@Disabled("Only for demo")
 public class So50679068Test {
-
-  @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   @Test
   public void xml() throws Exception {
@@ -43,9 +40,9 @@ public class So50679068Test {
   }
 
   @Test
-  public void file() throws Exception {
+  public void file(@TempDir Path root) throws Exception {
     URL url = new URL("https://raw.githubusercontent.com/mincong-h/java-examples/master/pom.xml");
-    Path xml = temporaryFolder.getRoot().toPath().resolve("pom.xml");
+    Path xml = root.resolve("pom.xml");
     try (InputStream stream = url.openStream()) {
       Files.copy(stream, xml);
     }

@@ -4,13 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -22,13 +22,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
  */
 public class So51007853Test {
 
-  @Rule public TemporaryFolder tempFolder = new TemporaryFolder();
-
   private File xmlFile;
 
-  @Before
-  public void setUp() throws Exception {
-    xmlFile = tempFolder.newFile("my.xml");
+  @BeforeEach
+  public void setUp(@TempDir Path root) throws Exception {
+    xmlFile = Files.createFile(root.resolve("my.xml")).toFile();
     String[] lines = {
       "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>",
       "<TccSubscriptionData xmlns=\"tcc.generated.interfaces.com\">",

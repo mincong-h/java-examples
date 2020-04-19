@@ -12,8 +12,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50642403Test {
+class So50642403Test {
 
   private static final String XML1 =
       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -53,8 +53,8 @@ public class So50642403Test {
   private Document doc1;
   private Document doc2;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     try (InputStream in = new ByteArrayInputStream(XML1.getBytes(StandardCharsets.UTF_8))) {
       doc1 = factory.newDocumentBuilder().parse(in);
@@ -65,7 +65,7 @@ public class So50642403Test {
   }
 
   @Test
-  public void name() throws Exception {
+  void name() throws Exception {
     XPath xpath = XPathFactory.newInstance().newXPath();
     Node e1 = (Node) xpath.evaluate("//expandedData[@attr1='case1']", doc1, NODE);
     Node e2 = (Node) xpath.evaluate("//expandedData[@attr4='value4']", doc2, NODE);

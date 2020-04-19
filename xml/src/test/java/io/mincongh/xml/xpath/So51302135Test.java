@@ -5,12 +5,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.junit.Before;
-import org.junit.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.w3c.dom.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So51302135Test {
+class So51302135Test {
 
   private static final String XML =
       "<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n"
@@ -38,8 +35,8 @@ public class So51302135Test {
 
   private Document document;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
@@ -48,7 +45,7 @@ public class So51302135Test {
   }
 
   @Test
-  public void addAttrElement() {
+  void addAttrElement() {
     NodeList planViews = document.getElementsByTagName("planView");
 
     int count = 0;

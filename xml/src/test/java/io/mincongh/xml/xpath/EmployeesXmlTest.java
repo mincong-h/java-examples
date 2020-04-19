@@ -1,29 +1,26 @@
 package io.mincongh.xml.xpath;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
  * @see <a href="http://viralpatel.net/blogs/java-xml-xpath-tutorial-parse-xml/"> Java XPath
  * Tutorial: How to Parse XML File using XPath in Java</a>
  */
-public class EmployeesXmlTest {
+class EmployeesXmlTest {
 
   private static final String XML = "<?xml version=\"1.0\"?>\n"
       + "<employees>\n"
@@ -57,8 +54,8 @@ public class EmployeesXmlTest {
 
   private XPath xPath;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
@@ -68,7 +65,7 @@ public class EmployeesXmlTest {
   }
 
   @Test
-  public void getFirstName() throws Exception {
+  void getFirstName() throws Exception {
     /*
      * `/employees/employee/first-name` selects all the `first-name`
      * elements in the same document as the context node that have an
@@ -86,7 +83,7 @@ public class EmployeesXmlTest {
   }
 
   @Test
-  public void getEmployeeId() throws Exception {
+  void getEmployeeId() throws Exception {
     /*
      * `@id` selects the `id` attribute of the context node.
      */

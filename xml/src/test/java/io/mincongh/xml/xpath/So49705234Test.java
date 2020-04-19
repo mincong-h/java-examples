@@ -5,28 +5,19 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Test;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.Test;
+import org.w3c.dom.*;
 
 /**
  * Stack Overflow: XML API or open source jar for extract a subset of XML based on a given path
  *
  * @author Mincong Huang
  */
-public class So49705234Test {
+class So49705234Test {
 
   private static final String XML =
       "<?xml version=\"1.0\"?>\n"
@@ -52,7 +43,7 @@ public class So49705234Test {
           + "</data>";
 
   @Test
-  public void getSubset() throws Exception {
+  void getSubset() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     Document source;
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
