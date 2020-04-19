@@ -5,26 +5,26 @@ import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigMemorySize;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ConfigTest {
+class ConfigTest {
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     System.setProperty("demo.sys", "definedBySystemProperty");
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     System.clearProperty("demo.sys");
   }
 
   @Test
-  public void itShouldLoadConfig() {
+  void itShouldLoadConfig() {
     Config config = ConfigFactory.load();
 
     // retrieve key
@@ -52,7 +52,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void isShouldSupportTypes() {
+  void isShouldSupportTypes() {
     String s = "";
 
     s += "booleanKey: true\n";
@@ -81,7 +81,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void itShouldRecognizeInlineStructure() {
+  void itShouldRecognizeInlineStructure() {
     Config u1 = ConfigFactory.parseString("user { firstName: Foo, lastName: Bar }");
     assertThat(u1.getString("user.firstName")).isEqualTo("Foo");
     assertThat(u1.getString("user.lastName")).isEqualTo("Bar");
@@ -91,7 +91,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void itShouldHandleInclude() {
+  void itShouldHandleInclude() {
     Config cfg = ConfigFactory.load("myApp");
     assertThat(cfg.getString("moduleA.msg")).isEqualTo("Hello from Module A");
     assertThat(cfg.getString("moduleB.msg")).isEqualTo("Hello from Module B");
@@ -99,7 +99,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void itShouldSupportCombination() {
+  void itShouldSupportCombination() {
     Config config = ConfigFactory.load();
     assertThat(config.getString("demo.firstName")).isEqualTo("Mincong");
     assertThat(config.getString("demo.lastName")).isEqualTo("Huang");
@@ -107,7 +107,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void itShouldSupportMemorySize() {
+  void itShouldSupportMemorySize() {
     String s = "";
 
     s += "minSize: 1K\n";
@@ -119,7 +119,7 @@ public class ConfigTest {
   }
 
   @Test
-  public void itShouldSupportDuration() {
+  void itShouldSupportDuration() {
     String s = "";
 
     s += "minDuration: 1s\n";
