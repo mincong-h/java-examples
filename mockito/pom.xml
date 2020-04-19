@@ -15,6 +15,7 @@
 
   <modules>
     <module>mockito-junit4</module>
+    <module>mockito-junit5</module>
   </modules>
 
 </project>
