@@ -1,28 +1,23 @@
 package io.mincongh.java8.so2607289;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class ConvertArrayToListTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+/** @author Mincong Huang */
+class ConvertArrayToListTest {
 
   private final Integer NEW_ITEM = 4;
 
   private final Integer OLD_ITEM = 1;
 
   @Test
-  public void testConversionUsingArrays1() {
+  void testConversionUsingArrays1() {
     Integer[] array = {1, 2, 3};
     List<Integer> list = Arrays.asList(array);
 
@@ -32,7 +27,7 @@ public class ConvertArrayToListTest {
   }
 
   @Test
-  public void testConversionUsingArrays2() {
+  void testConversionUsingArrays2() {
     List<Integer> list = Arrays.asList(1, 2, 3);
 
     assertListValues(list);
@@ -41,9 +36,9 @@ public class ConvertArrayToListTest {
   }
 
   @Test
-  public void testConversionUsingArrayList() {
+  void testConversionUsingArrayList() {
     List<Integer> list = new ArrayList<>();
-    for (int i : new int[]{1, 2, 3}) {
+    for (int i : new int[] {1, 2, 3}) {
       list.add(i);
     }
 
@@ -53,7 +48,7 @@ public class ConvertArrayToListTest {
   }
 
   @Test
-  public void testConversionUsingStream1() {
+  void testConversionUsingStream1() {
     List<Integer> list = Stream.of(1, 2, 3).collect(Collectors.toList());
 
     assertListValues(list);
@@ -62,7 +57,7 @@ public class ConvertArrayToListTest {
   }
 
   @Test
-  public void testConversionUsingStream2() {
+  void testConversionUsingStream2() {
     List<Integer> list = Stream.of(1, 2, 3).collect(Collectors.toCollection(LinkedList::new));
 
     assertListValues(list);
@@ -88,5 +83,4 @@ public class ConvertArrayToListTest {
       // Ok
     }
   }
-
 }

@@ -1,26 +1,24 @@
 package io.mincongh.java8.function;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Consumer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class ConsumerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/** @author Mincong Huang */
+class ConsumerTest {
 
   @Test
-  public void testNonStaticMethod() {
+  void testNonStaticMethod() {
     StringBuilder builder = new StringBuilder();
     foreach(Arrays.asList("1", "2", "3"), str -> builder.append(str));
     assertEquals("123", builder.toString());
   }
 
   @Test
-  public void testStaticMethod() {
+  void testStaticMethod() {
     foreach(Arrays.asList("1", "2", "3"), System.out::print);
   }
 
@@ -29,5 +27,4 @@ public class ConsumerTest {
       consumer.accept(e);
     }
   }
-
 }

@@ -1,11 +1,10 @@
 package io.mincongh.java8.so41779868;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Java Substring in if statement does not work.
@@ -13,10 +12,10 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see https://stackoverflow.com/questions/41779868
  */
-public class SubstringTest {
+class SubstringTest {
 
   @Test
-  public void testSubstring() {
+  void testSubstring() {
     String[] elkon;
 
     elkon = new String[] {"1", "2", "3"};

@@ -1,12 +1,12 @@
 package io.mincongh.java8.so42435555;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * JAVA - Perform a cumulative sum using forEach or stream API
@@ -14,10 +14,10 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class CumulativeSumTest {
+class CumulativeSumTest {
 
   @Test
-  public void testCumulativeSumForMap() throws Exception {
+  void testCumulativeSumForMap() {
     Map<String, Double> map = new HashMap<>();
     map.put("key1", 1.0);
     map.put("key2", 2.0);
@@ -28,7 +28,7 @@ public class CumulativeSumTest {
   }
 
   @Test
-  public void testCumulativeSumForLinkedHashMap() throws Exception {
+  void testCumulativeSumForLinkedHashMap() {
     Map<String, Double> map = new LinkedHashMap<>();
     map.put("first", 1.0);
     map.put("second", 5.0);
