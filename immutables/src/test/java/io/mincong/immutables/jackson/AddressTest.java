@@ -1,18 +1,18 @@
 package io.mincong.immutables.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AddressTest {
+class AddressTest {
 
   private final ObjectMapper mapper = new ObjectMapper();
   private final String content =
       "{\"address\":\"55 Rue du Faubourg Saint-Honoré\",\"city\":\"Paris\",\"zipcode\":\"75008\"}";
 
   @Test
-  public void itCanSerialize() throws Exception {
+  void itCanSerialize() throws Exception {
     var elysee =
         ImmutableAddress.builder()
             .address("55 Rue du Faubourg Saint-Honoré")
@@ -25,7 +25,7 @@ public class AddressTest {
   }
 
   @Test
-  public void itCanDeserialize() throws Exception {
+  void itCanDeserialize() throws Exception {
     var actual = mapper.readValue(content, ImmutableAddress.class);
         var expected = ImmutableAddress.builder()
             .address("55 Rue du Faubourg Saint-Honoré")
