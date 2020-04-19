@@ -2,7 +2,7 @@ package io.mincongh.jmh;
 
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.codec.digest.MurmurHash3;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
