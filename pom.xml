@@ -109,11 +109,6 @@
         <version>${hibernateSearchVersion}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-        <version>${hibernateOrmVersion}</version>
-      </dependency>
-      <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-api</artifactId>
         <version>${log4jVersion}</version>
