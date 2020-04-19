@@ -3,15 +3,15 @@ package io.mincongh.json.util;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Locale;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Mincong Huang
  */
-public class JsonFormatterTest {
+class JsonFormatterTest {
 
   @Test
-  public void testPretty_jsonObject() throws Exception {
+  void testPretty_jsonObject() throws Exception {
     String input = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
     String actual = JsonFormatter.pretty(input);
     String expected = String.format(Locale.ROOT, ""
@@ -23,7 +23,7 @@ public class JsonFormatterTest {
   }
 
   @Test
-  public void testPretty_jsonArray() throws Exception {
+  void testPretty_jsonArray() throws Exception {
     String input = "["
         + "{\"key1\":\"value1\",\"key2\":\"value2\"},"
         + "{\"key1\":\"value1\",\"key2\":\"value2\"}]";
