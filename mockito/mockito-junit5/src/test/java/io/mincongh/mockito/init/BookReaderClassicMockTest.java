@@ -1,35 +1,36 @@
 package io.mincongh.mockito.init;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Mock object {@code mockedBook} is created in setup, {@link Before} the tests.
+ * Mock object {@code mockedBook} is created in setup, {@link BeforeEach} the tests.
  *
  * @author Mincong Huang
+ * @blog TODO
  */
-public class BookReaderClassicMockTest {
+class BookReaderClassicMockTest {
 
   private BookReader reader;
   private Book mockedBook;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     mockedBook = Mockito.mock(Book.class);
     reader = new BookReader(mockedBook);
   }
 
   @Test
-  public void testPrintContent() {
+  void testPrintContent() {
     mockedBook.printContent();
     Mockito.verify(mockedBook).printContent();
   }
 
   @Test
-  public void testGetContent() {
+  void testGetContent() {
     Mockito.when(mockedBook.getContent()).thenReturn("Mockito");
     assertEquals("Mockito", reader.getContent());
   }

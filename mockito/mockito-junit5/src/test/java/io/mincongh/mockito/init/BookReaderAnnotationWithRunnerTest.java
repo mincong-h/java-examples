@@ -1,27 +1,29 @@
 package io.mincongh.mockito.init;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Mock object {@code mockedBook} is created by {@link MockitoJUnitRunner}.
  *
  * @author Mincong Huang
+ * @blog TODO
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class BookReaderAnnotationWithRunnerTest {
 
   private BookReader reader;
 
   @Mock private Book mockedBook;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     reader = new BookReader(mockedBook);
   }

@@ -1,27 +1,28 @@
 package io.mincongh.mockito.init;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Mock object {@code mockedBook} is created in setup, {@link Before} the tests using {@link
+ * Mock object {@code mockedBook} is created in setup, {@link BeforeEach} the tests using {@link
  * MockitoAnnotations#initMocks(Object)}.
  *
  * @author Mincong Huang
+ * @blog TODO
  */
-// no JUnit runner as annotation
+// no JUnit extension as annotation
 public class BookReaderAnnotationWithSetupTest {
 
   private BookReader reader;
 
   @Mock private Book mockedBook;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
     reader = new BookReader(mockedBook);
