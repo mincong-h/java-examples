@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Mock object {@code mockedBook} is created by {@link MockitoJUnitRunner}.
+ * Mock object {@code mockedBook} is created by {@link MockitoExtension}.
  *
  * @author Mincong Huang
  * @blog TODO
