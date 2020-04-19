@@ -3,7 +3,7 @@ package io.mincong.concurrency;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.*;
  * @see java.util.concurrent.CompletableFuture
  * @see java.util.concurrent.CompletionStage
  */
-public class CompletableFutureTest {
+class CompletableFutureTest {
 
   /*
    * ----- Completed API -----
@@ -26,7 +26,7 @@ public class CompletableFutureTest {
    */
 
   @Test
-  public void completedFuture() throws Exception {
+  void completedFuture() throws Exception {
     var future = CompletableFuture.completedFuture("Hello, Java");
     assertThat(future.isDone()).isTrue();
     assertThat(future.get()).isEqualTo("Hello, Java");
@@ -34,7 +34,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void completedStage() throws Exception {
+  void completedStage() throws Exception {
     var future = CompletableFuture.completedStage("Hello, Java").toCompletableFuture();
     assertThat(future.isDone()).isTrue();
     assertThat(future.get()).isEqualTo("Hello, Java");
@@ -42,7 +42,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void failedFuture() {
+  void failedFuture() {
     var future = CompletableFuture.failedFuture(new IllegalArgumentException());
     assertThat(future.isDone()).isTrue();
     assertThatThrownBy(future::get).isInstanceOf(ExecutionException.class);
@@ -50,7 +50,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void failedStage() {
+  void failedStage() {
     var future =
         CompletableFuture.failedStage(new IllegalArgumentException()).toCompletableFuture();
     assertThat(future.isDone()).isTrue();
@@ -61,7 +61,7 @@ public class CompletableFutureTest {
   /* ----- Complete APIs ----- */
 
   @Test
-  public void complete() throws Exception {
+  void complete() throws Exception {
     var latch = new CountDownLatch(1);
     var future = new CompletableFuture<String>();
 
@@ -76,7 +76,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void completeExceptionally() throws Exception {
+  void completeExceptionally() throws Exception {
     var latch = new CountDownLatch(1);
     var future = new CompletableFuture<String>();
 
@@ -92,7 +92,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void completeAsync() throws Exception {
+  void completeAsync() throws Exception {
     var latch = new CountDownLatch(1);
     var future = new CompletableFuture<String>();
 
@@ -111,7 +111,7 @@ public class CompletableFutureTest {
   /* ----- exceptionally API ----- */
 
   @Test
-  public void exceptionally() throws Exception {
+  void exceptionally() throws Exception {
     var latch = new CountDownLatch(1);
     var future1 = new CompletableFuture<String>();
     var future2 = future1.exceptionally(ex -> "Enough Java for today");
@@ -132,7 +132,7 @@ public class CompletableFutureTest {
   /* ----- handle APIs ----- */
 
   @Test
-  public void handle() {
+  void handle() {
     var future =
         CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
             .handle((str, ex) -> ex == null ? str : ex.getMessage())
@@ -141,7 +141,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void handleAsync() {
+  void handleAsync() {
     var future =
         CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
             .handleAsync((str, ex) -> ex == null ? str : ex.getMessage())
@@ -152,14 +152,14 @@ public class CompletableFutureTest {
   /* ----- get API ----- */
 
   @Test
-  public void get_successful() throws Exception {
+  void get_successful() throws Exception {
     var future = new CompletableFuture<String>();
     submit(() -> future.complete("Hello, Java"));
     assertThat(future.get()).isEqualTo("Hello, Java");
   }
 
   @Test
-  public void get_timeout() {
+  void get_timeout() {
     var future = new CompletableFuture<String>();
     assertThatThrownBy(() -> future.get(1, MILLISECONDS)).isInstanceOf(TimeoutException.class);
   }
@@ -167,7 +167,7 @@ public class CompletableFutureTest {
   /* ----- then{Action} APIs ----- */
 
   @Test
-  public void thenAccept() throws Exception {
+  void thenAccept() throws Exception {
     var future = new CompletableFuture<String>();
     var sentence = new AtomicReference<String>();
     var latch = new CountDownLatch(1);
@@ -185,7 +185,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void thenAcceptBoth() throws Exception {
+  void thenAcceptBoth() throws Exception {
     var latch = new CountDownLatch(1);
     var sentence = new AtomicReference<String>();
     var future1 = new CompletableFuture<String>();
@@ -212,7 +212,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void thenApply() throws Exception {
+  void thenApply() throws Exception {
     var future1 = new CompletableFuture<String>();
     var future2 = future1.thenApply(s -> "Hello, " + s);
 
@@ -223,7 +223,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void thenCompose() throws Exception {
+  void thenCompose() throws Exception {
     var future1 = new CompletableFuture<String>();
     var future2 = future1.thenCompose(s -> CompletableFuture.supplyAsync(() -> "Hello, " + s));
 
@@ -234,7 +234,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void thenCombine() throws Exception {
+  void thenCombine() throws Exception {
     var future1 = new CompletableFuture<String>();
     var future2 = new CompletableFuture<String>();
     var future3 = future1.thenCombine(future2, (prefix, language) -> prefix + ", " + language);
@@ -251,7 +251,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void whenComplete() throws Exception {
+  void whenComplete() throws Exception {
     var latch = new CountDownLatch(1);
     var success1 = new AtomicInteger(0);
     var failure1 = new AtomicInteger(0);
@@ -292,7 +292,7 @@ public class CompletableFutureTest {
   /* ----- Multiple Futures ----- */
 
   @Test
-  public void allOf_failed() {
+  void allOf_failed() {
     var f1 = CompletableFuture.completedFuture("F1");
     var f2 = CompletableFuture.failedFuture(new IllegalStateException("F2"));
     var f3 = CompletableFuture.failedFuture(new IllegalStateException("F3"));
@@ -306,7 +306,7 @@ public class CompletableFutureTest {
   }
 
   @Test
-  public void allOf_succeed() throws Exception {
+  void allOf_succeed() throws Exception {
     var f1 = CompletableFuture.completedFuture("F1");
     var f2 = CompletableFuture.completedFuture("F2");
     var futures = CompletableFuture.allOf(f1, f2);

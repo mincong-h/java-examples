@@ -2,17 +2,17 @@ package io.mincong.concurrency;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
  */
-public class BasicConcurrencyTest {
+class BasicConcurrencyTest {
 
   @Test
-  public void testKeyCounter() throws InterruptedException {
+  void testKeyCounter() throws InterruptedException {
     MyCounter myCounter = new MyCounter();
     CountDownLatch countDownLatch = new CountDownLatch(2);
     MyThread t1 = new MyThread(myCounter, countDownLatch);
@@ -24,7 +24,7 @@ public class BasicConcurrencyTest {
     countDownLatch.await(3, TimeUnit.SECONDS);
 
     for (int i = 0; i < 10; i++) {
-      assertEquals("i = " + i, 2, myCounter.get(i));
+      assertThat(myCounter.get(i)).isEqualTo(2);
     }
   }
 
