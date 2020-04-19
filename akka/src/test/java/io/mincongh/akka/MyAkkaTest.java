@@ -3,28 +3,32 @@ package io.mincongh.akka;
 import akka.actor.*;
 import akka.testkit.javadsl.TestKit;
 import java.time.Duration;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Mincong Huang
  * @see <a href="https://doc.akka.io/docs/akka/current/testing.html">Testing Classic Actors</a>
  */
-public class MyAkkaTest {
+class MyAkkaTest {
   private static ActorSystem system;
 
-  @BeforeClass
-  public static void beforeClass() {
+  @BeforeAll
+  static void beforeClass() {
     system = ActorSystem.create();
   }
 
-  @AfterClass
-  public static void teardown() {
+  @AfterAll
+  static void teardown() {
     TestKit.shutdownActorSystem(system);
     system = null;
   }
 
   @Test
-  public void name() {
+  void name() {
     /*
      * Wrap the whole test procedure within a testkit constructor
      * if you want to receive actor replies or use Within(), etc.
@@ -56,7 +60,7 @@ public class MyAkkaTest {
               expectMsg(Duration.ZERO, "world");
               // check that the probe we injected earlier got the msg
               probe.expectMsg(Duration.ZERO, "hello");
-              Assert.assertEquals(getRef(), probe.getLastSender());
+              assertEquals(getRef(), probe.getLastSender());
 
               // Will wait for the rest of the 3 seconds
               expectNoMessage();

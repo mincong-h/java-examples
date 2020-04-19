@@ -5,11 +5,11 @@ import akka.testkit.TestActorRef;
 import akka.testkit.javadsl.TestKit;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * A sample test for {@link TestActorRef}.
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertEquals;
  * @author Mincong Huang
  * @see <a href="https://doc.akka.io/docs/akka/current/testing.html">Testing Classic Actors</a>
  */
-public class TestActorRefTest {
+class TestActorRefTest {
 
   static class MyActor extends AbstractActor {
     final AtomicInteger value = new AtomicInteger(0);
@@ -39,19 +39,19 @@ public class TestActorRefTest {
 
   private ActorSystem system;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     system = ActorSystem.create();
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     TestKit.shutdownActorSystem(system);
     system = null;
   }
 
   @Test
-  public void normalReplyTesting() {
+  void normalReplyTesting() {
     // Given an actor under test
     Props props = Props.create(MyActor.class);
     TestActorRef<MyActor> myActor = TestActorRef.create(system, props);
@@ -66,7 +66,7 @@ public class TestActorRefTest {
   }
 
   @Test
-  public void increment() {
+  void increment() {
     // Given an actor under test
     Props props = Props.create(MyActor.class);
     TestActorRef<MyActor> ref = TestActorRef.create(system, props);
@@ -83,7 +83,7 @@ public class TestActorRefTest {
   }
 
   @Test
-  public void decrement() {
+  void decrement() {
     // Given an actor under test
     Props props = Props.create(MyActor.class);
     TestActorRef<MyActor> ref = TestActorRef.create(system, props);
