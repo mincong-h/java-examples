@@ -68,7 +68,6 @@
     <module>json</module>
     <module>logback</module>
     <module>maven</module>
-    <module>mock-legacy</module>
     <module>mockito</module>
     <module>mongo</module>
     <module>oca</module>
