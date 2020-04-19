@@ -1,7 +1,7 @@
 package io.mincongh.vavr;
 
 import io.vavr.control.Either;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,10 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  * @since 1.0
  */
-public class EitherTest {
+class EitherTest {
 
   @Test
-  public void javadoc() {
+  void javadoc() {
     assertThat(Either.right("a").map(String::toUpperCase).toString()).isEqualTo("Right(A)");
     assertThat(Either.left(1).mapLeft(i -> i + 1).toString()).isEqualTo("Left(2)");
 
