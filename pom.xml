@@ -77,6 +77,7 @@
     <module>typesafe-config</module>
     <module>vavr</module>
     <module>xml</module>
+    <module>mockito-parent</module>
   </modules>
 
   <dependencyManagement>
