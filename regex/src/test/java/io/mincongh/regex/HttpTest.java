@@ -1,18 +1,18 @@
 package io.mincongh.regex;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test different regular expressions related to HTTP / HTTPS.
  *
  * @author Mincong Huang
  */
-public class HttpTest {
+class HttpTest {
 
   private static final List<String> COOKIE_EXPRESSIONS = Arrays.asList(
       "Set-Cookie: JSESSIONID=123; Path=/hello/; secure",
@@ -24,7 +24,7 @@ public class HttpTest {
   private Pattern p;
 
   @Test
-  public void testSetCookieSecure() {
+  void testSetCookieSecure() {
     p = Pattern.compile("^(.*)");
     COOKIE_EXPRESSIONS.forEach(s -> assertTrue(p.matcher(s).find()));
 
@@ -33,7 +33,7 @@ public class HttpTest {
   }
 
   @Test
-  public void testSetCookieHttpOnly() {
+  void testSetCookieHttpOnly() {
     p = Pattern.compile("^(.*)");
     COOKIE_EXPRESSIONS.forEach(s -> assertTrue(p.matcher(s).find()));
 
