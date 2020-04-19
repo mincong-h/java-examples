@@ -16,26 +16,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @blog TODO
  */
 // no JUnit extension as annotation
-public class BookReaderAnnotationWithSetupTest {
+class BookReaderAnnotationWithSetupTest {
 
   private BookReader reader;
 
   @Mock private Book mockedBook;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     MockitoAnnotations.initMocks(this);
     reader = new BookReader(mockedBook);
   }
 
   @Test
-  public void testPrintContent() {
+  void testPrintContent() {
     mockedBook.printContent();
     Mockito.verify(mockedBook).printContent();
   }
 
   @Test
-  public void testGetContent() {
+  void testGetContent() {
     Mockito.when(mockedBook.getContent()).thenReturn("Mockito");
     assertEquals("Mockito", reader.getContent());
   }
