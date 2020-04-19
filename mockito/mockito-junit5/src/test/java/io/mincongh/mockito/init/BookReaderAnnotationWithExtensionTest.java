@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @blog TODO
  */
 @ExtendWith(MockitoExtension.class)
-public class BookReaderAnnotationWithRunnerTest {
+public class BookReaderAnnotationWithExtensionTest {
 
   private BookReader reader;
 
