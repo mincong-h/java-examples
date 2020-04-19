@@ -110,11 +110,6 @@
       </dependency>
       <dependency>
         <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${hibernateOrmVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
         <artifactId>hibernate-entitymanager</artifactId>
         <version>${hibernateOrmVersion}</version>
       </dependency>
