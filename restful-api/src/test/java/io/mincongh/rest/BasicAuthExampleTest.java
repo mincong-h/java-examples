@@ -1,9 +1,5 @@
 package io.mincongh.rest;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import java.util.Base64;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -11,14 +7,17 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
  */
-public class BasicAuthExampleTest {
+class BasicAuthExampleTest {
 
   private HttpServer server;
 
@@ -26,19 +25,19 @@ public class BasicAuthExampleTest {
 
   private Base64.Encoder encoder = Base64.getEncoder();
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     server = Main.startServer();
     authApi = ClientBuilder.newClient().target(Main.HTTP_BASIC_AUTH_URI);
   }
 
-  @After
-  public void tearDown() throws Exception {
+  @AfterEach
+  void tearDown() throws Exception {
     server.shutdownNow();
   }
 
   @Test
-  public void getUserInfo_authSucceeded() throws Exception {
+  void getUserInfo_authSucceeded() throws Exception {
     byte[] bytes = "foo:foo_password".getBytes(UTF_8);
     String credentials = new String(encoder.encode(bytes), UTF_8);
 
@@ -48,7 +47,7 @@ public class BasicAuthExampleTest {
   }
 
   @Test
-  public void getUserInfo_authFailed() throws Exception {
+  void getUserInfo_authFailed() throws Exception {
     byte[] bytes = "foo:wrong_password".getBytes(UTF_8);
     String credentials = new String(encoder.encode(bytes), UTF_8);
 

@@ -3,21 +3,20 @@ package io.mincongh.rest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HelloServiceTest {
+class HelloServiceTest {
 
   private HttpServer server;
   private WebTarget target;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
 
     server = Main.startServer();
     Client client = ClientBuilder.newClient();
@@ -32,15 +31,15 @@ public class HelloServiceTest {
   }
 
   @Test
-  public void testHelloGet() {
+  void testHelloGet() {
     String responseMsg1 = target.path("hello").path("rest").request().get(String.class);
     String responseMsg2 = target.path("hello").path("jersey").request().get(String.class);
     assertEquals("Jersey say : rest", responseMsg1);
     assertEquals("Jersey say : jersey", responseMsg2);
   }
 
-  @After
-  public void tearDown() throws Exception {
+  @AfterEach
+  void tearDown() throws Exception {
     server.shutdownNow();
   }
 }
