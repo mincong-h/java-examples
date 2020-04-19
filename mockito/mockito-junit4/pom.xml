@@ -10,7 +10,6 @@
   </parent>
 
   <artifactId>java-examples-mockito-junit4</artifactId>
-
   <name>Java Examples - Mockito JUnit 4</name>
 
   <dependencies>
@@ -31,17 +30,4 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <compilerArgs>
-            <arg>-Werror</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
