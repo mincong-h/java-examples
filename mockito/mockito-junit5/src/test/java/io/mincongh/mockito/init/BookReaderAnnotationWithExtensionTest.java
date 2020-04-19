@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Mock object {@code mockedBook} is created by {@link MockitoExtension}.
  *
  * @author Mincong Huang
- * @blog TODO
+ * @blog https://mincong.io/2020/04/19/mockito-junit5/
  */
 @ExtendWith(MockitoExtension.class)
 class BookReaderAnnotationWithExtensionTest {
@@ -33,6 +33,20 @@ class BookReaderAnnotationWithExtensionTest {
     Mockito.verify(mockedBook).printContent();
   }
 
+  /**
+   * Disable the assertion below and see the validation of framework usage. Mockito fails your build
+   * and ask you to remove the unnecessary stubbings. It makes your code clean, particularly after
+   * refactoring. Example output:
+   *
+   * <pre>
+   * org.mockito.exceptions.misusing.UnnecessaryStubbingException:
+   * Unnecessary stubbings detected.
+   * Clean & maintainable test code requires zero unnecessary code.
+   * Following stubbings are unnecessary (click to navigate to relevant line of code):
+   *   1. -> at io.mincongh.mockito.init.BookReaderAnnotationWithExtensionTest.testGetContent(BookReaderAnnotationWithExtensionTest.java:38)
+   * Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+   * </pre>
+   */
   @Test
   void testGetContent() {
     Mockito.when(mockedBook.getContent()).thenReturn("Mockito");

@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * MockitoAnnotations#initMocks(Object)}.
  *
  * @author Mincong Huang
- * @blog TODO
+ * @blog https://mincong.io/2020/04/19/mockito-junit5/
  */
-// no JUnit extension as annotation
+// you don't need: @ExtendWith(MockitoExtension.class)
 class BookReaderAnnotationWithSetupTest {
 
   private BookReader reader;

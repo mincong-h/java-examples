@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Mock object {@code mockedBook} is created in setup, {@link BeforeEach} the tests.
  *
  * @author Mincong Huang
- * @blog TODO
+ * @blog https://mincong.io/2020/04/19/mockito-junit5/
  */
 class BookReaderClassicMockTest {
 
