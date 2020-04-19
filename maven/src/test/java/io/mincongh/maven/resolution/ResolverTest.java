@@ -3,7 +3,7 @@ package io.mincongh.maven.resolution;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class ResolverTest {
+class ResolverTest {
 
   /**
    * Given the following graph to resolve:
@@ -29,7 +29,7 @@ public class ResolverTest {
    * Asserts that the resolution is correct.
    */
   @Test
-  public void resolve() {
+  void resolve() {
     Node nodeA1 = new Node("a", 1);
     Node nodeB1 = new Node("b", 1);
     Node nodeB2 = new Node("b", 2);

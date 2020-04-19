@@ -6,23 +6,22 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Stack Overflow: How to Convert FileTime to String with DateFormat
  *
  * @author Mincong Huang
  */
-@Ignore("Demo")
-public class So28304751Test {
-  @Rule public TemporaryFolder tempDir = new TemporaryFolder();
+@Disabled("Demo")
+class So28304751Test {
+
+  @TempDir Path path;
 
   @Test
-  public void iso() throws Exception {
-    Path path = tempDir.getRoot().toPath();
+  void iso() throws Exception {
     BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
     ZonedDateTime t = attr.creationTime().toInstant().atZone(ZoneId.of("UTC"));
     String dateCreated = DateTimeFormatter.ISO_DATE_TIME.format(t);
@@ -30,8 +29,7 @@ public class So28304751Test {
   }
 
   @Test
-  public void custom() throws Exception {
-    Path path = tempDir.getRoot().toPath();
+  void custom() throws Exception {
     BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
     ZonedDateTime t = attr.creationTime().toInstant().atZone(ZoneId.of("UTC"));
     String dateCreated = DateTimeFormatter.ofPattern("MM/dd/yyyy").format(t);

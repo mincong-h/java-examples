@@ -1,19 +1,20 @@
 package io.mincongh.string;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class StringTest {
+class StringTest {
 
   @Test
-  public void lastIndexOf() {
+  void lastIndexOf() {
     assertThat("hello".lastIndexOf('.')).isEqualTo(-1);
   }
 
-  @Test(expected = StringIndexOutOfBoundsException.class)
-  public void substring() {
-    "hello".substring(0, -1);
+  @Test
+  void substring() {
+    assertThatThrownBy(() -> "hello".substring(0, -1))
+        .isInstanceOf(StringIndexOutOfBoundsException.class);
   }
-
 }

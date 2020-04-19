@@ -1,7 +1,7 @@
 package io.mincongh.java10.lang;
 
 import java.util.ArrayList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests Local-Variable Type Inference.
@@ -9,10 +9,10 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see <a href="http://openjdk.java.net/jeps/286">JEP 286: Local-Variable Type Inference</a>
  */
-public class LocalTypeInferenceTest {
+class LocalTypeInferenceTest {
 
   @Test
-  public void string() {
+  void string() {
     var words = new ArrayList<String>();
     words.add("Hello");
     words.add("Java 10");

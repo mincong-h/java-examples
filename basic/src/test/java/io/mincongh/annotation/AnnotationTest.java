@@ -1,9 +1,9 @@
 package io.mincongh.annotation;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.Arrays;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
@@ -11,10 +11,10 @@ import org.junit.Test;
 @TestForIssue(jira = "JIRA-123")
 @MyTag("A")
 @MyTag("B")
-public class AnnotationTest {
+class AnnotationTest {
 
   @Test
-  public void getDeclaredAnnotation() throws Exception {
+  void getDeclaredAnnotation() {
     TestForIssue testForIssue = getClass().getDeclaredAnnotation(TestForIssue.class);
     assertThat(testForIssue.jira()).isEqualTo("JIRA-123");
   }
@@ -23,7 +23,7 @@ public class AnnotationTest {
    * Repeatable annotations are indirectly present.
    */
   @Test
-  public void getRepeatableAnnotation() throws Exception {
+  void getRepeatableAnnotation() {
     MyTag[] myTags = getClass().getDeclaredAnnotationsByType(MyTag.class);
     assertThat(Arrays.asList(myTags)).flatExtracting(MyTag::value).containsExactly("A", "B");
   }

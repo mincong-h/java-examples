@@ -10,8 +10,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.entry;
  *
  * @author Mincong Huang
  */
-public class So51031488Test {
+class So51031488Test {
 
   private static final String XML =
       "<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n"
@@ -63,8 +63,8 @@ public class So51031488Test {
 
   private Document document;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
@@ -73,7 +73,7 @@ public class So51031488Test {
   }
 
   @Test
-  public void addAttrElement() throws Exception {
+  void addAttrElement() throws Exception {
     Map<Integer, Double> scoreMap = new HashMap<>();
     XPath xpath = XPathFactory.newInstance().newXPath();
     NodeList questions = (NodeList) xpath.evaluate("/root/Q", document, XPathConstants.NODESET);

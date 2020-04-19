@@ -6,10 +6,10 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mincongh.json.Person;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Data Binding converts JSON to and from POJOs based either on property accessor conventions or
@@ -22,12 +22,12 @@ import static org.junit.Assert.assertEquals;
  * @author Mincong Huang
  * @see <a href="http://wiki.fasterxml.com/JacksonInFiveMinutes">Jackson in five minutes</a>
  */
-public class JsonTest {
+class JsonTest {
 
   private static final String JSON_OBJ = "{\"name\":\"baby\",\"age\":3}";
 
   @Test
-  public void testFullDataBinding() throws Exception {
+  void testFullDataBinding() throws Exception {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(JSON_OBJ);
     ObjectMapper mapper = new ObjectMapper();
@@ -40,7 +40,7 @@ public class JsonTest {
   }
 
   @Test
-  public void serializeObject() throws Exception {
+  void serializeObject() throws Exception {
     ObjectMapper mapper = new ObjectMapper();
     String str = mapper.writeValueAsString(new MyExceptionDTO());
     assertThat(str).isEqualTo("{\"code\":1,\"msg\":\"hi\"}");

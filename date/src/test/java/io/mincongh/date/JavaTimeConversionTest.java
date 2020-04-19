@@ -1,23 +1,18 @@
 package io.mincongh.date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class JavaTimeConversionTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+/** @author Mincong Huang */
+class JavaTimeConversionTest {
 
   @Test
-  public void testZonedDateTimeToString() {
+  void testZonedDateTimeToString() {
     ZonedDateTime dateTime = LocalDate.of(2017, 1, 2).atTime(3, 4, 5).atZone(ZoneId.of("CET"));
     String dateTimeStr;
 
@@ -32,7 +27,7 @@ public class JavaTimeConversionTest {
   }
 
   @Test
-  public void testLocalDateTimeToString() {
+  void testLocalDateTimeToString() {
     LocalDateTime dateTime = LocalDate.of(2017, 1, 2).atTime(3, 4, 5);
     String dateTimeStr;
 
@@ -47,7 +42,7 @@ public class JavaTimeConversionTest {
   }
 
   @Test
-  public void testStringToLocalDateTime() {
+  void testStringToLocalDateTime() {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
     LocalDateTime localDateTime;
 
@@ -59,7 +54,7 @@ public class JavaTimeConversionTest {
   }
 
   @Test
-  public void testStringToLocalDate() {
+  void testStringToLocalDate() {
     LocalDate localDate;
 
     localDate = LocalDate.parse("2017-01-02", DateTimeFormatter.ISO_DATE);
@@ -79,5 +74,4 @@ public class JavaTimeConversionTest {
       assertEquals(e.getMessage(), expectedMsg, e.getMessage());
     }
   }
-
 }

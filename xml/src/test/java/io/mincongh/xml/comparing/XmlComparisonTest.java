@@ -7,8 +7,8 @@ import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -33,8 +33,8 @@ public class XmlComparisonTest {
 
   private DocumentBuilderFactory factory;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     factory = DocumentBuilderFactory.newInstance();
     factory.setIgnoringComments(true);
     /*
@@ -47,7 +47,7 @@ public class XmlComparisonTest {
   }
 
   @Test
-  public void compareXml() {
+  void compareXml() {
     String content1 = DOCTYPE + "<users><user>A</user><user>B</user></users>";
     String content2 = DOCTYPE + "<users><user>A</user><user>B</user></users><!-- comment -->";
     String content3 = DOCTYPE + "<users><user>A</user><user>B</user>\n \t</users>";

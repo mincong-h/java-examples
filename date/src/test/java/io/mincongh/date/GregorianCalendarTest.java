@@ -1,21 +1,18 @@
 package io.mincongh.date;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
-import org.junit.Test;
+import java.util.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Mincong Huang
  */
-public class GregorianCalendarTest {
+class GregorianCalendarTest {
 
   @Test
-  public void testConvertGregorianCalendarToStringIso8601() {
+  void testConvertGregorianCalendarToStringIso8601() {
     GregorianCalendar calendar = new GregorianCalendar(2017, Calendar.FEBRUARY, 16, 20, 22, 28);
     calendar.setTimeZone(TimeZone.getTimeZone("CET"));
 

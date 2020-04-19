@@ -1,9 +1,9 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assume.assumeNotNull;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-public class MavenPropertyTest {
+class MavenPropertyTest {
 
   /**
    * Tests property defined via command-line. It demonstrates that a
@@ -15,8 +15,8 @@ public class MavenPropertyTest {
    * </code></pre>
    */
   @Test
-  public void readPropertyDefinedByCLI() throws Exception {
-    assumeNotNull(System.getProperty("myProp"));
+  void readPropertyDefinedByCLI() throws Exception {
+    assumeTrue(System.getProperty("myProp") != null);
     assertEquals("definedByCLI", System.getProperty("myProp"));
   }
 

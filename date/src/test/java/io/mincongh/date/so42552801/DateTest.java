@@ -1,19 +1,16 @@
 package io.mincongh.date.so42552801;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
-import org.junit.Test;
+import java.util.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Mincong Huang
  */
-public class DateTest {
+class DateTest {
 
   @Test
   public void testDateConversion() throws ParseException {

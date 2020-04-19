@@ -1,13 +1,14 @@
 package io.mincong.immutables;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GeoPointTest {
+class GeoPointTest {
 
   @Test
-  public void itCanGenerateFactorMethodOf() {
+  void itCanGenerateFactorMethodOf() {
     // Factory method `ImmutableGeoPoint.of(double longitude, double latitude)`
     // is generated because we declare annotation `@Value.Parameter` on method
     // `longitude()` and `latitude()`.

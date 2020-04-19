@@ -4,16 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.w3c.dom.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -22,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50569982Test {
+class So50569982Test {
 
   private static final String XML =
       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -65,8 +59,8 @@ public class So50569982Test {
 
   private Document document;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
       document = factory.newDocumentBuilder().parse(in);
@@ -74,7 +68,7 @@ public class So50569982Test {
   }
 
   @Test
-  public void node() throws Exception {
+  void node() throws Exception {
     XPath xPath = XPathFactory.newInstance().newXPath();
     XPathExpression expr = xPath.compile("//metadonnees/factory");
     NodeList usineList = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
@@ -86,7 +80,7 @@ public class So50569982Test {
   }
 
   @Test
-  public void attr() throws Exception {
+  void attr() throws Exception {
     XPath xPath = XPathFactory.newInstance().newXPath();
     XPathExpression expr = xPath.compile("//metadonnees/factory/@type");
     NodeList typeList = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
@@ -97,7 +91,7 @@ public class So50569982Test {
   }
 
   @Test
-  public void icons() throws Exception {
+  void icons() throws Exception {
     XPath xPath = XPathFactory.newInstance().newXPath();
     NodeList usineList =
         (NodeList) xPath.evaluate("//metadonnees/factory", document, XPathConstants.NODESET);

@@ -4,14 +4,14 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import io.mincongh.xml.xstream.model.Person;
 import io.mincongh.xml.xstream.model.PhoneNumber;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 /** @author Mincong Huang */
-public class XStreamUtilTest {
+class XStreamUtilTest {
 
   private static final String CONTENT_WITH_ALIAS =
       "<person>\n"
@@ -37,8 +37,8 @@ public class XStreamUtilTest {
 
   private Person p;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     p = new Person();
     p.setFirstName("Foo");
     p.setLastName("Bar");
@@ -47,20 +47,20 @@ public class XStreamUtilTest {
   }
 
   @Test
-  public void serialize_withAnnotationProcessed() {
+  void serialize_withAnnotationProcessed() {
     String result = XStreamUtil.serialize(p);
     assertThat(result).isEqualTo(CONTENT_WITH_ALIAS);
   }
 
   @Test
-  public void serialize_withoutAnnotationProcessed() {
+  void serialize_withoutAnnotationProcessed() {
     XStream xStream = new XStream(new DomDriver());
     String result = xStream.toXML(p);
     assertThat(result).isEqualTo(CONTENT_WITHOUT_ALIAS);
   }
 
   @Test
-  public void deserialize() {
+  void deserialize() {
     Person result = XStreamUtil.deserialize(CONTENT_WITH_ALIAS, Person.class);
     assertThat(result).isEqualTo(p);
   }

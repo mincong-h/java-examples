@@ -3,20 +3,15 @@ package io.mincongh.io;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.PosixFileAttributeView;
 import java.nio.file.attribute.PosixFilePermissions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,25 +20,18 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class PathTest {
+class PathTest {
 
-  @Rule public TemporaryFolder folder = new TemporaryFolder();
-
-  private Path root;
-
-  @Before
-  public void setUp() {
-    root = folder.getRoot().toPath();
-  }
+  @TempDir Path root;
 
   @Test
-  public void containsPath() throws Exception {
+  void containsPath() throws Exception {
     Path foo = Files.createFile(root.resolve("foo"));
     assertThat(Files.list(root)).containsExactly(foo);
   }
 
   @Test
-  public void write_truncateExisting() throws Exception {
+  void write_truncateExisting() throws Exception {
     Path foo = root.resolve("foo");
     Files.write(foo, Arrays.asList("1", "2"), StandardOpenOption.CREATE);
     assertThat(Files.readAllLines(foo)).containsExactly("1", "2");
@@ -53,7 +41,7 @@ public class PathTest {
   }
 
   @Test
-  public void write_append() throws Exception {
+  void write_append() throws Exception {
     Path foo = root.resolve("foo");
     Files.write(foo, Arrays.asList("1", "2"), StandardOpenOption.CREATE);
     assertThat(Files.readAllLines(foo)).containsExactly("1", "2");
@@ -63,7 +51,7 @@ public class PathTest {
   }
 
   @Test
-  public void move_optionReplaceExiting_targetExists() throws Exception {
+  void move_optionReplaceExiting_targetExists() throws Exception {
     // Given an existing source file and an existing target file
     Path source = root.resolve("source");
     Path target = root.resolve("target");
@@ -78,7 +66,7 @@ public class PathTest {
   }
 
   @Test
-  public void move_optionReplaceExiting_targetDoesNotExist() throws Exception {
+  void move_optionReplaceExiting_targetDoesNotExist() throws Exception {
     // Given an existing source file and a non-existent target file
     Path source = root.resolve("source");
     Path target = root.resolve("target");
@@ -92,7 +80,7 @@ public class PathTest {
   }
 
   @Test
-  public void readOnly() throws Exception {
+  void readOnly() throws Exception {
     Path foo = root.resolve("foo");
     Files.createFile(foo);
     assertThat(foo).exists();
@@ -105,12 +93,12 @@ public class PathTest {
           .setPermissions(PosixFilePermissions.fromString("r--r-----"));
     }
     assertThat(foo.toFile().canRead()).isTrue();
-//    assertThat(foo.toFile().canWrite()).isFalse(); // bug in OpenJDK 11 (Linux)
+    //    assertThat(foo.toFile().canWrite()).isFalse(); // bug in OpenJDK 11 (Linux)
     assertThat(foo.toFile().canExecute()).isFalse();
   }
 
   @Test
-  public void readOnly2() throws Exception {
+  void readOnly2() throws Exception {
     File foo = root.resolve("foo").toFile();
     boolean isCreated = foo.createNewFile();
     boolean isReadOnly = foo.setReadOnly();
@@ -121,7 +109,7 @@ public class PathTest {
   }
 
   @Test
-  public void setPosixFilePermissions() throws Exception {
+  void setPosixFilePermissions() throws Exception {
     Path foo = root.resolve("foo");
     Files.createFile(foo);
 
@@ -132,7 +120,7 @@ public class PathTest {
   }
 
   @Test
-  public void newDirectoryStream() throws Exception {
+  void newDirectoryStream() throws Exception {
     createFiles();
     List<Path> paths = new ArrayList<>();
     Files.newDirectoryStream(root).iterator().forEachRemaining(paths::add);
@@ -142,7 +130,7 @@ public class PathTest {
   }
 
   @Test
-  public void newDirectoryStream_globFilter() throws Exception {
+  void newDirectoryStream_globFilter() throws Exception {
     createFiles();
     List<Path> paths = new ArrayList<>();
 
@@ -157,7 +145,7 @@ public class PathTest {
   }
 
   @Test
-  public void newDirectoryStream_lambdaFilter() throws Exception {
+  void newDirectoryStream_lambdaFilter() throws Exception {
     createFiles();
     List<Path> paths = new ArrayList<>();
 

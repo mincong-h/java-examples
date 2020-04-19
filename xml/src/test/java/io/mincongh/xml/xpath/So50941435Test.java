@@ -5,12 +5,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -21,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50941435Test {
+class So50941435Test {
 
   private static final String XML =
       "<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n"
@@ -41,8 +38,8 @@ public class So50941435Test {
 
   private XPath xPath;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
@@ -52,7 +49,7 @@ public class So50941435Test {
   }
 
   @Test
-  public void xpath() throws Exception {
+  void xpath() throws Exception {
     XPathExpression expr =
         xPath.compile(
             "//ElectricalProject/Equipments/Equipment/Extensions/Extension/nfh:extensionProperty[@name='switchboardId']");

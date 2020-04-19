@@ -1,15 +1,15 @@
 package io.mincong.immutables;
 
 import java.util.List;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 
-public class UserTest {
+class UserTest {
 
   @Test
-  public void itCanCreateUserUsingImmutableBuilder() {
+  void itCanCreateUserUsingImmutableBuilder() {
     var user =
         ImmutableUser.builder()
             .name("Tom")
@@ -23,7 +23,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanCreateUserUsingBuilder() {
+  void itCanCreateUserUsingBuilder() {
     var user =
         User.builder()
             .name("Tom")
@@ -37,7 +37,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanAddItermsUsingBuilder() {
+  void itCanAddItermsUsingBuilder() {
     var user =
         User.builder()
             .name("Tom")
@@ -51,7 +51,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanGenerateHashCode() {
+  void itCanGenerateHashCode() {
     var user1 =
         User.builder()
             .name("Tom")
@@ -70,7 +70,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanGenerateEqual() {
+  void itCanGenerateEqual() {
     var user1 =
         User.builder()
             .name("Tom")
@@ -90,7 +90,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanGenerateToString() {
+  void itCanGenerateToString() {
     var user =
         User.builder()
             .name("Tom")
@@ -103,7 +103,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanHandleOptional() {
+  void itCanHandleOptional() {
     var withDescription =
         User.builder()
             .name("Tom")
@@ -118,7 +118,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCannotAcceptNull() {
+  void itCannotAcceptNull() {
     // NullPointerException: name
     // you need to use `java.util.Optional`
     assertThatNullPointerException()
@@ -127,7 +127,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanCreateNewObjectFromExistingViaWith() {
+  void itCanCreateNewObjectFromExistingViaWith() {
     var user1 =
         User.builder()
             .name("Tom")
@@ -142,7 +142,7 @@ public class UserTest {
   }
 
   @Test
-  public void itCanCreateNewObjectFromExistingViaBuilder() {
+  void itCanCreateNewObjectFromExistingViaBuilder() {
     var user1 =
         User.builder()
             .name("Tom")

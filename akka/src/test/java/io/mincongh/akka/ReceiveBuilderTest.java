@@ -2,21 +2,21 @@ package io.mincongh.akka;
 
 import akka.actor.*;
 import akka.testkit.javadsl.TestKit;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /** @author Mincong Huang */
-public class ReceiveBuilderTest {
+class ReceiveBuilderTest {
   private static ActorSystem system;
 
-  @BeforeClass
-  public static void beforeClass() throws Exception {
+  @BeforeAll
+  static void beforeClass() {
     system = ActorSystem.create();
   }
 
-  @AfterClass
-  public static void afterClass() throws Exception {
+  @AfterAll
+  static void afterClass() {
     TestKit.shutdownActorSystem(system);
   }
 
@@ -31,7 +31,7 @@ public class ReceiveBuilderTest {
   }
 
   @Test
-  public void testReceiveBuilder() {
+  void testReceiveBuilder() {
     var probe = new TestKit(system);
     var myActor = system.actorOf(Props.create(MyActor.class));
 

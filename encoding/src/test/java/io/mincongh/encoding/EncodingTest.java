@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,17 +14,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class EncodingTest {
+class EncodingTest {
 
   @Test
-  public void readAllLines() throws Exception {
+  void readAllLines() throws Exception {
     Path txt = Paths.get(this.getClass().getResource("/iso-8859-1.txt").toURI());
     List<String> lines = Files.readAllLines(txt, StandardCharsets.ISO_8859_1);
     assertThat(lines).containsExactly("reçu");
   }
 
   @Test
-  public void readAllBytes() throws Exception {
+  void readAllBytes() throws Exception {
     Path txt = Paths.get(this.getClass().getResource("/iso-8859-1.txt").toURI());
     byte[] bytes = Files.readAllBytes(txt);
     String content = new String(bytes, StandardCharsets.ISO_8859_1);
@@ -32,21 +32,21 @@ public class EncodingTest {
   }
 
   @Test
-  public void readBytes() {
+  void readBytes() {
     byte[] bytes = {(byte) 0x72, (byte) 0x65, (byte) 0xE7, (byte) 0x75};
     String word = new String(bytes, StandardCharsets.ISO_8859_1);
     assertThat(word).isEqualTo("reçu");
   }
 
   @Test
-  public void decodeBytes_iso88591() {
+  void decodeBytes_iso88591() {
     byte[] bytes = {(byte) 0xE0};
     String word = new String(bytes, StandardCharsets.ISO_8859_1);
     assertThat(word).isEqualTo("à");
   }
 
   @Test
-  public void decodeBytes_utf8() {
+  void decodeBytes_utf8() {
     byte[] bytes = {(byte) 0xE0};
     String word = new String(bytes, StandardCharsets.UTF_8);
     assertThat(word).isEqualTo("\ufffd");
@@ -54,13 +54,13 @@ public class EncodingTest {
   }
 
   @Test
-  public void encodeBytes_iso88591() {
+  void encodeBytes_iso88591() {
     byte[] bytes = "à".getBytes(StandardCharsets.ISO_8859_1);
     assertThat(bytes).isEqualTo(new byte[] {(byte) 0xE0});
   }
 
   @Test
-  public void encodeBytes_utf8() {
+  void encodeBytes_utf8() {
     byte[] bytes = "à".getBytes(StandardCharsets.UTF_8);
     assertThat(bytes).isEqualTo(new byte[] {(byte) 0xC3, (byte) 0xA0});
   }

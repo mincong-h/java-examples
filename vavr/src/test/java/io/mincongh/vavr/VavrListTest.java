@@ -2,7 +2,7 @@ package io.mincongh.vavr;
 
 import io.vavr.collection.List;
 import java.util.function.Function;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  * @since 1.0
  */
-public class VavrListTest {
+class VavrListTest {
 
   /* ----- CRUD ----- */
 
   @Test
-  public void of() {
+  void of() {
     List<String> animals = List.of("🐱", "🐶");
     assertThat(animals).containsExactly("🐱", "🐶");
 
@@ -27,14 +27,14 @@ public class VavrListTest {
   }
 
   @Test
-  public void append() {
+  void append() {
     List<String> animals = List.of("🐱", "🐶");
     List<String> another = animals.append("😌");
     assertThat(another).containsExactly("🐱", "🐶", "😌"); // immutable
   }
 
   @Test
-  public void prepend() {
+  void prepend() {
     List<String> animals = List.of("🐱", "🐶");
     List<String> another = animals.prepend("🙂");
     assertThat(animals).containsExactly("🐱", "🐶");
@@ -42,7 +42,7 @@ public class VavrListTest {
   }
 
   @Test
-  public void get() {
+  void get() {
     List<String> animals = List.of("🐱", "🐶");
     assertThat(animals.get()).isEqualTo("🐱");
     assertThat(animals.get(0)).isEqualTo("🐱");
@@ -50,26 +50,26 @@ public class VavrListTest {
   }
 
   @Test
-  public void head() {
+  void head() {
     List<String> animals = List.of("🐱", "🐶");
     assertThat(animals.head()).isEqualTo("🐱");
   }
 
   @Test
-  public void last() {
+  void last() {
     List<String> animals = List.of("🐱", "🐶");
     assertThat(animals.last()).isEqualTo("🐶");
   }
 
   @Test
-  public void remove() {
+  void remove() {
     List<String> animals = List.of("🐱", "🐶");
     List<String> another = animals.remove("🐱"); // type safe: T
     assertThat(another).containsExactly("🐶");
   }
 
   @Test
-  public void removeAt() {
+  void removeAt() {
     List<Integer> numbers = List.of(2, 3);
     List<Integer> another = numbers.removeAt(1);
     assertThat(another).containsExactly(2);
@@ -78,7 +78,7 @@ public class VavrListTest {
   /* ----- Stream Operations ----- */
 
   @Test
-  public void map() {
+  void map() {
     // implicit stream()
     // shortcut for collect
     List<String> animals = List.of("🐱", "🐶");
@@ -87,14 +87,14 @@ public class VavrListTest {
   }
 
   @Test
-  public void filter() {
+  void filter() {
     List<String> animals = List.of("🐱", "🐶");
     List<String> family = animals.filter("🐱"::equals);
     assertThat(family).containsExactly("🐱");
   }
 
   @Test
-  public void flatMap() {
+  void flatMap() {
     List<String> cats = List.of("🐱", "🐈");
     List<String> dogs = List.of("🐶", "🐕");
     List<List<String>> lists = List.of(cats, dogs);
@@ -105,7 +105,7 @@ public class VavrListTest {
   /* ----- Javadoc ----- */
 
   @Test
-  public void javadoc_of() {
+  void javadoc_of() {
     List<Integer> list1 = List.of(1, 2, 3, 4);
     List<Integer> list2 = List.of(4).prepend(3).prepend(2).prepend(1);
     assertThat(list1.equals(list2)).isTrue();

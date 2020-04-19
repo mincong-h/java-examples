@@ -8,7 +8,7 @@ import akka.testkit.javadsl.TestKit;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import java.util.Optional;
-import org.junit.*;
+import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Option;
@@ -20,16 +20,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class LifecycleTest {
+class LifecycleTest {
   private static ActorSystem system;
 
-  @BeforeClass
-  public static void beforeClass() {
+  @BeforeAll
+  static void beforeClass() {
     system = ActorSystem.create();
   }
 
-  @AfterClass
-  public static void teardown() {
+  @AfterAll
+  static void teardown() {
     TestKit.shutdownActorSystem(system);
     system = null;
   }
@@ -96,14 +96,14 @@ public class LifecycleTest {
   private ch.qos.logback.classic.Logger appLogger =
       (ch.qos.logback.classic.Logger) LoggerFactory.getLogger(MyActor.class);
 
-  @Before
+  @BeforeEach
   public void setUp() {
     appender = new ListAppender<>();
     appender.start();
     appLogger.addAppender(appender);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     appLogger.detachAppender(appender);
   }

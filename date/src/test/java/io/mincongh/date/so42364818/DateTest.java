@@ -1,19 +1,17 @@
 package io.mincongh.date.so42364818;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class DateTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/** @author Mincong Huang */
+class DateTest {
 
   @Test
-  public void testDate() throws Exception {
+  void testDate() throws Exception {
     LocalDateTime d = LocalDateTime.parse("2009-06-15T13:45:30");
     assertEquals(2009, d.getYear());
     assertEquals(Month.JUNE, d.getMonth());
@@ -25,5 +23,4 @@ public class DateTest {
     d.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     assertEquals("2009-06-15T13:45:30", d.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
-
 }

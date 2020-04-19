@@ -13,13 +13,15 @@
 
   <name>Java Examples - Jackson</name>
 
-  <properties>
-  </properties>
-
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -38,7 +40,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-  </build>
 </project>

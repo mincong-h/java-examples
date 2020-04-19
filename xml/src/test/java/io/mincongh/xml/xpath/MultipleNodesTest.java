@@ -11,8 +11,8 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -22,7 +22,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Mincong Huang
  */
-public class MultipleNodesTest {
+class MultipleNodesTest {
 
   private static final String HTML = "<div>\n"
       + "  <div id=\"target\">\n"
@@ -46,8 +46,8 @@ public class MultipleNodesTest {
 
   private XPath xPath;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(HTML.getBytes(StandardCharsets.UTF_8))) {
@@ -57,7 +57,7 @@ public class MultipleNodesTest {
   }
 
   @Test
-  public void exactMatch() throws Exception {
+  void exactMatch() throws Exception {
     XPathExpression expr = xPath.compile("//div[@id='target']//div[@class='btn']");
     NodeList nodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
 
@@ -72,7 +72,7 @@ public class MultipleNodesTest {
    * @see <a href="https://stackoverflow.com/questions/1390568">Stack Overflow</a>
    */
   @Test
-  public void contains() throws Exception {
+  void contains() throws Exception {
     XPathExpression expr = xPath.compile("//div[@id='target']//div[contains(@class, 'btn')]");
     NodeList nodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
 

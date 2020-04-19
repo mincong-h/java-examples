@@ -1,20 +1,12 @@
 package io.mincongh.io;
 
-import java.nio.file.DirectoryStream;
-import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.PathMatcher;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,10 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  * @since 1.0
  */
-public class GlobExpressionFileTest {
-  @Rule public TemporaryFolder tempFolder = new TemporaryFolder();
+class GlobExpressionFileTest {
+  @TempDir Path root;
 
-  private Path root;
   private Path f0;
   private Path b0;
   private Path d1;
@@ -48,14 +39,13 @@ public class GlobExpressionFileTest {
    *     └── foo2.txt
    * </pre>
    */
-  @Before
-  public void setUp() throws Exception {
-    root = tempFolder.getRoot().toPath();
-    f0 = tempFolder.newFile("foo0.txt").toPath();
-    b0 = tempFolder.newFile("bar0.txt").toPath();
-    d1 = tempFolder.newFolder("sub1").toPath();
+  @BeforeEach
+  void setUp() throws Exception {
+    f0 = Files.createFile(root.resolve("foo0.txt"));
+    b0 = Files.createFile(root.resolve("bar0.txt"));
+    d1 = Files.createDirectory(root.resolve("sub1"));
     f1 = Files.createFile(d1.resolve("foo1.txt"));
-    d2 = tempFolder.newFolder("sub2").toPath();
+    d2 = Files.createDirectory(root.resolve("sub2"));
     f2 = Files.createFile(d2.resolve("foo2.txt"));
   }
 
@@ -64,7 +54,7 @@ public class GlobExpressionFileTest {
    * However, it will NOT iterate recursively the files in sub-directories.
    */
   @Test
-  public void newDirectoryStream() throws Exception {
+  void newDirectoryStream() throws Exception {
     try (DirectoryStream<Path> paths = Files.newDirectoryStream(root, "foo*.txt")) {
       int count = 0;
       for (Path path : paths) {
@@ -84,7 +74,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void walkFileTree() throws Exception {
+  void walkFileTree() throws Exception {
     PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**/foo*.txt");
     List<Path> paths = new ArrayList<>();
     Files.walkFileTree(
@@ -102,7 +92,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void pathMatcher() {
+  void pathMatcher() {
     PathMatcher absMatcher = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
     assertThat(absMatcher.matches(f0)).isTrue();
     assertThat(absMatcher.matches(f1)).isTrue();
@@ -119,7 +109,7 @@ public class GlobExpressionFileTest {
    * directory boundaries.
    */
   @Test
-  public void pathMatcher_wildcardWithoutCrossingBoundaries() {
+  void pathMatcher_wildcardWithoutCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
     assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse();
     assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse();
@@ -129,7 +119,7 @@ public class GlobExpressionFileTest {
 
   /** The {@code **} characters matches zero or more characters crossing directory boundaries. */
   @Test
-  public void pathMatcher_wildcardWithCrossingBoundaries() {
+  void pathMatcher_wildcardWithCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**.txt");
     assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue();
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
@@ -137,7 +127,7 @@ public class GlobExpressionFileTest {
 
   /** The {@code ?} character matches exactly one character of a name component. */
   @Test
-  public void pathMatcher_exactlyOneChar() {
+  void pathMatcher_exactlyOneChar() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:?.txt");
     assertThat(m.matches(Paths.get("a.txt"))).isTrue();
     assertThat(m.matches(Paths.get("b.txt"))).isTrue();
@@ -149,7 +139,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void pathMatcher_bracketExpression() {
+  void pathMatcher_bracketExpression() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:[abc].txt");
     assertThat(m.matches(Paths.get("a.txt"))).isTrue();
     assertThat(m.matches(Paths.get("b.txt"))).isTrue();
@@ -163,7 +153,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void pathMatcher_bracketExpressionNegation() {
+  void pathMatcher_bracketExpressionNegation() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:/foo/[!abc]*.txt");
     assertThat(m.matches(Paths.get("/foo/d.txt"))).isTrue();
     assertThat(m.matches(Paths.get("/foo/e.txt"))).isTrue();
@@ -179,7 +169,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void pathMatcher_subPatterns() {
+  void pathMatcher_subPatterns() {
     PathMatcher m1 = FileSystems.getDefault().getPathMatcher("glob:*.{txt,md}");
     assertThat(m1.matches(Paths.get("a.txt"))).isTrue();
     assertThat(m1.matches(Paths.get("a.md"))).isTrue();
@@ -194,7 +184,7 @@ public class GlobExpressionFileTest {
   }
 
   @Test
-  public void pathMatcher_hiddenFiles() {
+  void pathMatcher_hiddenFiles() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.gitignore");
     assertThat(m.matches(Paths.get(".gitignore"))).isTrue();
   }

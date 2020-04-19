@@ -16,7 +16,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50352576Test {
+class So50352576Test {
 
   private static final String XML =
       "<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n"
@@ -42,7 +42,7 @@ public class So50352576Test {
           + "</message>\n";
 
   @Test
-  public void xpath() throws Exception {
+  void xpath() throws Exception {
     // Deserialize
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     Document document;

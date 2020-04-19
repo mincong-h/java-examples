@@ -3,16 +3,9 @@ package io.mincongh.xml.xsd;
 import org.apache.xerces.impl.xs.XSComplexTypeDecl;
 import org.apache.xerces.impl.xs.XSImplementationImpl;
 import org.apache.xerces.impl.xs.XSParticleDecl;
-import org.apache.xerces.xs.XSConstants;
-import org.apache.xerces.xs.XSElementDeclaration;
-import org.apache.xerces.xs.XSLoader;
-import org.apache.xerces.xs.XSModel;
-import org.apache.xerces.xs.XSModelGroup;
-import org.apache.xerces.xs.XSObjectList;
-import org.apache.xerces.xs.XSParticle;
-import org.apache.xerces.xs.XSTypeDefinition;
-import org.junit.Before;
-import org.junit.Test;
+import org.apache.xerces.xs.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,13 +14,13 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Mincong Huang
  * @since 1.0
  */
-public class XsdTest {
+class XsdTest {
 
   private XSModel modelV1;
   private XSModel modelV2;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     // Java API to parse XSD schema file
     // https://stackoverflow.com/questions/3996857
     DOMImplementationRegistry registry = DOMImplementationRegistry.newInstance();
@@ -38,7 +31,7 @@ public class XsdTest {
   }
 
   @Test
-  public void xsElement() {
+  void xsElement() {
     XSElementDeclaration xsElementV1 = modelV1.getElementDeclaration("note", null);
     assertThat(xsElementV1.getName()).isEqualTo("note");
 
@@ -47,12 +40,12 @@ public class XsdTest {
   }
 
   @Test
-  public void xsComplexType_v1() {
+  void xsComplexType_v1() {
     testComplexType(modelV1.getElementDeclaration("note", null));
   }
 
   @Test
-  public void xsComplexType_v2() {
+  void xsComplexType_v2() {
     testComplexType(modelV2.getElementDeclaration("note", null));
   }
 

@@ -4,12 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -20,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50591626Test {
+class So50591626Test {
 
   private static final String XML =
       "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -63,8 +60,8 @@ public class So50591626Test {
 
   private Document document;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
       document = factory.newDocumentBuilder().parse(in);
@@ -72,7 +69,7 @@ public class So50591626Test {
   }
 
   @Test
-  public void include() throws Exception {
+  void include() throws Exception {
     XPath xPath = XPathFactory.newInstance().newXPath();
     XPathExpression expr = xPath.compile("//article-meta//title-group");
     NodeList titleNodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);
@@ -81,7 +78,7 @@ public class So50591626Test {
   }
 
   @Test
-  public void exclude() throws Exception {
+  void exclude() throws Exception {
     XPath xPath = XPathFactory.newInstance().newXPath();
     XPathExpression expr = xPath.compile("/article/*[not(self::sub-article)]//title-group");
     NodeList titleNodes = (NodeList) expr.evaluate(document, XPathConstants.NODESET);

@@ -1,17 +1,14 @@
 package io.mincongh.map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * @author Mincong Huang
- */
-public class MapUtilTest {
+/** @author Mincong Huang */
+class MapUtilTest {
 
   @Test
   public void testGetValueAsString() {

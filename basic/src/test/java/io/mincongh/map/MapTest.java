@@ -1,23 +1,18 @@
 package io.mincongh.map;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.NavigableMap;
-import java.util.TreeMap;
-import java.util.function.BiConsumer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MapTest {
+class MapTest {
 
   @Test
-  public void testLongAsValue() {
+  void testLongAsValue() {
     Map<String, Object> map = new HashMap<>();
     map.put("notNullLong", 1L);
     map.put("nullLong", null);
@@ -26,7 +21,7 @@ public class MapTest {
   }
 
   @Test
-  public void so50134298() {
+  void so50134298() {
     Map<String, BigDecimal> dataSet = new HashMap<>();
     dataSet.put("A", new BigDecimal(12));
     dataSet.put("B", new BigDecimal(23));

@@ -1,20 +1,18 @@
 package io.mincongh.date;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class So47349172Test {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/** @author Mincong Huang */
+class So47349172Test {
 
   @Test
-  public void original() throws Exception {
+  void original() {
     // 2001-01-01T00:00:00.000+00:00
     long timestamp = 978307200_000L;
     Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
@@ -37,7 +35,7 @@ public class So47349172Test {
   }
 
   @Test
-  public void simplified() throws Exception {
+  void simplified() {
     // 2001-01-01T00:00:00.000+00:00
     long timestamp = 978307200_000L;
     Date newDate = new Date(timestamp);
@@ -51,5 +49,4 @@ public class So47349172Test {
     assertEquals("2001-01-01T00:00:00.000+0000", u.format(newDate));
     assertEquals("2001-01-01T14:00:00.000+1400", k.format(newDate));
   }
-
 }

@@ -1,15 +1,15 @@
 package io.mincongh.date.so42341447;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class DateTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class DateTest {
 
   @Test
-  public void testDate() {
+  void testDate() {
     LocalDate startDate = LocalDate.parse("2017-01-28");
     LocalDate endDate = LocalDate.parse("2017-02-03");
     LocalDate d = startDate;
@@ -20,8 +20,8 @@ public class DateTest {
       d = d.plusDays(1);
     }
 
-    assertEquals("2017-01-28 2017-01-29 2017-01-30 2017-01-31 2017-02-01 2017-02-02 2017-02-03",
+    assertEquals(
+        "2017-01-28 2017-01-29 2017-01-30 2017-01-31 2017-02-01 2017-02-02 2017-02-03",
         builder.toString().trim());
   }
-
 }

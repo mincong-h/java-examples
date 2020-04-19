@@ -1,13 +1,13 @@
 package io.mincongh.date.so41714925;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.ParseException;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Test changing {@code XMLgregorianCalender} default format to "yyyyMMdd", which is impossible.
@@ -15,10 +15,10 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see http://stackoverflow.com/questions/41714925
  */
-public class GregorianCalendarUtilTest {
+class GregorianCalendarUtilTest {
 
   @Test
-  public void testUnmarshal() throws ParseException, DatatypeConfigurationException {
+  void testUnmarshal() throws ParseException, DatatypeConfigurationException {
     XMLGregorianCalendar c = GregorianCalenderUtil.unmarshal("2017-01-18");
     assertEquals(2017, c.getYear());
     assertEquals(1, c.getMonth());

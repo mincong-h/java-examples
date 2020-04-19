@@ -6,12 +6,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.function.Function;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathFactory;
-import org.junit.Before;
-import org.junit.Test;
+import javax.xml.xpath.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Mincong Huang
  */
-public class So50174662Test {
+class So50174662Test {
 
   private static final String XML =
       ""
@@ -49,8 +46,8 @@ public class So50174662Test {
 
   private XPath xPath;
 
-  @Before
-  public void setUp() throws Exception {
+  @BeforeEach
+  void setUp() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
     try (InputStream in = new ByteArrayInputStream(XML.getBytes(StandardCharsets.UTF_8))) {
@@ -60,7 +57,7 @@ public class So50174662Test {
   }
 
   @Test
-  public void inDocument() throws Exception {
+  void inDocument() throws Exception {
     XPathExpression expr = xPath.compile("//fm/text()");
 
     // Solution 1: NodeSet
@@ -81,7 +78,7 @@ public class So50174662Test {
   }
 
   @Test
-  public void inNode() throws Exception {
+  void inNode() throws Exception {
     Node book1 = (Node) xPath.compile("/book/book1").evaluate(document, XPathConstants.NODE);
     XPathExpression expr = xPath.compile(".//fm/text()"); // subtree
 
