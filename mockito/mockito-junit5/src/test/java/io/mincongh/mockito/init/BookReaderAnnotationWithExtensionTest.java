@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 class BookReaderAnnotationWithExtensionTest {
 
-  private BookReader reader;
-
   @Mock private Book mockedBook;
+
+  private BookReader reader;
 
   @BeforeEach
   void setUp() {
