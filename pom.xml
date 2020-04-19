@@ -19,7 +19,6 @@
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.13.2</assertjVersion>
     <commonsIoVersion>2.5</commonsIoVersion>
-    <easymockVersion>3.4</easymockVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
     <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
     <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
@@ -41,7 +40,6 @@
     <log4jVersion>2.7</log4jVersion>
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
-    <powermockVersion>1.6.4</powermockVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
     <vavrVersion>1.0.0-alpha-3</vavrVersion>
     <xercesVersion>2.12.0</xercesVersion>
@@ -68,7 +66,6 @@
     <module>json</module>
     <module>logback</module>
     <module>maven</module>
-    <module>mock-legacy</module>
     <module>mockito</module>
     <module>mongo</module>
     <module>oca</module>
@@ -103,26 +100,6 @@
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
         <version>${jsonVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate.javax.persistence</groupId>
-        <artifactId>hibernate-jpa-2.1-api</artifactId>
-        <version>${hibernateJpaVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-search-engine</artifactId>
-        <version>${hibernateSearchVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${hibernateOrmVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-        <version>${hibernateOrmVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -203,26 +180,6 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
         <version>${mockitoVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.easymock</groupId>
-        <artifactId>easymock</artifactId>
-        <version>${easymockVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-module-junit4</artifactId>
-        <version>${powermockVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito</artifactId>
-        <version>${powermockVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-core</artifactId>
-        <version>${powermockVersion}</version>
       </dependency>
       <!-- JAX RS API and reference implementation Jersey (start) -->
       <dependency>
