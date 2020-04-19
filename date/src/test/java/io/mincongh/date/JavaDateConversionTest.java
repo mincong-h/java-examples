@@ -1,22 +1,19 @@
 package io.mincongh.date;
 
-import static org.junit.Assert.assertEquals;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class JavaDateConversionTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+/** @author Mincong Huang */
+class JavaDateConversionTest {
 
   @Test
-  public void testIso8601AndRfc822() throws ParseException {
+  void testIso8601AndRfc822() throws ParseException {
     SimpleDateFormat rfc822 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
     SimpleDateFormat iso8601S = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
     SimpleDateFormat iso8601M = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXX");
@@ -38,7 +35,7 @@ public class JavaDateConversionTest {
   }
 
   @Test
-  public void testConvertDateToStringIso8601() {
+  void testConvertDateToStringIso8601() {
     Calendar calendar = Calendar.getInstance();
     calendar.set(2017, Calendar.FEBRUARY, 16, 20, 22, 28);
     calendar.set(Calendar.MILLISECOND, 0);
@@ -49,5 +46,4 @@ public class JavaDateConversionTest {
     sdf.setTimeZone(TimeZone.getTimeZone("CET"));
     assertEquals("2017-02-16T20:22:28.000+01:00", sdf.format(date));
   }
-
 }

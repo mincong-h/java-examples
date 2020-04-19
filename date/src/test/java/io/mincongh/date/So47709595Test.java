@@ -3,23 +3,23 @@ package io.mincongh.date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class So47709595Test {
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-  @Test(expected = ParseException.class)
-  public void withExtraSpaces() throws Exception {
+/** @author Mincong Huang */
+class So47709595Test {
+
+  @Test
+  void withExtraSpaces() {
     SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM  yyyy  HH:mm:ss ", Locale.ENGLISH);
-    sdf.parse("Thu, 7 Dec 2017 07:40:40 ");
+    assertThrows(ParseException.class, () -> sdf.parse("Thu, 7 Dec 2017 07:40:40 "));
   }
 
   @Test
-  public void withoutExtraSpaces() throws Exception {
+  void withoutExtraSpaces() {
     SimpleDateFormat sdf = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss ", Locale.ENGLISH);
-    sdf.parse("Thu, 7 Dec 2017 07:40:40 ");
+    assertDoesNotThrow(() -> sdf.parse("Thu, 7 Dec 2017 07:40:40 "));
   }
-
 }

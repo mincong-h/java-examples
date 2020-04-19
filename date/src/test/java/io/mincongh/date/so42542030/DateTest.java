@@ -1,18 +1,16 @@
 package io.mincongh.date.so42542030;
 
-import static org.junit.Assert.assertTrue;
-
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- * @author Mincong Huang
- */
-public class DateTest {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/** @author Mincong Huang */
+class DateTest {
 
   @Test
-  public void testDate() {
+  void testDate() {
     assertTrue(isWorkingHour("2011-12-03T15:15:30-05:00"));
     assertTrue(isWorkingHour("2011-12-03T09:15:30-05:00", ZoneId.of("Europe/Paris")));
   }
@@ -29,5 +27,4 @@ public class DateTest {
     int targetZoneHour = targetZonedDT.getHour();
     return targetZoneHour >= 9 && targetZoneHour <= 17;
   }
-
 }

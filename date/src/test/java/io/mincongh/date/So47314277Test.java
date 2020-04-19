@@ -1,22 +1,19 @@
 package io.mincongh.date;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import org.junit.Test;
+import java.util.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Calculate number of business days between two dates.
  *
  * @author Mincong Huang
  */
-public class So47314277Test {
+class So47314277Test {
 
   /**
    * A set of federal holidays. Compared to iteration, using a
@@ -63,19 +60,19 @@ public class So47314277Test {
     return businessDays;
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void illegalStartDay() throws Exception {
-    getBusinessDays(LocalDate.of(2017, 1, 2), LocalDate.of(2017, 1, 1));
+  @Test
+  void illegalStartDay() {
+    assertThrows(IllegalArgumentException.class, () -> getBusinessDays(LocalDate.of(2017, 1, 2), LocalDate.of(2017, 1, 1)));
   }
 
   @Test
-  public void inSameWeek() throws Exception {
+  void inSameWeek() {
     int days = getBusinessDays(LocalDate.of(2017, 11, 12), LocalDate.of(2017, 11, 18));
     assertEquals(5, days);
   }
 
   @Test
-  public void inTwoWeeks() throws Exception {
+  void inTwoWeeks() {
     int days = getBusinessDays(LocalDate.of(2017, 11, 12), LocalDate.of(2017, 11, 25));
     assertEquals(9, days);
   }
