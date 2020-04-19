@@ -11,7 +11,7 @@
 
   <artifactId>java-examples-logback</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>java-examples-logback</name>
+  <name>Java Examples - Logback</name>
 
   <properties>
     <logback.version>1.2.3</logback.version>
