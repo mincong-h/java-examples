@@ -1,14 +1,12 @@
 package io.mincongh.hashcode.bad;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import io.mincongh.hashcode.good.Athlete;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import io.mincongh.hashcode.good.Athlete;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This is an interview question from <i>Coursera - Introduction to Algorithms, part I</i>, week 6
@@ -24,7 +22,7 @@ import io.mincongh.hashcode.good.Athlete;
  *
  * @author Mincong Huang
  */
-public class AthleteTest {
+class AthleteTest {
 
   /**
    * Test the phenomenon where model only overrides the {@code hashCode()} but not the
@@ -32,7 +30,7 @@ public class AthleteTest {
    * hash code.
    */
   @Test
-  public void testCollisions() {
+  void testCollisions() {
 
     AthleteOnlyOverrideHashcode a1 = new AthleteOnlyOverrideHashcode("hashcode@gmail.com", "Hash");
     AthleteOnlyOverrideHashcode a2 = new AthleteOnlyOverrideHashcode("hashcode@gmail.com", "Code");
@@ -51,7 +49,7 @@ public class AthleteTest {
   }
 
   @Test
-  public void testWrongHashcode() {
+  void testWrongHashcode() {
 
     AthleteOnlyOverrideEquals b1 = new AthleteOnlyOverrideEquals("hashcode@gmail.com", "Hash Code");
     AthleteOnlyOverrideEquals b2 = new AthleteOnlyOverrideEquals("hashcode@gmail.com", "Hash Code");
@@ -75,7 +73,7 @@ public class AthleteTest {
    * later one, c2.
    */
   @Test
-  public void testCorrectImpl() {
+  void testCorrectImpl() {
     Athlete c1 = new Athlete("hashcode@gmail.com", "Hash Code");
     Athlete c2 = new Athlete("hashcode@gmail.com", "Hash");
     Map<Athlete, String> map = new HashMap<>();

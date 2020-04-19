@@ -1,11 +1,11 @@
 package io.mincongh.hashcode.good;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
  * Test the class {@code PhoneNumber} located in package good, a good class example having a
@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class PhoneNumberTest {
+class PhoneNumberTest {
 
   @Test
   public void testEquality() {

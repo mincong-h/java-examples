@@ -1,11 +1,10 @@
 package io.mincongh.hashcode.googleinterview;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test the class {@code PhoneNumber} located in package google interview, a bad example having a
@@ -35,7 +34,7 @@ import org.junit.Test;
  * @author Jon Skeet
  * @author Mincong Huang
  */
-public class PhoneNumberTest {
+class PhoneNumberTest {
 
   /**
    * Each object of {@code PhoneNumber} has the same hash code. Therefore, all the entries are
@@ -97,7 +96,7 @@ public class PhoneNumberTest {
    * </ul>
    *
    * Results in Java 8:
-   * 
+   *
    * <pre>
    * -------------------------------
    * Different hash code for each object.

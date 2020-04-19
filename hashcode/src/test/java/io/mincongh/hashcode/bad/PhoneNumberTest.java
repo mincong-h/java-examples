@@ -1,11 +1,10 @@
 package io.mincongh.hashcode.bad;
 
-import static org.junit.Assert.assertNull;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test the class {@code PhoneNumberNoHash} located in package bad, a bad class example having no
@@ -13,7 +12,7 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class PhoneNumberTest {
+class PhoneNumberTest {
 
   /**
    * The {@code PhoneNumberNoHash} class's failure to override {@code hashCode} causes the two equal
@@ -25,7 +24,7 @@ public class PhoneNumberTest {
    * doesn't bother checking for object equality if the hash codes don't match.
    */
   @Test
-  public void testEquality() {
+  void testEquality() {
     Map<PhoneNumberNoHash, String> m = new HashMap<PhoneNumberNoHash, String>();
     m.put(new PhoneNumberNoHash(707, 867, 5309), "Jenny");
     // Hash codes are not the same for these two objects.
