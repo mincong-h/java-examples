@@ -66,7 +66,7 @@
     <module>json</module>
     <module>logback</module>
     <module>maven</module>
-    <module>mockito-parent</module>
+    <module>mockito</module>
     <module>mongo</module>
     <module>oca</module>
     <module>ocp</module>
