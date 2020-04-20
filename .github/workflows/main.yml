@@ -2,10 +2,12 @@
 # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
 # https://help.github.com/en/actions/language-and-framework-guides/building-and-testing-java-with-maven
 #
+name: Actions
+
 on: [push]
 
 jobs:
-  java11:
+  Java-11:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,7 +15,7 @@ jobs:
       with:
         java-version: 11
     - run: mvn verify
-  java14:
+  Java-14:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
