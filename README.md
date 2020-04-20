@@ -1,4 +1,4 @@
-# Java Examples [![Build Status][travis-img]][travis]
+# Java Examples [![Build Status][actions-img]][actions]
 
 A Maven project for learning Java during my free time. Most of the explanations are
 written directly in the code as Javadoc. I use tests to understand technical detail
@@ -66,5 +66,5 @@ consistent with the existing ones.
 [jersey]: https://jersey.github.io
 [jgit]: https://github.com/eclipse/jgit
 [style-java]: https://google.github.io/styleguide/javaguide.html
-[travis]: https://travis-ci.org/mincong-h/java-examples
-[travis-img]: https://travis-ci.org/mincong-h/java-examples.svg?branch=master
+[actions]: https://github.com/mincong-h/java-examples/actions
+[actions-img]: https://github.com/mincong-h/java-examples/workflows/Actions/badge.svg
