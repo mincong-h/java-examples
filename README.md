@@ -43,6 +43,17 @@ VAVR | Functional component library that provides persistent data types and func
 
 I use [Google Java Code Style][style-java] for this repo.
 
+## Mockito
+
+[Mockito](https://site.mockito.org/), the most popular Mocking framework for
+Java unit tests.
+
+- [Mockito: 3 Ways to Init Mock in JUnit 5](https://mincong.io/2020/04/19/mockito-junit5)
+- [Mockito: 3 Ways to Init Mock in JUnit 4](https://mincong.io/2019/09/13/init-mock)
+- [Mockito: ArgumentCaptor](https://mincong.io/2019/12/15/mockito-argument-captor)
+- [Mockito: 4 Ways to Verify Interations](https://mincong.io/2019/09/22/mockito-verify)
+- [Testing with GwtMockito](https://mincong.io/2019/08/26/testing-with-gwtmockito)
+
 ## Generation
 
 Generate a new module, e.g. `java-examples-io`, using [Maven Archetype
