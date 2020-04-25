@@ -30,7 +30,7 @@ JUnit | JUnit testing framework.
 Logback | [Logback](http://logback.qos.ch/) logging framework.
 Maven | Basic functionality of Maven.
 Mongo | The MongoDB database
-Mockito | [Mockito](https://site.mockito.org/), the most popular Mocking framework for Java unit tests
+Mockito | [Mockito](https://site.mockito.org/), the most popular mocking framework for Java unit tests
 OCA | Oracle Certified Associate Java SE 8
 OCP | Oracle Certified Professional Java SE 8
 Regex | Regular expressions.
@@ -42,6 +42,17 @@ VAVR | Functional component library that provides persistent data types and func
 ## Code Style
 
 I use [Google Java Code Style][style-java] for this repo.
+
+## Mockito
+
+[Mockito](https://site.mockito.org/), the most popular mocking framework for
+Java unit tests.
+
+- [Mockito: 3 Ways to Init Mock in JUnit 5](https://mincong.io/2020/04/19/mockito-junit5)
+- [Mockito: 3 Ways to Init Mock in JUnit 4](https://mincong.io/2019/09/13/init-mock)
+- [Mockito: ArgumentCaptor](https://mincong.io/2019/12/15/mockito-argument-captor)
+- [Mockito: 4 Ways to Verify Interations](https://mincong.io/2019/09/22/mockito-verify)
+- [Testing with GwtMockito](https://mincong.io/2019/08/26/testing-with-gwtmockito)
 
 ## Generation
 

@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
  * MockitoAnnotations#initMocks(Object)}.
  *
  * @author Mincong Huang
+ * @blog https://mincong.io/2019/09/13/init-mock/
  */
 // no JUnit runner as annotation
 public class BookReaderAnnotationWithSetupTest {

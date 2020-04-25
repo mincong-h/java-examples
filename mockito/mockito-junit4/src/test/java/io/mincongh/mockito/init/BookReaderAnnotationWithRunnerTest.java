@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
  * Mock object {@code mockedBook} is created by {@link MockitoJUnitRunner}.
  *
  * @author Mincong Huang
+ * @blog https://mincong.io/2019/09/13/init-mock/
  */
 @RunWith(MockitoJUnitRunner.class)
 public class BookReaderAnnotationWithRunnerTest {
