@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
  * Mock object {@code mockedBook} is created in setup, {@link Before} the tests.
  *
  * @author Mincong Huang
+ * @blog https://mincong.io/2019/09/13/init-mock/
  */
 public class BookReaderClassicMockTest {
 
