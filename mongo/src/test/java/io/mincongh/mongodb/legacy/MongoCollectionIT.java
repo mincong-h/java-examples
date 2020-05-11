@@ -1,4 +1,4 @@
-package io.mincongh.mongodb;
+package io.mincongh.mongodb.legacy;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;

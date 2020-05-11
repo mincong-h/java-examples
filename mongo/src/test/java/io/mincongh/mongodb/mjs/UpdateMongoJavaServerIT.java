@@ -1,10 +1,11 @@
-package io.mincongh.mongodb;
+package io.mincongh.mongodb.mjs;
 
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 import de.bwaldvogel.mongo.MongoServer;
 import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
+import io.mincongh.mongodb.spec.UpdateAbstractIT;
 import java.net.InetSocketAddress;
 import org.junit.Ignore;
 import org.junit.Test;

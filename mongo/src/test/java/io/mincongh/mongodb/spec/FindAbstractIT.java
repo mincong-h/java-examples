@@ -1,4 +1,4 @@
-package io.mincongh.mongodb;
+package io.mincongh.mongodb.spec;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;

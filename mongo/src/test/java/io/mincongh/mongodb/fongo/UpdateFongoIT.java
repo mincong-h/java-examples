@@ -1,7 +1,8 @@
-package io.mincongh.mongodb;
+package io.mincongh.mongodb.fongo;
 
 import com.github.fakemongo.junit.FongoRule;
 import com.mongodb.client.MongoDatabase;
+import io.mincongh.mongodb.spec.UpdateAbstractIT;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
