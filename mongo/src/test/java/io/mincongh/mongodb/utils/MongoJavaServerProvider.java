@@ -33,6 +33,11 @@ public class MongoJavaServerProvider implements MongoProvider {
   }
 
   @Override
+  public boolean isMongoJavaServer() {
+    return true;
+  }
+
+  @Override
   public void close() {
     client.close();
     server.shutdown();
