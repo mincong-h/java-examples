@@ -11,12 +11,30 @@ public interface MongoProvider {
   MongoCollection<BasicDBObject> userCollection();
 
   /**
-   * Whether this provider is implemented by Mongo Java Server
+   * Whether this provider is implemented by Mongo Java Server.
    *
    * @return true if this provider is implemented by Mongo Java Server, else false
    * @see <a href="https://github.com/bwaldvogel/mongo-java-server">Mongo Java Server</a>
    */
   boolean isMongoJavaServer();
+
+  /**
+   * Whether this provider is implemented by a real MongoDB.
+   *
+   * @return true if this provider is implemented by a real MongoDB, else false
+   */
+  boolean isRealMongo();
+
+  /**
+   * Whether this provider is implemented by Fongo.
+   *
+   * <p>Connecting to real MongoDB via Fongo will return false, because the actual implementation is
+   * MongoDB not Fongo.
+   *
+   * @return true if this provider is implemented by Fongo, else false
+   * @see <a href="https://github.com/fakemongo/fongo/">Fongo</a>
+   */
+  boolean isFongo();
 
   void close();
 }

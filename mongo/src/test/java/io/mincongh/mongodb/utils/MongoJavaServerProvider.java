@@ -38,6 +38,16 @@ public class MongoJavaServerProvider implements MongoProvider {
   }
 
   @Override
+  public boolean isRealMongo() {
+    return false;
+  }
+
+  @Override
+  public boolean isFongo() {
+    return false;
+  }
+
+  @Override
   public void close() {
     client.close();
     server.shutdown();

@@ -7,9 +7,11 @@ import com.mongodb.client.MongoDatabase;
 public class FongoProvider implements MongoProvider {
 
   private final MongoDatabase database;
+  private final boolean isReal;
 
-  public FongoProvider(MongoDatabase database) {
+  public FongoProvider(MongoDatabase database, boolean isReal) {
     this.database = database;
+    this.isReal = isReal;
     database.createCollection("users");
   }
 
@@ -26,6 +28,16 @@ public class FongoProvider implements MongoProvider {
   @Override
   public boolean isMongoJavaServer() {
     return false;
+  }
+
+  @Override
+  public boolean isRealMongo() {
+    return isReal;
+  }
+
+  @Override
+  public boolean isFongo() {
+    return !isRealMongo();
   }
 
   @Override

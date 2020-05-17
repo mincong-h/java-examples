@@ -42,10 +42,10 @@ public class MongoProviderFactory {
       switch (providerName) {
         case FAKE_MONGO:
           Objects.requireNonNull(fakeFongoRule);
-          return new FongoProvider(fakeFongoRule.getDatabase());
+          return new FongoProvider(fakeFongoRule.getDatabase(), false);
         case REAL_MONGO:
           Objects.requireNonNull(realFongoRule);
-          return new FongoProvider(realFongoRule.getDatabase());
+          return new FongoProvider(realFongoRule.getDatabase(), true);
         case MONGO_JAVA_SERVER:
           return new MongoJavaServerProvider();
         default:
