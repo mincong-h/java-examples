@@ -90,7 +90,9 @@ public class IndexIT {
     if (provider.isMongoJavaServer()) {
       /*
        * @impl Mongo Java Server
-       * @bug one more index is created.
+       * @bug One more index is created.
+       *      Adding non-unique non-id index with key {} is not yet implemented
+       * @see https://github.com/bwaldvogel/mongo-java-server/blob/a3dadcb4d4660fabc7dc01f4270231735aa2a0cb/core/src/main/java/de/bwaldvogel/mongo/backend/AbstractMongoDatabase.java#L754-L757
        *
        * Expecting:
        *   <["_id_", "name_1", "name_1"]>
