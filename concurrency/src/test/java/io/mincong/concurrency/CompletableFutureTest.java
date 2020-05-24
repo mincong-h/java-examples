@@ -10,6 +10,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.*;
 
 /**
+ * Test the basic APIs of {@link CompletableFuture}.
+ *
  * @author Mincong Huang
  * @see java.util.concurrent.CompletableFuture
  * @see java.util.concurrent.CompletionStage
@@ -129,12 +131,20 @@ class CompletableFutureTest {
     assertThat(future2.get()).isEqualTo("Enough Java for today");
   }
 
-  /* ----- handle APIs ----- */
+  /*
+   * ----- handle APIs -----
+   *
+   * Handle the result (success or failure) synchronously or asynchronously.
+   *
+   * - sync:  handle((ok, ex) -> { ... })
+   * - aysnc: handleAsync((ok, ex) -> { ... })
+   *          handleAsync((ok, ex) -> { ... }, executor)
+   */
 
   @Test
   void handle_failedStage() {
     var future =
-        // method `failedStage` returns a CompletableStage
+        // method `failedStage` returns a `CompletableStage`
         CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
             .handle((str, ex) -> ex == null ? str : ex.getMessage())
             .toCompletableFuture();
@@ -144,7 +154,7 @@ class CompletableFutureTest {
   @Test
   void handle_failedFuture() {
     var future =
-        // method `failedFuture` returns CompletableFuture
+        // method `failedFuture` returns a `CompletableFuture`
         CompletableFuture.<String>failedFuture(new IllegalArgumentException("Oops"))
             .handle((str, ex) -> ex == null ? str : ex.getMessage())
             .toCompletableFuture();
