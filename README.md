@@ -39,18 +39,19 @@ Typesafe Config | [Typesafe Config](https://github.com/lightbend/config), config
 XML | XML serialization, XPath, XSD.
 VAVR | Functional component library that provides persistent data types and functional control structures.
 
-## Code Style
+## Articles
 
-I use [Google Java Code Style][style-java] for this repo.
+Here are some blog posts that I wrote using the source code of this repository. Visit <https://mincong.io>
+to see the complete list.
 
-## Java Date
+### Java Date
 
 Date manipulation using `java.util.*` and `java.time.*`.
 
 - [Controlling Time with Java Clock](https://mincong.io/2020/05/24/java-clock/)
 - [Convert Date to ISO 8601 String in Java](https://mincong.io/2017/02/16/convert-date-to-string-in-java/)
 
-## Mockito
+### Mockito
 
 [Mockito](https://site.mockito.org/), the most popular mocking framework for
 Java unit tests.
@@ -61,22 +62,9 @@ Java unit tests.
 - [Mockito: 4 Ways to Verify Interations](https://mincong.io/2019/09/22/mockito-verify)
 - [Testing with GwtMockito](https://mincong.io/2019/08/26/testing-with-gwtmockito)
 
-## Generation
+## Code Style
 
-Generate a new module, e.g. `java-examples-io`, using [Maven Archetype
-Plugin](https://maven.apache.org/archetype/maven-archetype-plugin/generate-mojo.html):
-
-```sh
-mvn archetype:generate \
-    -DarchetypeArtifactId=maven-archetype-quickstart \
-    -DarchetypeVersion=1.4 \
-    -DinteractiveMode=false \
-    -DgroupId=io.mincongh \
-    -DartifactId=java-examples-io
-```
-
-Then, rename module by removing prefix "java-examples-" so that the naming of the new module is
-consistent with the existing ones.
+I use [Google Java Code Style][style-java] for this repo.
 
 [assertj]: http://joel-costigliola.github.io/assertj/
 [bm]: http://byteman.jboss.org
