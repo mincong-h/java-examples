@@ -1,4 +1,4 @@
-package io.mincongh.datetime;
+package io.mincongh.date;
 
 import java.time.*;
 import java.util.*;
