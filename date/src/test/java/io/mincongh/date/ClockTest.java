@@ -48,48 +48,68 @@ public class ClockTest {
    */
   @Test
   void offsetClock() {
-    var ttl = Duration.ofHours(1);
-
-    // Given a sample cache under test
+    // Given a cache with some entries
     var instant = Instant.now();
-    class Cache {
-      final Map<String, Instant> cache = new HashMap<>();
-
-      /**
-       * Remove expired entries.
-       *
-       * @param clock clock to control the time
-       * @return expired entries being removed
-       */
-      List<Entry<String, Instant>> clearExpired(Clock clock) {
-        var now = Instant.now(clock);
-        var it = cache.entrySet().iterator();
-        var expired = new ArrayList<Map.Entry<String, Instant>>();
-
-        while (it.hasNext()) {
-          var entry = it.next();
-          if (entry.getValue().plus(ttl).isBefore(now)) {
-            it.remove();
-            expired.add(entry);
-          }
-        }
-        return expired;
-      }
-
-      void put(String key, Instant value) {
-        cache.put(key, value);
-      }
-    }
-
     var cache = new Cache();
     cache.put("k1", instant);
     cache.put("k2", instant);
     cache.put("k3", instant.plusSeconds(7_200));
 
-    // When removing entries from the cache
-    var removed = cache.clearExpired(Clock.offset(Clock.systemDefaultZone(), ttl));
+    // When removing expired entries from the cache
+    var clock = Clock.offset(Clock.systemDefaultZone(), Cache.TTL);
+    var removed = cache.clearExpired(clock);
 
     // Then removed entries contains exactly k1 and k2
     assertThat(removed).containsExactly(entry("k1", instant), entry("k2", instant));
+  }
+
+  static class Cache {
+    static final Duration TTL = Duration.ofHours(1);
+    final Map<String, Instant> cache = new HashMap<>();
+
+    /**
+     * Remove expired entries.
+     *
+     * @param clock clock to control the time
+     * @return expired entries being removed
+     */
+    List<Entry<String, Instant>> clearExpired(Clock clock) {
+      var now = Instant.now(clock);
+      var it = cache.entrySet().iterator();
+      var expired = new ArrayList<Map.Entry<String, Instant>>();
+
+      while (it.hasNext()) {
+        var entry = it.next();
+        if (entry.getValue().plus(TTL).isBefore(now)) {
+          it.remove();
+          expired.add(entry);
+        }
+      }
+      return expired;
+    }
+
+    void put(String key, Instant value) {
+      cache.put(key, value);
+    }
+  }
+
+  /** Which APIs accept {@link Clock} as input parameter? */
+  @Test
+  void commonUsage() {
+    var datetime = LocalDateTime.of(2020, 5, 24, 14, 0);
+    var instant = ZonedDateTime.of(datetime, ZoneOffset.UTC).toInstant();
+    var clock = Clock.fixed(instant, ZoneOffset.UTC);
+
+    assertThat(Instant.now(clock)).isEqualTo(Instant.ofEpochSecond(1590328800L));
+    assertThat(LocalDate.now(clock)).isEqualTo(LocalDate.of(2020, 5, 24));
+    assertThat(LocalTime.now(clock)).isEqualTo(LocalTime.of(14, 0));
+    assertThat(LocalDateTime.now(clock)).isEqualTo(LocalDateTime.of(2020, 5, 24, 14, 0));
+    assertThat(ZonedDateTime.now(clock))
+        .isEqualTo(LocalDateTime.of(2020, 5, 24, 14, 0).atZone(ZoneOffset.UTC));
+    assertThat(Year.now(clock)).isEqualTo(Year.of(2020));
+    assertThat(YearMonth.now(clock)).isEqualTo(YearMonth.of(2020, 5));
+    assertThat(OffsetTime.now(clock)).isEqualTo(OffsetTime.ofInstant(instant, ZoneOffset.UTC));
+    assertThat(OffsetDateTime.now(clock))
+        .isEqualTo(OffsetDateTime.ofInstant(instant, ZoneOffset.UTC));
   }
 }
