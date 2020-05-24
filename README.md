@@ -6,7 +6,7 @@ in different frameworks. You can run these tests using:
 
     mvn clean install
 
-This project is tested under Java 11.
+This project is tested under Java 11 and Java 14.
 
 ## Module List
 
@@ -42,6 +42,13 @@ VAVR | Functional component library that provides persistent data types and func
 ## Code Style
 
 I use [Google Java Code Style][style-java] for this repo.
+
+## Java Date
+
+Date manipulation using `java.util.*` and `java.time.*`.
+
+- [Controlling Time with Java Clock](https://mincong.io/2020/05/24/java-clock/)
+- [Convert Date to ISO 8601 String in Java](https://mincong.io/2017/02/16/convert-date-to-string-in-java/)
 
 ## Mockito
 

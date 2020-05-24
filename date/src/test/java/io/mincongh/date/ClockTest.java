@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.data.MapEntry.entry;
 
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/05/24/java-clock/
+ */
 public class ClockTest {
 
   /**
