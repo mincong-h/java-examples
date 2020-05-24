@@ -132,8 +132,9 @@ class CompletableFutureTest {
   /* ----- handle APIs ----- */
 
   @Test
-  void handle() {
+  void handle_failedStage() {
     var future =
+        // method `failedStage` returns a CompletableStage
         CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
             .handle((str, ex) -> ex == null ? str : ex.getMessage())
             .toCompletableFuture();
@@ -141,9 +142,35 @@ class CompletableFutureTest {
   }
 
   @Test
+  void handle_failedFuture() {
+    var future =
+        // method `failedFuture` returns CompletableFuture
+        CompletableFuture.<String>failedFuture(new IllegalArgumentException("Oops"))
+            .handle((str, ex) -> ex == null ? str : ex.getMessage())
+            .toCompletableFuture();
+    assertThat(future.join()).isEqualTo("Oops");
+  }
+
+  @Test
+  void handle_success() {
+    var future =
+        CompletableFuture.completedFuture("ok")
+            .handle((str, ex) -> ex == null ? str : ex.getMessage())
+            .toCompletableFuture();
+    assertThat(future.join()).isEqualTo("ok");
+  }
+
+  @Test
   void handleAsync() {
     var future =
         CompletableFuture.<String>failedStage(new IllegalArgumentException("Oops"))
+            /*
+             * Handle the result (success or failure) using the default
+             * asynchronous execution facility. It avoids blocking the current
+             * thread for waiting too long.
+             *
+             * @see https://blog.krecan.net/2013/12/25/completablefutures-why-to-use-async-methods/
+             */
             .handleAsync((str, ex) -> ex == null ? str : ex.getMessage())
             .toCompletableFuture();
     assertThat(future.join()).isEqualTo("Oops");
