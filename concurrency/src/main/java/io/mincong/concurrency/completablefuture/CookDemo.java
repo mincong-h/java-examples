@@ -6,10 +6,10 @@ import java.time.LocalTime;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Cooking is difficult and time-consuming. If you were hungry but still want to a good meal, you
- * need the help of completable future :)
+ * Cooking is difficult and time-consuming. If you were hungry but still want to a good meal,
+ * completable future can help you :)
  *
- * <p>In this demo, we are going to prepare noodle with some vegetables and meat.
+ * <p>In this demo, we are going to prepare some noodles with vegetables and meat.
  */
 public class CookDemo {
   public static void main(String[] args) throws Exception {
@@ -67,8 +67,7 @@ public class CookDemo {
    * takes about 14 seconds (10s + 4s) and preparing vegetables and meat takes about 6 seconds (3s +
    * 3s). Since these tasks are done in parallel, it only takes about 14 seconds to get it done. It
    * improves significantly the execution time. When both tasks are done, noodles will be mixed with
-   * vegetables and meat before marking as finished. So it takes about 15s in total. Examples
-   * output:
+   * vegetables and meat before marking as finished. So it takes about 15s in total. Example output:
    *
    * <pre>
    * 22:20:05.934505 - Cutting vegetables
