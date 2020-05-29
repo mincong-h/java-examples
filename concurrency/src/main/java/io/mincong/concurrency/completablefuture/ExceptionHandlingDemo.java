@@ -27,7 +27,7 @@ public class ExceptionHandlingDemo {
 
   public static void main(String[] args) {
     /*
-     * Case 1: handle(BiFunction<? super T, Throwable, ? extends U> fn)
+     * Case 1: handle(BiFunction<? super T, Throwable, ? extends U> fn): CompletableFuture<U>
      *
      * - Has access to success? Yes
      * - Has access to failure? Yes
@@ -38,7 +38,7 @@ public class ExceptionHandlingDemo {
     handle();
 
     /*
-     * Case 2: whenComplete(BiConsumer<? super T, ? super Throwable> action)
+     * Case 2: whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletableFuture<T>
      *
      * - Has access to success? Yes
      * - Has access to failure? Yes
@@ -57,7 +57,7 @@ public class ExceptionHandlingDemo {
     }
 
     /*
-     * Case 3: exceptionally(Function<Throwable, ? extends T> fn)
+     * Case 3: exceptionally(Function<Throwable, ? extends T> fn): CompletableFuture<T>
      *
      * - Has access to success? No
      * - Has access to failure? Yes
