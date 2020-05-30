@@ -95,32 +95,32 @@ public class ExceptionHandlingDemo {
 
   private static void handleCF() {
     System.out.println("----- handle (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.<String>failedFuture(new RuntimeException("Oops"))
-            .handle(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    return "Recovered from \"" + ex.getMessage() + "\"";
-                  } else {
-                    return msg;
-                  }
-                });
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.failedFuture(new RuntimeException("Oops"));
+    CompletableFuture<String> cf1 =
+        cf0.handle(
+            (msg, ex) -> {
+              if (ex != null) {
+                return "Recovered from \"" + ex.getMessage() + "\"";
+              } else {
+                return msg;
+              }
+            });
+    System.out.println(cf1.join());
   }
 
   private static void handleCS() {
     System.out.println("----- handle (CompletionStage) -----");
-    CompletionStage<String> cs =
-        CompletableFuture.<String>failedStage(new RuntimeException("Oops"))
-            .handle(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    return "Recovered from \"" + ex.getMessage() + "\"";
-                  } else {
-                    return msg;
-                  }
-                });
-    System.out.println(cs.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.failedStage(new RuntimeException("Oops"));
+    CompletionStage<String> cs1 =
+        cs0.handle(
+            (msg, ex) -> {
+              if (ex != null) {
+                return "Recovered from \"" + ex.getMessage() + "\"";
+              } else {
+                return msg;
+              }
+            });
+    System.out.println(cs1.toCompletableFuture().join());
   }
 
   private static void whenCompleteCF() {
