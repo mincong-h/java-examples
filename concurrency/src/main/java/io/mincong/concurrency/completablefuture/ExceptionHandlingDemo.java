@@ -41,7 +41,7 @@ public class ExceptionHandlingDemo {
      *
      * - Has access to success? Yes
      * - Has access to failure? Yes
-     * - Can recovery from exception? Yes
+     * - Can recover from exception? Yes
      * - Is triggered when stage succeed? Yes
      * - Is triggered when stage failed? Yes
      */
@@ -53,7 +53,7 @@ public class ExceptionHandlingDemo {
      *
      * - Has access to success? Yes
      * - Has access to failure? Yes
-     * - Can recovery from exception? No
+     * - Can recover from exception? No
      * - Is triggered when stage succeed? Yes
      * - Is triggered when stage failed? Yes
      */
@@ -81,7 +81,7 @@ public class ExceptionHandlingDemo {
      *
      * - Has access to success? No
      * - Has access to failure? Yes
-     * - Can recovery from exception? Yes
+     * - Can recover from exception? Yes
      * - Is triggered when stage succeed? No
      * - Is triggered when stage failed? Yes
      */
@@ -95,118 +95,119 @@ public class ExceptionHandlingDemo {
 
   private static void handleCF() {
     System.out.println("----- handle (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.<String>failedFuture(new RuntimeException("Oops"))
-            .handle(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    return "Recovered from \"" + ex.getMessage() + "\"";
-                  } else {
-                    return msg;
-                  }
-                });
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.failedFuture(new RuntimeException("Oops"));
+    CompletableFuture<String> cf1 =
+        cf0.handle(
+            (msg, ex) -> {
+              if (ex != null) {
+                return "Recovered from \"" + ex.getMessage() + "\"";
+              } else {
+                return msg;
+              }
+            });
+    System.out.println(cf1.join());
   }
 
   private static void handleCS() {
     System.out.println("----- handle (CompletionStage) -----");
-    CompletionStage<String> cs =
-        CompletableFuture.<String>failedStage(new RuntimeException("Oops"))
-            .handle(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    return "Recovered from \"" + ex.getMessage() + "\"";
-                  } else {
-                    return msg;
-                  }
-                });
-    System.out.println(cs.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.failedStage(new RuntimeException("Oops"));
+    CompletionStage<String> cs1 =
+        cs0.handle(
+            (msg, ex) -> {
+              if (ex != null) {
+                return "Recovered from \"" + ex.getMessage() + "\"";
+              } else {
+                return msg;
+              }
+            });
+    System.out.println(cs1.toCompletableFuture().join());
   }
 
   private static void whenCompleteCF() {
     System.out.println("----- whenComplete (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.<String>failedFuture(new RuntimeException("Oops"))
-            /*
-             * `whenComplete` allows you to consume the result of the current
-             * completion stage, such as logging the success or failure.
-             * However, you cannot modify the result of the stage by returning
-             * a new value.
-             */
-            // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletableFuture<T>
-            .whenComplete(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    System.out.println("Exception occurred");
-                  } else {
-                    System.out.println(msg);
-                  }
-                  /*
-                   * Cannot return value because method whenComplete
-                   * uses bi-consumer as input parameter:
-                   * BiConsumer<? super T, ? super Throwable> action
-                   */
-                });
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.failedFuture(new RuntimeException("Oops"));
+    CompletableFuture<String> cf1 =
+        /*
+         * `whenComplete` allows you to consume the result of the current
+         * completion stage, such as logging the success or failure.
+         * However, you cannot modify the result of the stage by returning
+         * a new value.
+         */
+        // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletableFuture<T>
+        cf0.whenComplete(
+            (msg, ex) -> {
+              if (ex != null) {
+                System.out.println("Exception occurred");
+              } else {
+                System.out.println(msg);
+              }
+              /*
+               * Cannot return value because method whenComplete
+               * is not designed to translate completion outcomes.
+               * It uses bi-consumer as input parameter:
+               * BiConsumer<? super T, ? super Throwable> action
+               */
+            });
+    System.out.println(cf1.join());
   }
 
   private static void whenCompleteCS() {
     System.out.println("----- whenComplete (CompletionStage) -----");
-    CompletionStage<String> cs =
-        CompletableFuture.<String>failedStage(new RuntimeException("Oops"))
-            // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletionStage<T>
-            .whenComplete(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    System.out.println("Exception occurred");
-                  } else {
-                    System.out.println(msg);
-                  }
-                });
-    System.out.println(cs.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.failedStage(new RuntimeException("Oops"));
+    CompletionStage<String> cs1 =
+        // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletionStage<T>
+        cs0.whenComplete(
+            (msg, ex) -> {
+              if (ex != null) {
+                System.out.println("Exception occurred");
+              } else {
+                System.out.println(msg);
+              }
+            });
+    System.out.println(cs1.toCompletableFuture().join());
   }
 
   private static void exceptionallyCF1() {
     System.out.println("----- exceptionally with exception (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.<String>failedFuture(new RuntimeException("Oops"))
-            .exceptionally(ex -> "Recovered from \"" + ex.getMessage() + "\"");
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.failedFuture(new RuntimeException("Oops"));
+    CompletableFuture<String> cf1 =
+        cf0.exceptionally(ex -> "Recovered from \"" + ex.getMessage() + "\"");
+    System.out.println(cf1.join());
   }
 
   private static void exceptionallyCF2() {
     System.out.println("----- exceptionally without exception (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.completedFuture("OK")
-            .exceptionally(
-                ex -> {
-                  /*
-                   * This is not called because `exceptionally` is only called
-                   * when an exception happened. It is not the case here.
-                   */
-                  System.out.println("Handling exception");
-                  return "Recovered from \"" + ex.getMessage() + "\"";
-                });
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.completedFuture("OK");
+    CompletableFuture<String> cf1 =
+        cf0.exceptionally(
+            ex -> {
+              /*
+               * This is not called because `exceptionally` is only called
+               * when an exception happened. It is not the case here.
+               */
+              System.out.println("Handling exception");
+              return "Recovered from \"" + ex.getMessage() + "\"";
+            });
+    System.out.println(cf1.join());
   }
 
   private static void exceptionallyCS1() {
     System.out.println("----- exceptionally with exception (CompletionStage) -----");
-    CompletionStage<String> cs =
-        CompletableFuture.<String>failedStage(new RuntimeException("Oops"))
-            .exceptionally(ex -> "Recovered from \"" + ex.getMessage() + "\"");
-    System.out.println(cs.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.failedStage(new RuntimeException("Oops"));
+    CompletionStage<String> cs1 =
+        cs0.exceptionally(ex -> "Recovered from \"" + ex.getMessage() + "\"");
+    System.out.println(cs1.toCompletableFuture().join());
   }
 
   private static void exceptionallyCS2() {
     System.out.println("----- exceptionally without exception (CompletionStage) -----");
-    CompletionStage<String> cf =
-        CompletableFuture.completedStage("OK")
-            .exceptionally(
-                ex -> {
-                  System.out.println("Handling exception");
-                  return "Recovered from \"" + ex.getMessage() + "\"";
-                });
-    System.out.println(cf.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.completedStage("OK");
+    CompletionStage<String> cs1 =
+        cs0.exceptionally(
+            ex -> {
+              System.out.println("Handling exception");
+              return "Recovered from \"" + ex.getMessage() + "\"";
+            });
+    System.out.println(cs1.toCompletableFuture().join());
   }
 }
