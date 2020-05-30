@@ -125,29 +125,30 @@ public class ExceptionHandlingDemo {
 
   private static void whenCompleteCF() {
     System.out.println("----- whenComplete (CompletableFuture) -----");
-    CompletableFuture<String> cf =
-        CompletableFuture.<String>failedFuture(new RuntimeException("Oops"))
-            /*
-             * `whenComplete` allows you to consume the result of the current
-             * completion stage, such as logging the success or failure.
-             * However, you cannot modify the result of the stage by returning
-             * a new value.
-             */
-            // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletableFuture<T>
-            .whenComplete(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    System.out.println("Exception occurred");
-                  } else {
-                    System.out.println(msg);
-                  }
-                  /*
-                   * Cannot return value because method whenComplete
-                   * uses bi-consumer as input parameter:
-                   * BiConsumer<? super T, ? super Throwable> action
-                   */
-                });
-    System.out.println(cf.join());
+    CompletableFuture<String> cf0 = CompletableFuture.failedFuture(new RuntimeException("Oops"));
+    CompletableFuture<String> cf1 =
+        /*
+         * `whenComplete` allows you to consume the result of the current
+         * completion stage, such as logging the success or failure.
+         * However, you cannot modify the result of the stage by returning
+         * a new value.
+         */
+        // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletableFuture<T>
+        cf0.whenComplete(
+            (msg, ex) -> {
+              if (ex != null) {
+                System.out.println("Exception occurred");
+              } else {
+                System.out.println(msg);
+              }
+              /*
+               * Cannot return value because method whenComplete
+               * is not designed to translate completion outcomes.
+               * It uses bi-consumer as input parameter:
+               * BiConsumer<? super T, ? super Throwable> action
+               */
+            });
+    System.out.println(cf1.join());
   }
 
   private static void whenCompleteCS() {
