@@ -153,18 +153,18 @@ public class ExceptionHandlingDemo {
 
   private static void whenCompleteCS() {
     System.out.println("----- whenComplete (CompletionStage) -----");
-    CompletionStage<String> cs =
-        CompletableFuture.<String>failedStage(new RuntimeException("Oops"))
-            // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletionStage<T>
-            .whenComplete(
-                (msg, ex) -> {
-                  if (ex != null) {
-                    System.out.println("Exception occurred");
-                  } else {
-                    System.out.println(msg);
-                  }
-                });
-    System.out.println(cs.toCompletableFuture().join());
+    CompletionStage<String> cs0 = CompletableFuture.failedStage(new RuntimeException("Oops"));
+    CompletionStage<String> cs1 =
+        // whenComplete(BiConsumer<? super T, ? super Throwable> action): CompletionStage<T>
+        cs0.whenComplete(
+            (msg, ex) -> {
+              if (ex != null) {
+                System.out.println("Exception occurred");
+              } else {
+                System.out.println(msg);
+              }
+            });
+    System.out.println(cs1.toCompletableFuture().join());
   }
 
   private static void exceptionallyCF1() {
