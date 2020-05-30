@@ -44,6 +44,11 @@ VAVR | Functional component library that provides persistent data types and func
 Here are some blog posts that I wrote using the source code of this repository. Visit <https://mincong.io>
 to see the complete list.
 
+### Java Concurrency
+
+- [3 Ways to Handle Exception In Completable Future](https://mincong.io/2020/05/30/exception-handling-in-completable-future/)
+- [How CompletableFuture is tested in OpenJDK?](https://mincong.io/2020/05/10/completablefuture-test/)
+
 ### Java Date
 
 Date manipulation using `java.util.*` and `java.time.*`.

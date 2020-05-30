@@ -32,6 +32,7 @@ import java.util.concurrent.CompletionStage;
  * </pre>
  *
  * @author Mincong Huang
+ * @blog https://mincong.io/2020/05/30/exception-handling-in-completable-future/
  */
 public class ExceptionHandlingDemo {
 
