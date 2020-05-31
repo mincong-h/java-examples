@@ -1,5 +1,8 @@
 package io.mincongh.rest;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Base64;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -11,12 +14,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class BasicAuthExampleTest {
 
   private HttpServer server;
@@ -55,5 +53,4 @@ class BasicAuthExampleTest {
     assertThat(r.getStatusInfo()).isEqualTo(Status.UNAUTHORIZED);
     assertThat(r.readEntity(String.class)).isEqualTo("Unauthorized");
   }
-
 }

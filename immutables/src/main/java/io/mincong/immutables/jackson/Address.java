@@ -21,5 +21,4 @@ public interface Address {
 
   @JsonProperty("zipcode")
   String postalCode();
-
 }

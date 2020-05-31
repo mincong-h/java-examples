@@ -8,9 +8,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ExecutorTest {
 
   @Test
@@ -26,5 +24,4 @@ public class ExecutorTest {
 
     assertEquals(10, count.get());
   }
-
 }

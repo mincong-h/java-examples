@@ -15,16 +15,12 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.rules.Timeout;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class FileHelperTest {
 
-  @Rule
-  public Timeout globalTimeout = Timeout.seconds(5);
+  @Rule public Timeout globalTimeout = Timeout.seconds(5);
 
-  @Rule
-  public TemporaryFolder temporaryDir = new TemporaryFolder();
+  @Rule public TemporaryFolder temporaryDir = new TemporaryFolder();
 
   private File source;
 
@@ -32,9 +28,8 @@ public class FileHelperTest {
 
   private final int size = 10_000;
 
-  private final List<String> lines = IntStream.range(0, size)
-      .mapToObj(i -> "Line " + i)
-      .collect(Collectors.toList());
+  private final List<String> lines =
+      IntStream.range(0, size).mapToObj(i -> "Line " + i).collect(Collectors.toList());
 
   @Before
   public void setUp() throws Exception {
@@ -77,5 +72,4 @@ public class FileHelperTest {
     LocalDate d = FileHelper.read(source, LocalDate.class);
     assertThat(d).isEqualTo(LocalDate.of(2017, 10, 7));
   }
-
 }

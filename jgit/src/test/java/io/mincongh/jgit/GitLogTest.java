@@ -10,15 +10,18 @@ public class GitLogTest extends JGitTest {
 
   /**
    * Given a Git repository with 2 branches:
+   *
    * <pre>
    * * --> M1 --> M2 (master)
    *  \
    *   --> T1 --> T2 (topic)
    * </pre>
+   *
    * Using git-log commands in different scenario:
+   *
    * <ul>
-   * <li><tt>git log master..topic</tt> returns ["T2", "T1"].
-   * <li><tt>git log topic..master</tt> returns ["M2", "M1"].
+   *   <li><tt>git log master..topic</tt> returns ["T2", "T1"].
+   *   <li><tt>git log topic..master</tt> returns ["M2", "M1"].
    * </ul>
    */
   @Test
@@ -42,5 +45,4 @@ public class GitLogTest extends JGitTest {
         .flatExtracting(RevCommit::getShortMessage)
         .containsExactly("M2", "M1");
   }
-
 }

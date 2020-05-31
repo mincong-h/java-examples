@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.autoclosing;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AutoCloseableObject implements AutoCloseable {
 
   private StringBuilder sb;
@@ -21,5 +19,4 @@ public class AutoCloseableObject implements AutoCloseable {
   public void close() throws Exception {
     sb.append("Closed; ");
   }
-
 }

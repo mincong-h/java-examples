@@ -1,5 +1,7 @@
 package io.mincongh.jgit;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,36 +12,33 @@ import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
  * git-show - Show various types of objects
  *
- * <p>
- * SYNOPSIS
+ * <p>SYNOPSIS
+ *
  * <pre>
  * git show [options] &lt;object&gt;...
  * </pre>
- * <p>
- * Shows one or more objects (blobs, trees, tags and commits).
+ *
+ * <p>Shows one or more objects (blobs, trees, tags and commits).
  *
  * <ul>
- * <li>For commits it shows the log message and textual diff. It also
- * presents the merge commit in a special format as produced by
- * <tt>git diff-tree --cc</tt>.
- * <li>For tags, it shows the tag message and the referenced objects.
- * <li>For trees, it shows the names (equivalent to
- * </tt>git ls-tree</tt> with <tt>--name-only</tt>).
- * <li>For plain blobs, it shows the plain contents.
+ *   <li>For commits it shows the log message and textual diff. It also presents the merge commit in
+ *       a special format as produced by <tt>git diff-tree --cc</tt>.
+ *   <li>For tags, it shows the tag message and the referenced objects.
+ *   <li>For trees, it shows the names (equivalent to </tt>git ls-tree</tt> with
+ *       <tt>--name-only</tt>).
+ *   <li>For plain blobs, it shows the plain contents.
  * </ul>
  *
- * The command takes options applicable to the <tt>git diff-tree</tt>
- * command to control how the changes the commit introduces are shown.
+ * The command takes options applicable to the <tt>git diff-tree</tt> command to control how the
+ * changes the commit introduces are shown.
  *
  * @author Rüdiger Herrmann
  * @author Mincong Huang
  * @see <a href="https://stackoverflow.com/questions/46368062">Git show file in target branch in
- * JGit?</a>
+ *     JGit?</a>
  */
 public class GitShowTest extends JGitTest {
 
@@ -70,5 +69,4 @@ public class GitShowTest extends JGitTest {
       outputStream.write(content.getBytes(StandardCharsets.UTF_8));
     }
   }
-
 }

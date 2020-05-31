@@ -4,9 +4,7 @@ import io.mincong.ocpjp.design_principles.dao.Person;
 import io.mincong.ocpjp.design_principles.dao.PersonDao;
 import java.util.Collection;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PersonDaoImpl implements PersonDao {
 
   @Override
@@ -43,5 +41,4 @@ public class PersonDaoImpl implements PersonDao {
     // Retrieve person data, return as collection
     return null;
   }
-
 }

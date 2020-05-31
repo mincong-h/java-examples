@@ -11,9 +11,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ReadWriteLockTest {
 
   private ReadWriteLock lock;
@@ -55,20 +53,21 @@ public class ReadWriteLockTest {
   public void readLock_multipleCalls() throws Exception {
     List<Thread> threads = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
-      threads.add(new Thread(() -> {
-        /*
-         * You can acquire multiple locks as long as no write lock
-         * has been acquired on a `ReadWriteLock` object.
-         */
-        lock.readLock().lock();
-        try {
-          map.get("key");
-        } finally {
-          lock.readLock().unlock();
-        }
-      }));
+      threads.add(
+          new Thread(
+              () -> {
+                /*
+                 * You can acquire multiple locks as long as no write lock
+                 * has been acquired on a `ReadWriteLock` object.
+                 */
+                lock.readLock().lock();
+                try {
+                  map.get("key");
+                } finally {
+                  lock.readLock().unlock();
+                }
+              }));
     }
     threads.forEach(Thread::start);
   }
-
 }

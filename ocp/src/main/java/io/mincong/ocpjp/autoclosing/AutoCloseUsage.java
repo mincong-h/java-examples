@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 @SuppressWarnings({"unused"})
 public class AutoCloseUsage {
 

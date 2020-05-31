@@ -21,5 +21,4 @@ public interface User {
   Set<String> emails();
 
   Optional<String> description();
-
 }

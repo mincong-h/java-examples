@@ -1,8 +1,6 @@
 package io.mincongh.json;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Person {
 
   private String name;

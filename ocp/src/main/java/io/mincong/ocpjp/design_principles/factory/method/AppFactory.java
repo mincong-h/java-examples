@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.factory.method;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public abstract class AppFactory {
 
   public App getAppInstance() {

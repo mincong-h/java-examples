@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class IdentifiersTest {
 
   @Test
@@ -26,5 +24,4 @@ public class IdentifiersTest {
     int i = 1;
     assertEquals(i, 1);
   }
-
 }

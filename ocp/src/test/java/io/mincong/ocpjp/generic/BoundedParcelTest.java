@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class BoundedParcelTest {
 
   @Test
@@ -22,5 +20,4 @@ public class BoundedParcelTest {
     bookParcel.set(new Book());
     assertThat(bookParcel.getShipInfo()).isEqualTo("Ship by courier ABC");
   }
-
 }

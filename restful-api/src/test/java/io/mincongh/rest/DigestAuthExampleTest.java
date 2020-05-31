@@ -1,5 +1,7 @@
 package io.mincongh.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.mincongh.rest.DigestAuthExample.Digest;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -10,11 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class DigestAuthExampleTest {
 
   private HttpServer server;
@@ -40,22 +38,25 @@ class DigestAuthExampleTest {
 
   @Test
   void getSalesReport_authFailed_wrongDigest() {
-    Response r = authApi.path("sales123")
-        .queryParam("user", "userA")
-        .queryParam("digest", "incorrectDigest")
-        .request()
-        .get();
+    Response r =
+        authApi
+            .path("sales123")
+            .queryParam("user", "userA")
+            .queryParam("digest", "incorrectDigest")
+            .request()
+            .get();
     assertThat(r.getStatusInfo()).isEqualTo(Status.UNAUTHORIZED);
   }
 
   @Test
   void getSalesReport_authSucceed_correctDigest() {
-    Response r = authApi.path("sales123")
-        .queryParam("user", "userA")
-        .queryParam("digest", DigestAuthExample.getDigestAsString("passwordA", Digest.MD5))
-        .request()
-        .get();
+    Response r =
+        authApi
+            .path("sales123")
+            .queryParam("user", "userA")
+            .queryParam("digest", DigestAuthExample.getDigestAsString("passwordA", Digest.MD5))
+            .request()
+            .get();
     assertThat(r.getStatusInfo()).isEqualTo(Status.OK);
   }
-
 }

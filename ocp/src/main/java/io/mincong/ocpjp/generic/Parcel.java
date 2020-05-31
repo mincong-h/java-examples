@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.generic;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Parcel<T> {
 
   private T t;
@@ -14,5 +12,4 @@ public class Parcel<T> {
   public T getT() {
     return t;
   }
-
 }

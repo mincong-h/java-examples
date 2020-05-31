@@ -1,14 +1,12 @@
 package io.mincong.concurrency;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class BasicConcurrencyTest {
 
   @Test
@@ -27,5 +25,4 @@ class BasicConcurrencyTest {
       assertThat(myCounter.get(i)).isEqualTo(2);
     }
   }
-
 }

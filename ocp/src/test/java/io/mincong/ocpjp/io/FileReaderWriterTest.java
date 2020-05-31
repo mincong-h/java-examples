@@ -21,30 +21,25 @@ import org.junit.rules.TemporaryFolder;
 
 /**
  * Chapter 7.4 Using character I/O with readers and writers
- * <p>
- * {@link Reader} and {@link Writer} are abstract base classes for
- * reading and writing Unicode-compliant character data. They don't
- * replace the byte-oriented I/O classes, but supplement them.
- * <p>
- * Classes {@link Reader} and {@link Writer} handle 16-bit Unicode
- * well, which isn't supported by the byte-oriented
- * {@link java.io.InputStream} and {@link java.io.OutputStream}
- * classes. Also note that Java's primitive data type {@code char}
- * stores 16-bit Unicode values. Even though you can use
- * {@link java.io.InputStream} and {@link java.io.OutputStream} to
- * read and write characters, you should use the character-oriented
- * {@link Reader} and {@link Writer} classes to read and write
- * character data. Internationalization is possible only by using
- * 16-bit Unicode values. Also {@link Reader} and {@link Writer}
- * classes offer faster I/O operations.
+ *
+ * <p>{@link Reader} and {@link Writer} are abstract base classes for reading and writing
+ * Unicode-compliant character data. They don't replace the byte-oriented I/O classes, but
+ * supplement them.
+ *
+ * <p>Classes {@link Reader} and {@link Writer} handle 16-bit Unicode well, which isn't supported by
+ * the byte-oriented {@link java.io.InputStream} and {@link java.io.OutputStream} classes. Also note
+ * that Java's primitive data type {@code char} stores 16-bit Unicode values. Even though you can
+ * use {@link java.io.InputStream} and {@link java.io.OutputStream} to read and write characters,
+ * you should use the character-oriented {@link Reader} and {@link Writer} classes to read and write
+ * character data. Internationalization is possible only by using 16-bit Unicode values. Also {@link
+ * Reader} and {@link Writer} classes offer faster I/O operations.
  *
  * @author Mala Gupta
  * @author Mincong Huang
  */
 public class FileReaderWriterTest {
 
-  @Rule
-  public TemporaryFolder temporaryDir = new TemporaryFolder();
+  @Rule public TemporaryFolder temporaryDir = new TemporaryFolder();
 
   private File source;
 
@@ -52,9 +47,8 @@ public class FileReaderWriterTest {
 
   private final int size = 100_000;
 
-  private final List<String> lines = IntStream.range(0, size)
-      .mapToObj(i -> "Line " + i)
-      .collect(Collectors.toList());
+  private final List<String> lines =
+      IntStream.range(0, size).mapToObj(i -> "Line " + i).collect(Collectors.toList());
 
   @Before
   public void setUp() throws Exception {
@@ -65,10 +59,8 @@ public class FileReaderWriterTest {
 
   @Test
   public void readWriteByByte() throws Exception {
-    try (
-        Reader in = new FileReader(source);
-        Writer out = new FileWriter(target)
-    ) {
+    try (Reader in = new FileReader(source);
+        Writer out = new FileWriter(target)) {
       int data;
       while ((data = in.read()) != -1) {
         out.write(data);
@@ -80,10 +72,8 @@ public class FileReaderWriterTest {
 
   @Test
   public void readWriteByChars() throws Exception {
-    try (
-        Reader in = new FileReader(source);
-        Writer out = new FileWriter(target)
-    ) {
+    try (Reader in = new FileReader(source);
+        Writer out = new FileWriter(target)) {
       int len;
       char[] data = new char[1024];
       while ((len = in.read(data)) != -1) {
@@ -96,12 +86,10 @@ public class FileReaderWriterTest {
 
   @Test
   public void bufferedReadWriteByByte() throws Exception {
-    try (
-        FileReader fr = new FileReader(source);
+    try (FileReader fr = new FileReader(source);
         BufferedReader br = new BufferedReader(fr);
         FileWriter fw = new FileWriter(target);
-        BufferedWriter bw = new BufferedWriter(fw)
-    ) {
+        BufferedWriter bw = new BufferedWriter(fw)) {
       int data;
       while ((data = br.read()) != -1) {
         bw.write(data);
@@ -113,12 +101,10 @@ public class FileReaderWriterTest {
 
   @Test
   public void bufferedReadWriteByChars() throws Exception {
-    try (
-        FileReader fr = new FileReader(source);
+    try (FileReader fr = new FileReader(source);
         BufferedReader br = new BufferedReader(fr);
         FileWriter fw = new FileWriter(target);
-        BufferedWriter bw = new BufferedWriter(fw)
-    ) {
+        BufferedWriter bw = new BufferedWriter(fw)) {
       int len;
       char[] data = new char[1024];
       while ((len = br.read(data)) != -1) {
@@ -131,12 +117,10 @@ public class FileReaderWriterTest {
 
   @Test
   public void bufferedReadWriteByLine() throws Exception {
-    try (
-        FileReader fr = new FileReader(source);
+    try (FileReader fr = new FileReader(source);
         BufferedReader br = new BufferedReader(fr);
         FileWriter fw = new FileWriter(target);
-        BufferedWriter bw = new BufferedWriter(fw)
-    ) {
+        BufferedWriter bw = new BufferedWriter(fw)) {
       String line;
       while ((line = br.readLine()) != null) {
         /*
@@ -153,5 +137,4 @@ public class FileReaderWriterTest {
     List<String> results = Files.readAllLines(target.toPath());
     assertThat(results).hasSize(size);
   }
-
 }

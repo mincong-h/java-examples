@@ -38,12 +38,10 @@ public class CrudOperationTest extends JdbcTest {
               + "  author CHAR(255),"
               + "  publication_year INT,"
               + "  unit_price REAL"
-              + ")"
-      );
+              + ")");
       s.executeUpdate(
           "INSERT INTO book (id, title, author, publication_year, unit_price)"
-              + " VALUES (1, 'Book Name', 'Author', 2017, 10.0)"
-      );
+              + " VALUES (1, 'Book Name', 'Author', 2017, 10.0)");
     }
   }
 
@@ -114,11 +112,11 @@ public class CrudOperationTest extends JdbcTest {
   @Test
   public void insertRows() throws Exception {
     try (Statement s = connection.createStatement()) {
-      int count = s.executeUpdate(
-          "INSERT INTO book (id, title, author, publication_year, unit_price) VALUES"
-              + " (2, 'OCP Java SE 7', 'Mala Gupta', 2015, 44.99)"
-              + ",(3, 'OCP Java SE 8', 'Mala Gupta', 2017, 59.99)"
-      );
+      int count =
+          s.executeUpdate(
+              "INSERT INTO book (id, title, author, publication_year, unit_price) VALUES"
+                  + " (2, 'OCP Java SE 7', 'Mala Gupta', 2015, 44.99)"
+                  + ",(3, 'OCP Java SE 8', 'Mala Gupta', 2017, 59.99)");
       assertThat(count).isEqualTo(2);
     }
   }
@@ -126,11 +124,8 @@ public class CrudOperationTest extends JdbcTest {
   @Test
   public void updateRows() throws Exception {
     try (Statement s = connection.createStatement()) {
-      int updated = s.executeUpdate(
-          "UPDATE book"
-              + " SET title = 'Awesome Book'"
-              + " WHERE id = 1"
-      );
+      int updated =
+          s.executeUpdate("UPDATE book" + " SET title = 'Awesome Book'" + " WHERE id = 1");
       try (ResultSet rs = s.executeQuery("SELECT * FROM book WHERE id = 1")) {
         assertThat(updated).isEqualTo(1);
         assertThat(getResults(rs)).isEqualTo("1, Awesome Book, Author, 2017, 10.0\n");
@@ -153,5 +148,4 @@ public class CrudOperationTest extends JdbcTest {
       assertThat(deleted).isEqualTo(0);
     }
   }
-
 }

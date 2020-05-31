@@ -10,17 +10,15 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 /**
- * {@link StringTokenizer} is a legacy class that's retained for
- * compatibility reasons. Oracle recommends use of method
- * {@link String#split(String, int)} or classes from a regex package
- * to get the same functionality.
+ * {@link StringTokenizer} is a legacy class that's retained for compatibility reasons. Oracle
+ * recommends use of method {@link String#split(String, int)} or classes from a regex package to get
+ * the same functionality.
  *
  * @author Mincong Huang
  */
 public class StringTokenizerTest {
 
-  @Rule
-  public final ExpectedException expectedEx = ExpectedException.none();
+  @Rule public final ExpectedException expectedEx = ExpectedException.none();
 
   @Test
   public void basic() throws Exception {
@@ -39,5 +37,4 @@ public class StringTokenizerTest {
     expectedEx.expect(NullPointerException.class);
     st.hasMoreElements();
   }
-
 }

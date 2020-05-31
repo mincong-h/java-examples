@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class DriverManagerTest extends JdbcTest {
 
   @Test(expected = SQLException.class)
@@ -33,5 +31,4 @@ public class DriverManagerTest extends JdbcTest {
       }
     }
   }
-
 }

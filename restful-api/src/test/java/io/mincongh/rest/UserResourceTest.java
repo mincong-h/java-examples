@@ -1,5 +1,7 @@
 package io.mincongh.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.mincongh.rest.dto.User;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -13,8 +15,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests User resource

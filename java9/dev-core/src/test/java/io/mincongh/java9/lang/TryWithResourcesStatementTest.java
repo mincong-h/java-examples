@@ -1,9 +1,9 @@
 package io.mincongh.java9.lang;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * Tests try-with-resources statement. Since Java 9, the variable declaration before each managed

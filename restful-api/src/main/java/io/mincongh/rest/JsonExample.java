@@ -1,6 +1,5 @@
 package io.mincongh.rest;
 
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -23,5 +22,4 @@ public class JsonExample {
   public Response doPost(String json) {
     return Response.status(Status.OK).entity("{\"message\":\"Hello\"}").build();
   }
-
 }

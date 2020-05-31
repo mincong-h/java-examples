@@ -11,9 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.UnsupportedTemporalTypeException;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class JavaTimeTest {
 
   @Test
@@ -59,5 +57,4 @@ public class JavaTimeTest {
     assertEquals(11, time.getHour());
     assertEquals(22, time.getMinute());
   }
-
 }

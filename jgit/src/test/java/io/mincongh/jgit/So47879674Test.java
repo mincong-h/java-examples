@@ -20,9 +20,7 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class So47879674Test extends JGitTest {
 
   @Test
@@ -39,10 +37,8 @@ public class So47879674Test extends JGitTest {
     Files.write(file2, Collections.singletonList("(´• ω •`)"), StandardOpenOption.CREATE);
 
     git.add().addFilepattern(".").call();
-    RevCommit commit = git.commit()
-        .setMessage("Add files (´• ω •`)")
-        .setAuthor("Foo", "foo@example.com")
-        .call();
+    RevCommit commit =
+        git.commit().setMessage("Add files (´• ω •`)").setAuthor("Foo", "foo@example.com").call();
 
     // From JGit
     String contentFromJGit;
@@ -71,10 +67,7 @@ public class So47879674Test extends JGitTest {
     assertThat(commit.getShortMessage()).isEqualTo("Add files (´• ω •`)");
     assertThat(contentFromJGit).isEqualTo("(´• ω •`)\n");
     assertThat(contentFromFileNIO).containsExactly("(´• ω •`)");
-    assertThat(contentFromFileIO).containsExactly(
-        "The 1st line: (´• ω •`)",
-        "The 2nd line: (´• ω •`)"
-    );
+    assertThat(contentFromFileIO)
+        .containsExactly("The 1st line: (´• ω •`)", "The 2nd line: (´• ω •`)");
   }
-
 }

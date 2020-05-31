@@ -14,7 +14,8 @@ import java.util.Objects;
 public class Node {
 
   public enum Status {
-    NORMAL, CONFLICT
+    NORMAL,
+    CONFLICT
   }
 
   private final List<Node> children = new ArrayList<>();
@@ -78,12 +79,18 @@ public class Node {
 
   @Override
   public String toString() {
-    return "Node{" +
-        "children=" + children +
-        ", name='" + name + '\'' +
-        ", version=" + version +
-        ", distance=" + distance +
-        ", status=" + status +
-        '}';
+    return "Node{"
+        + "children="
+        + children
+        + ", name='"
+        + name
+        + '\''
+        + ", version="
+        + version
+        + ", distance="
+        + distance
+        + ", status="
+        + status
+        + '}';
   }
 }

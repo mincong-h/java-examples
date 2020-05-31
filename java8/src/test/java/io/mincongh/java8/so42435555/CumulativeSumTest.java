@@ -1,12 +1,12 @@
 package io.mincongh.java8.so42435555;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * JAVA - Perform a cumulative sum using forEach or stream API
@@ -35,13 +35,11 @@ class CumulativeSumTest {
     map.put("third", 4.0);
 
     AtomicReference<Double> atomicSum = new AtomicReference<>(0.0);
-    map.entrySet().forEach(e -> e.setValue(
-        atomicSum.accumulateAndGet(e.getValue(), (x, y) -> x + y)
-    ));
+    map.entrySet()
+        .forEach(e -> e.setValue(atomicSum.accumulateAndGet(e.getValue(), (x, y) -> x + y)));
     assertEquals(10.0, atomicSum.get(), 0.0001);
     assertEquals(1.0, map.get("first"), 0.0001);
     assertEquals(6.0, map.get("second"), 0.0001);
     assertEquals(10.0, map.get("third"), 0.0001);
   }
-
 }

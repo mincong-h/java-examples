@@ -30,13 +30,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PathTest {
 
-  @Rule
-  public TemporaryFolder temporaryFolder = new TemporaryFolder();
+  @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   private Path r;
 
@@ -69,12 +66,13 @@ public class PathTest {
   public void lines() throws Exception {
     Path p = r.resolve("file");
     Files.write(p, Arrays.asList("Line 1", "Line 2", "Line 3"));
-    List<String> words = Files.lines(p)
-        .map(line -> line.split(" "))
-        .flatMap(Arrays::stream)
-        .distinct()
-        .sorted()
-        .collect(Collectors.toList());
+    List<String> words =
+        Files.lines(p)
+            .map(line -> line.split(" "))
+            .flatMap(Arrays::stream)
+            .distinct()
+            .sorted()
+            .collect(Collectors.toList());
     assertThat(words).containsExactly("1", "2", "3", "Line");
   }
 
@@ -82,9 +80,10 @@ public class PathTest {
   public void list() throws Exception {
     Path p = r.resolve("file");
     Files.write(p, Arrays.asList("Line 1", "Line 2", "Line 3"));
-    List<Path> paths = Files.list(r)
-        .filter(path -> path.getFileName().toString().startsWith("dir2"))
-        .collect(Collectors.toList());
+    List<Path> paths =
+        Files.list(r)
+            .filter(path -> path.getFileName().toString().startsWith("dir2"))
+            .collect(Collectors.toList());
     assertThat(paths).containsExactly(d2);
   }
 
@@ -389,11 +388,9 @@ public class PathTest {
   }
 
   /**
-   * Querying the file system multiple times to access all file or
-   * directory attributes can affect your application's performance.
-   * To get around this, you can access a group of file attributes by
-   * calling <code>Files#getFileAttributeView</code> or
-   * <code>Files#readAttributes</code>.
+   * Querying the file system multiple times to access all file or directory attributes can affect
+   * your application's performance. To get around this, you can access a group of file attributes
+   * by calling <code>Files#getFileAttributeView</code> or <code>Files#readAttributes</code>.
    */
   @Test
   @Ignore
@@ -422,5 +419,4 @@ public class PathTest {
     assertThat(attributes.size()).isPositive();
     assertThat(attributes.isOther()).isFalse();
   }
-
 }

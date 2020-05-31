@@ -9,14 +9,12 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public abstract class JdbcTest {
 
   /**
-   * The JDBC URL determines the appropriate driver for a given URL
-   * string. For example:
+   * The JDBC URL determines the appropriate driver for a given URL string. For example:
+   *
    * <pre>
    * jdbc:sub-protocol://&lt;host&gt;:&lt;port&gt;/&lt;database_name&gt;
    * </pre>
@@ -60,5 +58,4 @@ public abstract class JdbcTest {
     }
     return count;
   }
-
 }

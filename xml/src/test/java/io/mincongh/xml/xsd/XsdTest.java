@@ -1,5 +1,7 @@
 package io.mincongh.xml.xsd;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.apache.xerces.impl.xs.XSComplexTypeDecl;
 import org.apache.xerces.impl.xs.XSImplementationImpl;
 import org.apache.xerces.impl.xs.XSParticleDecl;
@@ -7,8 +9,6 @@ import org.apache.xerces.xs.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.bootstrap.DOMImplementationRegistry;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

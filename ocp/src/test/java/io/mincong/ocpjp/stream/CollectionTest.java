@@ -19,9 +19,7 @@ import java.util.stream.Stream;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class CollectionTest {
 
   private List<Book> books;
@@ -49,24 +47,20 @@ public class CollectionTest {
   @Test
   public void forEach_streams() throws Exception {
     StringBuilder sb = new StringBuilder();
-    Stream.of(new Book("A"), new Book("B"))
-        .forEach(sb::append);
+    Stream.of(new Book("A"), new Book("B")).forEach(sb::append);
     assertThat(sb.toString()).isEqualTo("AB");
   }
 
   @Test
   public void createPipeline() throws Exception {
-    List<String> names = books.stream()
-        .map(Book::getName)
-        .collect(Collectors.toList());
+    List<String> names = books.stream().map(Book::getName).collect(Collectors.toList());
     assertThat(names).containsExactly("A", "B");
   }
 
   @Test
   public void filterCollection() throws Exception {
-    List<Book> filtered = books.stream()
-        .filter(b -> b.getName().startsWith("A"))
-        .collect(Collectors.toList());
+    List<Book> filtered =
+        books.stream().filter(b -> b.getName().startsWith("A")).collect(Collectors.toList());
     assertThat(filtered).containsExactly(new Book("A"));
   }
 
@@ -77,10 +71,10 @@ public class CollectionTest {
     m.put("A2", 2);
     m.put("B1", 3);
 
-    Map<String, Integer> subMap = m.entrySet()
-        .stream()
-        .filter(e -> e.getKey().startsWith("A"))
-        .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+    Map<String, Integer> subMap =
+        m.entrySet().stream()
+            .filter(e -> e.getKey().startsWith("A"))
+            .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
     assertThat(subMap).containsOnly(entry("A1", 1), entry("A2", 2));
   }
 
@@ -89,11 +83,12 @@ public class CollectionTest {
   @Test
   public void peek() throws Exception {
     List<Integer> positives = new ArrayList<>();
-    int sum = Stream.of(-1, 0, 1, 2, 3)
-        .filter(i -> i > 0)
-        .peek(positives::add)
-        .mapToInt(Integer::intValue)
-        .sum();
+    int sum =
+        Stream.of(-1, 0, 1, 2, 3)
+            .filter(i -> i > 0)
+            .peek(positives::add)
+            .mapToInt(Integer::intValue)
+            .sum();
 
     assertThat(positives).containsExactly(1, 2, 3);
     assertThat(sum).isEqualTo(6);
@@ -101,10 +96,11 @@ public class CollectionTest {
 
   @Test
   public void map() throws Exception {
-    String s = Stream.of(-1, 0, 1, 2, 3)
-        .filter(i -> i > 0)
-        .map(String::valueOf)
-        .collect(Collectors.joining(", "));
+    String s =
+        Stream.of(-1, 0, 1, 2, 3)
+            .filter(i -> i > 0)
+            .map(String::valueOf)
+            .collect(Collectors.joining(", "));
     assertThat(s).isEqualTo("1, 2, 3");
   }
 
@@ -163,41 +159,35 @@ public class CollectionTest {
 
   @Test
   public void sorted_naturalOrder() throws Exception {
-    List<Integer> numbers = Stream.of(1, 3, 2)
-        .sorted()
-        .collect(Collectors.toList());
+    List<Integer> numbers = Stream.of(1, 3, 2).sorted().collect(Collectors.toList());
     assertThat(numbers).containsExactly(1, 2, 3);
   }
 
   @Test
   public void sorted_specificOrder1() throws Exception {
-    List<Integer> numbers = Stream.of(1, 3, 2)
-        .sorted(Comparator.comparing(Integer::intValue).reversed())
-        .collect(Collectors.toList());
+    List<Integer> numbers =
+        Stream.of(1, 3, 2)
+            .sorted(Comparator.comparing(Integer::intValue).reversed())
+            .collect(Collectors.toList());
     assertThat(numbers).containsExactly(3, 2, 1);
   }
 
   @Test
   public void sorted_specificOrder2() throws Exception {
-    List<Book> numbers = books.stream()
-        .sorted(Comparator.comparing(Book::getName))
-        .collect(Collectors.toList());
+    List<Book> numbers =
+        books.stream().sorted(Comparator.comparing(Book::getName)).collect(Collectors.toList());
     assertThat(numbers).containsExactly(new Book("A"), new Book("B"));
   }
 
   @Test
   public void limit() throws Exception {
-    List<Integer> numbers = Stream.of(1, 2, 3)
-        .limit(2)
-        .collect(Collectors.toList());
+    List<Integer> numbers = Stream.of(1, 2, 3).limit(2).collect(Collectors.toList());
     assertThat(numbers).containsExactly(1, 2);
   }
 
   @Test
   public void skip() throws Exception {
-    List<Integer> numbers = Stream.of(-2, -1, 1, 2, 3)
-        .skip(2)
-        .collect(Collectors.toList());
+    List<Integer> numbers = Stream.of(-2, -1, 1, 2, 3).skip(2).collect(Collectors.toList());
     assertThat(numbers).containsExactly(1, 2, 3);
   }
 
@@ -222,12 +212,13 @@ public class CollectionTest {
 
   @Test
   public void flatMap() throws Exception {
-    List<String> chars = Stream.of("Hello", "Java")
-        .map(s -> s.split(""))
-        .flatMap(Arrays::stream)
-        .distinct()
-        .sorted()
-        .collect(Collectors.toList());
+    List<String> chars =
+        Stream.of("Hello", "Java")
+            .map(s -> s.split(""))
+            .flatMap(Arrays::stream)
+            .distinct()
+            .sorted()
+            .collect(Collectors.toList());
     assertThat(chars).containsExactly("H", "J", "a", "e", "l", "o", "v");
   }
 
@@ -239,23 +230,24 @@ public class CollectionTest {
 
   @Test
   public void collect_map() throws Exception {
-    Map<String, Integer> m = Stream.of(1, 2)
-        .collect(Collectors.toMap(String::valueOf, Function.identity()));
+    Map<String, Integer> m =
+        Stream.of(1, 2).collect(Collectors.toMap(String::valueOf, Function.identity()));
     assertThat(m).containsOnly(entry("1", 1), entry("2", 2));
   }
 
   @Test
   public void groupBy() throws Exception {
-    Map<Character, Set<String>> m = Stream.of("A1", "A2", "A1", "B1", "B2")
-        .collect(Collectors.groupingBy(s -> s.charAt(0), HashMap::new, Collectors.toSet()));
+    Map<Character, Set<String>> m =
+        Stream.of("A1", "A2", "A1", "B1", "B2")
+            .collect(Collectors.groupingBy(s -> s.charAt(0), HashMap::new, Collectors.toSet()));
     assertThat(m.get('A')).containsExactlyInAnyOrder("A1", "A2");
     assertThat(m.get('B')).containsExactlyInAnyOrder("B1", "B2");
   }
 
   @Test
   public void partitioningBy() throws Exception {
-    Map<Boolean, List<Integer>> isOdd = Stream.of(0, 1, 2, 3)
-        .collect(Collectors.partitioningBy(i -> i % 2 == 0));
+    Map<Boolean, List<Integer>> isOdd =
+        Stream.of(0, 1, 2, 3).collect(Collectors.partitioningBy(i -> i % 2 == 0));
     assertThat(isOdd.get(true)).containsExactly(0, 2);
     assertThat(isOdd.get(false)).containsExactly(1, 3);
   }
@@ -296,5 +288,4 @@ public class CollectionTest {
       return name;
     }
   }
-
 }

@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class DeclaringMultipleVariablesTest {
 
   @Test
@@ -27,5 +25,4 @@ public class DeclaringMultipleVariablesTest {
     assertEquals(i2, 5);
     assertEquals(i3, 5);
   }
-
 }

@@ -1,8 +1,6 @@
 package io.mincong.ocajp.chapter5;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public interface MyExtendedInterface extends MyInterface {
 
   @Override

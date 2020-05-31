@@ -1,8 +1,6 @@
 package io.mincongh.inheritance;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Parent {
 
   public String publicAttr = "parent public";

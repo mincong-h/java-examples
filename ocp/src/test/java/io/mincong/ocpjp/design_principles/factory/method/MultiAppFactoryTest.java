@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class MultiAppFactoryTest {
 
   @Test
@@ -26,5 +24,4 @@ public class MultiAppFactoryTest {
 
     assertThat(str).isEqualTo("Launch TextEditor using Hello.xml");
   }
-
 }

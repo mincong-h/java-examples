@@ -3,9 +3,7 @@ package io.mincong.ocpjp.i18n;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 final class GreetingHelper {
 
   private GreetingHelper() {
@@ -16,5 +14,4 @@ final class GreetingHelper {
     ResourceBundle labels = ResourceBundle.getBundle("labels", locale);
     return labels.getString("welcome");
   }
-
 }

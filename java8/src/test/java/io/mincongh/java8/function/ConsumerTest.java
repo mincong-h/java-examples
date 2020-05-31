@@ -1,11 +1,11 @@
 package io.mincongh.java8.function;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Consumer;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /** @author Mincong Huang */
 class ConsumerTest {

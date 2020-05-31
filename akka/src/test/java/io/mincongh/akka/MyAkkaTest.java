@@ -1,13 +1,13 @@
 package io.mincongh.akka;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import akka.actor.*;
 import akka.testkit.javadsl.TestKit;
 import java.time.Duration;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Mincong Huang

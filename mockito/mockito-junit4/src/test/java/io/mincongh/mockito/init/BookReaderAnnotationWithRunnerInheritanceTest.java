@@ -1,12 +1,12 @@
 package io.mincongh.mockito.init;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Mock object {@code mockedBook} is created by {@link MockitoJUnitRunner} created in parent class.

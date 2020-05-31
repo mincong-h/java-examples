@@ -9,9 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class OptionalTest {
 
   @Test
@@ -30,9 +28,7 @@ public class OptionalTest {
   @Test
   public void ofNullable() throws Exception {
     List<String> in = Arrays.asList("v", null);
-    List<Optional<String>> out = in.stream()
-        .map(Optional::ofNullable)
-        .collect(Collectors.toList());
+    List<Optional<String>> out = in.stream().map(Optional::ofNullable).collect(Collectors.toList());
     assertThat(out.get(0)).isPresent();
     assertThat(out.get(1)).isNotPresent();
   }
@@ -81,5 +77,4 @@ public class OptionalTest {
   private Optional<Integer> parseOptionally(String v) {
     return v == null ? Optional.empty() : Optional.of(Integer.parseInt(v));
   }
-
 }

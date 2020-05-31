@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.dao;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Group {
 
   private int id;
@@ -24,5 +22,4 @@ public class Group {
   public void setName(String name) {
     this.name = name;
   }
-
 }

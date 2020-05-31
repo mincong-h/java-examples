@@ -1,8 +1,6 @@
 package io.mincong.ocajp.chapter4;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Animal {
 
   private double weight;
@@ -29,5 +27,4 @@ public class Animal {
   public void setName(String name) {
     this.name = name;
   }
-
 }

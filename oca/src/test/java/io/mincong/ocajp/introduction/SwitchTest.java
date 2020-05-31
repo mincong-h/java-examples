@@ -4,9 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-/**
- * @author Mincong HUANG
- */
+/** @author Mincong HUANG */
 public class SwitchTest {
 
   @Test

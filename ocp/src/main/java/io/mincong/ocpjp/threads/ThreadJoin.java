@@ -4,16 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ThreadJoin {
 
   /**
    * Milliseconds required to let the king be ready.
-   * <p>
-   * You can change this value and / or the value of {@link
-   * #MS_TO_WAIT} to modify the behaviors of white walkers.
+   *
+   * <p>You can change this value and / or the value of {@link #MS_TO_WAIT} to modify the behaviors
+   * of white walkers.
    *
    * @see #MS_TO_WAIT
    */
@@ -21,9 +19,9 @@ public class ThreadJoin {
 
   /**
    * Milliseconds required to wait the king.
-   * <p>
-   * You can change this value and / or the value of {@link
-   * #MS_TO_READY} to modify the behaviors of white walkers.
+   *
+   * <p>You can change this value and / or the value of {@link #MS_TO_READY} to modify the behaviors
+   * of white walkers.
    *
    * @see #MS_TO_READY
    */
@@ -31,11 +29,9 @@ public class ThreadJoin {
 
   public static void main(String... args) {
     NightKing king = new NightKing();
-    List<WhiteWalker> walkers = Arrays.asList(
-        new WhiteWalker("A", king),
-        new WhiteWalker("B", king),
-        new WhiteWalker("C", king)
-    );
+    List<WhiteWalker> walkers =
+        Arrays.asList(
+            new WhiteWalker("A", king), new WhiteWalker("B", king), new WhiteWalker("C", king));
     king.start();
     walkers.forEach(Thread::start);
   }
@@ -88,5 +84,4 @@ public class ThreadJoin {
       isReady.set(true);
     }
   }
-
 }

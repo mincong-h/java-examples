@@ -1,12 +1,12 @@
 package io.mincongh.mockito.verify;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /** @author Mincong Huang */
 public class MockitoArgumentCaptor2Test {

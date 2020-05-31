@@ -1,8 +1,6 @@
 package io.mincong.ocajp.introduction.cake;
 
-/**
- * Change object field value.
- */
+/** Change object field value. */
 public class Cake {
 
   int model;

@@ -1,5 +1,7 @@
 package io.mincongh.jgit;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,8 +13,6 @@ import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * How to "cat" a file in JGit?
@@ -40,7 +40,7 @@ public class So1685228Test extends JGitTest {
     assertThat(readFile(lastCommit, "docs/README.md")).isEqualTo("Line1\nLine2\n");
   }
 
-  private String readFile(RevCommit commit , String filepath) throws IOException {
+  private String readFile(RevCommit commit, String filepath) throws IOException {
     try (TreeWalk walk = TreeWalk.forPath(repo, filepath, commit.getTree())) {
       if (walk != null) {
         byte[] bytes = repo.open(walk.getObjectId(0)).getBytes();

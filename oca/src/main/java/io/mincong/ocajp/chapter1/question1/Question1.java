@@ -11,8 +11,7 @@ public class Question1 {
     int A$B = 0;
     int _helloWorld = 1;
     int Public = 3; // 'public' & 'Public' are different.
-//    int true = 2; // reserved keyword
-//    int 1980_s;   // cannot start with digit
+    //    int true = 2; // reserved keyword
+    //    int 1980_s;   // cannot start with digit
   }
-
 }

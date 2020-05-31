@@ -1,5 +1,7 @@
 package io.mincongh.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -10,8 +12,6 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /** @author Mincong Huang */
 class JsonExampleTest {

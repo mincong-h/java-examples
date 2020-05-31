@@ -1,6 +1,5 @@
 package io.mincong.ocpjp.regex;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Rule;
@@ -16,12 +15,9 @@ public class StringTest {
 
   private static final String SENTENCE = "bla bla bla...";
 
-  @Rule
-  public final ExpectedException expectedEx = ExpectedException.none();
+  @Rule public final ExpectedException expectedEx = ExpectedException.none();
 
-  /**
-   * Search forward
-   */
+  /** Search forward */
   @Test
   public void indexOf() throws Exception {
     assertThat(SENTENCE.indexOf('b', -1)).isEqualTo(0);
@@ -31,9 +27,7 @@ public class StringTest {
     assertThat(SENTENCE.indexOf('b', 10)).isEqualTo(-1);
   }
 
-  /**
-   * Search backward
-   */
+  /** Search backward */
   @Test
   public void lastIndexOf() throws Exception {
     assertThat(SENTENCE.lastIndexOf('b', -1)).isEqualTo(-1);
@@ -74,9 +68,8 @@ public class StringTest {
   }
 
   /**
-   * <i>Tokenizing</i> is the process of splitting a string, based on
-   * a separator, into tokens. A separator can be a character, text,
-   * or a regex. For example:
+   * <i>Tokenizing</i> is the process of splitting a string, based on a separator, into tokens. A
+   * separator can be a character, text, or a regex. For example:
    *
    * <pre>
    * Value:   |f|l|a|t| |c|a|t| |r|e|d|
@@ -86,9 +79,8 @@ public class StringTest {
    * Token 2:                 | |r|e|d|
    * </pre>
    *
-   * You might also want to limit the number of tokens using the
-   * overloaded method {@link String#split(String, int)}. For
-   * example, we can set the limit=2:
+   * You might also want to limit the number of tokens using the overloaded method {@link
+   * String#split(String, int)}. For example, we can set the limit=2:
    *
    * <pre>
    * Value:   |f|l|a|t| |c|a|t| |r|e|d|
@@ -156,5 +148,4 @@ public class StringTest {
     assertThat("Hello".equals("hello")).isFalse();
     assertThat("Hello".equalsIgnoreCase("hello")).isTrue();
   }
-
 }

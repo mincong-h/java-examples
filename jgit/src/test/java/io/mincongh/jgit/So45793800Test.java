@@ -51,5 +51,4 @@ public class So45793800Test extends JGitTest {
       }
     }
   }
-
 }

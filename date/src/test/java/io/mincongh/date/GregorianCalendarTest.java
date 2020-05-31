@@ -1,14 +1,12 @@
 package io.mincongh.date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class GregorianCalendarTest {
 
   @Test
@@ -22,5 +20,4 @@ class GregorianCalendarTest {
     Date date = calendar.getTime();
     assertEquals("2017-02-16T20:22:28.000+01:00", sdf.format(date));
   }
-
 }

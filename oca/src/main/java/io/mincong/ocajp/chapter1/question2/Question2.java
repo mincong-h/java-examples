@@ -16,8 +16,7 @@ public class Question2 {
    */
   public static void main(String[] args) {
     Question2 question2 = new Question2();
-    System.out.println(question2.brand);  // false
-    System.out.println(question2.empty);  // null
+    System.out.println(question2.brand); // false
+    System.out.println(question2.empty); // null
   }
-
 }

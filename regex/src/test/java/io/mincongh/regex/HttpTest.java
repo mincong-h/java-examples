@@ -1,11 +1,11 @@
 package io.mincongh.regex;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Test different regular expressions related to HTTP / HTTPS.
@@ -14,12 +14,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class HttpTest {
 
-  private static final List<String> COOKIE_EXPRESSIONS = Arrays.asList(
-      "Set-Cookie: JSESSIONID=123; Path=/hello/; secure",
-      "Set-Cookie: JSESSIONID=123; Path=/hello/; HttpOnly",
-      "Set-Cookie: JSESSIONID=123; Path=/hello/; secure; HttpOnly",
-      "Set-Cookie: JSESSIONID=123; Path=/hello/; HttpOnly; secure"
-  );
+  private static final List<String> COOKIE_EXPRESSIONS =
+      Arrays.asList(
+          "Set-Cookie: JSESSIONID=123; Path=/hello/; secure",
+          "Set-Cookie: JSESSIONID=123; Path=/hello/; HttpOnly",
+          "Set-Cookie: JSESSIONID=123; Path=/hello/; secure; HttpOnly",
+          "Set-Cookie: JSESSIONID=123; Path=/hello/; HttpOnly; secure");
 
   private Pattern p;
 
@@ -40,5 +40,4 @@ class HttpTest {
     p = Pattern.compile("(?i)^((?:(?!;\\s?HttpOnly).)+)");
     COOKIE_EXPRESSIONS.forEach(s -> assertTrue(p.matcher(s).find()));
   }
-
 }

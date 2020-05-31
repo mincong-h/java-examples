@@ -1,13 +1,10 @@
 package io.mincong.ocpjp.autoclosing;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AutoCloseableObjectTest {
 
   @Test
@@ -20,5 +17,4 @@ public class AutoCloseableObjectTest {
     }
     assertThat(sb.toString()).isEqualTo("Instantiated; Sth wrong; Closed; Exception caught; ");
   }
-
 }

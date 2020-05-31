@@ -9,15 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * A concrete implementation of the {@link ConcurrentMap} interface,
- * class {@link ConcurrentHashMap} is a concurrent class analogous to
- * class {@link java.util.HashMap}. A {@link java.util.HashMap} is
- * not synchronized. If you're manipulating a
- * {@link java.util.HashMap} using multiple threads, you must
- * synchronized its access. But locking the entire HashMap object can
- * create serious performance issues when it's being accessed by
- * multiple threads. If multiple threads are retrieving values, it
- * makes sense to allow concurrent read operations and monitor write
+ * A concrete implementation of the {@link ConcurrentMap} interface, class {@link ConcurrentHashMap}
+ * is a concurrent class analogous to class {@link java.util.HashMap}. A {@link java.util.HashMap}
+ * is not synchronized. If you're manipulating a {@link java.util.HashMap} using multiple threads,
+ * you must synchronized its access. But locking the entire HashMap object can create serious
+ * performance issues when it's being accessed by multiple threads. If multiple threads are
+ * retrieving values, it makes sense to allow concurrent read operations and monitor write
  * operations.
  *
  * @author Mincong Huang
@@ -58,5 +55,4 @@ public class ConcurrentHashMapTest {
     assertThat(isReplaced).isTrue();
     assertThat(map).containsOnly(entry("k1", "v2"));
   }
-
 }

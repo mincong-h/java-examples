@@ -3,9 +3,7 @@ package io.mincong.concurrency;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Mincong HUANG
- */
+/** @author Mincong HUANG */
 public class MyCounter {
 
   private Map<Integer, Integer> map = new HashMap<>();
@@ -18,5 +16,4 @@ public class MyCounter {
   public synchronized int get(int key) {
     return map.get(key);
   }
-
 }

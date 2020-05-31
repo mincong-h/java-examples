@@ -1,13 +1,13 @@
 package io.mincongh.vavr;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.collection.*;
 import io.vavr.control.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

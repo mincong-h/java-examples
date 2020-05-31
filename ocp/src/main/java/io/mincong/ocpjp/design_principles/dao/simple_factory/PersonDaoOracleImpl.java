@@ -4,10 +4,7 @@ import io.mincong.ocpjp.design_principles.dao.Person;
 import io.mincong.ocpjp.design_principles.dao.PersonDao;
 import java.util.Collection;
 
-/**
- *
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PersonDaoOracleImpl implements PersonDao {
 
   @Override
@@ -39,5 +36,4 @@ public class PersonDaoOracleImpl implements PersonDao {
     // TODO Implement the method logic
     return null;
   }
-
 }

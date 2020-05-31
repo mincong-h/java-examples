@@ -10,22 +10,18 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 /**
- * <p>
- * <b>Key comparing.</b> Unlike a {@link java.util.HashMap}, a
- * {@link TreeMap} uses method {@link Comparable#compareTo(Object)}
- * or method {@link Comparator#compare(Object, Object)} to determine
- * the equality of its keys. So, it can access the value associated
- * to a key without using the {@link Object#equals(Object)} and
- * {@link Object#hashCode()} of its elements.
+ * <b>Key comparing.</b> Unlike a {@link java.util.HashMap}, a {@link TreeMap} uses method {@link
+ * Comparable#compareTo(Object)} or method {@link Comparator#compare(Object, Object)} to determine
+ * the equality of its keys. So, it can access the value associated to a key without using the
+ * {@link Object#equals(Object)} and {@link Object#hashCode()} of its elements.
  *
  * @author Mincong Huang
  */
 public class TreeMapTest {
 
   /**
-   * If the key of {@link TreeMap} are {@link java.lang.Comparable},
-   * then {@link TreeMap} can use the key's natural order as order of
-   * the map.
+   * If the key of {@link TreeMap} are {@link java.lang.Comparable}, then {@link TreeMap} can use
+   * the key's natural order as order of the map.
    */
   @Test
   public void naturalOrder() throws Exception {
@@ -72,5 +68,4 @@ public class TreeMapTest {
       return s;
     }
   }
-
 }

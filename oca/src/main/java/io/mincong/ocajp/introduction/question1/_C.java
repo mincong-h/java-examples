@@ -7,12 +7,11 @@ package io.mincong.ocajp.introduction.question1;
  */
 public class _C {
 
-  private static int $;  // dollar is OK
+  private static int $; // dollar is OK
 
   public static void main(String[] main) {
     String a_b;
     System.out.print($);
-//  System.out.print(a_b);  // compile error: "Variable 'a_b' might not have been initialized"
+    //  System.out.print(a_b);  // compile error: "Variable 'a_b' might not have been initialized"
   }
-
 }

@@ -6,9 +6,7 @@ import io.mincong.ocpjp.design_principles.dao.GroupDao;
 import io.mincong.ocpjp.design_principles.dao.PersonDao;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AbstractDaoFactoryTest {
 
   @Test
@@ -30,5 +28,4 @@ public class AbstractDaoFactoryTest {
     assertThat(groupDao).isInstanceOf(GroupDaoMySqlImpl.class);
     assertThat(personDao).isInstanceOf(PersonDaoMySqlImpl.class);
   }
-
 }

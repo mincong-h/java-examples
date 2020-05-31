@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AbstractFactoryTest {
 
   @Test
@@ -28,5 +26,4 @@ public class AbstractFactoryTest {
     assertThat(app).isInstanceOf(TextEditor.class);
     assertThat(font).isInstanceOf(RegularFont.class);
   }
-
 }

@@ -1,5 +1,7 @@
 package io.mincongh.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
@@ -11,11 +13,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class MethodExampleTest {
 
   private HttpServer server;
@@ -64,5 +62,4 @@ class MethodExampleTest {
     assertThat(r.getStatusInfo()).isEqualTo(Status.OK);
     assertThat(r.readEntity(String.class)).contains("HTTP method: POST", "name: foo", "age: 18");
   }
-
 }

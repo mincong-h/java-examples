@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.factory.method;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class TextEditor implements App {
 
   @Override
@@ -10,5 +8,4 @@ public class TextEditor implements App {
     String className = getClass().getSimpleName();
     return "Launch " + className + " using " + fileName;
   }
-
 }

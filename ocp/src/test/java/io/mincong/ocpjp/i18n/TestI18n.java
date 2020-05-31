@@ -12,29 +12,24 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Tests different points about internationalization (i18n) and
- * localization (l10n).
- * <p>
- * Class {@link Locale} does not itself provide any method to format
- * the numbers, dates, or currencies. YOu use {@link Locale} objects
- * to pass locale-specific information to other classes like {@link
- * java.text.NumberFormat} or {@link java.text.DateFormat} to format
- * data.
- * <p>
- * Language is the most important parameter that you pass to a {@link
- * Locale} object. All overloaded constructors of {@link Locale}
- * accept language as their first parameter.
- * <p>
- * Valid values that cen be passed to language construction:
+ * Tests different points about internationalization (i18n) and localization (l10n).
+ *
+ * <p>Class {@link Locale} does not itself provide any method to format the numbers, dates, or
+ * currencies. YOu use {@link Locale} objects to pass locale-specific information to other classes
+ * like {@link java.text.NumberFormat} or {@link java.text.DateFormat} to format data.
+ *
+ * <p>Language is the most important parameter that you pass to a {@link Locale} object. All
+ * overloaded constructors of {@link Locale} accept language as their first parameter.
+ *
+ * <p>Valid values that cen be passed to language construction:
+ *
  * <ul>
- * <li>Language is a lowercase, two-letter code. Some of the commonly
- * used values are <tt>en</tt> (English), <tt>fr</tt> (French), <tt>
- * de</tt> (German), <tt>it</tt> (Italian), <tt>ja</tt> (Japanese),
- * <tt>ko</tt> (Korean), and <tt>ch</tt> (Chinese).
- * <li>Country or region code is an uppercase, two-letter code or
- * three numbers.
- * <li>Variant is a vendor- or browser-specific code, such as <tt>WIN
- * </tt> for Windows and <tt>MAC</tt> for Macintosh.
+ *   <li>Language is a lowercase, two-letter code. Some of the commonly used values are <tt>en</tt>
+ *       (English), <tt>fr</tt> (French), <tt> de</tt> (German), <tt>it</tt> (Italian), <tt>ja</tt>
+ *       (Japanese), <tt>ko</tt> (Korean), and <tt>ch</tt> (Chinese).
+ *   <li>Country or region code is an uppercase, two-letter code or three numbers.
+ *   <li>Variant is a vendor- or browser-specific code, such as <tt>WIN </tt> for Windows and
+ *       <tt>MAC</tt> for Macintosh.
  * </ul>
  *
  * @author Mincong Huang
@@ -92,5 +87,4 @@ public class TestI18n {
     assertThat(fr.getDisplayLanguage(Locale.FRENCH)).isEqualTo("français");
     assertThat(fr.getDisplayName(Locale.FRENCH)).isEqualTo("français (France)");
   }
-
 }

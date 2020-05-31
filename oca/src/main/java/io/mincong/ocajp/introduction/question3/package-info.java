@@ -1,16 +1,20 @@
 /**
  * Question 3: What is the output of the following code? (Choose all that apply)
+ *
  * <ul>
- * <li>A. 2
- * <li>B. 4
- * <li>C. The code will not compile because of line 3.
- * <li>D. The code will not compile because of line 5.
- * <li>E. The code will not compile because of line 7.
- * <li>F. The code will not compile because of line 11.
- * <li>G. The output cannot be determined from the code provided.
+ *   <li>A. 2
+ *   <li>B. 4
+ *   <li>C. The code will not compile because of line 3.
+ *   <li>D. The code will not compile because of line 5.
+ *   <li>E. The code will not compile because of line 7.
+ *   <li>F. The code will not compile because of line 11.
+ *   <li>G. The output cannot be determined from the code provided.
  * </ul>
+ *
  * The answers are C, D, E.
+ *
  * <p>
+ *
  * <pre>
  * interface HasTail { int getTailLength(); }     // 'getTailLength()' is assumed to be public
  * abstract class Puma implements HasTail {

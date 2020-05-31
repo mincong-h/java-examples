@@ -23,8 +23,7 @@ public class RegexRefFilter implements RefFilter {
 
   @Override
   public Map<String, Ref> filter(Map<String, Ref> map) {
-    return map.entrySet()
-        .stream()
+    return map.entrySet().stream()
         .filter(e -> pattern.matcher(e.getKey()).matches())
         .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
   }

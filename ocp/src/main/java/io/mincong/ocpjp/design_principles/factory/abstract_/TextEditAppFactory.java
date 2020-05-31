@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.factory.abstract_;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class TextEditAppFactory extends AppFactory {
 
   @Override
@@ -14,5 +12,4 @@ public class TextEditAppFactory extends AppFactory {
   public Font getFont() {
     return new RegularFont();
   }
-
 }

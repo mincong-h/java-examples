@@ -1,10 +1,10 @@
 package io.mincongh.xml.jackson;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.mincongh.xml.jackson.model.User;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

@@ -34,9 +34,7 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class FunctionTest {
 
   private List<String> words;
@@ -61,52 +59,38 @@ public class FunctionTest {
   public void predicate1() throws Exception {
     Predicate<String> filter = s -> s.startsWith("H");
 
-    List<String> filteredWords = words.stream()
-        .filter(filter)
-        .collect(Collectors.toList());
+    List<String> filteredWords = words.stream().filter(filter).collect(Collectors.toList());
     assertThat(filteredWords).containsExactly("Hi");
 
-    List<String> otherWords = words.stream()
-        .filter(filter.negate())
-        .collect(Collectors.toList());
+    List<String> otherWords = words.stream().filter(filter.negate()).collect(Collectors.toList());
     assertThat(otherWords).containsExactly("Java", "Functional");
   }
 
   @Test
   public void predicate2() throws Exception {
     Predicate<Integer> isPositive = i -> i > 0;
-    List<Integer> values = numbers.stream()
-        .filter(isPositive)
-        .collect(Collectors.toList());
+    List<Integer> values = numbers.stream().filter(isPositive).collect(Collectors.toList());
     assertThat(values).containsExactly(1, 2, 3);
   }
 
   @Test
   public void intPredicate() throws Exception {
     IntPredicate isPositive = i -> i > 0;
-    List<Integer> values = numbers.stream()
-        .filter(isPositive::test)
-        .collect(Collectors.toList());
+    List<Integer> values = numbers.stream().filter(isPositive::test).collect(Collectors.toList());
     assertThat(values).containsExactly(1, 2, 3);
   }
 
   @Test
   public void longPredicate() throws Exception {
     LongPredicate isOdd = i -> i % 2 == 0;
-    long count = numbers.stream()
-        .mapToLong(i -> i)
-        .filter(isOdd)
-        .count();
+    long count = numbers.stream().mapToLong(i -> i).filter(isOdd).count();
     assertThat(count).isEqualTo(2);
   }
 
   @Test
   public void doublePredicate() throws Exception {
     DoublePredicate floorIsOne = d -> Math.floor(d) == 1D;
-    long count = numbers.stream()
-        .mapToDouble(i -> i * 1.5)
-        .filter(floorIsOne)
-        .count();
+    long count = numbers.stream().mapToDouble(i -> i * 1.5).filter(floorIsOne).count();
     assertThat(count).isEqualTo(1);
   }
 
@@ -156,19 +140,17 @@ public class FunctionTest {
 
   @Test
   public void function() throws Exception {
-    List<String> entries = map.entrySet()
-        .stream()
-        .map(e -> "(" + e.getKey() + ", " + e.getValue() + ")")
-        .collect(Collectors.toList());
+    List<String> entries =
+        map.entrySet().stream()
+            .map(e -> "(" + e.getKey() + ", " + e.getValue() + ")")
+            .collect(Collectors.toList());
     assertThat(entries).containsExactly("(1, 2)", "(2, 4)", "(3, 6)");
   }
 
   @Test
   public void intFunction() throws Exception {
     IntFunction<String> toStr = String::valueOf;
-    List<String> values = numbers.stream()
-        .map(toStr::apply)
-        .collect(Collectors.toList());
+    List<String> values = numbers.stream().map(toStr::apply).collect(Collectors.toList());
     assertThat(values).containsExactly("0", "1", "2", "3");
   }
 
@@ -181,22 +163,24 @@ public class FunctionTest {
   @Test
   public void intToDoubleFunction() throws Exception {
     IntToDoubleFunction doubleMe = i -> i * 2.0;
-    List<Double> values = numbers.stream()
-        .mapToInt(Integer::intValue)
-        .mapToDouble(doubleMe)
-        .boxed()
-        .collect(Collectors.toList());
+    List<Double> values =
+        numbers.stream()
+            .mapToInt(Integer::intValue)
+            .mapToDouble(doubleMe)
+            .boxed()
+            .collect(Collectors.toList());
     assertThat(values).containsExactly(0.0, 2.0, 4.0, 6.0);
   }
 
   @Test
   public void intToLongFunction() throws Exception {
     IntToLongFunction x10 = i -> i * 10;
-    List<Long> values = numbers.stream()
-        .mapToInt(Integer::intValue)
-        .mapToLong(x10)
-        .boxed()
-        .collect(Collectors.toList());
+    List<Long> values =
+        numbers.stream()
+            .mapToInt(Integer::intValue)
+            .mapToLong(x10)
+            .boxed()
+            .collect(Collectors.toList());
     assertThat(values).containsExactly(0L, 10L, 20L, 30L);
   }
 
@@ -205,9 +189,7 @@ public class FunctionTest {
   @Test
   public void unaryOperator() throws Exception {
     UnaryOperator<Integer> doubleMe = i -> i * 2;
-    List<Integer> values = numbers.stream()
-        .map(doubleMe)
-        .collect(Collectors.toList());
+    List<Integer> values = numbers.stream().map(doubleMe).collect(Collectors.toList());
     assertThat(values).containsExactly(0, 2, 4, 6);
   }
 
@@ -218,9 +200,8 @@ public class FunctionTest {
     IntUnaryOperator plusOneThenDouble = doubleMe.compose(plusOne);
     IntUnaryOperator doubleThenPlusOne = doubleMe.andThen(plusOne);
 
-    Function<IntUnaryOperator, List<Integer>> f = operator -> numbers.stream()
-        .map(operator::applyAsInt)
-        .collect(Collectors.toList());
+    Function<IntUnaryOperator, List<Integer>> f =
+        operator -> numbers.stream().map(operator::applyAsInt).collect(Collectors.toList());
 
     assertThat(f.apply(doubleMe)).containsExactly(0, 2, 4, 6);
     assertThat(f.apply(plusOneThenDouble)).containsExactly(2, 4, 6, 8);
@@ -232,9 +213,8 @@ public class FunctionTest {
   @Test
   public void supplier() throws Exception {
     Supplier<List<Integer>> supplier = ArrayList::new;
-    List<Integer> values = numbers.stream()
-        .map(i -> i * 2)
-        .collect(Collectors.toCollection(supplier));
+    List<Integer> values =
+        numbers.stream().map(i -> i * 2).collect(Collectors.toCollection(supplier));
     assertThat(values).containsExactly(0, 2, 4, 6);
   }
 
@@ -281,9 +261,7 @@ public class FunctionTest {
 
   @Test
   public void methodReference_staticMethod() throws Exception {
-    List<String> values = numbers.stream()
-        .map(String::valueOf)
-        .collect(Collectors.toList());
+    List<String> values = numbers.stream().map(String::valueOf).collect(Collectors.toList());
     assertThat(values).containsExactly("0", "1", "2", "3");
   }
 
@@ -314,5 +292,4 @@ public class FunctionTest {
     numbers.forEach(builder::append);
     assertThat(builder.toString()).isEqualTo("0123");
   }
-
 }

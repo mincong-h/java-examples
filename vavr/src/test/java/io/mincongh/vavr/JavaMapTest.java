@@ -1,12 +1,12 @@
 package io.mincongh.vavr;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Mincong Huang
@@ -50,8 +50,7 @@ public class JavaMapTest {
   @Test
   public void hashMap_stream() {
     List<String> list =
-        map.entrySet()
-            .stream()
+        map.entrySet().stream()
             .map(e -> e.getKey() + ": " + e.getValue())
             .collect(Collectors.toList());
     assertThat(list).containsExactlyInAnyOrder("cat: 🐱", "dog: 🐶");

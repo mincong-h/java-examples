@@ -2,14 +2,10 @@ package io.mincong.ocpjp.design_principles.dao;
 
 import java.util.Collection;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public interface GroupDao {
 
-  /**
-   * @return Group ID
-   */
+  /** @return Group ID */
   int createGroup(Group g);
 
   Group get(int groupId);

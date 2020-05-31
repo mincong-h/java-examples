@@ -16,9 +16,8 @@ import org.junit.Test;
 
 /**
  * AssertJ new features in Java 8.
- * <p>
- * This is inspired by blog post <i>AssertJ’s Java 8 Features</i>,
- * written by Eugen Paraschiv.
+ *
+ * <p>This is inspired by blog post <i>AssertJ’s Java 8 Features</i>, written by Eugen Paraschiv.
  *
  * @author Eugen Paraschiv
  * @author Mincong Huang
@@ -82,10 +81,12 @@ public class AssertJFeaturesJava8Test {
 
   @Test
   public void satisfiesHelper() throws Exception {
-    assertThat("Hello").satisfies(s -> {
-      assertThat(s).startsWith("H");
-      assertThat(s).hasSize(5);
-    });
+    assertThat("Hello")
+        .satisfies(
+            s -> {
+              assertThat(s).startsWith("H");
+              assertThat(s).hasSize(5);
+            });
   }
 
   @Test
@@ -100,5 +101,4 @@ public class AssertJFeaturesJava8Test {
     assertThat("Hello2017").matches("\\w+");
     assertThat("").matches(String::isEmpty);
   }
-
 }

@@ -4,15 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class GregorianCalenderUtil {
 
   private GregorianCalenderUtil() {
@@ -26,15 +23,15 @@ public class GregorianCalenderUtil {
 
     GregorianCalendar cal = new GregorianCalendar();
     cal.setTime(inputFormat.parse(value));
-    return DatatypeFactory.newInstance().newXMLGregorianCalendar(
-        cal.get(Calendar.YEAR),
-        cal.get(Calendar.MONTH) + 1,
-        cal.get(Calendar.DAY_OF_MONTH),
-        DatatypeConstants.FIELD_UNDEFINED,
-        DatatypeConstants.FIELD_UNDEFINED,
-        DatatypeConstants.FIELD_UNDEFINED,
-        DatatypeConstants.FIELD_UNDEFINED,
-        DatatypeConstants.FIELD_UNDEFINED
-    );
+    return DatatypeFactory.newInstance()
+        .newXMLGregorianCalendar(
+            cal.get(Calendar.YEAR),
+            cal.get(Calendar.MONTH) + 1,
+            cal.get(Calendar.DAY_OF_MONTH),
+            DatatypeConstants.FIELD_UNDEFINED,
+            DatatypeConstants.FIELD_UNDEFINED,
+            DatatypeConstants.FIELD_UNDEFINED,
+            DatatypeConstants.FIELD_UNDEFINED,
+            DatatypeConstants.FIELD_UNDEFINED);
   }
 }

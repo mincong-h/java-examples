@@ -1,13 +1,13 @@
 package io.mincong.guava.vavr;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Implement diff for map
@@ -19,17 +19,9 @@ public class Issue2569Test {
   @Test
   void diff() {
     Map<String, String> mapA =
-        ImmutableMap.<String, String>builder()
-            .put("a1", "1")
-            .put("c1", "1")
-            .put("c2", "2")
-            .build();
+        ImmutableMap.<String, String>builder().put("a1", "1").put("c1", "1").put("c2", "2").build();
     Map<String, String> mapB =
-        ImmutableMap.<String, String>builder()
-            .put("b1", "1")
-            .put("c1", "1")
-            .put("c2", "3")
-            .build();
+        ImmutableMap.<String, String>builder().put("b1", "1").put("c1", "1").put("c2", "3").build();
 
     MapDifference<String, String> diff = Maps.difference(mapA, mapB);
 
@@ -47,9 +39,11 @@ public class Issue2569Test {
 
     Map<String, ValueDifference<String>> entriesDiffering = diff.entriesDiffering();
     assertThat(entriesDiffering.keySet()).containsExactly("c2");
-    assertThat(entriesDiffering.get("c2")).satisfies(d -> {
-      assertThat(d.leftValue()).isEqualTo("2");
-      assertThat(d.rightValue()).isEqualTo("3");
-    });
+    assertThat(entriesDiffering.get("c2"))
+        .satisfies(
+            d -> {
+              assertThat(d.leftValue()).isEqualTo("2");
+              assertThat(d.rightValue()).isEqualTo("3");
+            });
   }
 }

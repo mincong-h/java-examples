@@ -1,18 +1,17 @@
 package io.mincong.ocpjp.threads;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class StartRunnable {
 
   public static void main(String... args) {
     // Anonymous
-    Runnable r1 = new Runnable() {
-      @Override
-      public void run() {
-        System.out.println("From anonymous");
-      }
-    };
+    Runnable r1 =
+        new Runnable() {
+          @Override
+          public void run() {
+            System.out.println("From anonymous");
+          }
+        };
 
     // Lambda
     Runnable r2 = () -> System.out.println("From lambda");
@@ -22,5 +21,4 @@ public class StartRunnable {
     t1.start();
     t2.start();
   }
-
 }

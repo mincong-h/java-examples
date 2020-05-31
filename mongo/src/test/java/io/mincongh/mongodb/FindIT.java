@@ -1,5 +1,7 @@
 package io.mincongh.mongodb;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.github.fakemongo.junit.FongoRule;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Filters;
@@ -9,8 +11,6 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test "find" operation in MongoDB.
@@ -37,11 +37,12 @@ public class FindIT {
 
   @Before
   public void setUp() {
-    provider = MongoProviderFactory.newBuilder()
-        .providerName(providerName)
-        .fakeMongoRule(fakeMongoRule)
-        .realMongoRule(realMongoRule)
-        .createProvider();
+    provider =
+        MongoProviderFactory.newBuilder()
+            .providerName(providerName)
+            .fakeMongoRule(fakeMongoRule)
+            .realMongoRule(realMongoRule)
+            .createProvider();
   }
 
   @After
@@ -78,5 +79,4 @@ public class FindIT {
     var content = json.replace("'", "\"");
     return BasicDBObject.parse(content);
   }
-
 }

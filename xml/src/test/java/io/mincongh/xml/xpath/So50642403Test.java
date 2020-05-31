@@ -1,5 +1,8 @@
 package io.mincongh.xml.xpath;
 
+import static javax.xml.xpath.XPathConstants.NODE;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -16,9 +19,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-
-import static javax.xml.xpath.XPathConstants.NODE;
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Stack Overflow: XPATH: Insert xml nodes into another XML document

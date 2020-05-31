@@ -1,10 +1,10 @@
 package io.mincong.immutables;
 
-import java.util.List;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 class UserTest {
 

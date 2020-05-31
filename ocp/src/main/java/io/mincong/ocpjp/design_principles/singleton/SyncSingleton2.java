@@ -11,8 +11,7 @@ public class SyncSingleton2 {
   private static SyncSingleton2 instance;
 
   /**
-   * By synchronizing method <tt>getInstance()</tt> partially, we can
-   * avoid some performance issue.
+   * By synchronizing method <tt>getInstance()</tt> partially, we can avoid some performance issue.
    *
    * @see SyncSingleton#getInstance()
    */
@@ -32,5 +31,4 @@ public class SyncSingleton2 {
   private SyncSingleton2() {
     // Singleton, do not instantiate
   }
-
 }

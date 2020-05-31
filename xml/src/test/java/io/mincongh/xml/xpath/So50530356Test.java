@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -8,8 +10,6 @@ import javax.xml.xpath.*;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * StackOverflow: XQL select following element
@@ -41,5 +41,4 @@ class So50530356Test {
     Node node = (Node) expr.evaluate(document, XPathConstants.NODE);
     assertThat(node.getTextContent()).isEqualTo("C");
   }
-
 }

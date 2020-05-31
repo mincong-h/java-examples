@@ -1,9 +1,8 @@
 package io.mincong.ocpjp.generic;
 
 /**
- * By specifying the bounds, we can restrict the set of types that
- * can be used as type arguments to a generic class, interface, or
- * method. It also enables access to the methods (and variables)
+ * By specifying the bounds, we can restrict the set of types that can be used as type arguments to
+ * a generic class, interface, or method. It also enables access to the methods (and variables)
  * defined by the bounds.
  *
  * @author Mincong Huang
@@ -23,5 +22,4 @@ public class BoundedParcel<T extends Gift, Exchangeable> {
       return "Ship by courier XYZ";
     }
   }
-
 }

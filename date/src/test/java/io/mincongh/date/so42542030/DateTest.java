@@ -1,10 +1,10 @@
 package io.mincongh.date.so42542030;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** @author Mincong Huang */
 class DateTest {

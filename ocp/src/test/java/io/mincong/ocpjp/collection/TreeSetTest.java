@@ -1,15 +1,13 @@
 package io.mincong.ocpjp.collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class TreeSetTest {
 
   // TreeSetTest$Person cannot be cast to class java.lang.Comparable
@@ -41,5 +39,4 @@ public class TreeSetTest {
       return name;
     }
   }
-
 }

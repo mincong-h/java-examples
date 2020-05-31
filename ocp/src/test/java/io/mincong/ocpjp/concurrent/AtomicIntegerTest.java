@@ -8,9 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AtomicIntegerTest {
 
   private AtomicInteger i;
@@ -75,5 +73,4 @@ public class AtomicIntegerTest {
   public void incrementAndGet() throws Exception {
     assertEquals(1, i.incrementAndGet());
   }
-
 }

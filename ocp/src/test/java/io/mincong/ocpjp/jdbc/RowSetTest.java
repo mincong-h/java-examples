@@ -13,9 +13,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 @Ignore("java.sql.SQLException: No suitable driver found for jdbc:h2:mem:test")
 public class RowSetTest extends JdbcTest {
 
@@ -47,5 +45,4 @@ public class RowSetTest extends JdbcTest {
     }
     assertThat(books).containsExactly(entry(1, "A"), entry(2, "B"));
   }
-
 }

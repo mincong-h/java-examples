@@ -4,9 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-/**
- * What happens if {@code foreach} has null input?
- */
+/** What happens if {@code foreach} has null input? */
 public class ForeachNullTest {
 
   @Test

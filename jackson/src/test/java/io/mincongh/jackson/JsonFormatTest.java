@@ -1,13 +1,13 @@
 package io.mincongh.jackson;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsonFormatTest {
 
@@ -20,7 +20,7 @@ public class JsonFormatTest {
   @Test
   public void formatJavaUtilDate() throws Exception {
     var examples = new JavaUtilDateExamples();
-    var mapper =new ObjectMapper();
+    var mapper = new ObjectMapper();
     assertThat(mapper.writeValueAsString(examples)).isEqualTo("{\"fr\":\"25/12/2019\"}");
     var examples2 = mapper.readValue("{\"fr\":\"25/12/2019\"}", JavaUtilDateExamples.class);
     assertThat(examples2.frenchDate).hasTime(1577232000000L);

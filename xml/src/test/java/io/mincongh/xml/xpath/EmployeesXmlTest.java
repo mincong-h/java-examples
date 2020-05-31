@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -13,42 +15,41 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
  * @author Mincong Huang
- * @see <a href="http://viralpatel.net/blogs/java-xml-xpath-tutorial-parse-xml/"> Java XPath
- * Tutorial: How to Parse XML File using XPath in Java</a>
+ * @see <a href="http://viralpatel.net/blogs/java-xml-xpath-tutorial-parse-xml/">Java XPath
+ *     Tutorial: How to Parse XML File using XPath in Java</a>
  */
 class EmployeesXmlTest {
 
-  private static final String XML = "<?xml version=\"1.0\"?>\n"
-      + "<employees>\n"
-      + "  <employee id=\"1111\" type=\"admin\">\n"
-      + "    <first-name>John</first-name>\n"
-      + "    <last-name>Watson</last-name>\n"
-      + "    <age>30</age>\n"
-      + "    <email>johnwatson@sh.com</email>\n"
-      + "  </employee>\n"
-      + "  <employee id=\"2222\" type=\"admin\">\n"
-      + "    <first-name>Sherlock</first-name>\n"
-      + "    <last-name>Homes</last-name>\n"
-      + "    <age>32</age>\n"
-      + "    <email>sherlock@sh.com</email>\n"
-      + "  </employee>\n"
-      + "  <employee id=\"3333\" type=\"user\">\n"
-      + "    <first-name>Jim</first-name>\n"
-      + "    <last-name>Moriarty</last-name>\n"
-      + "    <age>52</age>\n"
-      + "    <email>jim@sh.com</email>\n"
-      + "  </employee>\n"
-      + "  <employee id=\"4444\" type=\"user\">\n"
-      + "    <first-name>Mycroft</first-name>\n"
-      + "    <last-name>Holmes</last-name>\n"
-      + "    <age>41</age>\n"
-      + "    <email>mycroft@sh.com</email>\n"
-      + "  </employee>\n"
-      + "</employees>\n";
+  private static final String XML =
+      "<?xml version=\"1.0\"?>\n"
+          + "<employees>\n"
+          + "  <employee id=\"1111\" type=\"admin\">\n"
+          + "    <first-name>John</first-name>\n"
+          + "    <last-name>Watson</last-name>\n"
+          + "    <age>30</age>\n"
+          + "    <email>johnwatson@sh.com</email>\n"
+          + "  </employee>\n"
+          + "  <employee id=\"2222\" type=\"admin\">\n"
+          + "    <first-name>Sherlock</first-name>\n"
+          + "    <last-name>Homes</last-name>\n"
+          + "    <age>32</age>\n"
+          + "    <email>sherlock@sh.com</email>\n"
+          + "  </employee>\n"
+          + "  <employee id=\"3333\" type=\"user\">\n"
+          + "    <first-name>Jim</first-name>\n"
+          + "    <last-name>Moriarty</last-name>\n"
+          + "    <age>52</age>\n"
+          + "    <email>jim@sh.com</email>\n"
+          + "  </employee>\n"
+          + "  <employee id=\"4444\" type=\"user\">\n"
+          + "    <first-name>Mycroft</first-name>\n"
+          + "    <last-name>Holmes</last-name>\n"
+          + "    <age>41</age>\n"
+          + "    <email>mycroft@sh.com</email>\n"
+          + "  </employee>\n"
+          + "</employees>\n";
 
   private Document document;
 
@@ -114,5 +115,4 @@ class EmployeesXmlTest {
     assertThat(t.apply(8)).isEqualTo(Node.TEXT_NODE);
     assertThat(v.apply(8)).isEqualTo("\n  ");
   }
-
 }

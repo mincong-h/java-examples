@@ -1,5 +1,7 @@
 package io.mincongh.akka;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import akka.actor.*;
 import akka.testkit.TestActorRef;
 import akka.testkit.javadsl.TestKit;
@@ -8,8 +10,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * A sample test for {@link TestActorRef}.

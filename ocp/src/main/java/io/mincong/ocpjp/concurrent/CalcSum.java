@@ -4,9 +4,7 @@ import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
-/**
- * @author Mala Gupta
- */
+/** @author Mala Gupta */
 /*
  * Defines class `CalcSum, which extends `RecursiveTask<Integer>`.
  * This parameter V, `Integer`, is the type of the values returned by
@@ -89,5 +87,4 @@ public class CalcSum extends RecursiveTask<Integer> {
     // `invoke()` awaits and obtains result
     System.out.println(pool.invoke(calculator));
   }
-
 }

@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.generic;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 // The type T is no longer needed in this class. The derived class,
 // StringBookParcel, passes type argument `String` to its generic
 // base class in its declaration.
@@ -24,5 +22,4 @@ public class StringBookParcel<X> extends Parcel<String> {
   public X getX() {
     return x;
   }
-
 }

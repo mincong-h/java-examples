@@ -51,5 +51,4 @@ public class IncrementAndDecrementOperatorsTest {
     assertEquals(7, 4 * 5 / x-- + --x);
     assertEquals(7, 4 * 5 / 4 + 2);
   }
-
 }

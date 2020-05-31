@@ -1,10 +1,10 @@
 package io.mincongh.vavr;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Implement diff for map

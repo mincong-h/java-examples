@@ -1,15 +1,13 @@
 package io.mincongh.date.so42552801;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class DateTest {
 
   @Test
@@ -33,14 +31,13 @@ class DateTest {
     SimpleDateFormat currFmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
     currFmt.setTimeZone(calendar.getTimeZone());
 
-    System.out.printf("server_timestamp  = %d, server_date  = '%s', server_str  = '%s'%n",
-        timeFromServer.getTime(),
-        serverFmt.format(timeFromServer),
-        timeFromServer.toString());
-    System.out.printf("current_timestamp = %d, current_date = '%s', current_str = '%s'%n",
+    System.out.printf(
+        "server_timestamp  = %d, server_date  = '%s', server_str  = '%s'%n",
+        timeFromServer.getTime(), serverFmt.format(timeFromServer), timeFromServer.toString());
+    System.out.printf(
+        "current_timestamp = %d, current_date = '%s', current_str = '%s'%n",
         calendar.getTime().getTime(),
         currFmt.format(calendar.getTime()),
         calendar.getTime().toString());
   }
-
 }

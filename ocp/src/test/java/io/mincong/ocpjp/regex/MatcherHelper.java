@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 final class MatcherHelper {
 
   private MatcherHelper() {
@@ -14,8 +12,9 @@ final class MatcherHelper {
   }
 
   /**
-   * Collects all the matched groups inside a given matcher and
-   * returns a list of results in order with the following format:
+   * Collects all the matched groups inside a given matcher and returns a list of results in order
+   * with the following format:
+   *
    * <pre>
    * '$group': [$start, $end[
    * </pre>
@@ -25,11 +24,10 @@ final class MatcherHelper {
    */
   static List<String> collect(Matcher m) {
     List<String> results = new ArrayList<>();
-    while(m.find()) {
+    while (m.find()) {
       String s = String.format("'%s': [%d,%d[", m.group(), m.start(), m.end());
       results.add(s);
     }
     return results;
   }
-
 }

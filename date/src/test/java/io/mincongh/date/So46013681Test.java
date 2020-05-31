@@ -1,5 +1,7 @@
 package io.mincongh.date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,13 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 /**
  * @author Mincong Huang
  * @see <a href="https://stackoverflow.com/questions/46013681">DateFormat parse() method Converting
- * invalid date to valid one in java</a>
+ *     invalid date to valid one in java</a>
  */
 class So46013681Test {
 
@@ -33,5 +32,4 @@ class So46013681Test {
 
     assertThrows(ParseException.class, () -> inputFormatter.parse(input));
   }
-
 }

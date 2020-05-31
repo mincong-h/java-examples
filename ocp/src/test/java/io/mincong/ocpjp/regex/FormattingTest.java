@@ -14,43 +14,36 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 /**
- * The following format describes how to format text and an object
- * argument list. You can define a combination of fixed text and
- * one or more embedded format specifiers, to be passed to
- * formatting methods. The format specifier takes the form:
+ * The following format describes how to format text and an object argument list. You can define a
+ * combination of fixed text and one or more embedded format specifiers, to be passed to formatting
+ * methods. The format specifier takes the form:
  *
  * <pre>
  * %[argument_index$][flags][width][.precision]conversion_char
  * </pre>
  *
- * <p> Specifier <i>argument index</i> is optional. It is a decimal
- * integer indicating the position of the argument in the argument
- * list. The first argument is referenced by <tt>1$</tt>, the second
- * by <tt>2$</tt>, and so forth.</p>
+ * <p>Specifier <i>argument index</i> is optional. It is a decimal integer indicating the position
+ * of the argument in the argument list. The first argument is referenced by <tt>1$</tt>, the second
+ * by <tt>2$</tt>, and so forth.
  *
- * <p> Specifier <i>flags</i> is optional. It is a set of characters
- * that modify the output format. The set of valid flags depends on
- * the conversion.</p>
+ * <p>Specifier <i>flags</i> is optional. It is a set of characters that modify the output format.
+ * The set of valid flags depends on the conversion.
  *
- * <p> Specifier <i>width</i> is optional. It is a non-negative
- * decimal integer indicating the minimum number of characters to be
- * written to the output.</p>
+ * <p>Specifier <i>width</i> is optional. It is a non-negative decimal integer indicating the
+ * minimum number of characters to be written to the output.
  *
- * <p> Specifier <i>precision</i> is optional. It is a non-negative
- * decimal integer usually used to restrict the number of characters.
- * The specific behavior depends on the conversion.</p>
+ * <p>Specifier <i>precision</i> is optional. It is a non-negative decimal integer usually used to
+ * restrict the number of characters. The specific behavior depends on the conversion.
  *
- * <p> Specifier <i>conversion char</i> is <b>required</b>. It is a
- * character indicating how the argument should be formatted. The set
- * of valid conversions for a given argument depends on the
- * argument's data type.</p>
+ * <p>Specifier <i>conversion char</i> is <b>required</b>. It is a character indicating how the
+ * argument should be formatted. The set of valid conversions for a given argument depends on the
+ * argument's data type.
  *
  * @author Mincong Huang
  */
 public class FormattingTest {
 
-  @Rule
-  public final TemporaryFolder tempFolder = new TemporaryFolder();
+  @Rule public final TemporaryFolder tempFolder = new TemporaryFolder();
 
   @Test
   public void formattingMethods() throws Exception {
@@ -130,9 +123,7 @@ public class FormattingTest {
     assertThat(v).isEqualTo("True is true      .");
   }
 
-  /**
-   * <tt>%c</tt> outputs the result as a Unicode character.
-   */
+  /** <tt>%c</tt> outputs the result as a Unicode character. */
   @Test
   @SuppressWarnings("ResultOfMethodCallIgnored")
   public void formattingParameterC() throws Exception {
@@ -155,8 +146,8 @@ public class FormattingTest {
     } catch (IllegalFormatConversionException e) {
       assertThat(e).hasMessage("c != java.lang.Boolean");
     }
-//    Does not compile (invalid unicode):
-//    v = String.format("Char %c". '\affff');
+    //    Does not compile (invalid unicode):
+    //    v = String.format("Char %c". '\affff');
   }
 
   @Test
@@ -174,9 +165,8 @@ public class FormattingTest {
   }
 
   /**
-   * <tt>%s</tt> is a general-purpose format specifier that can be
-   * applied to both primitive variables and object references. For
-   * primitive values, the value will be displayed; for object
+   * <tt>%s</tt> is a general-purpose format specifier that can be applied to both primitive
+   * variables and object references. For primitive values, the value will be displayed; for object
    * references, method {@code toString()} of the object is called.
    */
   @Test
@@ -185,5 +175,4 @@ public class FormattingTest {
     String v = String.format("Hello %s %s %s", "world", 123, a);
     assertThat(v).matches("Hello world 123 \\[Ljava\\.lang\\.String;@\\p{Alnum}+");
   }
-
 }

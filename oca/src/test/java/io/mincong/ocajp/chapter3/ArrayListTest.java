@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ArrayListTest {
 
   /**
@@ -76,11 +74,11 @@ public class ArrayListTest {
   public void testAutoboxing() {
     List<Double> weights = new ArrayList<>();
     weights.add(50.5);
-    weights.add(new Double(60));  // ok
+    weights.add(new Double(60)); // ok
 
     weights.add(null);
     try {
-      double w = weights.get(2);  // cannot unwrap
+      double w = weights.get(2); // cannot unwrap
       fail();
     } catch (NullPointerException e) {
       assertNull(e.getMessage());
@@ -93,7 +91,7 @@ public class ArrayListTest {
     list.add("hello");
     list.add("world");
 
-    Object[] objectArray = list.toArray();              // default to Object
+    Object[] objectArray = list.toArray(); // default to Object
     String[] stringArray = list.toArray(new String[0]); // an String array with proper size
 
     assertSame("hello", objectArray[0]);
@@ -164,5 +162,4 @@ public class ArrayListTest {
     }
     assertEquals("3~6~10~", builder.toString());
   }
-
 }

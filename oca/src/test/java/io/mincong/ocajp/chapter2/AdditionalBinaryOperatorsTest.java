@@ -6,9 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AdditionalBinaryOperatorsTest {
 
   @Test
@@ -42,7 +40,7 @@ public class AdditionalBinaryOperatorsTest {
 
     long a = 10;
     int b = 5;
-//  b = b * a;  // does not compile
+    //  b = b * a;  // does not compile
     b *= a;
     // The compound chapter2 will first cast `y` to a `long`, apply the multiplication of two `long`
     // values, and then cast the result to an `int`. Unlike the previous example, in which the
@@ -60,5 +58,4 @@ public class AdditionalBinaryOperatorsTest {
     boolean x = (y = true);
     assertTrue(x);
   }
-
 }

@@ -5,9 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import io.mincong.ocpjp.design_principles.dao.PersonDao;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class SimpleDaoFactoryTest {
 
   @Test
@@ -21,5 +19,4 @@ public class SimpleDaoFactoryTest {
     PersonDao personDao = DaoFactory.getPersonDaoInstance(DaoFactory.ORACLE);
     assertThat(personDao).isInstanceOf(PersonDaoOracleImpl.class);
   }
-
 }

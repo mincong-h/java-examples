@@ -4,9 +4,7 @@ import io.mincong.ocpjp.design_principles.dao.Group;
 import io.mincong.ocpjp.design_principles.dao.GroupDao;
 import java.util.Collection;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class GroupDaoMySqlImpl implements GroupDao {
 
   @Override
@@ -38,5 +36,4 @@ public class GroupDaoMySqlImpl implements GroupDao {
     // TODO Implement method
     return null;
   }
-
 }

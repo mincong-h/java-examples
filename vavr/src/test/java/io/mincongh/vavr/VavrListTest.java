@@ -1,10 +1,10 @@
 package io.mincongh.vavr;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.vavr.collection.List;
 import java.util.function.Function;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

@@ -7,9 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class StringManipulationTest {
 
   @Test
@@ -32,10 +30,10 @@ public class StringManipulationTest {
     String s1 = "hello";
     String s2 = "hello";
     String s3 = s1;
-    assertSame(s1, s2);  // string pool is used
+    assertSame(s1, s2); // string pool is used
     assertSame(s1, s3);
 
-    String s4 = new String("hello");  // string pool does not contain s4
+    String s4 = new String("hello"); // string pool does not contain s4
     assertNotSame(s1, s4);
     assertEquals(s1, s4);
   }
@@ -65,5 +63,4 @@ public class StringManipulationTest {
     assertEquals("Hell0 w0rld", str.replace("o", "0"));
     assertEquals("Hello world", str.concat("  ").trim());
   }
-
 }

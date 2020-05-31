@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AutoBoxingTest {
 
   @Test
@@ -30,5 +28,4 @@ public class AutoBoxingTest {
     int result = d.compareTo(2.0);
     assertThat(result).isNegative();
   }
-
 }

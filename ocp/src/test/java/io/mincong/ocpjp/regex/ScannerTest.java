@@ -7,9 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ScannerTest {
 
   @Test
@@ -83,5 +81,4 @@ public class ScannerTest {
     assertThat(s3).isEqualTo("cde");
     assertThat(i4).isEqualTo(789);
   }
-
 }
