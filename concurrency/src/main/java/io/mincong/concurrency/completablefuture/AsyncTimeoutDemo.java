@@ -50,27 +50,26 @@ public class AsyncTimeoutDemo {
   }
 
   private void run() {
-    var cf = new CompletableFuture<String>();
-    cf.completeAsync(
-        () -> {
-          int i = 0;
-          while (i < MAX_TRY) {
-            try {
-              System.out.println("Waiting " + i + "s");
-              Thread.sleep(1000);
-            } catch (InterruptedException e) {
-              Thread.currentThread().interrupt();
-            }
-            i++;
-          }
-          return "Java";
-        });
+    var cf =
+        CompletableFuture.supplyAsync(
+            () -> {
+              int i = 0;
+              while (i < MAX_TRY) {
+                try {
+                  System.out.println("Waiting " + i + "s");
+                  Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+                }
+                i++;
+              }
+              return "Java";
+            });
     var timeout = new CompletableFuture<String>();
     CompletableFuture.runAsync(
         () -> {
           System.out.println("Timeout. Creating exception");
-          var ex = new TimeoutException("Timeout");
-          timeout.completeExceptionally(ex);
+          timeout.completeExceptionally(new TimeoutException("Timeout"));
         },
         CompletableFuture.delayedExecutor(5, TimeUnit.SECONDS));
     cf.acceptEither(timeout, this::doSth).join();
