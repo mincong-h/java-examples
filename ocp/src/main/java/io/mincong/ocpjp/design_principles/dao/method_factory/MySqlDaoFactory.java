@@ -3,9 +3,7 @@ package io.mincong.ocpjp.design_principles.dao.method_factory;
 import io.mincong.ocpjp.design_principles.dao.GroupDao;
 import io.mincong.ocpjp.design_principles.dao.PersonDao;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class MySqlDaoFactory extends DaoFactory {
 
   @Override
@@ -17,5 +15,4 @@ public class MySqlDaoFactory extends DaoFactory {
   protected GroupDao getGroupDao() {
     return new GroupDaoMySqlImpl();
   }
-
 }

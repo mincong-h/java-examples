@@ -1,12 +1,12 @@
 package io.mincongh.java9.api;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * Tests immutable set.

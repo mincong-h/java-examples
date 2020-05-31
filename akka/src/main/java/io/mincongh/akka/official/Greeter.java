@@ -40,8 +40,7 @@ public class Greeter extends AbstractBehavior<Greet> {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
       Greeted greeted = (Greeted) o;
-      return Objects.equals(whom, greeted.whom) &&
-              Objects.equals(from, greeted.from);
+      return Objects.equals(whom, greeted.whom) && Objects.equals(from, greeted.from);
     }
 
     @Override
@@ -51,10 +50,7 @@ public class Greeter extends AbstractBehavior<Greet> {
 
     @Override
     public String toString() {
-      return "Greeted{" +
-              "whom='" + whom + '\'' +
-              ", from=" + from +
-              '}';
+      return "Greeted{" + "whom='" + whom + '\'' + ", from=" + from + '}';
     }
   }
 
@@ -78,4 +74,3 @@ public class Greeter extends AbstractBehavior<Greet> {
     return this;
   }
 }
-

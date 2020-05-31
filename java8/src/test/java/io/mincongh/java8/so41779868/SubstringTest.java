@@ -1,10 +1,10 @@
 package io.mincongh.java8.so41779868;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Java Substring in if statement does not work.

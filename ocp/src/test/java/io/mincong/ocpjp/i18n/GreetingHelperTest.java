@@ -5,9 +5,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 import java.util.Locale;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class GreetingHelperTest {
 
   @Test
@@ -23,5 +21,4 @@ public class GreetingHelperTest {
     assertThat(GreetingHelper.getWelcome(Locale.GERMAN)).isEqualTo("Welcome");
     assertThat(GreetingHelper.getWelcome(Locale.JAPANESE)).isEqualTo("Welcome");
   }
-
 }

@@ -14,20 +14,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PathMatcherTest {
 
-  @Rule
-  public TemporaryFolder temporaryFolder = new TemporaryFolder();
+  @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   private Path r;
 
   private Path textA, textB;
-
   private Path javaA, javaB;
-
   private Path dirA, dirB;
 
   private FileSystem fs;
@@ -85,9 +80,7 @@ public class PathMatcherTest {
 
   private List<Path> getMatches(PathMatcher matcher) throws IOException {
     List<Path> results = new ArrayList<>();
-    Files.newDirectoryStream(r, p -> matcher.matches(p.getFileName()))
-        .forEach(results::add);
+    Files.newDirectoryStream(r, p -> matcher.matches(p.getFileName())).forEach(results::add);
     return results;
   }
-
 }

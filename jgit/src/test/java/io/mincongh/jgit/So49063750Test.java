@@ -1,5 +1,7 @@
 package io.mincongh.jgit;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -8,11 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class So49063750Test extends JGitTest {
 
   @Test

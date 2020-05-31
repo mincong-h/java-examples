@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -9,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
  * Stack Overflow: XML createElement double quotes DocumentBuilder api

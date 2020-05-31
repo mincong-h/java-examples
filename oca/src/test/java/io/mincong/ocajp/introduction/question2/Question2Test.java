@@ -6,14 +6,10 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-/**
- * @author Mincong HUANG
- */
+/** @author Mincong HUANG */
 public class Question2Test {
 
-  /**
-   * Question 2: What it the result of the following code?
-   */
+  /** Question 2: What it the result of the following code? */
   @Test
   public void testQuestion2() {
     String s1 = "Java";

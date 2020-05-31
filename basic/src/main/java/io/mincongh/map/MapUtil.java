@@ -2,9 +2,7 @@ package io.mincongh.map;
 
 import java.util.Map;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class MapUtil {
 
   private MapUtil() {

@@ -6,9 +6,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class InputTest {
 
   private int getInput() {
@@ -23,5 +21,4 @@ public class InputTest {
     assertEquals(0, getInput());
     assertEquals(1, sc.readInput());
   }
-
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 /**
  * Which three lines, when inserted independently at line n1, cause the program to print a 0
  * balance?
+ *
  * <pre>
  *    CheckingAccount acct = new CheckingAccount((int)(Math.random() * 1000));
  *    //line n1

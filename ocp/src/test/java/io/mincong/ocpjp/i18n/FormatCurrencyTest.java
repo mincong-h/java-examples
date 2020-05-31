@@ -6,9 +6,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class FormatCurrencyTest {
 
   @Test
@@ -24,5 +22,4 @@ public class FormatCurrencyTest {
     assertThat(fmt.getCurrency().getCurrencyCode()).isEqualTo("GBP");
     assertThat(fmt.format(1_234.56F)).isEqualTo("£1,234.56");
   }
-
 }

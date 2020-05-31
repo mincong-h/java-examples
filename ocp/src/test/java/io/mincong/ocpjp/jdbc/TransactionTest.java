@@ -9,9 +9,7 @@ import java.sql.Statement;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class TransactionTest extends JdbcTest {
 
   @Before
@@ -27,20 +25,17 @@ public class TransactionTest extends JdbcTest {
               + "  tx_type VARCHAR(200),"
               + "  tx_amount REAL,"
               + "  tx_date DATE"
-              + ")"
-      );
+              + ")");
       s.executeUpdate(
           "CREATE TABLE bank_account ("
               + "  account_id VARCHAR(200) PRIMARY KEY,"
               + "  account_name VARCHAR(200),"
               + "  balance REAL"
-              + ")"
-      );
+              + ")");
       s.executeUpdate(
           "INSERT INTO bank_account (account_id, account_name, balance) VALUES"
               + " ('a', 'Client A', 500.0),"
-              + " ('b', 'Client B', 500.0)"
-      );
+              + " ('b', 'Client B', 500.0)");
     }
   }
 
@@ -136,5 +131,4 @@ public class TransactionTest extends JdbcTest {
       }
     }
   }
-
 }

@@ -1,5 +1,7 @@
 package io.mincongh.jgit;
 
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +15,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * Tests methods related to Git references.
@@ -63,11 +63,8 @@ public class GitRefTest extends JGitTest {
 
     try (Git git = clone.call()) {
       List<String> branches =
-          git.branchList()
-              .setContains(initialCommit.getId().name())
-              .setListMode(ListMode.ALL)
-              .call()
-              .stream()
+          git.branchList().setContains(initialCommit.getId().name()).setListMode(ListMode.ALL)
+              .call().stream()
               .map(Ref::getName)
               .collect(Collectors.toList());
       assertThat(branches)

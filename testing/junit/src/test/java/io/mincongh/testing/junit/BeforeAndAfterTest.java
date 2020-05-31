@@ -4,14 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class BeforeAndAfterTest {
 
   private List<String> users;
@@ -29,9 +26,7 @@ public class BeforeAndAfterTest {
     users = null;
   }
 
-  /**
-   * Before the test, the list {@code users} has been set / reset to {@literal ["A", "B", "C"]}.
-   */
+  /** Before the test, the list {@code users} has been set / reset to {@literal ["A", "B", "C"]}. */
   @Test
   public void testAdd() {
     users.add("D");
@@ -42,9 +37,7 @@ public class BeforeAndAfterTest {
     assertEquals("D", users.get(3));
   }
 
-  /**
-   * Before the test, the list {@code users} has been set / reset to {@literal ["A", "B", "C"]}.
-   */
+  /** Before the test, the list {@code users} has been set / reset to {@literal ["A", "B", "C"]}. */
   @Test
   public void testRemove() {
     users.remove(0);
@@ -52,5 +45,4 @@ public class BeforeAndAfterTest {
     assertEquals("B", users.get(0));
     assertEquals("C", users.get(1));
   }
-
 }

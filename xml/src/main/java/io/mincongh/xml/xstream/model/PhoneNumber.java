@@ -2,9 +2,7 @@ package io.mincongh.xml.xstream.model;
 
 import java.util.Locale;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PhoneNumber {
 
   private int code;
@@ -44,5 +42,4 @@ public class PhoneNumber {
   public String toString() {
     return String.format(Locale.ENGLISH, "+%.2d %s", code, number);
   }
-
 }

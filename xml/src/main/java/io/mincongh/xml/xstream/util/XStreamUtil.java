@@ -4,14 +4,10 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import io.mincongh.xml.xstream.model.Person;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 final class XStreamUtil {
 
-  /**
-   * Does not require XPP3 library
-   */
+  /** Does not require XPP3 library */
   private static final XStream X_STREAM;
 
   static {
@@ -36,5 +32,4 @@ final class XStreamUtil {
   static <T> T deserialize(String xml, Class<T> returnType) {
     return (T) X_STREAM.fromXML(xml);
   }
-
 }

@@ -5,9 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class SortingArrayTest {
 
   @Test
@@ -30,5 +28,4 @@ public class SortingArrayTest {
     Arrays.sort(a);
     assertThat(a).contains(" ", "A", "B", "C", "D");
   }
-
 }

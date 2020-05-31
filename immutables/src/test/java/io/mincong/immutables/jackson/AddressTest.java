@@ -1,9 +1,9 @@
 package io.mincong.immutables.jackson;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class AddressTest {
 
@@ -27,7 +27,8 @@ class AddressTest {
   @Test
   void itCanDeserialize() throws Exception {
     var actual = mapper.readValue(content, ImmutableAddress.class);
-        var expected = ImmutableAddress.builder()
+    var expected =
+        ImmutableAddress.builder()
             .address("55 Rue du Faubourg Saint-Honoré")
             .city("Paris")
             .postalCode("75008")

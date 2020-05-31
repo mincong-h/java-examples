@@ -1,14 +1,15 @@
 package io.mincongh.collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
  * Stack Overflow:
+ *
  * @author Mincong Huang
  */
 class So50675537Test {

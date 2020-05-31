@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 @SuppressWarnings("unused")
 public class WrapperClassTest {
 
@@ -67,5 +65,4 @@ public class WrapperClassTest {
     String value2 = map.get(new Float(2.0));
     assertThat(value2).isNull();
   }
-
 }

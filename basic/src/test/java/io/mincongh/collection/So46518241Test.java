@@ -1,14 +1,12 @@
 package io.mincongh.collection;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class So46518241Test {
 
   private List<String> storedUrlList;
@@ -76,5 +74,4 @@ class So46518241Test {
       return url != null ? url.hashCode() : 0;
     }
   }
-
 }

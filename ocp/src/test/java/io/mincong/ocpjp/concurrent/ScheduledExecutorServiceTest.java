@@ -13,9 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ScheduledExecutorServiceTest {
 
   private ScheduledExecutorService service;
@@ -62,7 +60,8 @@ public class ScheduledExecutorServiceTest {
   @Test
   public void scheduleWithFixedDelay() throws Exception {
     Runnable task = sum::incrementAndGet;
-    ScheduledFuture<?> future = service.scheduleWithFixedDelay(task, 0L, 500L, TimeUnit.MILLISECONDS);
+    ScheduledFuture<?> future =
+        service.scheduleWithFixedDelay(task, 0L, 500L, TimeUnit.MILLISECONDS);
     boolean isTerminated = service.awaitTermination(1300L, TimeUnit.MILLISECONDS);
     future.cancel(true);
 
@@ -76,5 +75,4 @@ public class ScheduledExecutorServiceTest {
      */
     assertEquals(3, sum.get());
   }
-
 }

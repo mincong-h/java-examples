@@ -1,8 +1,6 @@
 package io.mincongh.hashcode.good;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PhoneNumber {
 
   private final short areaCode;
@@ -11,7 +9,7 @@ public class PhoneNumber {
 
   /**
    * Lazily initialized, cached hashCode. See Item 71 of
-   * <li>Effective Java (Second Edition)</li>.
+   * <li>Effective Java (Second Edition).
    */
   private volatile int hashCode;
 
@@ -32,10 +30,8 @@ public class PhoneNumber {
 
   @Override
   public boolean equals(Object o) {
-    if (o == this)
-      return true;
-    if (!(o instanceof PhoneNumber))
-      return false;
+    if (o == this) return true;
+    if (!(o instanceof PhoneNumber)) return false;
     PhoneNumber pn = (PhoneNumber) o;
     return pn.lineNumber == lineNumber && pn.prefix == prefix && pn.areaCode == areaCode;
   }

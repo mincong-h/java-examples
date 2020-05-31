@@ -1,5 +1,7 @@
 package io.mincongh.rest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.HttpHeaders;
@@ -10,11 +12,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 class HeaderExampleTest {
 
   private HttpServer server;
@@ -45,5 +43,4 @@ class HeaderExampleTest {
     assertThat(r.getStatusInfo()).isEqualTo(Status.OK);
     assertThat(r.readEntity(String.class)).isEqualTo(HttpHeaders.HOST + "=localhost:8080");
   }
-
 }

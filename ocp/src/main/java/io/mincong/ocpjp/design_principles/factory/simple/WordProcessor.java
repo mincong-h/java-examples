@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.factory.simple;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class WordProcessor implements App {
 
   @Override
@@ -10,5 +8,4 @@ public class WordProcessor implements App {
     String className = WordProcessor.class.getSimpleName();
     return "Launch " + className + " using " + fileName;
   }
-
 }

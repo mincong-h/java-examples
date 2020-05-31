@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -10,8 +12,6 @@ import javax.xml.xpath.*;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Stack Overflow: JAVA - Get “Header Description” from XML
@@ -56,7 +56,8 @@ class So50465606Test {
     }
     XPath xPath = XPathFactory.newInstance().newXPath();
     List<XPathExpression> expressions = new ArrayList<>(2);
-    expressions.add(xPath.compile("/Application/ProgramsRepository/Programs/Task/Header/@Description"));
+    expressions.add(
+        xPath.compile("/Application/ProgramsRepository/Programs/Task/Header/@Description"));
     expressions.add(xPath.compile("//Task/Header/@Description"));
 
     for (XPathExpression expr : expressions) {

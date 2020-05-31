@@ -1,13 +1,11 @@
 package io.mincongh.date.so41714925;
 
-import java.text.ParseException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.ParseException;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.XMLGregorianCalendar;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 /**
  * Test changing {@code XMLgregorianCalender} default format to "yyyyMMdd", which is impossible.

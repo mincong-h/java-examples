@@ -1,10 +1,10 @@
 package io.mincongh.json.jackson.so41655924;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * How can I achieve this using jackson jsonNode and get the desired output.
@@ -29,7 +29,6 @@ class JsonUtilTest {
   }
 
   /**
-   *
    * @throws JsonProcessingException
    * @throws IOException
    */

@@ -1,5 +1,7 @@
 package io.mincongh.json.org_json;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import io.mincongh.json.Person;
 import java.util.*;
 import org.json.JSONArray;
@@ -7,8 +9,6 @@ import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test JSON operation using <i>org.json:json</i> library.

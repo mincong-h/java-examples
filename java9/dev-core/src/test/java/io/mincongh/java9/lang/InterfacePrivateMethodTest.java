@@ -1,8 +1,8 @@
 package io.mincongh.java9.lang;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
  * Tests private method in interfaces. Interfaces in the upcoming JVM version can have private

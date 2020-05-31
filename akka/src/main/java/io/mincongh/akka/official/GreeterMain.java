@@ -64,18 +64,19 @@ public class GreeterMain extends AbstractBehavior<Start> {
      *
      *     akka://helloakka/user/Charles
      */
-    ActorRef<Greeter.Greeted> bot = getContext()
-        /*
-         * Each actor is potentially a supervisor: if it creates children for
-         * delegating sub-tasks, it will automatically supervise them. The list
-         * of children is maintained within the actor's context and the actor
-         * has access to it. Modifications to the list are done by creating
-         * (`context.actorOf(...)`) or stopping (`context.stop(child)`)
-         * children and these actions are reflected immediately. The actual
-         * creation and termination actions happened behind the scenes in an
-         * asynchronous way, so they do not block their supervisor.
-         */
-        .spawn(GreeterBot.create(3), startCmd.name);
+    ActorRef<Greeter.Greeted> bot =
+        getContext()
+            /*
+             * Each actor is potentially a supervisor: if it creates children for
+             * delegating sub-tasks, it will automatically supervise them. The list
+             * of children is maintained within the actor's context and the actor
+             * has access to it. Modifications to the list are done by creating
+             * (`context.actorOf(...)`) or stopping (`context.stop(child)`)
+             * children and these actions are reflected immediately. The actual
+             * creation and termination actions happened behind the scenes in an
+             * asynchronous way, so they do not block their supervisor.
+             */
+            .spawn(GreeterBot.create(3), startCmd.name);
     greeter.tell(new Greeter.Greet(startCmd.name, bot));
     return this;
   }

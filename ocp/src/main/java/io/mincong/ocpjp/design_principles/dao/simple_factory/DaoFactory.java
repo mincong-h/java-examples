@@ -22,5 +22,4 @@ public abstract class DaoFactory {
     }
     throw new IllegalArgumentException("Unknown databaseType=" + databaseType);
   }
-
 }

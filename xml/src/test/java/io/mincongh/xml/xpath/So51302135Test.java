@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -8,8 +10,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Stack Overflow: XML NodeList is not empty but its node is null

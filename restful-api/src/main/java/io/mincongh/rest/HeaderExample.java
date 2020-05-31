@@ -1,6 +1,5 @@
 package io.mincongh.rest;
 
-
 import java.util.List;
 import java.util.Locale;
 import javax.ws.rs.GET;
@@ -15,18 +14,17 @@ import javax.ws.rs.core.Response.Status;
 
 /**
  * Demo class for HTTP headers.
- * <p>
- * Headers and methods work together to determine what clients and
- * servers do. There are headers that are specific for each type of
- * message and headers that are more general in purpose, providing
- * information in both request and response messages. Headers fall
- * into five main classes:
+ *
+ * <p>Headers and methods work together to determine what clients and servers do. There are headers
+ * that are specific for each type of message and headers that are more general in purpose,
+ * providing information in both request and response messages. Headers fall into five main classes:
+ *
  * <ul>
- * <li>General headers</li>
- * <li>Request headers</li>
- * <li>Response headers</li>
- * <li>Entity headers</li>
- * <li>Extension headers</li>
+ *   <li>General headers
+ *   <li>Request headers
+ *   <li>Response headers
+ *   <li>Entity headers
+ *   <li>Extension headers
  * </ul>
  *
  * @author Mincong Huang
@@ -37,12 +35,9 @@ public class HeaderExample {
 
   @GET
   @Path("{header}")
-  public Response doGet(
-      @Context HttpHeaders headers,
-      @PathParam("header") String name) {
+  public Response doGet(@Context HttpHeaders headers, @PathParam("header") String name) {
     List<String> values = headers.getRequestHeader(name);
     String entity = String.format(Locale.ROOT, "%s=%s", name, String.join(",", values));
     return Response.status(Status.OK).entity(entity).build();
   }
-
 }

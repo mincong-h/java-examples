@@ -14,14 +14,15 @@ public class ReviewQuestionsTest {
   /**
    * Question 2: What data type (or types) will allow the following code snippet to compile? (Choose
    * all the apply)
+   *
    * <pre>
    * byte x = 5;
    * byte y = 10;
    * ____ z = x + y;
    * </pre>
-   * <p>
-   * The value {@code x + y} is automatically promoted to {@code int}, so {@code int} and data types
-   * that can be promoted automatically from {@code int} will work.
+   *
+   * <p>The value {@code x + y} is automatically promoted to {@code int}, so {@code int} and data
+   * types that can be promoted automatically from {@code int} will work.
    */
   @Test
   public void testTypePromotionWithByte() {
@@ -51,11 +52,11 @@ public class ReviewQuestionsTest {
 
   /**
    * Question 9.
-   * <p>
-   * The expression inside the loop increments {@code i} but then assigns {@code i} to the old
-   * values. Therefore, {@code i} ends the loop with the same value that it starts with:
-   * {@literal 0}. The loop will repeat infinitely, outputting the same statement over and over
-   * again because {@code i} remains {@literal 0} after every iteration of the loop.
+   *
+   * <p>The expression inside the loop increments {@code i} but then assigns {@code i} to the old
+   * values. Therefore, {@code i} ends the loop with the same value that it starts with: {@literal
+   * 0}. The loop will repeat infinitely, outputting the same statement over and over again because
+   * {@code i} remains {@literal 0} after every iteration of the loop.
    */
   @Test
   public void testInfiniteLoop() {
@@ -77,9 +78,7 @@ public class ReviewQuestionsTest {
     assertEquals("000000000000000000000", builder.toString());
   }
 
-  /**
-   * Question 10.
-   */
+  /** Question 10. */
   @Test
   public void testTypePromotionWithSingleCast() {
     byte a = 40, b = 50;
@@ -94,6 +93,7 @@ public class ReviewQuestionsTest {
 
   /**
    * Question 12. What is the output of the following code snippet?
+   *
    * <pre>
    * int x = 0;
    * String s = null;
@@ -103,8 +103,8 @@ public class ReviewQuestionsTest {
    *   System.out.println("Failure");
    * }
    * </pre>
-   * <p>
-   * The variable {@code x} is an {@code int} and {@code s} is a reference to a {@code String}
+   *
+   * <p>The variable {@code x} is an {@code int} and {@code s} is a reference to a {@code String}
    * object. The 2 data types are incomparable because neither variable can be converted to the
    * other variable's type.
    */
@@ -115,6 +115,7 @@ public class ReviewQuestionsTest {
 
   /**
    * Question 15. What is the output of the following code snippet?
+   *
    * <pre>
    * int x = 1, y = 15;
    * while x < 10
@@ -122,8 +123,8 @@ public class ReviewQuestionsTest {
    *   x++;
    * System.out.println(x + ", " + y);
    * </pre>
-   * <p>
-   * The code does not compile because the {@code while} loop is missing parentheses.
+   *
+   * <p>The code does not compile because the {@code while} loop is missing parentheses.
    */
   @Test
   public void testWhileStatement() {
@@ -132,9 +133,9 @@ public class ReviewQuestionsTest {
 
   /**
    * Question 20.
-   * <p>
-   * The value of grade is 'B', but there's no {@code break} statement after the case, so the next
-   * case statement will be reached, and 'C' will be printed.
+   *
+   * <p>The value of grade is 'B', but there's no {@code break} statement after the case, so the
+   * next case statement will be reached, and 'C' will be printed.
    */
   @Test
   public void testSwitchStatement() {
@@ -154,5 +155,4 @@ public class ReviewQuestionsTest {
     }
     assertEquals("BC", builder.toString());
   }
-
 }

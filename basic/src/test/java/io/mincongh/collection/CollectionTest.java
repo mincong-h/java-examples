@@ -1,10 +1,10 @@
 package io.mincongh.collection;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Demonstrate the limit of different interfaces related to collection.

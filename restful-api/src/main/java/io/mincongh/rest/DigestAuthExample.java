@@ -18,42 +18,34 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 /**
- * Basic authentication is convenient and flexible but completely
- * <b>insecure</b>. User-names and passwords are sent in the clear,
- * and there is no attempt to protect messages from tempering. The
- * only way to use basic authentication securely is to use it it
- * conjunction with SSL.
- * <p>
- * Digest authentication was developed as a compatible, more secure
- * alternative to basic authentication, We devote this chapter to the
- * theory and practice of digest authentication.
- * <p>
- * Digest authentication is an alternate HTTP authentication protocol
- * that tries to fix the most serious flows of basic authentication.
- * In particular, digest authentications:
+ * Basic authentication is convenient and flexible but completely <b>insecure</b>. User-names and
+ * passwords are sent in the clear, and there is no attempt to protect messages from tempering. The
+ * only way to use basic authentication securely is to use it it conjunction with SSL.
+ *
+ * <p>Digest authentication was developed as a compatible, more secure alternative to basic
+ * authentication, We devote this chapter to the theory and practice of digest authentication.
+ *
+ * <p>Digest authentication is an alternate HTTP authentication protocol that tries to fix the most
+ * serious flows of basic authentication. In particular, digest authentications:
+ *
  * <ul>
- * <li>Never sends secret passwords across the network in the clear
- * <li>Prevents unscrupulous individuals from capturing and
- * replaying authentication handshakes
- * <li>Optionally can guard against tampering with message contents
- * <li>Guards against several other common forms of attacks
+ *   <li>Never sends secret passwords across the network in the clear
+ *   <li>Prevents unscrupulous individuals from capturing and replaying authentication handshakes
+ *   <li>Optionally can guard against tampering with message contents
+ *   <li>Guards against several other common forms of attacks
  * </ul>
- * <p>
- * Digest authentication is not the most secure protocol possible.
- * Many needs for secure HTTP transactions cannot be met by digest
- * authentications. For those needs, Transport Layer Security (TLS)
- * and Secure HTTP (HTTPS) are more appropriate protocols.
- * <p>
- * The motto of digest authentication is <i>"Never send the password
- * across the network."</i>. Instead of sending the password, the
- * client sends a "fingerprint" of "digest" of the password, which is
- * an irreversible scrambling of the password. The client and the
- * server both know the secret password, so the server can verify
- * that the digest provided a correct match for the password. Given
- * only the digest, a bad guy has no easy way to find what password
- * it came from, other than going through every password in the
- * universe, trying each one. (There are techniques, such as
- * dictionary a attacks, where common passwords are tried first.)
+ *
+ * <p>Digest authentication is not the most secure protocol possible. Many needs for secure HTTP
+ * transactions cannot be met by digest authentications. For those needs, Transport Layer Security
+ * (TLS) and Secure HTTP (HTTPS) are more appropriate protocols.
+ *
+ * <p>The motto of digest authentication is <i>"Never send the password across the network."</i>.
+ * Instead of sending the password, the client sends a "fingerprint" of "digest" of the password,
+ * which is an irreversible scrambling of the password. The client and the server both know the
+ * secret password, so the server can verify that the digest provided a correct match for the
+ * password. Given only the digest, a bad guy has no easy way to find what password it came from,
+ * other than going through every password in the universe, trying each one. (There are techniques,
+ * such as dictionary a attacks, where common passwords are tried first.)
  *
  * @author Mincong Huang
  */
@@ -62,22 +54,17 @@ import javax.ws.rs.core.Response.Status;
 public class DigestAuthExample {
 
   /**
-   * A digest is a "condensation of a body of information." Digests
-   * acts as onw-way functions, typically converting an infinite
-   * number of possible input values into a finite range of
+   * A digest is a "condensation of a body of information." Digests acts as onw-way functions,
+   * typically converting an infinite number of possible input values into a finite range of
    * condensations.
    */
   enum Digest {
     /**
-     * MD5 stands for "MessageDigest #5", one in a series of digest
-     * algorithms. It converts any arbitrary sequence of bytes, of
-     * any length into a 128-bit digest.
+     * MD5 stands for "MessageDigest #5", one in a series of digest algorithms. It converts any
+     * arbitrary sequence of bytes, of any length into a 128-bit digest.
      */
     MD5,
-    /**
-     * The Secure Hash Algorithm (SHA) is another popular digest
-     * function.
-     */
+    /** The Secure Hash Algorithm (SHA) is another popular digest function. */
     SHA
   }
 
@@ -116,8 +103,9 @@ public class DigestAuthExample {
        * The server issues a challenge to the client, asking for the
        * username and a digested from of the password.
        */
-      String msg = "You requested a secret financial document."
-          + " Please tell me your username and password digest.";
+      String msg =
+          "You requested a secret financial document."
+              + " Please tell me your username and password digest.";
       return Response.status(Status.UNAUTHORIZED).entity(msg).build();
     }
   }
@@ -146,5 +134,4 @@ public class DigestAuthExample {
     String expectedDigest = getDigestAsString(expectedPassword, Digest.MD5);
     return actualDigest.equals(expectedDigest);
   }
-
 }

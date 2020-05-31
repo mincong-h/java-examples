@@ -9,16 +9,14 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ArrayTest {
 
   private String[] words;
 
   @Before
   public void setUp() {
-    words = new String[]{"a", "b", "c"};
+    words = new String[] {"a", "b", "c"};
   }
 
   @Test
@@ -89,7 +87,7 @@ public class ArrayTest {
 
   @Test
   public void testMultidimensionalArrays() {
-    String[][] square1 = new String[][]{{"A1", "A2"}, {"B1", "B2"}};
+    String[][] square1 = new String[][] {{"A1", "A2"}, {"B1", "B2"}};
 
     String[][] square2 = new String[2][2];
     square2[0][0] = "A1";
@@ -111,5 +109,4 @@ public class ArrayTest {
     }
     assertEquals("A1A2B1B2", builder.toString());
   }
-
 }

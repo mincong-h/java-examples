@@ -1,8 +1,6 @@
 package io.mincong.ocajp.introduction;
 
-/**
- * How to print 0?
- */
+/** How to print 0? */
 public class CheckingAccount {
 
   public int amount;

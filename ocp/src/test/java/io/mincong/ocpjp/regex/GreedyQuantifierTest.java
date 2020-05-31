@@ -9,19 +9,19 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 /**
- * The greedy quantifiers are so named because they make the matcher
- * read the complete input string before starting to get the first
- * match. If the matcher can't match the entire input string, it
- * backs off the input string by one character and attempts again. It
- * repeats this until a match is found or until no more characters
- * are left. At the end, depending on whether you asked it to match
- * zero, one, or more occurrences, it'll try to match the pattern
- * against zero, one, or more characters from the input string.
+ * The greedy quantifiers are so named because they make the matcher read the complete input string
+ * before starting to get the first match. If the matcher can't match the entire input string, it
+ * backs off the input string by one character and attempts again. It repeats this until a match is
+ * found or until no more characters are left. At the end, depending on whether you asked it to
+ * match zero, one, or more occurrences, it'll try to match the pattern against zero, one, or more
+ * characters from the input string.
+ *
  * <p>
+ *
  * <ul>
- * <li>Question mark '?' matches zero or one occurrence</li>
- * <li>Asterisk mark '*' matches zero or more occurrence</li>
- * <li>Plus sign '+' matches one or more occurrence</li>
+ *   <li>Question mark '?' matches zero or one occurrence
+ *   <li>Asterisk mark '*' matches zero or more occurrence
+ *   <li>Plus sign '+' matches one or more occurrence
  * </ul>
  *
  * @author Mincong Huang
@@ -71,12 +71,7 @@ public class GreedyQuantifierTest {
     Pattern pattern = Pattern.compile("d?");
     Matcher matcher = pattern.matcher("day");
     List<String> results = MatcherHelper.collect(matcher);
-    assertThat(results).containsExactly(
-        "'d': [0,1[",
-        "'': [1,1[",
-        "'': [2,2[",
-        "'': [3,3["
-    );
+    assertThat(results).containsExactly("'d': [0,1[", "'': [1,1[", "'': [2,2[", "'': [3,3[");
   }
 
   @Test
@@ -84,12 +79,8 @@ public class GreedyQuantifierTest {
     Pattern pattern = Pattern.compile("co*l");
     Matcher matcher = pattern.matcher("cl col cool coool");
     List<String> results = MatcherHelper.collect(matcher);
-    assertThat(results).containsExactly(
-        "'cl': [0,2[",
-        "'col': [3,6[",
-        "'cool': [7,11[",
-        "'coool': [12,17["
-    );
+    assertThat(results)
+        .containsExactly("'cl': [0,2[", "'col': [3,6[", "'cool': [7,11[", "'coool': [12,17[");
   }
 
   @Test
@@ -97,12 +88,10 @@ public class GreedyQuantifierTest {
     Pattern pattern = Pattern.compile("\\p{Lower}\\d*\\p{Lower}");
     Matcher matcher = pattern.matcher("a123b c45d e6f gh");
     List<String> results = MatcherHelper.collect(matcher);
-    assertThat(results).containsExactly(
-        "'a123b': [0,5[",
-        "'c45d': [6,10[",
-        "'e6f': [11,14[",
-        "'gh': [15,17[" // zero occurrence
-    );
+    assertThat(results)
+        .containsExactly(
+            "'a123b': [0,5[", "'c45d': [6,10[", "'e6f': [11,14[", "'gh': [15,17[" // zero occurrence
+            );
   }
 
   @Test
@@ -110,11 +99,7 @@ public class GreedyQuantifierTest {
     Pattern pattern = Pattern.compile("co+l");
     Matcher matcher = pattern.matcher("cl col cool coool");
     List<String> results = MatcherHelper.collect(matcher);
-    assertThat(results).containsExactly(
-        "'col': [3,6[",
-        "'cool': [7,11[",
-        "'coool': [12,17["
-    );
+    assertThat(results).containsExactly("'col': [3,6[", "'cool': [7,11[", "'coool': [12,17[");
   }
 
   @Test
@@ -122,11 +107,6 @@ public class GreedyQuantifierTest {
     Pattern pattern = Pattern.compile("\\p{Lower}\\d+\\p{Lower}");
     Matcher matcher = pattern.matcher("a123b c45d e6f gh");
     List<String> results = MatcherHelper.collect(matcher);
-    assertThat(results).containsExactly(
-        "'a123b': [0,5[",
-        "'c45d': [6,10[",
-        "'e6f': [11,14["
-    );
+    assertThat(results).containsExactly("'a123b': [0,5[", "'c45d': [6,10[", "'e6f': [11,14[");
   }
-
 }

@@ -1,5 +1,7 @@
 package io.mincongh.mongodb.legacy;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import java.util.Arrays;
@@ -8,8 +10,6 @@ import org.bson.BsonDocument;
 import org.bson.Document;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang
@@ -33,14 +33,15 @@ public class MongoViewIT extends AbstractMongoIT {
 
   @Test
   public void createView() {
-    db.getCollection(collectionName()).insertMany(
-        Arrays.asList(
-            Document.parse("{\"firstName\":\"Robb\",\"lastName\":\"Stark\"}"),
-            Document.parse("{\"firstName\":\"Sansa\",\"lastName\":\"Stark\"}"),
-            Document.parse("{\"firstName\":\"Arya\",\"lastName\":\"Stark\"}"),
-            Document.parse("{\"firstName\":\"Bran\",\"lastName\":\"Stark\"}"),
-            Document.parse("{\"firstName\":\"Rickon\",\"lastName\":\"Stark\"}"),
-            Document.parse("{\"firstName\":\"Cersei\",\"lastName\":\"Lannister\"}")));
+    db.getCollection(collectionName())
+        .insertMany(
+            Arrays.asList(
+                Document.parse("{\"firstName\":\"Robb\",\"lastName\":\"Stark\"}"),
+                Document.parse("{\"firstName\":\"Sansa\",\"lastName\":\"Stark\"}"),
+                Document.parse("{\"firstName\":\"Arya\",\"lastName\":\"Stark\"}"),
+                Document.parse("{\"firstName\":\"Bran\",\"lastName\":\"Stark\"}"),
+                Document.parse("{\"firstName\":\"Rickon\",\"lastName\":\"Stark\"}"),
+                Document.parse("{\"firstName\":\"Cersei\",\"lastName\":\"Lannister\"}")));
 
     /*
      * Views exhibit the following behavior:

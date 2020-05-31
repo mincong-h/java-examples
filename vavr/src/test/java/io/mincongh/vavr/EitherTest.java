@@ -1,9 +1,9 @@
 package io.mincongh.vavr;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

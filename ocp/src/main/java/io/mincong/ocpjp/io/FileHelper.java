@@ -11,10 +11,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
- * File helper, copied from book <i>OCP Java SE 7, Programmer II,
- * Mala Gupta</i>, §7.3.3 (page 478).
- * <p>
- * The content is modified.
+ * File helper, copied from book <i>OCP Java SE 7, Programmer II, Mala Gupta</i>, §7.3.3 (page 478).
+ *
+ * <p>The content is modified.
  *
  * @author Mala Gupta
  */
@@ -24,15 +23,10 @@ public final class FileHelper {
     // Utility class, do not instantiate
   }
 
-  /**
-   * Copies file content of the input file to the output file by
-   * single byte.
-   */
+  /** Copies file content of the input file to the output file by single byte. */
   static void copyByByte(File inputFile, File outputFile) throws IOException {
-    try (
-        FileInputStream in = new FileInputStream(inputFile);
-        FileOutputStream out = new FileOutputStream(outputFile)
-    ) {
+    try (FileInputStream in = new FileInputStream(inputFile);
+        FileOutputStream out = new FileOutputStream(outputFile)) {
       // Declares variable to store a single byte of data
       int b;
 
@@ -46,18 +40,14 @@ public final class FileHelper {
   }
 
   /**
-   * Copies file content of the input file to the output file by
-   * multi-bytes (1024).
-   * <p>
-   * I/O operations that require reading and writing of a single byte
-   * from and to a file are a costly affair. To optimize these
-   * operations, we can use a byte array {@code byte[]}.
+   * Copies file content of the input file to the output file by multi-bytes (1024).
+   *
+   * <p>I/O operations that require reading and writing of a single byte from and to a file are a
+   * costly affair. To optimize these operations, we can use a byte array {@code byte[]}.
    */
   static void copyByBytes(File inputFile, File outputFile) throws IOException {
-    try (
-        FileInputStream in = new FileInputStream(inputFile);
-        FileOutputStream out = new FileOutputStream(outputFile)
-    ) {
+    try (FileInputStream in = new FileInputStream(inputFile);
+        FileOutputStream out = new FileOutputStream(outputFile)) {
       int len;
       byte[] byteArr = new byte[1024];
 
@@ -72,24 +62,20 @@ public final class FileHelper {
   }
 
   /**
-   * Buffering stores data in memory before sending a read or write
-   * request to the underlying I/O devices. buffering drastically
-   * reduces the time required for performing reading and writing I/O
+   * Buffering stores data in memory before sending a read or write request to the underlying I/O
+   * devices. buffering drastically reduces the time required for performing reading and writing I/O
    * operations.
-   * <p>
-   * The exam might test you on how to instantiate buffered streams
-   * correctly. To instantiate {@link BufferedInputStream}, you must
-   * pass it an object of {@link java.io.InputStream}. To instantiate
-   * {@link BufferedOutputStream}, you must pass it an object of
-   * {@link java.io.OutputStream}.
+   *
+   * <p>The exam might test you on how to instantiate buffered streams correctly. To instantiate
+   * {@link BufferedInputStream}, you must pass it an object of {@link java.io.InputStream}. To
+   * instantiate {@link BufferedOutputStream}, you must pass it an object of {@link
+   * java.io.OutputStream}.
    */
   static void bufferedCopyByByte(File inputFile, File outputFile) throws IOException {
-    try (
-        FileInputStream in = new FileInputStream(inputFile);
+    try (FileInputStream in = new FileInputStream(inputFile);
         FileOutputStream out = new FileOutputStream(outputFile);
         BufferedInputStream bis = new BufferedInputStream(in);
-        BufferedOutputStream bos = new BufferedOutputStream(out)
-    ) {
+        BufferedOutputStream bos = new BufferedOutputStream(out)) {
       int b;
       while ((b = bis.read()) != -1) {
         bos.write(b);
@@ -98,12 +84,10 @@ public final class FileHelper {
   }
 
   static void bufferedCopyByBytes(File inputFile, File outputFile) throws IOException {
-    try (
-        FileInputStream fis = new FileInputStream(inputFile);
+    try (FileInputStream fis = new FileInputStream(inputFile);
         FileOutputStream fos = new FileOutputStream(outputFile);
         BufferedInputStream bis = new BufferedInputStream(fis);
-        BufferedOutputStream bos = new BufferedOutputStream(fos)
-    ) {
+        BufferedOutputStream bos = new BufferedOutputStream(fos)) {
       int len;
       byte[] byteArr = new byte[1024];
       while ((len = bis.read(byteArr)) != -1) {
@@ -113,23 +97,17 @@ public final class FileHelper {
   }
 
   @SuppressWarnings("unchecked")
-  static <T> T read(File inputFile, Class<T> type)
-      throws IOException, ClassNotFoundException {
-    try (
-        FileInputStream fis = new FileInputStream(inputFile);
-        ObjectInputStream ois = new ObjectInputStream(fis)
-    ) {
+  static <T> T read(File inputFile, Class<T> type) throws IOException, ClassNotFoundException {
+    try (FileInputStream fis = new FileInputStream(inputFile);
+        ObjectInputStream ois = new ObjectInputStream(fis)) {
       return (T) ois.readObject();
     }
   }
 
   static void write(File outputFile, Serializable s) throws IOException {
-    try (
-        FileOutputStream fos = new FileOutputStream(outputFile);
-        ObjectOutputStream oos = new ObjectOutputStream(fos)
-    ) {
+    try (FileOutputStream fos = new FileOutputStream(outputFile);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
       oos.writeObject(s);
     }
   }
-
 }

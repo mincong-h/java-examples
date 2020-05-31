@@ -7,11 +7,9 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * The wildcard '?' represents an unknown type. You can use it to
- * declare the type of a parameter; a local, instance , or static
- * variable; and return value of generic types. But you can't use it
- * as a type argument on invoke a generic method, create a generic
- * class instance, or for a supertype.
+ * The wildcard '?' represents an unknown type. You can use it to declare the type of a parameter; a
+ * local, instance , or static variable; and return value of generic types. But you can't use it as
+ * a type argument on invoke a generic method, create a generic class instance, or for a supertype.
  *
  * @author Mincong Huang
  */
@@ -26,7 +24,7 @@ public class WildcardParcelTest {
   @Test
   public void upperBoundedWildcard() throws Exception {
     // The following assignment is not valid:
-//    List<Gift> wishList = new ArrayList<Book>(); // Won't compile
+    //    List<Gift> wishList = new ArrayList<Book>(); // Won't compile
 
     List<? extends Gift> myListU1 = new ArrayList<Book>();
     List<? extends Gift> myListU2 = new ArrayList<Phone>();
@@ -34,10 +32,10 @@ public class WildcardParcelTest {
     List<? extends Gift> myListU4 = new ArrayList<>();
 
     /* Write */
-//    myListU1.add(new Book()); // Won't compile
+    //    myListU1.add(new Book()); // Won't compile
 
-//    Gift gift = new Book();
-//    myListU1.add(gift); // Won't compile
+    //    Gift gift = new Book();
+    //    myListU1.add(gift); // Won't compile
 
     /* Read */
     for (Gift gift : myListU1) {
@@ -49,7 +47,7 @@ public class WildcardParcelTest {
   public void lowerBoundedWildcard() throws Exception {
     List<? super Gift> myListL1 = new ArrayList<Gift>();
     List<? super Gift> myListL2 = new ArrayList<Object>();
-//    List<? super Gift> myListL3 = new ArrayList<Phone>(); // Won't compile
+    //    List<? super Gift> myListL3 = new ArrayList<Phone>(); // Won't compile
     List<? super Phone> myListL4 = new ArrayList<Gift>();
 
     /* Write */
@@ -64,12 +62,10 @@ public class WildcardParcelTest {
   }
 
   /**
-   * We can use final classes in upper-bounded wildcards. Although
-   * <code>class X extends String</code> won't compile,
-   * <code>&lt;? extends String&gt;</code> will compile successfully.
+   * We can use final classes in upper-bounded wildcards. Although <code>class X extends String
+   * </code> won't compile, <code>&lt;? extends String&gt;</code> will compile successfully.
    */
   private static void wrapGift(List<? extends String> list) {
     list.forEach(System.out::println);
   }
-
 }

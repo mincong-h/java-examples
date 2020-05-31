@@ -1,13 +1,13 @@
 package io.mincongh.io;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Mincong Huang

@@ -6,11 +6,13 @@ import org.junit.Test;
 
 /**
  * Given the code fragment:
+ *
  * <pre>
  * float x = 22.00f % 3.00f;
  * int y = 22 % 3;
  * System.out.print(x + ", " + y);
  * </pre>
+ *
  * What is the result?
  *
  * @author Mincong HUANG

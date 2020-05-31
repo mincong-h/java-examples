@@ -49,5 +49,4 @@ public class GitResetTest extends JGitTest {
     Status status = git.status().call();
     assertThat(status.getAdded()).containsExactly("1.txt");
   }
-
 }

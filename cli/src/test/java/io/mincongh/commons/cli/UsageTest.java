@@ -1,9 +1,9 @@
 package io.mincongh.commons.cli;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.apache.commons.cli.*;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Testing examples written in usage page of Apache Commons CLI.

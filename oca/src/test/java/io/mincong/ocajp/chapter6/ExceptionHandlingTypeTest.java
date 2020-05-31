@@ -2,9 +2,7 @@ package io.mincong.ocajp.chapter6;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ExceptionHandlingTypeTest {
 
   /**
@@ -48,5 +46,4 @@ public class ExceptionHandlingTypeTest {
   public void testDeclareCheckedExceptionIsMandatory() throws Exception {
     throw new Exception();
   }
-
 }

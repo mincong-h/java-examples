@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.singleton;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class EagerInitSingleton {
 
   // It executes when the class is loaded by the Java class loaders.
@@ -15,5 +13,4 @@ public class EagerInitSingleton {
   public static EagerInitSingleton getInstance() {
     return instance;
   }
-
 }

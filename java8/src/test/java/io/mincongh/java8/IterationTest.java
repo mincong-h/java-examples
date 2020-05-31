@@ -1,11 +1,11 @@
 package io.mincongh.java8;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Internal vs External Iteration: {@code for} vs. {@code foreach}

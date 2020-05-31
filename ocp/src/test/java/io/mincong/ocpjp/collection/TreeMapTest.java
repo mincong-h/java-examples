@@ -7,9 +7,7 @@ import java.util.TreeMap;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class TreeMapTest {
 
   private TreeMap<Integer, String> m;
@@ -43,11 +41,6 @@ public class TreeMapTest {
   @Test
   public void descending() throws Exception {
     assertThat(m.descendingKeySet()).containsExactly(4, 2, 1);
-    assertThat(m.descendingMap()).containsOnly(
-        entry(4, "4"),
-        entry(2, "2"),
-        entry(1, "1")
-    );
+    assertThat(m.descendingMap()).containsOnly(entry(4, "4"), entry(2, "2"), entry(1, "1"));
   }
-
 }

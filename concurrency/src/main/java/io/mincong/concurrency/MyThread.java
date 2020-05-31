@@ -2,9 +2,7 @@ package io.mincong.concurrency;
 
 import java.util.concurrent.CountDownLatch;
 
-/**
- * @author Mincong HUANG
- */
+/** @author Mincong HUANG */
 public class MyThread extends Thread {
 
   private MyCounter keyCounter;
@@ -28,5 +26,4 @@ public class MyThread extends Thread {
     }
     countDownLatch.countDown();
   }
-
 }

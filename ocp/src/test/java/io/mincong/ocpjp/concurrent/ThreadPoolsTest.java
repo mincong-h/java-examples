@@ -20,9 +20,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ *
+ *
  * <ul>
- * <li>Core pool size: the core number of threads.
- * <li>Max pool size: the maximum allowed number of threads.
+ *   <li>Core pool size: the core number of threads.
+ *   <li>Max pool size: the maximum allowed number of threads.
  * </ul>
  *
  * @author Mincong Huang
@@ -32,9 +34,8 @@ public class ThreadPoolsTest {
   private static final int POOL_SIZE = 2;
 
   /**
-   * The parallelism level corresponds to the maximum number of
-   * threads actively engaged in, or available to engage in, task
-   * processing.
+   * The parallelism level corresponds to the maximum number of threads actively engaged in, or
+   * available to engage in, task processing.
    */
   private static final int PARALLELISM_LEVEL = 2;
 
@@ -143,5 +144,4 @@ public class ThreadPoolsTest {
   public void workingStealingPool() throws Exception {
     assertEquals(ForkJoinPool.class, workingStealingPool.getClass());
   }
-
 }

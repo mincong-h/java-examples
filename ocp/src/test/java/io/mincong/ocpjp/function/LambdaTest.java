@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class LambdaTest {
 
   @Test
@@ -18,9 +16,10 @@ public class LambdaTest {
     Apple light = new Apple(1);
     Apple heavy = new Apple(10);
 
-    List<Apple> apples = Stream.of(heavy, light)
-        .sorted(Comparator.comparing(Apple::getWeight))
-        .collect(Collectors.toList());
+    List<Apple> apples =
+        Stream.of(heavy, light)
+            .sorted(Comparator.comparing(Apple::getWeight))
+            .collect(Collectors.toList());
 
     assertThat(apples).containsExactly(light, heavy);
   }
@@ -37,5 +36,4 @@ public class LambdaTest {
       return weight;
     }
   }
-
 }

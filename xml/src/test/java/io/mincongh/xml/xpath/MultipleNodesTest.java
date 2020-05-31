@@ -24,23 +24,24 @@ import org.w3c.dom.NodeList;
  */
 class MultipleNodesTest {
 
-  private static final String HTML = "<div>\n"
-      + "  <div id=\"target\">\n"
-      + "    <div>\n"
-      + "      <div>\n"
-      + "        <div>\n"
-      + "          <div class=\"btn white\">A</div>\n"
-      + "        </div>\n"
-      + "        <div>\n"
-      + "          <div class=\"btn black\">B</div>\n"
-      + "        </div>\n"
-      + "        <div>\n"
-      + "          <div class=\"btn\">C</div>\n"
-      + "        </div>\n"
-      + "      </div>\n"
-      + "    </div>\n"
-      + "  </div>\n"
-      + "</div>\n";
+  private static final String HTML =
+      "<div>\n"
+          + "  <div id=\"target\">\n"
+          + "    <div>\n"
+          + "      <div>\n"
+          + "        <div>\n"
+          + "          <div class=\"btn white\">A</div>\n"
+          + "        </div>\n"
+          + "        <div>\n"
+          + "          <div class=\"btn black\">B</div>\n"
+          + "        </div>\n"
+          + "        <div>\n"
+          + "          <div class=\"btn\">C</div>\n"
+          + "        </div>\n"
+          + "      </div>\n"
+          + "    </div>\n"
+          + "  </div>\n"
+          + "</div>\n";
 
   private Document document;
 
@@ -81,5 +82,4 @@ class MultipleNodesTest {
     assertThat(nodes.item(1).getTextContent()).isEqualTo("B");
     assertThat(nodes.item(2).getTextContent()).isEqualTo("C");
   }
-
 }

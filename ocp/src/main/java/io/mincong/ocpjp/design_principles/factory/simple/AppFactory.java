@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.factory.simple;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class AppFactory {
 
   public static App getAppInstance(String fileExt) {
@@ -14,5 +12,4 @@ public class AppFactory {
     }
     return app;
   }
-
 }

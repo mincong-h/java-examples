@@ -1,5 +1,7 @@
 package io.mincongh.akka;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import akka.actor.AbstractActor;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -12,8 +14,6 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Option;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Test lifecycle of an Akka actor
@@ -129,7 +129,6 @@ class LifecycleTest {
             "preStart",
             // stop
             "aroundPostStop",
-            "postStop"
-        );
+            "postStop");
   }
 }

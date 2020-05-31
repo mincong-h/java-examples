@@ -1,6 +1,5 @@
 package io.mincongh.rest;
 
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -36,5 +35,4 @@ public class StatusCodeExample {
       return Response.status(Status.BAD_REQUEST).entity(msg).build();
     }
   }
-
 }

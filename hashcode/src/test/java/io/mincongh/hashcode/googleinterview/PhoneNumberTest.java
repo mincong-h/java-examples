@@ -1,34 +1,34 @@
 package io.mincongh.hashcode.googleinterview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
  * Test the class {@code PhoneNumber} located in package google interview, a bad example having a
  * worst possible legal {@code hashCode} method (every object has the same hash code). Here's an
- * explanation of the complexity from
- * {@link http://stackoverflow.com/questions/4553624/hashmap-get-put-complexity} .
- * <p>
- * The HashMap get / put complexity depends on many things. It's usually O(1), with a decent hash
+ * explanation of the complexity from {@link
+ * http://stackoverflow.com/questions/4553624/hashmap-get-put-complexity} .
+ *
+ * <p>The HashMap get / put complexity depends on many things. It's usually O(1), with a decent hash
  * which itself is constant time... but you could have a hash which takes a long time to compute,
  * and if there are multiple items in the hash map which return the same hash code, get will have to
  * iterate over them calling equals on each of them to find a match.
- * <p>
- * In the worst case, a HashMap has an O(n) lookup due to walking through all entries in the same
+ *
+ * <p>In the worst case, a HashMap has an O(n) lookup due to walking through all entries in the same
  * hash bucket (e.g. if they all have the same hash code). Fortunately, that worst case scenario
  * doesn't come up very often in real life, in my experience. So no, O(1) certainly isn't guaranteed
  * - but it's usually what you should assume when considering which algorithms and data structures
  * to use.
- * <p>
- * In JDK 8, HashMap has been tweaked so that if keys can be compared for ordering, then any
+ *
+ * <p>In JDK 8, HashMap has been tweaked so that if keys can be compared for ordering, then any
  * densely-populated bucket is implemented as a tree, so that even if there are lots of entries with
  * the same hash code, the complexity is O(log n). That can cause issues if you have a key type
  * where equality and ordering are different, of course.
- * <p>
- * And yes, if you don't have enough memory for the hash map, you'll be in trouble... but that's
+ *
+ * <p>And yes, if you don't have enough memory for the hash map, you'll be in trouble... but that's
  * going to be true whatever data structure you use.
  *
  * @author Jon Skeet
@@ -41,8 +41,8 @@ class PhoneNumberTest {
    * stored in the same hash bucket. In this case, the {@code get} operation is
    *
    * <ul>
-   * <li>{@literal O(n)} in Java 7
-   * <li>{@literal O(log n)} in Java 8.
+   *   <li>{@literal O(n)} in Java 7
+   *   <li>{@literal O(log n)} in Java 8.
    * </ul>
    *
    * Results in Java 8:
@@ -91,8 +91,8 @@ class PhoneNumberTest {
    * stored in the different hash bucket. In this case, the {@code get} operation is
    *
    * <ul>
-   * <li>{@literal O(1)} in Java 7
-   * <li>{@literal O(1)} in Java 8.
+   *   <li>{@literal O(1)} in Java 7
+   *   <li>{@literal O(1)} in Java 8.
    * </ul>
    *
    * Results in Java 8:

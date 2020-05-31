@@ -3,10 +3,10 @@ package io.mincong.ocpjp.io;
 import java.io.File;
 
 /**
- * File counter, copied from book <i>OCP Java SE 7, Programmer II,
- * Mala Gupta</i>, §7.2.1 (page 470).
- * <p>
- * The content is modified.
+ * File counter, copied from book <i>OCP Java SE 7, Programmer II, Mala Gupta</i>, §7.2.1 (page
+ * 470).
+ *
+ * <p>The content is modified.
  *
  * @author Mala Gupta
  */
@@ -17,8 +17,7 @@ public final class FileCounter {
   }
 
   /**
-   * Count number of regular files in the given directory (depth=1),
-   * subdirectories are excluded.
+   * Count number of regular files in the given directory (depth=1), subdirectories are excluded.
    */
   public static int countRegularFiles(File dir) {
     if (!dir.isDirectory()) {
@@ -34,10 +33,7 @@ public final class FileCounter {
     return count;
   }
 
-  /**
-   * Count number of directories in the given directory (depth=1),
-   * subdirectories are excluded.
-   */
+  /** Count number of directories in the given directory (depth=1), subdirectories are excluded. */
   public static int countDirectories(File dir) {
     if (!dir.isDirectory()) {
       throw new IllegalArgumentException("Not a directory");
@@ -51,5 +47,4 @@ public final class FileCounter {
     }
     return count;
   }
-
 }

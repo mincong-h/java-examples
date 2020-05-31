@@ -7,6 +7,7 @@ import org.junit.Test;
 
 /**
  * Which of the following will print current time?
+ *
  * <pre>
  *   System.out.print(new LocalTime().now());
  *   System.out.print(new LocalTime());

@@ -7,14 +7,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class StringBuilderTest {
 
-  /**
-   * {@code StringBuilder} is mutable and can use chaining.
-   */
+  /** {@code StringBuilder} is mutable and can use chaining. */
   @Test
   public void testMutabilityAndChaining() {
     StringBuilder builderA = new StringBuilder();
@@ -51,9 +47,7 @@ public class StringBuilderTest {
     assertEquals(4, builderC.length());
   }
 
-  /**
-   * Test methods {@code indexOf}, {@code length}, {@code charAt}, and {@code substring}.
-   */
+  /** Test methods {@code indexOf}, {@code length}, {@code charAt}, and {@code substring}. */
   @Test
   public void testBasicMethods() {
     StringBuilder builder = new StringBuilder("animals");
@@ -112,5 +106,4 @@ public class StringBuilderTest {
     String str2 = "Hello world";
     assertSame("String pool is used here, so str1 & str2 should be the same", str1, str2);
   }
-
 }

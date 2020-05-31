@@ -9,9 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ArrayListTest {
 
   private static final ArrayList<Integer> arrayList = new ArrayList<>();
@@ -68,5 +66,4 @@ public class ArrayListTest {
     arrayList.removeAll(Collections.singletonList(a));
     assertThat(arrayList).isEmpty();
   }
-
 }

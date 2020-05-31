@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,8 +18,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Stack Overflow: Undefined error while parsing java

@@ -1,11 +1,10 @@
 package io.mincongh.hashcode.good;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 /**
  * Test the class {@code PhoneNumber} located in package good, a good class example having a

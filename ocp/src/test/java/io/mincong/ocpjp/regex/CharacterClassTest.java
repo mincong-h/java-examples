@@ -7,11 +7,9 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 /**
- * <i>Character classes</i> aren't classes defined in the Java API.
- * The term refers to a set of characters that you can enclose within
- * square brackets (<tt>[]</tt>). When used in a regex pattern, Java
- * looks for exactly <b>one</b> of the specified <i>characters</i>
- * (not words).
+ * <i>Character classes</i> aren't classes defined in the Java API. The term refers to a set of
+ * characters that you can enclose within square brackets (<tt>[]</tt>). When used in a regex
+ * pattern, Java looks for exactly <b>one</b> of the specified <i>characters</i> (not words).
  *
  * @author Mincong Huang
  */
@@ -32,7 +30,7 @@ public class CharacterClassTest {
   @Test
   public void simple2() throws Exception {
     String value = "do go no";
-    String regex  = "[dgn]o";
+    String regex = "[dgn]o";
 
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(value);
@@ -62,8 +60,7 @@ public class CharacterClassTest {
   /* Predefined character classes */
 
   /**
-   * Predefined character class '.' matches any character (may or may
-   * not match line terminators).
+   * Predefined character class '.' matches any character (may or may not match line terminators).
    */
   @Test
   public void predefined_anyCharacter() throws Exception {
@@ -75,9 +72,7 @@ public class CharacterClassTest {
     assertThat(asString(matcher)).isEqualTo("sun: [0,3[; son: [4,7[;");
   }
 
-  /**
-   * Predefined character class '\d' matches a digit.
-   */
+  /** Predefined character class '\d' matches a digit. */
   @Test
   public void predefined_digit() throws Exception {
     String value = "666abc";
@@ -88,10 +83,7 @@ public class CharacterClassTest {
     assertThat(asString(matcher)).isEqualTo("6: [0,1[; 6: [1,2[; 6: [2,3[;");
   }
 
-  /**
-   * Predefined character class '\D' matches a non-digit, which is
-   * equivalent to "[^\d]".
-   */
+  /** Predefined character class '\D' matches a non-digit, which is equivalent to "[^\d]". */
   @Test
   public void predefined_nonDigit() throws Exception {
     String value = "666a";
@@ -103,9 +95,8 @@ public class CharacterClassTest {
   }
 
   /**
-   * Predefined character class '\s' matches a whitespace character,
-   * including ' ' (space), '\t' (tab), '\n' (new line), 'x0B' (end
-   * of line), '\f' (form feed), '\r' (carriage).
+   * Predefined character class '\s' matches a whitespace character, including ' ' (space), '\t'
+   * (tab), '\n' (new line), 'x0B' (end of line), '\f' (form feed), '\r' (carriage).
    */
   @Test
   public void predefined_whitespaceCharacter() throws Exception {
@@ -118,8 +109,8 @@ public class CharacterClassTest {
   }
 
   /**
-   * Predefined character class '\S' matches a non-whitespace
-   * character, which is equivalent to "[^\s]".
+   * Predefined character class '\S' matches a non-whitespace character, which is equivalent to
+   * "[^\s]".
    */
   @Test
   public void predefined_nonWhitespaceCharacter() throws Exception {
@@ -132,8 +123,8 @@ public class CharacterClassTest {
   }
 
   /**
-   * Predefined character class '\w' matches a word character, which
-   * is equivalent to "[a-zA-Z_0-9]".
+   * Predefined character class '\w' matches a word character, which is equivalent to
+   * "[a-zA-Z_0-9]".
    */
   @Test
   public void predefined_wordCharacter() throws Exception {
@@ -146,8 +137,7 @@ public class CharacterClassTest {
   }
 
   /**
-   * Predefined character class '\W' matches a non-word character,
-   * which is equivalent to "[^\w]".
+   * Predefined character class '\W' matches a non-word character, which is equivalent to "[^\w]".
    */
   @Test
   public void predefined_nonWordCharacter() throws Exception {
@@ -160,8 +150,8 @@ public class CharacterClassTest {
   }
 
   /**
-   * Use a predefined character class and replace all the matching
-   * occurrences with a literal strings.
+   * Use a predefined character class and replace all the matching occurrences with a literal
+   * strings.
    */
   @Test
   public void predefined_replaceAll() throws Exception {
@@ -188,5 +178,4 @@ public class CharacterClassTest {
     }
     return b.toString().trim();
   }
-
 }

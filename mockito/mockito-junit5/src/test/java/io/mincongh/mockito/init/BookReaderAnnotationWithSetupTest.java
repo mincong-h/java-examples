@@ -1,12 +1,12 @@
 package io.mincongh.mockito.init;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Mock object {@code mockedBook} is created in setup, {@link BeforeEach} the tests using {@link

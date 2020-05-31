@@ -10,9 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ReviewNoteTest {
 
   /* Concurrent collection classes */
@@ -96,7 +94,7 @@ public class ReviewNoteTest {
 
   @Test
   public void atomicIntegerArray() throws Exception {
-    AtomicIntegerArray array = new AtomicIntegerArray(new int[]{1, 2, 3, -4});
+    AtomicIntegerArray array = new AtomicIntegerArray(new int[] {1, 2, 3, -4});
 
     assertThat(array.incrementAndGet(0)).isEqualTo(2);
     assertThat(array.decrementAndGet(1)).isEqualTo(1);

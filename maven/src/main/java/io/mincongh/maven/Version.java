@@ -3,9 +3,7 @@ package io.mincongh.maven;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Version implements Comparable<Version> {
 
   private final int major;
@@ -17,10 +15,9 @@ public class Version implements Comparable<Version> {
   private final boolean isSnapshot;
 
   /**
-   * A version contains 3 groups of digits, separated by char '.'
-   * (dot). Each group of digits should be a positive integer,
-   * without leading zeros. If this is a snapshot version, its value
-   * must end with the optional qualifier "-SNAPSHOT".
+   * A version contains 3 groups of digits, separated by char '.' (dot). Each group of digits should
+   * be a positive integer, without leading zeros. If this is a snapshot version, its value must end
+   * with the optional qualifier "-SNAPSHOT".
    */
   private static final Pattern PATTERN =
       Pattern.compile("(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-SNAPSHOT)?");
@@ -91,9 +88,8 @@ public class Version implements Comparable<Version> {
   }
 
   /**
-   * Determines if this version is snapshot. A version is snapshot if
-   * and only if its string representation ends with {@literal
-   * -SNAPSHOT}.
+   * Determines if this version is snapshot. A version is snapshot if and only if its string
+   * representation ends with {@literal -SNAPSHOT}.
    *
    * @return true if snapshot version
    */
@@ -167,5 +163,4 @@ public class Version implements Comparable<Version> {
       return major + "." + minor + "." + patch;
     }
   }
-
 }

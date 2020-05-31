@@ -7,16 +7,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class LinkedHashMapTest {
 
   /**
-   * Different from its parent {@link java.util.HashMap}, the class
-   * {@link LinkedHashMap} has a predictable iteration order. Like a
-   * {@link java.util.LinkedList}, a {@link LinkedHashMap} maintains
-   * a double-linked list that runs through all its entries.
+   * Different from its parent {@link java.util.HashMap}, the class {@link LinkedHashMap} has a
+   * predictable iteration order. Like a {@link java.util.LinkedList}, a {@link LinkedHashMap}
+   * maintains a double-linked list that runs through all its entries.
    */
   @Test
   public void fixedIterationOrder() throws Exception {
@@ -27,5 +24,4 @@ public class LinkedHashMapTest {
     String result = map.values().stream().collect(Collectors.joining());
     assertThat(result).isEqualTo("123");
   }
-
 }

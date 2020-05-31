@@ -1,9 +1,6 @@
 package io.mincongh.abstraction;
 
-/**
- *
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Dog extends AbstractAnimal {
 
   @Override

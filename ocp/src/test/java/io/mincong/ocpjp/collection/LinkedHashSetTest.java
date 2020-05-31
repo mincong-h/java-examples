@@ -9,9 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class LinkedHashSetTest {
 
   @Test
@@ -36,5 +34,4 @@ public class LinkedHashSetTest {
     String result = cities.stream().collect(Collectors.joining(", "));
     assertThat(result).isEqualTo("Seattle, Copenhagen, New Delhi, Beijing, Tokyo");
   }
-
 }

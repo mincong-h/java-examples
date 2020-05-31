@@ -1,9 +1,9 @@
 package io.mincongh.classmethod;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import io.mincongh.abstraction.Dog;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test different string representations of class {@code java.lang.Class<T>}.

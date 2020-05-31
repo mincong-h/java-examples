@@ -2,14 +2,10 @@ package io.mincong.ocpjp.design_principles.dao;
 
 import java.util.Collection;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public interface PersonDao {
 
-  /**
-   * @return Person ID
-   */
+  /** @return Person ID */
   int createPerson(Person p);
 
   Person get(int personId);

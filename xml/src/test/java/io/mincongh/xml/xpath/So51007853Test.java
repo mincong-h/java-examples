@@ -1,5 +1,7 @@
 package io.mincongh.xml.xpath;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -12,8 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.Document;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
  * Stack Overflow: How to parse XML object in JAVA [duplicate]

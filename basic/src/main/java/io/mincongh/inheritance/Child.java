@@ -1,8 +1,6 @@
 package io.mincongh.inheritance;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Child extends Parent {
 
   public String publicAttr = "child public";

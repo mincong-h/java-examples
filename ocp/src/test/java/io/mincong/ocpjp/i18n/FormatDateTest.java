@@ -13,9 +13,7 @@ import java.util.function.Function;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 @Ignore("OracleJDK specific")
 public class FormatDateTest {
 
@@ -173,5 +171,4 @@ public class FormatDateTest {
     assertEquals("2017-Nov-12", new SimpleDateFormat("yyyy-MMM-dd", Locale.US).format(date));
     assertEquals("2017-November-12", new SimpleDateFormat("yyyy-MMMM-dd", Locale.US).format(date));
   }
-
 }

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ThrowMoreGenericExceptionTest {
 
   @Test(expected = SQLException.class)
@@ -18,5 +16,4 @@ public class ThrowMoreGenericExceptionTest {
   public void throwMe_IOException() throws Exception {
     ThrowMoreGenericException.throwMe("Other");
   }
-
 }

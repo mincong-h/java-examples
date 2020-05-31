@@ -2,9 +2,7 @@ package io.mincongh.xml.xstream.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 @XStreamAlias("person")
 public class Person {
 
@@ -52,7 +50,8 @@ public class Person {
     if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) {
       return false;
     }
-    return phoneNumber != null ? phoneNumber.equals(person.phoneNumber)
+    return phoneNumber != null
+        ? phoneNumber.equals(person.phoneNumber)
         : person.phoneNumber == null;
   }
 
@@ -67,12 +66,18 @@ public class Person {
 
   @Override
   public String toString() {
-    return "Person{" +
-        "firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", age=" + age +
-        ", phoneNumber='" + phoneNumber + '\'' +
-        '}';
+    return "Person{"
+        + "firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", age="
+        + age
+        + ", phoneNumber='"
+        + phoneNumber
+        + '\''
+        + '}';
   }
-
 }

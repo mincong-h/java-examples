@@ -21,6 +21,8 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 /**
+ *
+ *
  * <pre>
  *        Root
  *      /  |   \
@@ -33,8 +35,7 @@ import org.junit.rules.TemporaryFolder;
  */
 public class DirectoryTreeTest {
 
-  @Rule
-  public TemporaryFolder temporaryFolder = new TemporaryFolder();
+  @Rule public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   private Path source;
 
@@ -60,31 +61,34 @@ public class DirectoryTreeTest {
 
   @Test
   public void deleteRecursively() throws Exception {
-    Files.walkFileTree(source, new SimpleFileVisitor<Path>() {
-      /*
-       * Exam tip:
-       *
-       * Methods `preVisitDirectory` and `visitFile` are passed
-       * `BasicFileAttributes` of the path that they operate on. You
-       * can use these methods to query file or directory attributes.
-       */
-      @Override
-      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        Files.delete(file);
-        return FileVisitResult.CONTINUE;
-      }
+    Files.walkFileTree(
+        source,
+        new SimpleFileVisitor<Path>() {
+          /*
+           * Exam tip:
+           *
+           * Methods `preVisitDirectory` and `visitFile` are passed
+           * `BasicFileAttributes` of the path that they operate on. You
+           * can use these methods to query file or directory attributes.
+           */
+          @Override
+          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+              throws IOException {
+            Files.delete(file);
+            return FileVisitResult.CONTINUE;
+          }
 
-      @Override
-      public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
-        if (e == null) {
-          Files.delete(dir);
-          return FileVisitResult.CONTINUE;
-        } else {
-          // Directory iteration failed
-          throw e;
-        }
-      }
-    });
+          @Override
+          public FileVisitResult postVisitDirectory(Path dir, IOException e) throws IOException {
+            if (e == null) {
+              Files.delete(dir);
+              return FileVisitResult.CONTINUE;
+            } else {
+              // Directory iteration failed
+              throw e;
+            }
+          }
+        });
 
     assertThat(Files.notExists(source)).isTrue();
   }
@@ -93,57 +97,66 @@ public class DirectoryTreeTest {
   public void copyRecursively() throws Exception {
     Set<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
 
-    Files.walkFileTree(source, options, MAX_DEPTH, new SimpleFileVisitor<Path>() {
-      @Override
-      public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
-          throws IOException {
-        /*
-         * Copy directory `dir` to the same relative path in
-         * target directory. For example:
-         *
-         * relative: ./d1
-         * source: source/d1
-         * target: target/d1
-         */
-        Path targetDir = target.resolve(source.relativize(dir));
-        try {
-          Files.copy(dir, targetDir);
-        } catch (FileAlreadyExistsException e) {
-          /*
-           * Ignore if the target directory exists already.
-           * Otherwise, re-throw exception (name is used as
-           * regular file or symbolic link).
-           */
-          if (!Files.isDirectory(targetDir)) {
-            throw e;
+    Files.walkFileTree(
+        source,
+        options,
+        MAX_DEPTH,
+        new SimpleFileVisitor<Path>() {
+          @Override
+          public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+              throws IOException {
+            /*
+             * Copy directory `dir` to the same relative path in
+             * target directory. For example:
+             *
+             * relative: ./d1
+             * source: source/d1
+             * target: target/d1
+             */
+            Path targetDir = target.resolve(source.relativize(dir));
+            try {
+              Files.copy(dir, targetDir);
+            } catch (FileAlreadyExistsException e) {
+              /*
+               * Ignore if the target directory exists already.
+               * Otherwise, re-throw exception (name is used as
+               * regular file or symbolic link).
+               */
+              if (!Files.isDirectory(targetDir)) {
+                throw e;
+              }
+            }
+            return FileVisitResult.CONTINUE;
           }
-        }
-        return FileVisitResult.CONTINUE;
-      }
 
-      @Override
-      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        Files.copy(file, target.resolve(source.relativize(file)));
-        return FileVisitResult.CONTINUE;
-      }
-    });
+          @Override
+          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+              throws IOException {
+            Files.copy(file, target.resolve(source.relativize(file)));
+            return FileVisitResult.CONTINUE;
+          }
+        });
 
     AtomicInteger dirCount = new AtomicInteger(0);
     AtomicInteger fileCount = new AtomicInteger(0);
-    Files.walkFileTree(target, options, MAX_DEPTH, new SimpleFileVisitor<Path>() {
+    Files.walkFileTree(
+        target,
+        options,
+        MAX_DEPTH,
+        new SimpleFileVisitor<Path>() {
 
-      @Override
-      public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
-        dirCount.incrementAndGet();
-        return FileVisitResult.CONTINUE;
-      }
+          @Override
+          public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+            dirCount.incrementAndGet();
+            return FileVisitResult.CONTINUE;
+          }
 
-      @Override
-      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-        fileCount.incrementAndGet();
-        return FileVisitResult.CONTINUE;
-      }
-    });
+          @Override
+          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+            fileCount.incrementAndGet();
+            return FileVisitResult.CONTINUE;
+          }
+        });
     assertThat(dirCount.get()).isEqualTo(3);
     assertThat(fileCount.get()).isEqualTo(5);
 
@@ -161,8 +174,7 @@ public class DirectoryTreeTest {
   public void newDirectoryStream_filtered() throws Exception {
     Set<String> filenames = new HashSet<>();
     // The glob pattern, see https://en.wikipedia.org/wiki/Glob_(programming)
-    Files.newDirectoryStream(source, "f*")
-        .forEach(p -> filenames.add(p.getFileName().toString()));
+    Files.newDirectoryStream(source, "f*").forEach(p -> filenames.add(p.getFileName().toString()));
     assertThat(filenames).containsExactly("f1");
   }
 
@@ -170,5 +182,4 @@ public class DirectoryTreeTest {
   public void newDirectoryStream_regularFile() throws Exception {
     Files.newDirectoryStream(source.resolve("f1"));
   }
-
 }

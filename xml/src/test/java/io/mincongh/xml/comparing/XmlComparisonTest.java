@@ -1,5 +1,7 @@
 package io.mincongh.xml.comparing;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,8 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Tests XML comparison.

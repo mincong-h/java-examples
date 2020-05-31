@@ -8,9 +8,7 @@ import java.sql.Statement;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PreparedStatementTest extends JdbcTest {
 
   @Override
@@ -46,5 +44,4 @@ public class PreparedStatementTest extends JdbcTest {
       }
     }
   }
-
 }

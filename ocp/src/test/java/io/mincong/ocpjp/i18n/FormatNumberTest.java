@@ -7,9 +7,7 @@ import java.util.Locale;
 import org.junit.Ignore;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class FormatNumberTest {
 
   @Test
@@ -51,5 +49,4 @@ public class FormatNumberTest {
     NumberFormat fmt = NumberFormat.getPercentInstance(Locale.GERMAN);
     assertEquals("12%", fmt.format(0.123F));
   }
-
 }

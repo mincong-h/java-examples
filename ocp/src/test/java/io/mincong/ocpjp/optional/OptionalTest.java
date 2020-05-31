@@ -9,9 +9,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class OptionalTest {
 
   @Test
@@ -71,9 +69,7 @@ public class OptionalTest {
 
     private String name;
 
-    Player() {
-
-    }
+    Player() {}
 
     Player(String name) {
       this.name = name;
@@ -101,7 +97,5 @@ public class OptionalTest {
     public int hashCode() {
       return name != null ? name.hashCode() : 0;
     }
-
   }
-
 }

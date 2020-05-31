@@ -9,9 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class HashMapTest {
 
   private Map<String, Integer> defaultMap = new HashMap<>();
@@ -82,5 +80,4 @@ public class HashMapTest {
     assertThat(map).containsExactly(entry("A", 1), entry("B", 2), entry("C", -3), entry("D", -4));
     assertThat(map).doesNotContain(entry("C", 3)); // Replaced by pair `entry("C", -3)`
   }
-
 }

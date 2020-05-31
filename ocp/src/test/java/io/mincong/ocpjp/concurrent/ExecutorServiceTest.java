@@ -15,9 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class ExecutorServiceTest {
 
   private static final int COUNT = 3;
@@ -57,9 +55,11 @@ public class ExecutorServiceTest {
 
   @Test(expected = Exception.class)
   public void submit_runnableLambda() throws Exception {
-    Future<?> future = threadPool.submit(() -> {
-      throw new Exception("Something goes wrong.");
-    });
+    Future<?> future =
+        threadPool.submit(
+            () -> {
+              throw new Exception("Something goes wrong.");
+            });
     future.get(1, TimeUnit.SECONDS);
   }
 
@@ -95,10 +95,11 @@ public class ExecutorServiceTest {
 
   @Test
   public void submit_callableVoid() throws Exception {
-    Callable<Void> task = () -> {
-      sum.set(10);
-      return null;
-    };
+    Callable<Void> task =
+        () -> {
+          sum.set(10);
+          return null;
+        };
     Future<Void> future = threadPool.submit(task);
     future.get(1, TimeUnit.SECONDS);
     assertEquals(10, sum.get());
@@ -112,6 +113,7 @@ public class ExecutorServiceTest {
 
     assertEquals(30, sum.get());
   }
+
   @Test
   public void invokeAll() throws Exception {
     List<Future<Integer>> futures = threadPool.invokeAll(tasks);
@@ -121,13 +123,12 @@ public class ExecutorServiceTest {
 
   @Test
   public void invokeAny() throws Exception {
-    tasks.add(() -> {
-      throw new Exception("Callable fails on purpose.");
-    });
+    tasks.add(
+        () -> {
+          throw new Exception("Callable fails on purpose.");
+        });
     // The result is returned by one of the tasks.
     int result = threadPool.invokeAny(tasks);
     assertTrue(result > 0);
   }
-
-
 }

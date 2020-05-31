@@ -10,9 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class BlockingQueueTest {
 
   private BlockingQueue<String> queue;
@@ -111,5 +109,4 @@ public class BlockingQueueTest {
     assertThat(emptyQueue).isEmpty();
     assertThat(emptyQueue.poll()).isNull();
   }
-
 }

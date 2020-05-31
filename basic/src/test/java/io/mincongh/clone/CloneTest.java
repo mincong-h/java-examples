@@ -1,9 +1,9 @@
 package io.mincongh.clone;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * This test aims to assert the behavior of {@code clone()} in different situations.
@@ -32,19 +32,20 @@ class CloneTest {
   }
 
   /**
-   * In a 2-dimensions array, the situation is different, because each element of the array
-   * {@code array[i]} is not a primitive type anymore.
-   * <p>
-   * For simple clone, the new array object is cloned using method {@code clone()}, so {@code array}
-   * and {@code simpleClone} are different by reference. <b>However, they still point to the same
-   * rows.</b> This is because: calling the method {@code clone()} only takes affect to the target
-   * object of the target class type, but it doesn't take affect to every encapsulated objects.
-   * <p>
-   * For deep clone, the new array object is created by us, so {@code array} and {@code deepClone}
-   * are different by reference. <b>Additionally, their encapsulated objects are different too!</b>
-   * Each row had been cloned by calling the method {@code clone()} repeatedly. So even if we modify
-   * a value of the original array, the deep-cloned's value won't be changed. They're stored in
-   * different places in the memory.
+   * In a 2-dimensions array, the situation is different, because each element of the array {@code
+   * array[i]} is not a primitive type anymore.
+   *
+   * <p>For simple clone, the new array object is cloned using method {@code clone()}, so {@code
+   * array} and {@code simpleClone} are different by reference. <b>However, they still point to the
+   * same rows.</b> This is because: calling the method {@code clone()} only takes affect to the
+   * target object of the target class type, but it doesn't take affect to every encapsulated
+   * objects.
+   *
+   * <p>For deep clone, the new array object is created by us, so {@code array} and {@code
+   * deepClone} are different by reference. <b>Additionally, their encapsulated objects are
+   * different too!</b> Each row had been cloned by calling the method {@code clone()} repeatedly.
+   * So even if we modify a value of the original array, the deep-cloned's value won't be changed.
+   * They're stored in different places in the memory.
    */
   @Test
   public void testArray2D() {
@@ -115,20 +116,14 @@ class CloneTest {
 
     @Override
     public boolean equals(Object obj) {
-      if (this == obj)
-        return true;
-      if (obj == null)
-        return false;
-      if (getClass() != obj.getClass())
-        return false;
+      if (this == obj) return true;
+      if (obj == null) return false;
+      if (getClass() != obj.getClass()) return false;
       Animal other = (Animal) obj;
-      if (!getOuterType().equals(other.getOuterType()))
-        return false;
+      if (!getOuterType().equals(other.getOuterType())) return false;
       if (name == null) {
-        if (other.name != null)
-          return false;
-      } else if (!name.equals(other.name))
-        return false;
+        if (other.name != null) return false;
+      } else if (!name.equals(other.name)) return false;
       return true;
     }
 

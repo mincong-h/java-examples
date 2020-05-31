@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class SingletonTest {
 
   @Test
@@ -43,5 +41,4 @@ public class SingletonTest {
     SyncSingleton2 i2 = SyncSingleton2.getInstance();
     assertThat(i1).isSameAs(i2);
   }
-
 }

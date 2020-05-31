@@ -16,6 +16,7 @@ import akka.actor.typed.javadsl.Receive;
 public class Army extends AbstractBehavior<String> {
 
   private final ActorRef<String> nightKing;
+
   private Army(ActorContext<String> context) {
     super(context);
     nightKing = getContext().spawn(NightKing.create(), "king");

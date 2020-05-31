@@ -1,11 +1,11 @@
 package io.mincongh.map;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Comparator;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Stack Overflow: How create range map in Java when the keys are strings

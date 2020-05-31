@@ -1,8 +1,6 @@
 package io.mincongh.json.util;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class JsonFormatter {
 
   private static final String LINE_SEPARATOR = System.lineSeparator();
@@ -71,5 +69,4 @@ public class JsonFormatter {
   private static String indentOf(int tab) {
     return new String(new char[SPACES_PER_TAB * tab]).replace('\0', ' ');
   }
-
 }

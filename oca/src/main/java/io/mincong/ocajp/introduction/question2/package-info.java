@@ -1,7 +1,7 @@
 /**
  * Question 2: What is the result of the following code?
- * <p>
- * Please see the unit test.
+ *
+ * <p>Please see the unit test.
  *
  * @author Mincong HUANG
  */

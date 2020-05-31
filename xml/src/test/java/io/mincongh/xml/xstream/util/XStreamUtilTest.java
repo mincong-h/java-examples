@@ -1,14 +1,13 @@
 package io.mincongh.xml.xstream.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import io.mincongh.xml.xstream.model.Person;
 import io.mincongh.xml.xstream.model.PhoneNumber;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 
 /** @author Mincong Huang */
 class XStreamUtilTest {

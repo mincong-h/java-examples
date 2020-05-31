@@ -1,8 +1,6 @@
 package io.mincong.ocpjp.design_principles.dao;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class Person {
 
   private int id;
@@ -51,5 +49,4 @@ public class Person {
   public void setAddress(String address) {
     this.address = address;
   }
-
 }

@@ -1,8 +1,6 @@
 package io.mincongh.hashcode.bad;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class PhoneNumberNoHash {
 
   private final short areaCode;
@@ -26,10 +24,8 @@ public class PhoneNumberNoHash {
 
   @Override
   public boolean equals(Object o) {
-    if (o == this)
-      return true;
-    if (!(o instanceof PhoneNumberNoHash))
-      return false;
+    if (o == this) return true;
+    if (!(o instanceof PhoneNumberNoHash)) return false;
     PhoneNumberNoHash pn = (PhoneNumberNoHash) o;
     return pn.lineNumber == lineNumber && pn.prefix == prefix && pn.areaCode == areaCode;
   }

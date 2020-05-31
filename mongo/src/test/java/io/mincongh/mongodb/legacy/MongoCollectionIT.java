@@ -1,11 +1,11 @@
 package io.mincongh.mongodb.legacy;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.junit.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Mincong Huang

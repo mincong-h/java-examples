@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Starting with Java 7, the variable type that you use to rethrow an
- * exception can be more generic in the <code>catch</code> block.
+ * Starting with Java 7, the variable type that you use to rethrow an exception can be more generic
+ * in the <code>catch</code> block.
  *
  * @author Mincong Huang
  */
@@ -30,5 +30,4 @@ class ThrowMoreGenericException {
       throw e;
     }
   }
-
 }

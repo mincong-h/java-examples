@@ -1,12 +1,12 @@
 package io.mincongh.mockito.init;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * Mock object {@code mockedBook} is created in setup, {@link Before} the tests using {@link

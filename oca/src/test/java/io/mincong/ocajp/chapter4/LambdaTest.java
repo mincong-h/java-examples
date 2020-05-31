@@ -11,9 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class LambdaTest {
 
   private Animal cat;
@@ -42,9 +40,12 @@ public class LambdaTest {
 
     // equivalent with the previous expression
     assertTrue(testOverweight(elephant, (Animal a) -> a.getWeight() > 50));
-    assertTrue(testOverweight(elephant, (Animal a) -> {
-      return a.getWeight() > 50;
-    }));
+    assertTrue(
+        testOverweight(
+            elephant,
+            (Animal a) -> {
+              return a.getWeight() > 50;
+            }));
   }
 
   private boolean testOverweight(Animal animal, TestMe testMe) {
@@ -71,5 +72,4 @@ public class LambdaTest {
     words.removeIf(word -> word.equals("hate"));
     assertEquals("I love Java", String.join(" ", words));
   }
-
 }

@@ -1,10 +1,10 @@
 package io.mincongh.hashcode.bad;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test the class {@code PhoneNumberNoHash} located in package bad, a bad class example having no

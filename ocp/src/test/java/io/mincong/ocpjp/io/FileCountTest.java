@@ -7,16 +7,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
-/**
- * @author Mincong Huang
- */
+/** @author Mincong Huang */
 public class FileCountTest {
 
-  @Rule
-  public final TemporaryFolder temporaryDir = new TemporaryFolder();
+  @Rule public final TemporaryFolder temporaryDir = new TemporaryFolder();
 
-  @Rule
-  public final ExpectedException thrown = ExpectedException.none();
+  @Rule public final ExpectedException thrown = ExpectedException.none();
 
   @Test
   public void countRegularFiles_correct() throws Exception {
@@ -78,5 +74,4 @@ public class FileCountTest {
 
     FileCounter.countRegularFiles(temporaryDir.newFile("foo"));
   }
-
 }

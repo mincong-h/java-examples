@@ -1,12 +1,12 @@
 package io.mincongh.hashcode.bad;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import io.mincongh.hashcode.good.Athlete;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This is an interview question from <i>Coursera - Introduction to Algorithms, part I</i>, week 6
@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * implement a data type {@code Athlete} for use in a {@code java.util.HashMap}.
  *
  * <ul>
- * <li>Describe what happens if you override {@code hashCode()} but not {@code equals()}.
- * <li>Describe what happens if you override {@code equals()} but not {@code hashCode()}.
- * <li>Describe what happens if you override {@code hashCode()} but implement
- * {@code public boolean equals(OlympicAthlete that)} instead of public boolean equals(Object that).
+ *   <li>Describe what happens if you override {@code hashCode()} but not {@code equals()}.
+ *   <li>Describe what happens if you override {@code equals()} but not {@code hashCode()}.
+ *   <li>Describe what happens if you override {@code hashCode()} but implement {@code public
+ *       boolean equals(OlympicAthlete that)} instead of public boolean equals(Object that).
  * </ul>
  *
  * @author Mincong Huang
@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class AthleteTest {
 
   /**
-   * Test the phenomenon where model only overrides the {@code hashCode()} but not the
-   * {@code equals()}. This is called <b>"collisions"</b>, when two non-equal objects have the same
-   * hash code.
+   * Test the phenomenon where model only overrides the {@code hashCode()} but not the {@code
+   * equals()}. This is called <b>"collisions"</b>, when two non-equal objects have the same hash
+   * code.
    */
   @Test
   void testCollisions() {
