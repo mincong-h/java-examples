@@ -63,8 +63,8 @@ Date manipulation using `java.util.*` and `java.time.*`.
 
 ### Mockito
 
-[Mockito](https://site.mockito.org/), the most popular mocking framework for
-Java unit tests.
+Mockito, the most popular mocking framework for
+Java unit tests. https://site.mockito.org
 
 - [Mockito: 3 Ways to Init Mock in JUnit 5](https://mincong.io/2020/04/19/mockito-junit5)
 - [Mockito: 3 Ways to Init Mock in JUnit 4](https://mincong.io/2019/09/13/init-mock)
