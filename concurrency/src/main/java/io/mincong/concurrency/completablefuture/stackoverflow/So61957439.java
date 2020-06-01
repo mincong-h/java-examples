@@ -48,7 +48,7 @@ public class So61957439 {
                 })
             .collect(Collectors.toList());
     print("Waiting for results");
-    CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
+    CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
     print("All completable futures done");
 
     for (CompletableFuture<Stream<Result>> cf : futures) {
