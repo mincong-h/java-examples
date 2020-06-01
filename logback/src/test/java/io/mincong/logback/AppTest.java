@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
  * Demonstration of Logback and SLF4J.
  *
  * @author Mincong Huang
+ * @blog https://mincong.io/2020/02/02/logback-test-logging-event/
  */
 public class AppTest {
 
@@ -28,7 +29,7 @@ public class AppTest {
    * Retrieve the Logback logger used by `App.class`. Declaring it
    * here allows to add an appender for logging events.
    */
-  private Logger appLogger = (Logger) LoggerFactory.getLogger(App.class);
+  private final Logger appLogger = (Logger) LoggerFactory.getLogger(App.class);
 
   @Before
   public void setUp() {
@@ -48,25 +49,25 @@ public class AppTest {
     App.sayHi("Logback");
 
     assertThat(appender.list)
-        .flatExtracting(ILoggingEvent::getFormattedMessage)
+        .extracting(ILoggingEvent::getFormattedMessage)
         .containsExactly("Hi, Java!", "Hi, Logback!");
 
     // `ILoggingEvent#getMessage()` is probably NOT what you want:
     // it returns the message before variable injection
     assertThat(appender.list)
-        .flatExtracting(ILoggingEvent::getMessage)
+        .extracting(ILoggingEvent::getMessage)
         .containsExactly("Hi, {}!", "Hi, {}!");
 
     assertThat(appender.list)
-        .flatExtracting(ILoggingEvent::getLevel) //
+        .extracting(ILoggingEvent::getLevel) //
         .containsOnly(Level.INFO);
 
     assertThat(appender.list)
-        .flatExtracting(ILoggingEvent::getLoggerName) //
+        .extracting(ILoggingEvent::getLoggerName) //
         .containsOnly("io.mincong.logback.App");
 
     assertThat(appender.list)
-        .flatExtracting(ILoggingEvent::getThrowableProxy) //
+        .extracting(ILoggingEvent::getThrowableProxy) //
         .containsExactly(null, null);
   }
 }
