@@ -7,9 +7,30 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Call a WebService and a REST API using JDK8 Streams and CompletableFuture
+ * Call a WebService and a REST API using JDK8 Streams and CompletableFuture.
+ * https://stackoverflow.com/questions/61957439/
  *
- * <p>https://stackoverflow.com/questions/61957439/call-a-webservice-and-a-rest-api-using-jdk8-streams-and-completablefuture
+ * <p>Example output of the program:
+ *
+ * <pre>
+ * 08:20:04.113561 - Getting products for [A1, A2, A3] ...
+ * 08:20:04.108563 - Getting products for [C3, C1, C2] ...
+ * 08:20:04.115345 - Getting products for [B2, B3, B1] ...
+ * 08:20:04.119002 - Waiting for results
+ * 08:20:07.144373 - Products received
+ * 08:20:07.144373 - Products received
+ * 08:20:07.144373 - Products received
+ * 08:20:07.157554 - Validating products: java.util.stream.ReferencePipeline$3@4dd50673
+ * 08:20:07.157750 - Validating products: java.util.stream.ReferencePipeline$3@4f6bfabe
+ * 08:20:07.158084 - Validating products: java.util.stream.ReferencePipeline$3@42eeb195
+ * 08:20:10.160118 - Products java.util.stream.ReferencePipeline$3@4dd50673 validated
+ * 08:20:10.160114 - Products java.util.stream.ReferencePipeline$3@42eeb195 validated
+ * 08:20:10.160145 - Products java.util.stream.ReferencePipeline$3@4f6bfabe validated
+ * 08:20:10.163970 - All completable futures done
+ * 08:20:10.164412 - [Result{name='A1'}, Result{name='A2'}, Result{name='A3'}]
+ * 08:20:10.165237 - [Result{name='B2'}, Result{name='B3'}, Result{name='B1'}]
+ * 08:20:10.165436 - [Result{name='C3'}, Result{name='C1'}, Result{name='C2'}]
+ * </pre>
  */
 public class So61957439 {
 
