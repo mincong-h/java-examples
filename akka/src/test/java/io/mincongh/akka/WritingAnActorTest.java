@@ -7,9 +7,7 @@ import akka.testkit.javadsl.TestKit;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class WritingAnActorTest {
 
@@ -57,6 +55,12 @@ public class WritingAnActorTest {
 
     // Then the response is correct
     probe.expectMsgAnyOf("Bar, Foo");
+  }
+
+  @Test
+  @Disabled("Don't create an instance via constructor (new), use actorOf(...)")
+  void doNotUseConstructorDirectly() {
+    new UserSubscriptionActor(new HashSet<>());
   }
 
   static class Subscribe {
