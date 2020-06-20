@@ -103,12 +103,24 @@ public class WritingAnActorTest {
     }
 
     private void onSubscribe(Subscribe subscription) {
-      boolean isNew = subscribedUsers.add(subscription.userId);
+      String reply;
+      var isNew = subscribedUsers.add(subscription.userId);
       if (isNew) {
-        sender().tell("Subscription succeed for user " + subscription.userId, self());
+        reply = "Subscription succeed for user " + subscription.userId;
       } else {
-        sender().tell("User " + subscription.userId + " already subscribed", self());
+        reply = "User " + subscription.userId + " already subscribed";
       }
+      /*
+       * Reply to the sender by sending a message. Here, sender means the actor
+       * which sent of the latest message received by this actor. Note that the
+       * sender is the reference of the actor (`ActorRef`), not the actor
+       * itself.
+       *
+       * A typical pattern is:
+       *
+       *    sender().tell(reply, self())
+       */
+      sender().tell(reply, self());
     }
 
     private void onUnsubscribe(Unsubscribe unsubscribe) {
