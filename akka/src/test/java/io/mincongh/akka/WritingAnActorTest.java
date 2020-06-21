@@ -7,11 +7,13 @@ import akka.testkit.javadsl.TestKit;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-public class WritingAnActorTest {
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/06/20/akka-actor/
+ */
+class WritingAnActorTest {
 
   private ActorSystem system;
   private TestKit probe;
@@ -56,7 +58,31 @@ public class WritingAnActorTest {
     actor.tell("list-subscriptions", probe.getRef());
 
     // Then the response is correct
-    probe.expectMsgAnyOf("Bar, Foo");
+    probe.expectMsg("Bar, Foo");
+  }
+
+  @Test
+  void unknownMessage() {
+    // Given an actor under test
+    var actor = system.actorOf(UserSubscriptionActor.props());
+
+    // When sending unknown message
+    actor.tell("hello?", probe.getRef());
+
+    // Then the response is correct
+    probe.expectMsg("Unknown message: hello?");
+  }
+
+  @Test
+  @Disabled("Don't create an instance via constructor (new), use actorOf(...)")
+  void doNotUseConstructorDirectly() {
+    /*
+     * akka.actor.ActorInitializationException: You cannot create an instance
+     * of [io.mincongh.akka.WritingAnActorTest$UserSubscriptionActor]
+     * explicitly using the constructor (new). You have to use one of the
+     * 'actorOf' factory methods to create a new actor. See the documentation.
+     */
+    new UserSubscriptionActor(new HashSet<>());
   }
 
   static class Subscribe {
@@ -79,16 +105,16 @@ public class WritingAnActorTest {
 
     private final Set<String> subscribedUsers;
 
-    UserSubscriptionActor(Set<String> subscribedUsers) {
+    private UserSubscriptionActor(Set<String> subscribedUsers) {
       this.subscribedUsers = subscribedUsers;
     }
 
-    static Props props() {
+    public static Props props() {
       return Props.create(
           UserSubscriptionActor.class, () -> new UserSubscriptionActor(new HashSet<>()));
     }
 
-    static Props props(Set<String> subscribedUsers) {
+    public static Props props(Set<String> subscribedUsers) {
       return Props.create(
           UserSubscriptionActor.class, () -> new UserSubscriptionActor(subscribedUsers));
     }
@@ -99,6 +125,7 @@ public class WritingAnActorTest {
           .match(Subscribe.class, this::onSubscribe)
           .match(Unsubscribe.class, this::onUnsubscribe)
           .matchEquals("list-subscriptions", this::onList)
+          .matchAny(this::onUnknown)
           .build();
     }
 
@@ -135,6 +162,10 @@ public class WritingAnActorTest {
     private void onList(String ignore) {
       String s = String.join(", ", new TreeSet<>(subscribedUsers));
       sender().tell(s, self());
+    }
+
+    private void onUnknown(Object unknown) {
+      sender().tell("Unknown message: " + unknown, self());
     }
   }
 }
