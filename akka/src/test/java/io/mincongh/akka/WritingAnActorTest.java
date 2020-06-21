@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.junit.jupiter.api.*;
 
-public class WritingAnActorTest {
+class WritingAnActorTest {
 
   private ActorSystem system;
   private TestKit probe;
