@@ -72,6 +72,12 @@ class WritingAnActorTest {
   @Test
   @Disabled("Don't create an instance via constructor (new), use actorOf(...)")
   void doNotUseConstructorDirectly() {
+    /*
+     * akka.actor.ActorInitializationException: You cannot create an instance
+     * of [io.mincongh.akka.WritingAnActorTest$UserSubscriptionActor]
+     * explicitly using the constructor (new). You have to use one of the
+     * 'actorOf' factory methods to create a new actor. See the documentation.
+     */
     new UserSubscriptionActor(new HashSet<>());
   }
 
@@ -99,12 +105,12 @@ class WritingAnActorTest {
       this.subscribedUsers = subscribedUsers;
     }
 
-    static Props props() {
+    public static Props props() {
       return Props.create(
           UserSubscriptionActor.class, () -> new UserSubscriptionActor(new HashSet<>()));
     }
 
-    static Props props(Set<String> subscribedUsers) {
+    public static Props props(Set<String> subscribedUsers) {
       return Props.create(
           UserSubscriptionActor.class, () -> new UserSubscriptionActor(subscribedUsers));
     }
