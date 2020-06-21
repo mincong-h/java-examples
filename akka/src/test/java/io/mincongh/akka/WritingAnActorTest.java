@@ -9,6 +9,10 @@ import java.util.Set;
 import java.util.TreeSet;
 import org.junit.jupiter.api.*;
 
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/06/20/akka-actor/
+ */
 class WritingAnActorTest {
 
   private ActorSystem system;

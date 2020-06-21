@@ -44,6 +44,11 @@ VAVR | Functional component library that provides persistent data types and func
 Here are some blog posts that I wrote using the source code of this repository. Visit <https://mincong.io>
 to see the complete list.
 
+### Akka
+
+- [Write An Actor In Akka](https://mincong.io/2020/06/20/akka-actor/)
+- [Testing Actor with TestActorRef](https://mincong.io/2020/01/08/akka-testing-actor-with-testactorref/)
+
 ### Java Concurrency
 
 - [3 Ways to Handle Exception In Completable Future](https://mincong.io/2020/05/30/exception-handling-in-completable-future/)
