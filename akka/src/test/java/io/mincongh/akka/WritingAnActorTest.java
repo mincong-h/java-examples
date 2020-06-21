@@ -83,7 +83,7 @@ public class WritingAnActorTest {
 
     private final Set<String> subscribedUsers;
 
-    UserSubscriptionActor(Set<String> subscribedUsers) {
+    private UserSubscriptionActor(Set<String> subscribedUsers) {
       this.subscribedUsers = subscribedUsers;
     }
 
