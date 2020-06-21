@@ -54,7 +54,7 @@ class WritingAnActorTest {
     actor.tell("list-subscriptions", probe.getRef());
 
     // Then the response is correct
-    probe.expectMsgAnyOf("Bar, Foo");
+    probe.expectMsg("Bar, Foo");
   }
 
   @Test
