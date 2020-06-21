@@ -58,6 +58,18 @@ public class WritingAnActorTest {
   }
 
   @Test
+  void unknownMessage() {
+    // Given an actor under test
+    var actor = system.actorOf(UserSubscriptionActor.props());
+
+    // When sending unknown message
+    actor.tell("hello?", probe.getRef());
+
+    // Then the response is correct
+    probe.expectMsg("Unknown message: hello?");
+  }
+
+  @Test
   @Disabled("Don't create an instance via constructor (new), use actorOf(...)")
   void doNotUseConstructorDirectly() {
     new UserSubscriptionActor(new HashSet<>());
@@ -103,6 +115,7 @@ public class WritingAnActorTest {
           .match(Subscribe.class, this::onSubscribe)
           .match(Unsubscribe.class, this::onUnsubscribe)
           .matchEquals("list-subscriptions", this::onList)
+          .matchAny(this::onUnknown)
           .build();
     }
 
@@ -139,6 +152,10 @@ public class WritingAnActorTest {
     private void onList(String ignore) {
       String s = String.join(", ", new TreeSet<>(subscribedUsers));
       sender().tell(s, self());
+    }
+
+    private void onUnknown(Object unknown) {
+      sender().tell("Unknown message: " + unknown, self());
     }
   }
 }
