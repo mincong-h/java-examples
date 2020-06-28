@@ -51,6 +51,7 @@ to see the complete list.
 
 ### Java Concurrency
 
+- [Why Do We Need Completable Future?](https://mincong.io/2020/06/26/completable-future/)
 - [3 Ways to Handle Exception In Completable Future](https://mincong.io/2020/05/30/exception-handling-in-completable-future/)
 - [How CompletableFuture is tested in OpenJDK?](https://mincong.io/2020/05/10/completablefuture-test/)
 
