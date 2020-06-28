@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/06/26/completable-future/
+ */
 class BlogCompletableFutureMotivationTest {
 
   /**

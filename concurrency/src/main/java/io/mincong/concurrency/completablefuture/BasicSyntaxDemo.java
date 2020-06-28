@@ -2,12 +2,16 @@ package io.mincong.concurrency.completablefuture;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/06/26/completable-future/
+ */
 public class BasicSyntaxDemo {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new BasicSyntaxDemo().run();
   }
 
-  private void run() throws Exception {
+  private void run() {
     CompletableFuture //
         .runAsync(this::doStep1)
         .thenRun(this::doStep2)
