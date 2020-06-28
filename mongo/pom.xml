@@ -17,7 +17,7 @@
     <logbackVersion>1.2.3</logbackVersion>
     <mongoVersion>3.6</mongoVersion>
     <mongoDriverVersion>3.6.2</mongoDriverVersion>
-    <mongoJavaServerVersion>1.26.0</mongoJavaServerVersion>
+    <mongoJavaServerVersion>1.32.0</mongoJavaServerVersion>
     <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
