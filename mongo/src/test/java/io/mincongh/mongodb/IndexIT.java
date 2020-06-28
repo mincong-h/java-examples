@@ -87,26 +87,7 @@ public class IndexIT {
     // no exception
 
     var indexes = provider.userCollection().listIndexes();
-    if (provider.isMongoJavaServer()) {
-      /*
-       * @impl Mongo Java Server
-       * @bug One more index is created.
-       *      Adding non-unique non-id index with key {} is not yet implemented
-       * @see https://github.com/bwaldvogel/mongo-java-server/blob/a3dadcb4d4660fabc7dc01f4270231735aa2a0cb/core/src/main/java/de/bwaldvogel/mongo/backend/AbstractMongoDatabase.java#L754-L757
-       *
-       * Expecting:
-       *   <["_id_", "name_1", "name_1"]>
-       * to contain exactly (and in same order):
-       *   <["_id_", "name_1"]>
-       * but some elements were not expected:
-       *   <["name_1"]>
-       */
-      assertThat(indexes)
-          .extracting(idx -> idx.get("name"))
-          .containsExactly("_id_", "name_1", "name_1");
-    } else {
-      assertThat(indexes).extracting(idx -> idx.get("name")).containsExactly("_id_", "name_1");
-    }
+    assertThat(indexes).extracting(idx -> idx.get("name")).containsExactly("_id_", "name_1");
   }
 
   @Test
