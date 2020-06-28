@@ -32,7 +32,7 @@
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
-    <jerseyVersion>2.27</jerseyVersion>
+    <jerseyVersion>2.31</jerseyVersion>
     <jettyVersion>9.4.28.v20200408</jettyVersion>
     <jgitVersion>5.7.0.202003110725-r</jgitVersion>
     <jsonVersion>20160810</jsonVersion>
