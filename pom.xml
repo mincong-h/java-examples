@@ -19,7 +19,7 @@
 
     <!-- Dependency versions -->
     <asmVersion>7.2</asmVersion>
-    <assertjVersion>3.13.2</assertjVersion>
+    <assertjVersion>3.16.1</assertjVersion>
     <commonsIoVersion>2.5</commonsIoVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
     <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
