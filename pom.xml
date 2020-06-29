@@ -27,7 +27,7 @@
     <hibernateSearchVersion>5.5.4.Final</hibernateSearchVersion>
     <hibernateJpaVersion>1.0.0.Final</hibernateJpaVersion>
     <htmlunitVersion>2.28.5</htmlunitVersion>
-    <jacksonVersion>2.10.1</jacksonVersion>
+    <jacksonVersion>2.11.1</jacksonVersion>
     <javaxValidationVersion>2.0.1.Final</javaxValidationVersion>
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
