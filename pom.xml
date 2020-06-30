@@ -34,7 +34,7 @@
     <jaxrsVersion>2.1</jaxrsVersion>
     <jerseyVersion>2.31</jerseyVersion>
     <jettyVersion>9.4.30.v20200611</jettyVersion>
-    <jgitVersion>5.7.0.202003110725-r</jgitVersion>
+    <jgitVersion>5.8.0.202006091008-r</jgitVersion>
     <jsonVersion>20160810</jsonVersion>
     <jsonUnitVersion>2.11.1</jsonUnitVersion>
     <junitVersion>4.12</junitVersion>
