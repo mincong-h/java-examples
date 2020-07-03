@@ -23,6 +23,7 @@ IO | Java File I/O.
 Immutables | Generate simple, safe and consistent value objects. <https://immutables.github.io/>
 Jackson | Jackson, a high-performance JSON processor for Java.
 Java 8 | New functionality of Java 8, including filter, map, stream.
+Jetty | Jetty Server.
 JGit | Basic usages of [JGit][jgit].
 JMH | Java Microbenchmark Harness (JMH).
 JSON | JSON conversion libraries in Java.

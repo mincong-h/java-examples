@@ -80,6 +80,7 @@
     <module>vavr</module>
     <module>xml</module>
     <module>guava</module>
+    <module>jetty</module>
   </modules>
 
   <dependencyManagement>
