@@ -6,9 +6,9 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * @author Mincong Huang
  * @blog https://mincong.io/2020/02/02/logback-test-logging-event/
  */
-public class AppTest {
+class AppTest {
 
   /*
    * Create a custom appender for logging events, which allows to
@@ -31,20 +31,20 @@ public class AppTest {
    */
   private final Logger appLogger = (Logger) LoggerFactory.getLogger(App.class);
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     appender = new ListAppender<>();
     appender.start();
     appLogger.addAppender(appender);
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDown() {
     appLogger.detachAppender(appender);
   }
 
   @Test
-  public void testSayHi() {
+  void testSayHi() {
     App.sayHi("Java");
     App.sayHi("Logback");
 

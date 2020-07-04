@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * AssertJ new features in Java 8.
@@ -23,10 +23,10 @@ import org.junit.Test;
  * @author Mincong Huang
  * @see <a href="http://www.baeldung.com/assertJ-java-8-features">AssertJ’s Java 8 Features</a>
  */
-public class AssertJFeaturesJava8Test {
+class AssertJFeaturesJava8Test {
 
   @Test
-  public void optionalAssertions() throws Exception {
+  void optionalAssertions() {
     Optional<String> optional;
 
     optional = Optional.of("something");
@@ -37,7 +37,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void predicateAssertions() throws Exception {
+  void predicateAssertions() {
     Predicate<String> moreThan4 = s -> s.length() > 4;
 
     assertThat(moreThan4).acceptsAll(Arrays.asList("hello", "world"));
@@ -47,7 +47,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void localDateAssertions() throws Exception {
+  void localDateAssertions() {
     LocalDate d = LocalDate.of(2017, 10, 22);
 
     assertThat(d).isBefore(LocalDate.of(2017, 10, 23));
@@ -55,7 +55,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void localDateTimeAssertions() throws Exception {
+  void localDateTimeAssertions() {
     LocalDateTime d = LocalDateTime.of(2017, 10, 22, 10, 44, 0);
 
     assertThat(d).isBefore(LocalDateTime.of(2017, 10, 22, 10, 44, 1));
@@ -63,7 +63,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void localTimeAssertions() throws Exception {
+  void localTimeAssertions() {
     LocalTime t = LocalTime.of(10, 46);
 
     assertThat(t).isBefore(LocalTime.of(10, 47));
@@ -71,7 +71,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void flatExtractingHelper() throws Exception {
+  void flatExtractingHelper() {
     LocalDate a = LocalDate.ofYearDay(2015, 1);
     LocalDate b = LocalDate.ofYearDay(2016, 1);
     LocalDate c = LocalDate.ofYearDay(2016, 2);
@@ -80,7 +80,7 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void satisfiesHelper() throws Exception {
+  void satisfiesHelper() {
     assertThat("Hello")
         .satisfies(
             s -> {
@@ -90,13 +90,13 @@ public class AssertJFeaturesJava8Test {
   }
 
   @Test
-  public void hasOnlyOneElementSatisfyingHelper() throws Exception {
+  void hasOnlyOneElementSatisfyingHelper() {
     Set<String> words = Collections.singleton("");
     assertThat(words).hasOnlyOneElementSatisfying(s -> assertThat(s).isEmpty());
   }
 
   @Test
-  public void matchesHelper() throws Exception {
+  void matchesHelper() {
     assertThat("Hello2017").matches(Pattern.compile("\\w+"));
     assertThat("Hello2017").matches("\\w+");
     assertThat("").matches(String::isEmpty);
