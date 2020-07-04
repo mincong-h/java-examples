@@ -133,11 +133,6 @@
         <artifactId>grizzly-http-server</artifactId>
         <version>${gizzlyServerVersion}</version>
       </dependency>
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${h2DatabaseVersion}</version>
-      </dependency>
       <!--
         Includes JAXB APIs because they're not part of the JDK APIs
         anymore. See:
