@@ -43,8 +43,6 @@
     <myFacesVersion>2.2.11</myFacesVersion>
     <slf4jVersion>1.7.30</slf4jVersion>
     <vavrVersion>1.0.0-alpha-3</vavrVersion>
-    <xercesVersion>2.12.0</xercesVersion>
-    <xstreamVersion>1.4.12</xstreamVersion>
   </properties>
 
   <modules>
@@ -133,11 +131,6 @@
         <groupId>org.eclipse.jgit</groupId>
         <artifactId>org.eclipse.jgit.http.server</artifactId>
         <version>${jgitVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.thoughtworks.xstream</groupId>
-        <artifactId>xstream</artifactId>
-        <version>${xstreamVersion}</version>
       </dependency>
       <dependency>
         <groupId>javax.ws.rs</groupId>
@@ -271,11 +264,6 @@
         <groupId>io.vavr</groupId>
         <artifactId>vavr</artifactId>
         <version>${vavrVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>${xercesVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
