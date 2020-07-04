@@ -12,15 +12,21 @@
   <artifactId>java-examples-jetty</artifactId>
   <name>Java Examples - Jetty</name>
 
+  <properties>
+    <jetty.version>9.4.30.v20200611</jetty.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
+      <version>${jetty.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-servlet</artifactId>
+      <version>${jetty.version}</version>
       <scope>test</scope>
     </dependency>
 

@@ -33,7 +33,6 @@
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
     <jerseyVersion>2.31</jerseyVersion>
-    <jettyVersion>9.4.30.v20200611</jettyVersion>
     <jgitVersion>5.8.0.202006091008-r</jgitVersion>
     <jsonVersion>20160810</jsonVersion>
     <jsonUnitVersion>2.18.1</jsonUnitVersion>
@@ -267,16 +266,6 @@
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>${javaxValidationVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>${jettyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlet</artifactId>
-        <version>${jettyVersion}</version>
       </dependency>
       <dependency>
         <groupId>io.vavr</groupId>
