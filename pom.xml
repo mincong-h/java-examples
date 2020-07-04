@@ -20,7 +20,6 @@
     <!-- Dependency versions -->
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.16.1</assertjVersion>
-    <commonsIoVersion>2.5</commonsIoVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
     <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
     <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
@@ -107,11 +106,6 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-log4j12</artifactId>
         <version>${slf4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commonsIoVersion}</version>
       </dependency>
       <dependency>
         <groupId>javax.ws.rs</groupId>
