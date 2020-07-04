@@ -33,7 +33,6 @@
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
     <jerseyVersion>2.31</jerseyVersion>
-    <jsonVersion>20160810</jsonVersion>
     <jsonUnitVersion>2.18.1</jsonUnitVersion>
     <junitVersion>4.13</junitVersion>
     <junit5Version>5.6.2</junit5Version>
@@ -93,11 +92,6 @@
         <groupId>com.fasterxml.jackson.dataformat</groupId>
         <artifactId>jackson-dataformat-xml</artifactId>
         <version>${jacksonVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>${jsonVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
