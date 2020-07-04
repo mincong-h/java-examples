@@ -14,7 +14,7 @@
   <name>Java Examples - JSON</name>
 
   <properties>
-    <json.version>20160810</json.version>
+    <json.version>20200518</json.version>
   </properties>
 
   <dependencies>
