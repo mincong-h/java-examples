@@ -21,8 +21,6 @@
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.16.1</assertjVersion>
     <jacksonVersion>2.11.1</jacksonVersion>
-    <javaxActivationVersion>1.1.1</javaxActivationVersion>
-    <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
     <junitVersion>4.13</junitVersion>
     <junit5Version>5.6.2</junit5Version>
@@ -126,35 +124,6 @@
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>${assertjVersion}</version>
-      </dependency>
-      <!--
-        Includes JAXB APIs because they're not part of the JDK APIs
-        anymore. See:
-
-            How to resolve java.lang.NoClassDefFoundError:
-            javax/xml/bind/JAXBException in Java 9
-
-            https://stackoverflow.com/questions/43574426
-       -->
-      <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-core</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>${javaxActivationVersion}</version>
       </dependency>
       <dependency>
         <groupId>org.ow2.asm</groupId>

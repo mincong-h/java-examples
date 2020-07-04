@@ -17,6 +17,8 @@
   <properties>
     <jersey.version>2.31</jersey.version>
     <grizzly.version>2.4.3</grizzly.version>
+    <jaxb.version>2.2.11</jaxb.version>
+    <javax.activation.version>1.1.1</javax.activation.version>
   </properties>
 
   <dependencyManagement>
@@ -93,21 +95,34 @@
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
+    <!--
+      Includes JAXB APIs because they're not part of the JDK APIs
+      anymore. See:
+
+          How to resolve java.lang.NoClassDefFoundError:
+          javax/xml/bind/JAXBException in Java 9
+
+          https://stackoverflow.com/questions/43574426
+     -->
     <dependency>
       <groupId>javax.xml.bind</groupId>
       <artifactId>jaxb-api</artifactId>
+      <version>${jaxb.version}</version>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-core</artifactId>
+      <version>${jaxb.version}</version>
     </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-impl</artifactId>
+      <version>${jaxb.version}</version>
     </dependency>
     <dependency>
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
+      <version>${javax.activation.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
