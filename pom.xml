@@ -21,7 +21,6 @@
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.16.1</assertjVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
-    <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
     <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
     <hibernateSearchVersion>5.5.4.Final</hibernateSearchVersion>
     <hibernateJpaVersion>1.0.0.Final</hibernateJpaVersion>

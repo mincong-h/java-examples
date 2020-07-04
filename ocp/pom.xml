@@ -12,6 +12,10 @@
   <artifactId>java-examples-ocp</artifactId>
   <name>Java Examples - Oracle Certified Professional</name>
 
+  <properties>
+    <h2.version>1.4.192</h2.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,6 +31,7 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
+      <version>${h2.version}</version>
     </dependency>
   </dependencies>
 
