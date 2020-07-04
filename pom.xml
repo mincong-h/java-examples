@@ -25,7 +25,6 @@
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
-    <jerseyVersion>2.31</jerseyVersion>
     <junitVersion>4.13</junitVersion>
     <junit5Version>5.6.2</junit5Version>
     <log4jVersion>2.7</log4jVersion>
@@ -129,40 +128,11 @@
         <artifactId>assertj-core</artifactId>
         <version>${assertjVersion}</version>
       </dependency>
-      <!-- JAX RS API and reference implementation Jersey (start) -->
       <dependency>
         <groupId>org.glassfish.grizzly</groupId>
         <artifactId>grizzly-http-server</artifactId>
         <version>${gizzlyServerVersion}</version>
       </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-client</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-        <artifactId>jersey-media-json-jackson</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.ext</groupId>
-        <artifactId>jersey-proxy-client</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.inject</groupId>
-        <artifactId>jersey-hk2</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey</groupId>
-        <artifactId>jersey-bom</artifactId>
-        <version>${jerseyVersion}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- JAX RS API and reference implementation Jersey (end) -->
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
