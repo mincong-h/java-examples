@@ -16,6 +16,7 @@
   <properties>
     <jetty.version>9.4.30.v20200611</jetty.version>
     <jgit.version>5.8.0.202006091008-r</jgit.version>
+    <slf4j.version>1.7.30</slf4j.version>
   </properties>
 
   <dependencies>
@@ -52,6 +53,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
