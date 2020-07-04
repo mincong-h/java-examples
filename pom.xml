@@ -20,27 +20,9 @@
     <!-- Dependency versions -->
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.16.1</assertjVersion>
-    <commonsIoVersion>2.5</commonsIoVersion>
-    <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
-    <h2DatabaseVersion>1.4.192</h2DatabaseVersion>
-    <hibernateOrmVersion>5.1.0.Final</hibernateOrmVersion>
-    <hibernateSearchVersion>5.5.4.Final</hibernateSearchVersion>
-    <hibernateJpaVersion>1.0.0.Final</hibernateJpaVersion>
-    <htmlunitVersion>2.28.5</htmlunitVersion>
     <jacksonVersion>2.11.1</jacksonVersion>
-    <javaxValidationVersion>2.0.1.Final</javaxValidationVersion>
-    <javaxActivationVersion>1.1.1</javaxActivationVersion>
-    <jaxbVersion>2.2.11</jaxbVersion>
-    <jaxrsVersion>2.1</jaxrsVersion>
-    <jerseyVersion>2.31</jerseyVersion>
-    <jsonVersion>20160810</jsonVersion>
-    <jsonUnitVersion>2.18.1</jsonUnitVersion>
     <junitVersion>4.13</junitVersion>
     <junit5Version>5.6.2</junit5Version>
-    <log4jVersion>2.7</log4jVersion>
-    <mockitoVersion>1.10.19</mockitoVersion>
-    <myFacesVersion>2.2.11</myFacesVersion>
-    <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
   <modules>
@@ -96,36 +78,6 @@
         <version>${jacksonVersion}</version>
       </dependency>
       <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>${jsonVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>${log4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>${log4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>${slf4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commonsIoVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.ws.rs</groupId>
-        <artifactId>javax.ws.rs-api</artifactId>
-        <version>${jaxrsVersion}</version>
-      </dependency>
-      <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junitVersion}</version>
@@ -146,107 +98,14 @@
         <version>${junit5Version}</version>
       </dependency>
       <dependency>
-        <groupId>net.javacrumbs.json-unit</groupId>
-        <artifactId>json-unit</artifactId>
-        <version>${jsonUnitVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>net.javacrumbs.json-unit</groupId>
-        <artifactId>json-unit-assertj</artifactId>
-        <version>${jsonUnitVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.shared</groupId>
-        <artifactId>maven-dependency-analyzer</artifactId>
-        <version>1.11.1</version>
-      </dependency>
-      <dependency>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>${assertjVersion}</version>
       </dependency>
       <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-all</artifactId>
-        <version>${mockitoVersion}</version>
-      </dependency>
-      <!-- JAX RS API and reference implementation Jersey (start) -->
-      <dependency>
-        <groupId>org.glassfish.grizzly</groupId>
-        <artifactId>grizzly-http-server</artifactId>
-        <version>${gizzlyServerVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-client</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-        <artifactId>jersey-media-json-jackson</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.ext</groupId>
-        <artifactId>jersey-proxy-client</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey.inject</groupId>
-        <artifactId>jersey-hk2</artifactId>
-        <version>${jerseyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jersey</groupId>
-        <artifactId>jersey-bom</artifactId>
-        <version>${jerseyVersion}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- JAX RS API and reference implementation Jersey (end) -->
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${h2DatabaseVersion}</version>
-      </dependency>
-      <!--
-        Includes JAXB APIs because they're not part of the JDK APIs
-        anymore. See:
-
-            How to resolve java.lang.NoClassDefFoundError:
-            javax/xml/bind/JAXBException in Java 9
-
-            https://stackoverflow.com/questions/43574426
-       -->
-      <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-core</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>${jaxbVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>${javaxActivationVersion}</version>
-      </dependency>
-      <dependency>
         <groupId>org.ow2.asm</groupId>
         <artifactId>asm</artifactId>
         <version>${asmVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javaxValidationVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -275,13 +134,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.1.2</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.apache.maven.shared</groupId>
-              <artifactId>maven-dependency-analyzer</artifactId>
-              <version>1.11.1</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

@@ -13,10 +13,15 @@
   <artifactId>java-examples-json</artifactId>
   <name>Java Examples - JSON</name>
 
+  <properties>
+    <json.version>20160810</json.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
+      <version>${json.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

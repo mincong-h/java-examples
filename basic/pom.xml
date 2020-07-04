@@ -13,10 +13,15 @@
   <artifactId>java-examples-basic</artifactId>
   <name>Java Examples - Basic</name>
 
+  <properties>
+    <commons.io.version>2.5</commons.io.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
+      <version>${commons.io.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
