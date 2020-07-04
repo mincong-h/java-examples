@@ -13,10 +13,15 @@
   <artifactId>java-examples-vavr</artifactId>
   <name>Java Examples - VAVR</name>
 
+  <properties>
+    <vavr.version>1.0.0-alpha-3</vavr.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>io.vavr</groupId>
       <artifactId>vavr</artifactId>
+      <version>${vavr.version}</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

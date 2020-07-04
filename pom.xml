@@ -33,8 +33,6 @@
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
     <jerseyVersion>2.31</jerseyVersion>
-    <jettyVersion>9.4.30.v20200611</jettyVersion>
-    <jgitVersion>5.8.0.202006091008-r</jgitVersion>
     <jsonVersion>20160810</jsonVersion>
     <jsonUnitVersion>2.18.1</jsonUnitVersion>
     <junitVersion>4.13</junitVersion>
@@ -43,9 +41,6 @@
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
     <slf4jVersion>1.7.30</slf4jVersion>
-    <vavrVersion>1.0.0-alpha-3</vavrVersion>
-    <xercesVersion>2.12.0</xercesVersion>
-    <xstreamVersion>1.4.12</xstreamVersion>
   </properties>
 
   <modules>
@@ -124,21 +119,6 @@
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
         <version>${commonsIoVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jgit</groupId>
-        <artifactId>org.eclipse.jgit</artifactId>
-        <version>${jgitVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jgit</groupId>
-        <artifactId>org.eclipse.jgit.http.server</artifactId>
-        <version>${jgitVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.thoughtworks.xstream</groupId>
-        <artifactId>xstream</artifactId>
-        <version>${xstreamVersion}</version>
       </dependency>
       <dependency>
         <groupId>javax.ws.rs</groupId>
@@ -267,26 +247,6 @@
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>${javaxValidationVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-server</artifactId>
-        <version>${jettyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-servlet</artifactId>
-        <version>${jettyVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.vavr</groupId>
-        <artifactId>vavr</artifactId>
-        <version>${vavrVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>${xercesVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

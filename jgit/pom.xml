@@ -13,10 +13,15 @@
   <artifactId>java-examples-jgit</artifactId>
   <name>Java Examples - JGit</name>
 
+  <properties>
+    <jgit.version>5.8.0.202006091008-r</jgit.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
+      <version>${jgit.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
