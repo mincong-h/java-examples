@@ -58,6 +58,28 @@ class RequestLogTest {
    * <pre>
    * 127.0.0.1 - - [04/Jul/2020:08:38:59 +0000] "GET / HTTP/1.1" 200 31 "-" "Java-http-client/11.0.2"
    * </pre>
+   *
+   * where:
+   *
+   * <ul>
+   *   <li>{@code 127.0.0.1} is the IP address of the client (remote host) which made the request to
+   *       the server.
+   *   <li>{@code -} is the user-identifier is the RFC 1413 identity of the client. Usually "-".
+   *   <li>{@code -} is the user-id of the person requesting the document. Usually "-" unless
+   *       .htaccess has requested authentication.
+   *   <li>{@code [04/Jul/2020:08:38:59 +0000]} is the date, time, and time zone that the request
+   *       was received, by default in strftime format "%d/%b/%Y:%H:%M:%S %z".
+   *   <li>{@code "GET / HTTP/1.1"} is the request line from the client. The method GET, / the
+   *       resource requested, and HTTP/1.1 the HTTP protocol.
+   *   <li>{@code 200} is the HTTP status code returned to the client. 2xx is a successful response,
+   *       3xx a redirection, 4xx a client error, and 5xx a server error.
+   *   <li>{@code 31} is the size of the object returned to the client, measured in bytes.
+   *   <li>{@code "Java-http-client/11.0.2"} is the user-agent.
+   * </ul>
+   *
+   * @see <a href="https://en.wikipedia.org/wiki/Common_Log_Format">Common Log Format |
+   *     Wikipedia</a>
+   * @see CustomRequestLog
    */
   @Test
   void requestLog() throws Exception {
