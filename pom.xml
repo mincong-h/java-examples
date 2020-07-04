@@ -22,7 +22,6 @@
     <assertjVersion>3.16.1</assertjVersion>
     <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
     <jacksonVersion>2.11.1</jacksonVersion>
-    <javaxValidationVersion>2.0.1.Final</javaxValidationVersion>
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
     <jaxrsVersion>2.1</jaxrsVersion>
