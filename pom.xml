@@ -20,7 +20,6 @@
     <!-- Dependency versions -->
     <asmVersion>7.2</asmVersion>
     <assertjVersion>3.16.1</assertjVersion>
-    <gizzlyServerVersion>2.4.3</gizzlyServerVersion>
     <jacksonVersion>2.11.1</jacksonVersion>
     <javaxActivationVersion>1.1.1</javaxActivationVersion>
     <jaxbVersion>2.2.11</jaxbVersion>
@@ -127,11 +126,6 @@
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>${assertjVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.grizzly</groupId>
-        <artifactId>grizzly-http-server</artifactId>
-        <version>${gizzlyServerVersion}</version>
       </dependency>
       <!--
         Includes JAXB APIs because they're not part of the JDK APIs
