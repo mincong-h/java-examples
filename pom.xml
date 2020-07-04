@@ -42,7 +42,6 @@
     <mockitoVersion>1.10.19</mockitoVersion>
     <myFacesVersion>2.2.11</myFacesVersion>
     <slf4jVersion>1.7.30</slf4jVersion>
-    <vavrVersion>1.0.0-alpha-3</vavrVersion>
   </properties>
 
   <modules>
@@ -259,11 +258,6 @@
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>${javaxValidationVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.vavr</groupId>
-        <artifactId>vavr</artifactId>
-        <version>${vavrVersion}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
