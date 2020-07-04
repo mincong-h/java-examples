@@ -230,11 +230,6 @@
         <artifactId>asm</artifactId>
         <version>${asmVersion}</version>
       </dependency>
-      <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>${javaxValidationVersion}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
