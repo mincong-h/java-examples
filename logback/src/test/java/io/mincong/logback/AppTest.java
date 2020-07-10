@@ -70,4 +70,18 @@ class AppTest {
         .extracting(ILoggingEvent::getThrowableProxy) //
         .containsExactly(null, null);
   }
+
+  @Test
+  void testLogException() {
+    var cause = new IllegalStateException("Root");
+    App.logException(new Exception("Oops", cause));
+
+    var event = appender.list.get(0);
+    var throwableProxy = event.getThrowableProxy();
+    assertThat(throwableProxy.getMessage()).isEqualTo("Oops");
+    assertThat(throwableProxy.getClassName()).isEqualTo("java.lang.Exception");
+    assertThat(throwableProxy.getCause().getMessage()).isEqualTo("Root");
+    assertThat(throwableProxy.getCause().getClassName())
+        .isEqualTo("java.lang.IllegalStateException");
+  }
 }

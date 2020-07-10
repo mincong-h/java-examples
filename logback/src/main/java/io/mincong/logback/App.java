@@ -10,4 +10,8 @@ public class App {
   public static void sayHi(String username) {
     logger.info("Hi, {}!", username);
   }
+
+  public static void logException(Throwable t) {
+    logger.error("Something wrong", t);
+  }
 }
