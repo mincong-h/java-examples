@@ -1,7 +1,43 @@
+/*
+ * proto2: https://developers.google.com/protocol-buffers/docs/proto
+ * proto3: https://developers.google.com/protocol-buffers/docs/proto3
+ *
+ * If you don't put this line, protocol buffer compiler will assume you are
+ * using proto2.
+ */
 syntax = "proto3";
+
+/*
+ * Name of the package where the generated class will be located in. This
+ * protobuf file is called "messages", and its package name is
+ * "io.mincong.protobuf", so the full class name will be
+ * "io.mincong.protobuf.Messages". If we defines this as an expression, it will
+ * be:
+ *
+ *     <PackageName>.<ProtoFileNameInCamelCase>
+ */
 package io.mincong.protobuf;
 
+/*
+ * Use keyword "message" to define a message type. After compilation, it will
+ * generate a Java class.
+ *
+ *     message <MessageType> { ... }
+ *
+ * See "Defining A Message Type | Language Guide (proto3) | Protocol Buffers"
+ * https://developers.google.com/protocol-buffers/docs/proto3#simple
+ */
 message UserCreateRequest {
+  /*
+   * Define a field by specifying its type, its name, and the field number:
+   *
+   *     <Type> <Name> = <FieldNumber>;
+   *
+   * There are many types of field you can use: bool, string, double, int32,
+   * int64, ... The complete list of types can be reached here in:
+   * "Scala Value Types | Language Guide (proto3) | Protocol Buffers"
+   * https://developers.google.com/protocol-buffers/docs/proto3#scalar
+   */
   string first_name = 1;
   string last_name = 2;
   int32 age = 3;
