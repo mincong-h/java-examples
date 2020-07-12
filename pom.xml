@@ -58,6 +58,7 @@
     <module>xml</module>
     <module>guava</module>
     <module>jetty</module>
+    <module>protobuf</module>
   </modules>
 
   <dependencyManagement>
