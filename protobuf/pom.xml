@@ -13,7 +13,8 @@
   <name>Java-Examples - Protobuf</name>
 
   <properties>
-    <protobuf.version>3.11.0</protobuf.version>
+    <protobuf.version>3.11.4</protobuf.version>
+    <protoc.plugin>3.11.4</protoc.plugin>
   </properties>
 
   <dependencies>
@@ -23,5 +24,23 @@
       <version>${protobuf.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.os72</groupId>
+        <artifactId>protoc-jar-maven-plugin</artifactId>
+        <version>${protobuf.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
