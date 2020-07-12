@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>io.mincongh</groupId>
+    <groupId>io.mincong</groupId>
     <artifactId>java-examples-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
