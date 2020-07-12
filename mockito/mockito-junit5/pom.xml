@@ -6,7 +6,7 @@
   <parent>
     <artifactId>java-examples-mockito-parent</artifactId>
     <groupId>io.mincong</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>java-examples-mockito-junit5</artifactId>
