@@ -1,4 +1,5 @@
 syntax = "proto3";
+package io.mincong.protobuf;
 
 message UserCreateRequest {
   string first_name = 1;
