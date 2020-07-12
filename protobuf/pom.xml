@@ -10,6 +10,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>java-example-protobuf</artifactId>
+  <name>Java-Examples - Protobuf</name>
 
+  <properties>
+    <protobuf.version>3.11.0</protobuf.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>${protobuf.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>
