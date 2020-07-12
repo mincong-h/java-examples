@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message UserCreateRequest {
+  string first_name = 1;
+  string last_name = 2;
+  int32 age = 3;
+}
+
+message UserCreateResponse {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  int32 age = 5;
+}
