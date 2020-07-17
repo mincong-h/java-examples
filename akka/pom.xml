@@ -13,7 +13,7 @@
   <name>Java Examples - Akka</name>
 
   <properties>
-    <akkaVersion>2.6.6</akkaVersion>
+    <akkaVersion>2.6.8</akkaVersion>
     <logbackVersion>1.2.3</logbackVersion>
   </properties>
 
