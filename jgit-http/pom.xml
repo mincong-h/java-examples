@@ -15,7 +15,7 @@
 
   <properties>
     <jetty.version>9.4.30.v20200611</jetty.version>
-    <jgit.version>5.8.0.202006091008-r</jgit.version>
+    <jgit.version>5.8.1.202007141445-r</jgit.version>
     <slf4j.version>1.7.30</slf4j.version>
   </properties>
 
