@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
  *
  * @author Mincong Huang
  * @since 1.0
+ * @blog https://mincong.io/2019/04/16/glob-expression-understanding/
  */
 class GlobExpressionTest {
   @TempDir Path root;
