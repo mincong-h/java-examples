@@ -93,11 +93,20 @@ class GlobExpressionTest {
   }
 
   @Test
-  void pathMatcher() {
-    PathMatcher absMatcher = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
-    assertThat(absMatcher.matches(f0)).isTrue();
-    assertThat(absMatcher.matches(f1)).isTrue();
-    assertThat(absMatcher.matches(f2)).isTrue();
+  void pathMatcher_undocumentedWildcardExpression() {
+    // `**/*.txt` is not mentionned in Javadoc:
+    // https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getPathMatcher-java.lang.String-
+    PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
+
+    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
+    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
+    assertThat(m.matches(Paths.get("bar.txt"))).isFalse(); // unmatched: relative path (no dir)
+    assertThat(m.matches(Paths.get("bar.md")))
+        .isFalse(); // unmatched: relative path (no dir), suffix
+
+    assertThat(m.matches(f0)).isTrue();
+    assertThat(m.matches(f1)).isTrue();
+    assertThat(m.matches(f2)).isTrue();
   }
 
   /**
