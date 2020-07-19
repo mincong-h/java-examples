@@ -98,6 +98,8 @@ class GlobExpressionTest {
     // https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getPathMatcher-java.lang.String-
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
 
+    assertThat(m.matches(Paths.get("/bar.txt"))).isTrue();
+    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
     assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isFalse(); // unmatched: relative path (no dir)
@@ -117,8 +119,10 @@ class GlobExpressionTest {
   void pathMatcher_wildcardWithoutCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
 
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse(); // unmatched: dir boundary
-    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: dir boundary, suffix
+    assertThat(m.matches(Paths.get("/bar.txt"))).isFalse(); // unmatched: dir, suffix
+    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: dir, suffix
+    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse(); // unmatched: dir
+    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: dir, suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
     assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
 
@@ -132,6 +136,8 @@ class GlobExpressionTest {
   void pathMatcher_wildcardWithCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**.txt");
 
+    assertThat(m.matches(Paths.get("/bar.txt"))).isTrue();
+    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
     assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
