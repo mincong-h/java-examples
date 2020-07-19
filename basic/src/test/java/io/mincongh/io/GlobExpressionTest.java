@@ -93,6 +93,7 @@ class GlobExpressionTest {
         });
     assertThat(paths).containsExactlyInAnyOrder(f0, f1, f2).doesNotContain(b0);
   }
+
   /**
    * The {@code **} characters matches zero or more characters crossing directory boundaries. Sign
    * "/" requires a directory boundary to exist in the path. Then, the {@code *} character matches
@@ -116,33 +117,33 @@ class GlobExpressionTest {
    * The {@code *} character matches zero or more characters of a name component without crossing
    * directory boundaries.
    */
-  @Test
-  void pathMatcher_wildcardWithoutCrossingBoundaries() {
+  @ParameterizedTest
+  @CsvSource({
+    "/bar.txt,     false", // unmatched: dir, suffix
+    "/bar.md,      false", // unmatched: dir, suffix
+    "/foo/bar.txt, false", // unmatched: dir
+    "/foo/bar.md,  false", // unmatched: dir, suffix
+    "bar.txt,      true ",
+    "bar.md,       false", // unmatched: suffix
+  })
+  void pathMatcher_wildcardWithoutCrossingBoundaries(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
-
-    assertThat(m.matches(Paths.get("/bar.txt"))).isFalse(); // unmatched: dir, suffix
-    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: dir, suffix
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse(); // unmatched: dir
-    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: dir, suffix
-    assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
-
-    assertThat(m.matches(f0.getFileName())).isTrue();
-    assertThat(m.matches(f1.getFileName())).isTrue();
-    assertThat(m.matches(f2.getFileName())).isTrue();
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
   /** The {@code **} characters matches zero or more characters crossing directory boundaries. */
-  @Test
-  void pathMatcher_wildcardWithCrossingBoundaries() {
+  @ParameterizedTest
+  @CsvSource({
+    "/bar.txt,     true ",
+    "/bar.md,      false", // unmatched: suffix
+    "/foo/bar.txt, true ", // matched: ** crosses dir boundary
+    "/foo/bar.md,  false", // unmatched: suffix
+    "bar.txt,      true ",
+    "bar.md,       false", // unmatched: suffix
+  })
+  void pathMatcher_wildcardWithCrossingBoundaries(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**.txt");
-
-    assertThat(m.matches(Paths.get("/bar.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: suffix
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
-    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
-    assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
   /** The {@code ?} character matches exactly one character of a name component. */
