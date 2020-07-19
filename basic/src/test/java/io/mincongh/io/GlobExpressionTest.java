@@ -101,15 +101,38 @@ class GlobExpressionTest {
    */
   @ParameterizedTest
   @CsvSource({
-    "/bar.txt,     true ",
-    "/bar.md,      false", // unmatched: suffix
-    "/foo/bar.txt, true ", //   matched: ** crosses dir boundary
-    "/foo/bar.md,  false", // unmatched: suffix
-    "bar.txt,      false", // unmatched: relative path (no dir)
-    "bar.md,       false", // unmatched: relative path (no dir), suffix
+    "/bar.txt,         true ",
+    "/bar.md,          false", // unmatched: suffix
+    "/foo/bar.txt,     true ", //   matched: ** crosses dir boundary
+    "/foo/bar.md,      false", // unmatched: suffix
+    "/foo/bar/baz.txt, true ", //   matched: ** crosses dir boundary
+    "/foo/bar/baz.md,  false", // unmatched: suffix
+    "foo/bar.txt,      true ", //   matched: ** crosses dir boundary
+    "foo/bar.md,       false", // unmatched: suffix
+    "bar.txt,          false", // unmatched: relative path (no dir)
+    "bar.md,           false", // unmatched: relative path (no dir), suffix
   })
-  void pathMatcher_undocumentedWildcardExpression(String path, boolean isMatched) {
+  void pathMatcher_advancedWildcardExpression1(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
+  }
+
+  @ParameterizedTest
+  @CsvSource({
+    "/bar.txt,         false", // unmatched: only one slash
+    "/bar.md,          false", // unmatched: only one slash, suffix
+    "/foo/bar.txt,     true ", //   matched: ** crosses dir boundary
+    "/foo/bar.md,      false", // unmatched: suffix
+    "/foo/bar/baz.txt, true ", //   matched: ** crosses dir boundary
+    "/foo/bar/baz.md,  false", // unmatched: suffix
+    "/foo/bar.md,      false", // unmatched: suffix
+    "foo/bar.txt,      false", // unmatched: ** crosses dir boundary, no leading slash
+    "foo/bar.md,       false", // unmatched: suffix, no leading slash
+    "bar.txt,          false", // unmatched: relative path (no dir)
+    "bar.md,           false", // unmatched: relative path (no dir), suffix
+  })
+  void pathMatcher_advancedWildcardExpression2(String path, boolean isMatched) {
+    PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:/**/*.txt");
     assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
@@ -119,12 +142,16 @@ class GlobExpressionTest {
    */
   @ParameterizedTest
   @CsvSource({
-    "/bar.txt,     false", // unmatched: dir, suffix
-    "/bar.md,      false", // unmatched: dir, suffix
-    "/foo/bar.txt, false", // unmatched: dir
-    "/foo/bar.md,  false", // unmatched: dir, suffix
-    "bar.txt,      true ",
-    "bar.md,       false", // unmatched: suffix
+    "/bar.txt,         false", // unmatched: dir, suffix
+    "/bar.md,          false", // unmatched: dir, suffix
+    "/foo/bar.txt,     false", // unmatched: dir
+    "/foo/bar.md,      false", // unmatched: dir, suffix
+    "/foo/bar/baz.txt, false", // unmatched: dir
+    "/foo/bar/baz.md,  false", // unmatched: dir, suffix
+    "foo/bar.txt,      false", // unmatched: dir
+    "foo/bar.md,       false", // unmatched: dir, suffix
+    "bar.txt,          true ",
+    "bar.md,           false", // unmatched: suffix
   })
   void pathMatcher_wildcardWithoutCrossingBoundaries(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
@@ -134,12 +161,16 @@ class GlobExpressionTest {
   /** The {@code **} characters matches zero or more characters crossing directory boundaries. */
   @ParameterizedTest
   @CsvSource({
-    "/bar.txt,     true ",
-    "/bar.md,      false", // unmatched: suffix
-    "/foo/bar.txt, true ", //   matched: ** crosses dir boundary
-    "/foo/bar.md,  false", // unmatched: suffix
-    "bar.txt,      true ",
-    "bar.md,       false", // unmatched: suffix
+    "/bar.txt,         true ",
+    "/bar.md,          false", // unmatched: suffix
+    "/foo/bar.txt,     true ", //   matched: ** crosses dir boundary
+    "/foo/bar.md,      false", // unmatched: suffix
+    "/foo/bar/baz.txt, true ", //   matched: ** crosses dir boundary
+    "/foo/bar/baz.md,  false", // unmatched: suffix
+    "foo/bar.txt,      true ", //   matched: ** crosses dir boundary
+    "foo/bar.md,       false", // unmatched: suffix
+    "bar.txt,          true ",
+    "bar.md,           false", // unmatched: suffix
   })
   void pathMatcher_wildcardWithCrossingBoundaries(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**.txt");
