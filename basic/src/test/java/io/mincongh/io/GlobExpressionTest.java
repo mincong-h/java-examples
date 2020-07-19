@@ -98,11 +98,6 @@ class GlobExpressionTest {
     assertThat(absMatcher.matches(f0)).isTrue();
     assertThat(absMatcher.matches(f1)).isTrue();
     assertThat(absMatcher.matches(f2)).isTrue();
-
-    PathMatcher filenameMatcher = FileSystems.getDefault().getPathMatcher("glob:*.txt");
-    assertThat(filenameMatcher.matches(f0.getFileName())).isTrue();
-    assertThat(filenameMatcher.matches(f1.getFileName())).isTrue();
-    assertThat(filenameMatcher.matches(f2.getFileName())).isTrue();
   }
 
   /**
@@ -112,10 +107,13 @@ class GlobExpressionTest {
   @Test
   void pathMatcher_wildcardWithoutCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse();
+    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse(); // unmatched: dir boundary
+    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: dir boundary, suffix
+    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("bar.md"))).isFalse();
+    assertThat(m.matches(f0.getFileName())).isTrue();
+    assertThat(m.matches(f1.getFileName())).isTrue();
+    assertThat(m.matches(f2.getFileName())).isTrue();
   }
 
   /** The {@code **} characters matches zero or more characters crossing directory boundaries. */
