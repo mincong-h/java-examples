@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 /**
  * Test glob expression in file methods in Java 8.
@@ -92,23 +94,18 @@ class GlobExpressionTest {
     assertThat(paths).containsExactlyInAnyOrder(f0, f1, f2).doesNotContain(b0);
   }
 
-  @Test
-  void pathMatcher_undocumentedWildcardExpression() {
-    // `**/*.txt` is not mentionned in Javadoc:
-    // https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getPathMatcher-java.lang.String-
+  @ParameterizedTest
+  @CsvSource({
+    "/bar.txt,     true ",
+    "/bar.md,      false", // unmatched: suffix
+    "/foo/bar.txt, true ", //   matched: ** crosses dir boundary
+    "/foo/bar.md,  false", // unmatched: suffix
+    "bar.txt,      false", // unmatched: relative path (no dir)
+    "bar.md,       false", // unmatched: relative path (no dir), suffix
+  })
+  void pathMatcher_undocumentedWildcardExpression(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**/*.txt");
-
-    assertThat(m.matches(Paths.get("/bar.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("/bar.md"))).isFalse(); // unmatched: suffix
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
-    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
-    assertThat(m.matches(Paths.get("bar.txt"))).isFalse(); // unmatched: relative path (no dir)
-    assertThat(m.matches(Paths.get("bar.md")))
-        .isFalse(); // unmatched: relative path (no dir), suffix
-
-    assertThat(m.matches(f0)).isTrue();
-    assertThat(m.matches(f1)).isTrue();
-    assertThat(m.matches(f2)).isTrue();
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
   /**
