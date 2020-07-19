@@ -16,7 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
  * @author Mincong Huang
  * @since 1.0
  */
-class GlobExpressionFileTest {
+class GlobExpressionTest {
   @TempDir Path root;
 
   private Path f0;
