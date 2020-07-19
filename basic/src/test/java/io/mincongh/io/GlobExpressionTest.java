@@ -147,61 +147,85 @@ class GlobExpressionTest {
   }
 
   /** The {@code ?} character matches exactly one character of a name component. */
-  @Test
-  void pathMatcher_exactlyOneChar() {
+  @ParameterizedTest
+  @CsvSource({
+    "a.txt,      true ",
+    "b.txt,      true ",
+    ".txt,       false",
+    "ab.txt,     false",
+    "/a.txt,     false",
+    "/b.txt,     false",
+    "/foo/a.txt, false",
+    "/foo/b.txt, false",
+  })
+  void pathMatcher_exactlyOneChar(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:?.txt");
-    assertThat(m.matches(Paths.get("a.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("b.txt"))).isTrue();
-
-    assertThat(m.matches(Paths.get(".txt"))).isFalse();
-    assertThat(m.matches(Paths.get("ab.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/a.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/b.txt"))).isFalse();
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
-  @Test
-  void pathMatcher_bracketExpression() {
+  @ParameterizedTest
+  @CsvSource({
+    "a.txt,      true ",
+    "b.txt,      true ",
+    "c.txt,      true ",
+    "d.txt,      false",
+    "ab.txt,     false",
+    "/a.txt,     false",
+    "/b.txt,     false",
+    "/c.txt,     false",
+    "/foo/a.txt, false",
+    "/foo/b.txt, false",
+    "/foo/c.txt, false",
+  })
+  void pathMatcher_bracketExpression(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:[abc].txt");
-    assertThat(m.matches(Paths.get("a.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("b.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("c.txt"))).isTrue();
-
-    assertThat(m.matches(Paths.get("/foo/a.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/b.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/c.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("ab.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("d.txt"))).isFalse();
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
-  @Test
-  void pathMatcher_bracketExpressionNegation() {
+  @ParameterizedTest
+  @CsvSource({
+    "a.txt,        false",
+    "b.txt,        false",
+    "c.txt,        false",
+    "d.txt,        false",
+    "/a.txt,       false",
+    "/b.txt,       false",
+    "/c.txt,       false",
+    "/d.txt,       false",
+    "/def.txt,     false",
+    "/foo/a.txt,   false",
+    "/foo/b.txt,   false",
+    "/foo/c.txt,   false",
+    "/foo/d.txt,   true ",
+    "/foo/def.txt, true ",
+  })
+  void pathMatcher_bracketExpressionNegation(String path, boolean isMatched) {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:/foo/[!abc]*.txt");
-    assertThat(m.matches(Paths.get("/foo/d.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("/foo/e.txt"))).isTrue();
-    assertThat(m.matches(Paths.get("/foo/efg.txt"))).isTrue();
-
-    assertThat(m.matches(Paths.get("a.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("b.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("c.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("d.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/a.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/b.txt"))).isFalse();
-    assertThat(m.matches(Paths.get("/foo/c.txt"))).isFalse();
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
-  @Test
-  void pathMatcher_subPatterns() {
-    PathMatcher m1 = FileSystems.getDefault().getPathMatcher("glob:*.{txt,md}");
-    assertThat(m1.matches(Paths.get("a.txt"))).isTrue();
-    assertThat(m1.matches(Paths.get("a.md"))).isTrue();
-    assertThat(m1.matches(Paths.get("a.html"))).isFalse();
+  @ParameterizedTest
+  @CsvSource({
+    "a.txt,  true ",
+    "a.md,   true ",
+    "a.html, false",
+  })
+  void pathMatcher_subPatterns1(String path, boolean isMatched) {
+    PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.{txt,md}");
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
+  }
 
-    PathMatcher m2 = FileSystems.getDefault().getPathMatcher("glob:*.{java,[abc]}");
-    assertThat(m2.matches(Paths.get("foo.java"))).isTrue();
-    assertThat(m2.matches(Paths.get("foo.a"))).isTrue();
-    assertThat(m2.matches(Paths.get("foo.b"))).isTrue();
-    assertThat(m2.matches(Paths.get("foo.c"))).isTrue();
-    assertThat(m2.matches(Paths.get("foo.d"))).isFalse();
+  @ParameterizedTest
+  @CsvSource({
+    "foo.java, true ",
+    "foo.a,    true ",
+    "foo.b,    true ",
+    "foo.c,    true ",
+    "foo.d,    false",
+  })
+  void pathMatcher_subPatterns2(String path, boolean isMatched) {
+    PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.{java,[abc]}");
+    assertThat(m.matches(Paths.get(path))).isEqualTo(isMatched);
   }
 
   @Test
