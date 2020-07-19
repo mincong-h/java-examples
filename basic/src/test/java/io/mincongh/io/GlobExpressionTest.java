@@ -93,7 +93,10 @@ class GlobExpressionTest {
         });
     assertThat(paths).containsExactlyInAnyOrder(f0, f1, f2).doesNotContain(b0);
   }
-
+  /**
+   * The {@code **} characters matches zero or more characters crossing directory boundaries. Sign "/" requires a directory boundary to exist in the path. Then, the {@code *} character matches zero or more characters of a name component without crossing
+   * directory boundaries.
+   */
   @ParameterizedTest
   @CsvSource({
     "/bar.txt,     true ",
@@ -109,6 +112,8 @@ class GlobExpressionTest {
   }
 
   /**
+   * Test expression {@code *.txt}
+   * <p>
    * The {@code *} character matches zero or more characters of a name component without crossing
    * directory boundaries.
    */
