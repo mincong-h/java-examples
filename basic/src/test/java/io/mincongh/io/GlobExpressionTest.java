@@ -80,7 +80,7 @@ class GlobExpressionTest {
     List<Path> paths = new ArrayList<>();
     Files.walkFileTree(
         root,
-        new SimpleFileVisitor<Path>() {
+        new SimpleFileVisitor<>() {
           @Override
           public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
             if (matcher.matches(path)) {
