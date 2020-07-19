@@ -107,10 +107,12 @@ class GlobExpressionTest {
   @Test
   void pathMatcher_wildcardWithoutCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:*.txt");
+
     assertThat(m.matches(Paths.get("/foo/bar.txt"))).isFalse(); // unmatched: dir boundary
     assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: dir boundary, suffix
-    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
+    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
+
     assertThat(m.matches(f0.getFileName())).isTrue();
     assertThat(m.matches(f1.getFileName())).isTrue();
     assertThat(m.matches(f2.getFileName())).isTrue();
@@ -120,8 +122,11 @@ class GlobExpressionTest {
   @Test
   void pathMatcher_wildcardWithCrossingBoundaries() {
     PathMatcher m = FileSystems.getDefault().getPathMatcher("glob:**.txt");
-    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue();
+
+    assertThat(m.matches(Paths.get("/foo/bar.txt"))).isTrue(); // matched: ** crosses dir boundary
+    assertThat(m.matches(Paths.get("/foo/bar.md"))).isFalse(); // unmatched: suffix
     assertThat(m.matches(Paths.get("bar.txt"))).isTrue();
+    assertThat(m.matches(Paths.get("bar.md"))).isFalse(); // unmatched: suffix
   }
 
   /** The {@code ?} character matches exactly one character of a name component. */
