@@ -136,7 +136,7 @@ class GlobExpressionTest {
   @CsvSource({
     "/bar.txt,     true ",
     "/bar.md,      false", // unmatched: suffix
-    "/foo/bar.txt, true ", // matched: ** crosses dir boundary
+    "/foo/bar.txt, true ", //   matched: ** crosses dir boundary
     "/foo/bar.md,  false", // unmatched: suffix
     "bar.txt,      true ",
     "bar.md,       false", // unmatched: suffix
