@@ -40,4 +40,14 @@ class RegexTest {
     assertThat("hellol lol".replaceAll("\\blol\\b", "laugh out loud"))
         .isEqualTo("hellol laugh out loud");
   }
+
+  @Test
+  void namedGroup() {
+    var pattern = Pattern.compile("^(?<year>\\d{4})-(?<month>\\d{2})-(?<day>\\d{2})$");
+    var matcher = pattern.matcher("2020-07-21");
+    assertThat(matcher.matches()).isTrue();
+    assertThat(matcher.group("year")).isEqualTo("2020");
+    assertThat(matcher.group("month")).isEqualTo("07");
+    assertThat(matcher.group("day")).isEqualTo("21");
+  }
 }
