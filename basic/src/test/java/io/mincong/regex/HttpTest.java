@@ -1,4 +1,4 @@
-package io.mincongh.regex;
+package io.mincong.regex;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

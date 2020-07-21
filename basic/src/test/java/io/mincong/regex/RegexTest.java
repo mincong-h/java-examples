@@ -1,4 +1,4 @@
-package io.mincongh.regex;
+package io.mincong.regex;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNullPointerException;

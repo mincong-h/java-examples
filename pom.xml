@@ -49,7 +49,6 @@
     <module>mongo</module>
     <module>oca</module>
     <module>ocp</module>
-    <module>regex</module>
     <module>restful-api</module>
     <module>testing/assertj</module>
     <module>testing/junit</module>

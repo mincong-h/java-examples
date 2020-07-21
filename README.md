@@ -34,7 +34,6 @@ Mongo | The MongoDB database
 Mockito | [Mockito](https://site.mockito.org/), the most popular mocking framework for Java unit tests
 OCA | Oracle Certified Associate Java SE 8
 OCP | Oracle Certified Professional Java SE 8
-Regex | Regular expressions.
 Rest | RESTful API using [Jersey][jersey].
 Typesafe Config | [Typesafe Config](https://github.com/lightbend/config), configuration library for JVM languages.
 XML | XML serialization, XPath, XSD.
