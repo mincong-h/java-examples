@@ -16,7 +16,7 @@
 
   <properties>
     <commons.codec.version>1.15</commons.codec.version>
-    <jmh.version>1.25</jmh.version>
+    <jmh.version>1.25.2</jmh.version>
   </properties>
 
   <dependencies>
