@@ -15,7 +15,7 @@
   <name>Java Examples - JMH</name>
 
   <properties>
-    <commons.codec.version>1.14</commons.codec.version>
+    <commons.codec.version>1.15</commons.codec.version>
     <jmh.version>1.25</jmh.version>
   </properties>
 
