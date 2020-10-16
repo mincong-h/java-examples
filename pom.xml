@@ -19,7 +19,7 @@
 
     <!-- Dependency versions -->
     <asmVersion>8.0.1</asmVersion>
-    <assertjVersion>3.17.1</assertjVersion>
+    <assertjVersion>3.17.2</assertjVersion>
     <jacksonVersion>2.11.2</jacksonVersion>
     <junitVersion>4.13.1</junitVersion>
     <junit5Version>5.6.2</junit5Version>
