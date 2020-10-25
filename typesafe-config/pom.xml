@@ -13,7 +13,7 @@
   <name>Java Examples - Typesafe Config</name>
 
   <properties>
-    <typesafe.config.version>1.4.0</typesafe.config.version>
+    <typesafe.config.version>1.4.1</typesafe.config.version>
   </properties>
 
   <dependencies>
