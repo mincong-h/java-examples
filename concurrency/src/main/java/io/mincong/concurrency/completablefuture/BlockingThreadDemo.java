@@ -33,9 +33,9 @@ public class BlockingThreadDemo {
    * </pre>
    *
    * The "main" thread finished around 20:40:38.3 while the "Thread-0" finished around 20:40:40.1.
-   * The two seconds delay was caused by the scheduler, which schedule the completion of the future
-   * 2 seconds in the future. From this demo, we can see that where the main thread was not blocked
-   * by the completable future. Only the worker thread "Thread-0" was blocked.
+   * The two seconds delay was caused by the scheduler, which scheduled the completion of the
+   * worker-future 2 seconds in the future. From this demo, we can see that the main thread was not
+   * blocked by the completable future. Only the worker thread "Thread-0" was blocked.
    */
   public static void main(String[] args) {
     var workerFuture = new CompletableFuture<String>();
