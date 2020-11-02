@@ -13,7 +13,7 @@
   <name>Java Examples - Jetty</name>
 
   <properties>
-    <jetty.version>9.4.32.v20200930</jetty.version>
+    <jetty.version>9.4.33.v20201020</jetty.version>
   </properties>
 
   <dependencies>
