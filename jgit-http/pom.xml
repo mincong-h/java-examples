@@ -14,7 +14,7 @@
   <name>Java Examples - JGit HTTP</name>
 
   <properties>
-    <jetty.version>9.4.32.v20200930</jetty.version>
+    <jetty.version>9.4.34.v20201102</jetty.version>
     <jgit.version>5.9.0.202009080501-r</jgit.version>
     <slf4j.version>1.7.30</slf4j.version>
   </properties>
