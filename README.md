@@ -84,6 +84,10 @@ Java unit tests. https://site.mockito.org
 - [Mockito: 4 Ways to Verify Interations](https://mincong.io/2019/09/22/mockito-verify)
 - [Testing with GwtMockito](https://mincong.io/2019/08/26/testing-with-gwtmockito)
 
+### Reliability
+
+- [Create a Throttler in Java](https://mincong.io/2020/11/07/throttler/)
+
 ## Code Style
 
 I use [Google Java Code Style][style-java] for this repo.
