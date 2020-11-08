@@ -50,6 +50,10 @@ to see the complete list.
 - [Write An Actor In Akka](https://mincong.io/2020/06/20/akka-actor/)
 - [Testing Actor with TestActorRef](https://mincong.io/2020/01/08/akka-testing-actor-with-testactorref/)
 
+### Java Annotation Processing
+
+- [Introduction to Google Error Prone](https://mincong.io/2020/11/08/google-error-prone/)
+
 ### Java Core
 
 - [Glob Expression Understanding](https://mincong.io/2019/04/16/glob-expression-understanding/)
