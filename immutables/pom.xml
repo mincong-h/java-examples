@@ -14,15 +14,10 @@
   <artifactId>java-examples-immutables</artifactId>
   <name>Java Examples - Immutables</name>
 
-  <properties>
-    <immutables.version>2.8.8</immutables.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.immutables</groupId>
       <artifactId>value</artifactId>
-      <version>${immutables.version}</version>
       <scope>provided</scope>
     </dependency>
     <!--
