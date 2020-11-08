@@ -18,7 +18,6 @@
     <maven.compiler.target>11</maven.compiler.target>
 
     <!-- Dependency versions -->
-    <asmVersion>9.0</asmVersion>
     <assertjVersion>3.17.2</assertjVersion>
     <jacksonVersion>2.11.3</jacksonVersion>
     <junitVersion>4.13.1</junitVersion>
@@ -100,11 +99,6 @@
         <artifactId>assertj-core</artifactId>
         <version>${assertjVersion}</version>
       </dependency>
-      <dependency>
-        <groupId>org.ow2.asm</groupId>
-        <artifactId>asm</artifactId>
-        <version>${asmVersion}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -115,13 +109,6 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.1</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.ow2.asm</groupId>
-              <artifactId>asm</artifactId>
-              <version>${asmVersion}</version>
-            </dependency>
-          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
