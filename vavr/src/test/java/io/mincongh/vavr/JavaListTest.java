@@ -150,6 +150,7 @@ class JavaListTest {
   }
 
   @Test
+  @SuppressWarnings("CollectionIncompatibleType")
   public void remove_ArrayList() {
     List<String> animals = new ArrayList<>();
     animals.add("🐱");
