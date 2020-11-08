@@ -1,6 +1,6 @@
 package io.mincong.ocpjp.nio;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -102,9 +102,10 @@ public class PathTest {
     assertThat(p.getFileName().toString()).isEqualTo("nonexistent");
   }
 
-  @Test(expected = NoSuchFileException.class)
+  @Test
   public void toRealPath_nonexistent() throws Exception {
-    r.resolve("nonexistent").toRealPath();
+    assertThatThrownBy(() -> r.resolve("nonexistent").toRealPath())
+        .isInstanceOf(NoSuchFileException.class);
   }
 
   @Test
