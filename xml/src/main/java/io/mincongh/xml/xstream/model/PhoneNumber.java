@@ -40,6 +40,6 @@ public class PhoneNumber {
 
   @Override
   public String toString() {
-    return String.format(Locale.ENGLISH, "+%.2d %s", code, number);
+    return String.format(Locale.ENGLISH, "+%02d %s", code, number);
   }
 }
