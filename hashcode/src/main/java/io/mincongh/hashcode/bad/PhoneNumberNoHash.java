@@ -1,6 +1,7 @@
 package io.mincongh.hashcode.bad;
 
 /** @author Mincong Huang */
+@SuppressWarnings("EqualsHashCode") // hashCode() unimplemented for demo purpose
 public class PhoneNumberNoHash {
 
   private final short areaCode;
