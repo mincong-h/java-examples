@@ -41,6 +41,7 @@ import org.junit.rules.TemporaryFolder;
  *
  * @author Mincong Huang
  */
+@SuppressWarnings({"FormatString", "ArrayToString"})
 public class FormattingTest {
 
   @Rule public final TemporaryFolder tempFolder = new TemporaryFolder();
