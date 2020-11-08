@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.*;
-import java.util.function.Predicate;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -71,13 +71,13 @@ class ConvertArrayToListTest {
     assertEquals(3, list.get(2).intValue());
   }
 
-  private <T> void assertOperationSupported(List<T> list, Predicate<List<T>> predicate) {
-    predicate.test(list);
+  private <T> void assertOperationSupported(List<T> list, Consumer<List<T>> action) {
+    action.accept(list);
   }
 
-  private <T> void assertOperationUnsupported(List<T> list, Predicate<List<T>> predicate) {
+  private <T> void assertOperationUnsupported(List<T> list, Consumer<List<T>> action) {
     try {
-      predicate.test(list);
+      action.accept(list);
       fail();
     } catch (UnsupportedOperationException e) {
       // Ok
