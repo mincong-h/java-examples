@@ -13,11 +13,11 @@
   <name>Java Examples - MongoDB</name>
 
   <properties>
-    <fongoVersion>2.2.0-RC2</fongoVersion>
-    <logbackVersion>1.2.3</logbackVersion>
-    <mongoVersion>3.6</mongoVersion>
-    <mongoDriverVersion>3.6.2</mongoDriverVersion>
-    <mongoJavaServerVersion>1.34.0</mongoJavaServerVersion>
+    <fongo.version>2.2.0-RC2</fongo.version>
+    <logback.version>1.2.3</logback.version>
+    <mongo.version>3.6</mongo.version>
+    <mongo.driver.version>3.6.2</mongo.driver.version>
+    <mongoJavaServer.version>1.34.0</mongoJavaServer.version>
     <slf4jVersion>1.7.30</slf4jVersion>
   </properties>
 
@@ -26,25 +26,25 @@
     <dependency>
       <groupId>com.github.fakemongo</groupId>
       <artifactId>fongo</artifactId>
-      <version>${fongoVersion}</version>
+      <version>${fongo.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>de.bwaldvogel</groupId>
       <artifactId>mongo-java-server</artifactId>
-      <version>${mongoJavaServerVersion}</version>
+      <version>${mongoJavaServer.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongo-java-driver</artifactId>
-      <version>${mongoDriverVersion}</version>
+      <version>${mongo.driver.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>bson</artifactId>
-      <version>${mongoDriverVersion}</version>
+      <version>${mongo.driver.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -70,13 +70,13 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>${logbackVersion}</version>
+      <version>${logback.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>${logbackVersion}</version>
+      <version>${logback.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -97,7 +97,7 @@
           <verbose>true</verbose>
           <images>
             <image>
-              <name>mongo:${mongoVersion}</name>
+              <name>mongo:${mongo.version}</name>
               <run>
                 <ports>
                   <port>27017:27017</port>
