@@ -22,6 +22,7 @@
     <jacksonVersion>2.11.3</jacksonVersion>
     <junitVersion>4.13.1</junitVersion>
     <junit5Version>5.7.0</junit5Version>
+    <errorProneVersion>2.4.0</errorProneVersion>
   </properties>
 
   <modules>
@@ -157,7 +158,24 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <!-- TODO -->
+          </compilerArgs>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>com.google.errorprone</groupId>
+              <artifactId>error_prone_core</artifactId>
+              <version>${errorProneVersion}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
