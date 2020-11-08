@@ -20,7 +20,6 @@ class DateTest {
     assertEquals(45, d.getMinute());
     assertEquals(30, d.getSecond());
 
-    d.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     assertEquals("2009-06-15T13:45:30", d.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
 }

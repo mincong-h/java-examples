@@ -56,6 +56,7 @@ public class ReviewQuestionTest {
 
   /** Question 31. */
   @Test
+  @SuppressWarnings("ReturnValueIgnored")
   public void testLocalDateImmutability() {
     LocalDate date = LocalDate.of(2018, Month.APRIL, 30);
     date.plusDays(2);

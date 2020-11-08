@@ -6,6 +6,7 @@ package io.mincongh.hashcode.bad;
  *
  * @author Mincong Huang
  */
+@SuppressWarnings("EqualsHashCode") // hashCode() unimplemented for demo purpose
 public class AthleteOnlyOverrideEquals {
 
   private String email;
