@@ -62,6 +62,7 @@ public class WrapperClassTest {
      * Cannot use a `Float` object to retrieve the value that was
      * added to a `HashMap` using a `Double` instance.
      */
+    @SuppressWarnings("CollectionIncompatibleType")
     String value2 = map.get(new Float(2.0));
     assertThat(value2).isNull();
   }

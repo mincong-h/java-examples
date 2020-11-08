@@ -146,6 +146,7 @@ public class HashSetTest {
   }
 
   /** Only {@link #equals(Object)} is overridden. */
+  @SuppressWarnings("EqualsHashCode")
   private static class Person_E extends Person {
 
     Person_E(String name) {

@@ -49,6 +49,7 @@ public class Java8DateTest {
   }
 
   @Test
+  @SuppressWarnings("TemporalAccessorGetChronoField") // Fail on purpose
   public void localDate_temporalField() throws Exception {
     LocalDate d = LocalDate.of(2018, 1, 2);
     assertThat(d.get(ChronoField.YEAR)).isEqualTo(2018);
