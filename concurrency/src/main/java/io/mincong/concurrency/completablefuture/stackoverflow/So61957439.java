@@ -32,6 +32,7 @@ import java.util.stream.Stream;
  * 08:20:10.165436 - [Result{name='C3'}, Result{name='C1'}, Result{name='C2'}]
  * </pre>
  */
+@SuppressWarnings("StreamToString")
 public class So61957439 {
 
   public static void main(String[] args) throws Exception {
