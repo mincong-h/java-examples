@@ -6,7 +6,7 @@ in different frameworks. You can run these tests using:
 
     mvn clean install
 
-This project is tested under Java 11 and Java 14.
+This project is tested under Java 11 and Java 15.
 
 ## Module List
 
