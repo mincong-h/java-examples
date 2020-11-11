@@ -1,15 +1,8 @@
 package io.mincong.ocajp.chapter3;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.Test;
@@ -77,12 +70,12 @@ public class ArrayListTest {
     weights.add(new Double(60)); // ok
 
     weights.add(null);
-    try {
-      double w = weights.get(2); // cannot unwrap
-      fail();
-    } catch (NullPointerException e) {
-      assertNull(e.getMessage());
-    }
+    assertThrows(
+        NullPointerException.class,
+        () -> {
+          @SuppressWarnings("unused")
+          double w = weights.get(2); // cannot unwrap null
+        });
   }
 
   @Test
