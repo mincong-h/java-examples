@@ -6,6 +6,10 @@ import java.util.HashSet;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author Mincong Huang
+ * @blog https://mincong.io/2020/11/11/feature-flag/
+ */
 class MyJobTest {
 
   @AfterEach
