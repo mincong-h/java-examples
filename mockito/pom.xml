@@ -14,7 +14,7 @@
   <name>Java Examples - Mockito</name>
 
   <properties>
-    <mockito.version>3.6.0</mockito.version>
+    <mockito.version>3.6.28</mockito.version>
   </properties>
 
   <modules>
