@@ -8,11 +8,10 @@
     <groupId>io.mincong</groupId>
     <artifactId>java-examples-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>java-examples-junit</artifactId>
-  <name>Java Examples - JUnit</name>
+  <artifactId>java-examples-junit4</artifactId>
+  <name>Java Examples - JUnit 4</name>
 
   <dependencies>
     <dependency>
