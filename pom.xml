@@ -156,7 +156,7 @@
         <plugin>
           <groupId>org.codehaus.cargo</groupId>
           <artifactId>cargo-maven2-plugin</artifactId>
-          <version>1.8.2</version>
+          <version>1.8.5</version>
         </plugin>
         <plugin>
           <groupId>io.fabric8</groupId>
