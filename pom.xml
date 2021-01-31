@@ -46,6 +46,7 @@
     <module>jgit-http</module>
     <module>jmh</module>
     <module>json</module>
+    <module>junit4</module>
     <module>logback</module>
     <module>maven</module>
     <module>mockito</module>
@@ -53,7 +54,6 @@
     <module>oca</module>
     <module>ocp</module>
     <module>restful-api</module>
-    <module>testing/junit</module>
     <module>typesafe-config</module>
     <module>vavr</module>
     <module>xml</module>
