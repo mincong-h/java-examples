@@ -27,7 +27,8 @@ Jetty | Jetty Server.
 JGit | Basic usages of [JGit][jgit].
 JMH | Java Microbenchmark Harness (JMH).
 JSON | JSON conversion libraries in Java.
-JUnit | JUnit testing framework.
+JUnit 4 | JUnit 4 testing framework.
+JUnit 5 | JUnit 5 testing framework.
 Logback | [Logback](http://logback.qos.ch/) logging framework.
 Maven | Basic functionality of Maven.
 Mongo | The MongoDB database
