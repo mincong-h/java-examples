@@ -29,6 +29,7 @@
 
   <modules>
     <module>akka</module>
+    <module>assertj</module>
     <module>basic</module>
     <module>cli</module>
     <module>concurrency</module>
@@ -52,7 +53,6 @@
     <module>oca</module>
     <module>ocp</module>
     <module>restful-api</module>
-    <module>testing/assertj</module>
     <module>testing/junit</module>
     <module>typesafe-config</module>
     <module>vavr</module>

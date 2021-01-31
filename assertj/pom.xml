@@ -8,7 +8,6 @@
     <groupId>io.mincong</groupId>
     <artifactId>java-examples-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <artifactId>java-examples-assertj</artifactId>
