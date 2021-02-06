@@ -53,6 +53,8 @@ to see the complete list.
 
 ### Java Annotation Processing
 
+- [Why You Should Use Auto Value in Java?](https://mincong.io/2018/08/21/why-you-should-use-auto-value-in-java/)
+- [Introduction of Immutables](https://mincong.io/2020/04/13/introduction-of-immutables/)
 - [Introduction to Google Error Prone](https://mincong.io/2020/11/08/google-error-prone/)
 
 ### Java Core
