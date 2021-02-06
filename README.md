@@ -43,7 +43,7 @@ VAVR | Functional component library that provides persistent data types and func
 
 ## Articles
 
-Here are some blog posts that I wrote using the source code of this repository. Visit <https://mincong.io>
+Here are some blog posts that I wrote using the source code of this repository and related satellite repositories. Visit <https://mincong.io>
 to see the complete list.
 
 ### Akka
@@ -78,7 +78,7 @@ Date manipulation using `java.util.*` and `java.time.*`.
 - [Logback: Test Logging Event](https://mincong.io/2020/02/02/logback-test-logging-event/)
 - [SLF4J Understanding](https://mincong.io/2019/03/12/slf4j/)
 
-### Mockito
+### Java Testing
 
 Mockito, the most popular mocking framework for
 Java unit tests. https://site.mockito.org
@@ -89,10 +89,32 @@ Java unit tests. https://site.mockito.org
 - [Mockito: 4 Ways to Verify Interations](https://mincong.io/2019/09/22/mockito-verify)
 - [Testing with GwtMockito](https://mincong.io/2019/08/26/testing-with-gwtmockito)
 
+JUnit, the programmer-friendly testing framework for Java and the JVM:
+
+- [Writing Parameterized Tests in JUnit 5](https://mincong.io/2021/01/31/juni5-parameterized-tests/)
+
 ### Reliability
 
 - [Create a Throttler in Java](https://mincong.io/2020/11/07/throttler/)
 - [Feature Flag: Making Your Application More Reliable](https://mincong.io/2020/11/11/feature-flag/)
+
+### Elasticsearch
+
+- [Testing Elasticsearch With Docker And Java High Level REST Client](https://mincong.io/2020/04/05/testing-elasticsearch-with-docker-and-java-client/)
+- [Testing Elasticsearch with ESSingleNodeTestCase](https://mincong.io/2019/11/24/essinglenodetestcase/)
+- [Elasticsearch: cat nodes API](https://mincong.io/2020/03/07/elasticsearch-cat-nodes-api/)
+- [Elasticsearch: Scroll API in Java](https://mincong.io/2020/01/19/elasticsearch-scroll-api/)
+- [Indexing New Data in Elasticsearch](https://mincong.io/2019/12/02/indexing-new-data-in-elasticsearch/)
+- [Common Index Exceptions](https://mincong.io/2020/09/13/es-index-exceptions/)
+- [Wrap Elasticsearch Response Into CompletableFuture](https://mincong.io/2020/07/26/es-client-completablefuture/)
+- [Discovery in Elasticsearch](https://mincong.io/2020/08/22/discovery-in-elasticsearch/)
+- [GC in Elasticsearch](https://mincong.io/2020/08/30/gc-in-elasticsearch/)
+- [18 Allocation Deciders in Elasticsearch](https://mincong.io/2020/09/27/shard-allocation/)
+- [Using Java Time in Different Frameworks](https://mincong.io/2020/10/25/java-time/)
+- [DVF: Indexing New Documents](https://mincong.io/2020/12/16/dvf-indexing/)
+- [DVF: Indexing Optimization](https://mincong.io/2020/12/17/dvf-indexing-optimization/)
+- [DVF: Storage Optimization](https://mincong.io/2020/12/25/dvf-storage-optimization/)
+- [DVF: Snapshot And Restore](https://mincong.io/2021/01/10/dvf-snapshot-and-restore/)
 
 ## Code Style
 
