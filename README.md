@@ -60,12 +60,16 @@ to see the complete list.
 ### Java Core
 
 - [Glob Expression Understanding](https://mincong.io/2019/04/16/glob-expression-understanding/)
+- [Unzipping File in Java](https://mincong.io/2019/10/27/unzipping-file-in-java/)
+- [Fixng Comparator](https://mincong.io/2019/07/18/fixing-comparator/)
+- [Understanding ISO-8859-1 / UTF-8](https://mincong.io/2019/04/07/understanding-iso-8859-1-and-utf-8/)
 
 ### Java Concurrency
 
 - [Why Do We Need Completable Future?](https://mincong.io/2020/06/26/completable-future/)
 - [3 Ways to Handle Exception In Completable Future](https://mincong.io/2020/05/30/exception-handling-in-completable-future/)
 - [How CompletableFuture is tested in OpenJDK?](https://mincong.io/2020/05/10/completablefuture-test/)
+- [Using 100% CPU with ExecutorService.invokeAll()](https://mincong.io/2019/01/29/executorservice-invokeall/)
 
 ### Java Date
 
@@ -75,10 +79,11 @@ Date manipulation using `java.util.*` and `java.time.*`.
 - [Controlling Time with Java Clock](https://mincong.io/2020/05/24/java-clock/)
 - [Convert Date to ISO 8601 String in Java](https://mincong.io/2017/02/16/convert-date-to-string-in-java/)
 
-### Logging
+### Java Logging
 
 - [Logback: Test Logging Event](https://mincong.io/2020/02/02/logback-test-logging-event/)
 - [SLF4J Understanding](https://mincong.io/2019/03/12/slf4j/)
+- [What I know about logs](https://mincong.io/2019/03/05/logs/)
 
 ### Java Testing
 
@@ -94,6 +99,12 @@ Java unit tests. https://site.mockito.org
 JUnit, the programmer-friendly testing framework for Java and the JVM:
 
 - [Writing Parameterized Tests in JUnit 5](https://mincong.io/2021/01/31/juni5-parameterized-tests/)
+
+### Java Serialization
+
+- [Use Auto Value and Jackson in REST API](https://mincong.io/2018/06/19/auto-value-and-jackson/)
+- [Jackson XML Mapper](https://mincong.io/2019/03/19/jackson-xml-mapper/)
+- [Vavr Jackson 1.0.0 Alpha 3 release notes](https://mincong.io/2020/07/11/vavr-jackson-1.0.0-alpha-3/)
 
 ### Reliability
 
