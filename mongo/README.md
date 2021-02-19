@@ -6,43 +6,60 @@
 
 Start the MongoDB Docker image via Docker:
 
-```
-$ docker run --rm --name mongo-demos --detach -p 27017:27017 mongo:3.6
+```sh
+> docker run --rm --name mongo-demos --detach -p 27017:27017 mongo:3.6
 ```
 
 Don't forget to stop it when you finish:
 
-```
-$ docker stop mongo-demos
+```sh
+> docker stop mongo-demos
 ```
 
 ### Maven
 
 Start the MongoDB docker image via Maven:
 
-```
-$ mvn docker:start
+```sh
+> mvn docker:start
 ```
 
 Don't forget the stop it once finished:
 
-```
-$ mvn docker:stop
+```sh
+> mvn docker:stop
 ```
 
 ## Mongo Shell
 
 Install MongoDB Shell on macOS:
 
+```sh
+> brew tap mongodb/brew
+> brew install mongodb-community-shell
 ```
-$ brew tap mongodb/brew
-$ brew install mongodb-community-shell
+
+Learn how to use it via the option `-h,--help`:
+
 ```
+> mongo -h
+MongoDB shell version v4.2.0
+usage: mongo [options] [db address] [file names (ending in .js)]
+db address can be:
+  foo                   foo database on local machine
+  192.168.0.5/foo       foo database on 192.168.0.5 machine
+  192.168.0.5:9999/foo  foo database on 192.168.0.5 machine on port 9999
+  mongodb://192.168.0.5:9999/foo  connection string URI can also be used
+Options:
+...
+```
+
+### Interactive Mode
 
 Connect to MongoDB via Mongo Shell:
 
-```
-$ mongo
+```sh
+> mongo
 ```
 
 Once connected to MongDB via MongDB Shell, you can perform the following commands.
@@ -68,6 +85,20 @@ Check the MongoDB version:
 4.0.0
 ```
 
+### Background Mode
+
+Evaluate a string expression and return the result in JSON format. You can also use `jq` to transform it to something else.
+
+```sh
+mongo --quiet --eval "db.fruits.find({ ... })" | jq
+```
+
+Run a script and return the result in JSON format.
+
+```sh
+mongo --quiet find_fruits.js
+```
+
 ## Collections
 
 Show collections:
@@ -90,14 +121,14 @@ Create a new collection
 
 Insert document(s) to collection:
 
-```
+```js
 > user1 = { "first_name": "Foo", "last_name": "Bar" }
 { "first_name" : "Foo", "last_name" : "Bar" }
 > db.users.insert(user1)
 WriteResult({ "nInserted" : 1 })
 ```
 
-```
+```js
 > db.users.insert([
 ...   { "first_name": "First1", "last_name": "Last1" },
 ...   { "first_name": "First2", "last_name": "Last2" },
@@ -116,19 +147,19 @@ BulkWriteResult({
 
 Find documents from collection:
 
-```
+```js
 > db.users.find({ first_name: { $eq: "Foo" } })
 { "_id" : ObjectId("5e4908c14638a83462bc6a15"), "first_name" : "Foo", "last_name" : "Bar" }
 { "_id" : ObjectId("5e490a2a4638a83462bc6a16"), "first_name" : "Foo", "last_name" : "Bar2" }
 ```
 
-```
+```js
 > db.users.find({ first_name: "Foo" })
 { "_id" : ObjectId("5e4908c14638a83462bc6a15"), "first_name" : "Foo", "last_name" : "Bar" }
 { "_id" : ObjectId("5e490a2a4638a83462bc6a16"), "first_name" : "Foo", "last_name" : "Bar2" }
 ```
 
-```
+```js
 > db.users.find()
 { "_id" : ObjectId("5e4908c14638a83462bc6a15"), "first_name" : "Foo", "last_name" : "Bar" }
 { "_id" : ObjectId("5e490a2a4638a83462bc6a16"), "first_name" : "Foo", "last_name" : "Bar2" }
@@ -139,7 +170,7 @@ Update document(s) via
 Although the query may match multiple documents, only one document will be
 modified :warning:.
 
-```
+```js
 > db.users.findAndModify({ query: {}, update: { $set: { tel: "123" }}})
 {
 	"_id" : ObjectId("5e49118b095f13556162b497"),
@@ -150,14 +181,14 @@ modified :warning:.
 
 Update documents by adding a new field "tel" for all users:
 
-```
+```js
 > db.users.updateMany({}, { $set: { tel: "456" }})
 { "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
 ```
 
 Update documents by adding a nested field "address.label" for all users:
 
-```
+```js
 > db.users.updateMany({}, { $set: { address: { label: "hi" }}})
 { "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
 
@@ -168,7 +199,7 @@ Update documents by adding a nested field "address.label" for all users:
 
 Remove all documents from collection (:warning: be careful!):
 
-```
+```js
 > db.users.remove({})
 WriteResult({ "nRemoved" : 4 })
 ```
@@ -195,3 +226,5 @@ Default Port | Description
   <https://www.baeldung.com/java-mongodb>
 - Caconde, "Install mongo shell in mac", _Stack Overflow_, 2019.
   <https://stackoverflow.com/questions/58504865/>
+- Antoine Roger, "How to deal with MongoDB shell output in your shell scripts – Part 2/2: parsing JSON with jq", 2018.
+  <https://www.mydbaworld.com/mongodb-shell-output-parsing-json-jq/>
