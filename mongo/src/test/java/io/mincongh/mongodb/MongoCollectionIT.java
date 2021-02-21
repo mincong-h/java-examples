@@ -1,4 +1,4 @@
-package io.mincongh.mongodb.legacy;
+package io.mincongh.mongodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
