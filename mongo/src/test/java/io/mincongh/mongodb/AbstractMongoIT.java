@@ -3,8 +3,8 @@ package io.mincongh.mongodb;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * @author Mincong Huang
@@ -15,14 +15,14 @@ public abstract class AbstractMongoIT {
   protected MongoClient client;
   protected MongoDatabase db;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUpMongo() {
     client = MongoClients.create("mongodb://localhost:27017");
     db = client.getDatabase("test");
   }
 
-  @After
-  public void tearDown() {
+  @AfterEach
+  void tearDownMongo() {
     try {
       db.drop();
     } finally {

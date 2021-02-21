@@ -7,26 +7,23 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.util.List;
 import org.bson.Document;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test "update" operation in MongoDB.
  *
  * @author Mincong Huang
  */
-public class UpdateIT extends AbstractMongoIT {
+class UpdateIT extends AbstractMongoIT {
 
   private MongoCollection<Document> userCollection;
 
   private Document foo;
   private Document bar;
 
-  @Before
-  public void setUp() {
-    super.setUp();
-
+  @BeforeEach
+  void setUp() {
     userCollection = db.getCollection("users");
 
     foo = parse("{'name':'Foo', 'exams':[{'type':'C1', score:58}, {'type':'C1', score:80}]}");
@@ -34,17 +31,8 @@ public class UpdateIT extends AbstractMongoIT {
     userCollection.insertMany(List.of(foo, bar));
   }
 
-  @After
-  public void tearDown() {
-    try {
-      userCollection.drop();
-    } finally {
-      client.close();
-    }
-  }
-
   @Test
-  public void update_eq() {
+  void update_eq() {
     // When updating user name Foo to FooFoo
     var filter = Filters.eq("name", "Foo");
     var update = Updates.set("name", "FooFoo");
@@ -72,7 +60,7 @@ public class UpdateIT extends AbstractMongoIT {
    *     Mongo Manual</a>
    */
   @Test
-  public void update_elemMatch_elementField() {
+  void update_elemMatch_elementField() {
     // When updating the user having exam score under 60 to 60
     var elemFilter = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
     var filter = Filters.elemMatch("exams", elemFilter);
@@ -103,7 +91,7 @@ public class UpdateIT extends AbstractMongoIT {
    *     Mongo Manual</a>
    */
   @Test
-  public void update_elemMatch_element() {
+  void update_elemMatch_element() {
     // When updating the user having exam score under 60 to 60
     var elemFilter = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
     var filter = Filters.elemMatch("exams", elemFilter);

@@ -9,28 +9,26 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.IndexOptions;
 import com.mongodb.client.model.Indexes;
 import org.bson.Document;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test "index" operation in MongoDB.
  *
  * @author Mincong Huang
  */
-public class IndexIT extends AbstractMongoIT {
+class IndexIT extends AbstractMongoIT {
 
   private MongoCollection<Document> userCollection;
 
-  @Before
-  public void setUp() {
-    super.setUp();
-
+  @BeforeEach
+  void setUp() {
     db.createCollection("users");
     userCollection = db.getCollection("users");
   }
 
   @Test
-  public void listIndexes_empty() {
+  void listIndexes_empty() {
     var indexes = userCollection.listIndexes();
     /*
      * By default, there is one index called "_id_" which indexes the
@@ -42,7 +40,7 @@ public class IndexIT extends AbstractMongoIT {
   }
 
   @Test
-  public void createIndexes_successDefaultName() {
+  void createIndexes_successDefaultName() {
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 20 }"));
     userCollection.insertOne(bson("{ 'name': 'bar', 'age': 30 }"));
 
@@ -53,7 +51,7 @@ public class IndexIT extends AbstractMongoIT {
   }
 
   @Test
-  public void createIndexes_successTwoCreations() {
+  void createIndexes_successTwoCreations() {
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 20 }"));
     userCollection.insertOne(bson("{ 'name': 'bar', 'age': 30 }"));
 
@@ -66,7 +64,7 @@ public class IndexIT extends AbstractMongoIT {
   }
 
   @Test
-  public void createIndexes_successDuplicateKeys() {
+  void createIndexes_successDuplicateKeys() {
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 20 }"));
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 30 }"));
 
@@ -77,7 +75,7 @@ public class IndexIT extends AbstractMongoIT {
   }
 
   @Test
-  public void createDocument_uniqueOptionWithoutDuplicates() {
+  void createDocument_uniqueOptionWithoutDuplicates() {
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 20 }"));
 
     var options = new IndexOptions().unique(true);
@@ -89,7 +87,7 @@ public class IndexIT extends AbstractMongoIT {
   }
 
   @Test
-  public void createDocument_uniqueOptionWithDuplicates() {
+  void createDocument_uniqueOptionWithDuplicates() {
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 20 }"));
     userCollection.insertOne(bson("{ 'name': 'foo', 'age': 30 }")); // duplicate
 

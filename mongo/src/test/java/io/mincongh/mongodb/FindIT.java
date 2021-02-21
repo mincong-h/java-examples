@@ -6,8 +6,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import java.util.List;
 import org.bson.Document;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test "find" operation in MongoDB.
@@ -18,10 +18,8 @@ public class FindIT extends AbstractMongoIT {
 
   private MongoCollection<Document> userCollection;
 
-  @Before
+  @BeforeEach
   public void setUp() {
-    super.setUp();
-
     db.createCollection("users");
     userCollection = db.getCollection("users");
   }

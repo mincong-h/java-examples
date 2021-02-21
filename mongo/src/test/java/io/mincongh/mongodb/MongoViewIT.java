@@ -7,16 +7,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import org.bson.BsonDocument;
 import org.bson.Document;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Mincong Huang
  * @since 0.1.0
  */
-public class MongoViewIT extends AbstractMongoIT {
+class MongoViewIT extends AbstractMongoIT {
 
   @Test
-  public void createView() {
+  void createView() {
     db.getCollection("users")
         .insertMany(
             Arrays.asList(
