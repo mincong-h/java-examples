@@ -15,7 +15,7 @@
   <properties>
     <fongo.version>2.2.0-RC2</fongo.version>
     <logback.version>1.2.3</logback.version>
-    <mongo.version>3.6</mongo.version>
+    <mongo.version>4.2</mongo.version>
     <mongo.driver.version>3.6.2</mongo.driver.version>
     <mongoJavaServer.version>1.36.0</mongoJavaServer.version>
     <slf4jVersion>1.7.30</slf4jVersion>
