@@ -36,6 +36,6 @@ public class MongoCollectionIT extends AbstractMongoIT {
     MongoDatabase db = client.getDatabase("local");
     db.createCollection(collectionName());
     MongoCollection<Document> collection = db.getCollection(collectionName());
-    assertThat(collection.count()).isZero();
+    assertThat(collection.countDocuments()).isZero();
   }
 }
