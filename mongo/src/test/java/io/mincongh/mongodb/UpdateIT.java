@@ -94,12 +94,6 @@ public class UpdateIT {
    */
   @Test
   public void update_elemMatch_elementField() {
-    /*
-     * @impl Mongo Java Server
-     * @bug com.mongodb.MongoWriteException: The positional operator did not find the match needed from the query.
-     */
-    assumeFalse(provider.isMongoJavaServer());
-
     // When updating the user having exam score under 60 to 60
     var elemFilter = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
     var filter = Filters.elemMatch("exams", elemFilter);
@@ -136,11 +130,6 @@ public class UpdateIT {
      * @bugLink https://github.com/fakemongo/fongo/issues/375
      */
     assumeFalse(provider.isFongo());
-    /*
-     * @impl Mongo Java Server
-     * @bug com.mongodb.MongoWriteException: The positional operator did not find the match needed from the query.
-     */
-    assumeFalse(provider.isMongoJavaServer());
 
     // When updating the user having exam score under 60 to 60
     var elemFilter = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
