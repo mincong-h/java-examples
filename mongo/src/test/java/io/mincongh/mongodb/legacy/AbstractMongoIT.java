@@ -15,7 +15,7 @@ public abstract class AbstractMongoIT {
 
   @Before
   public void setUp() {
-    client = MongoClients.create("localhost:27017");
+    client = MongoClients.create("mongodb://localhost:27017");
   }
 
   @After
