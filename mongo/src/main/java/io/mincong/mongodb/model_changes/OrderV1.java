@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
-public class Order {
+public class OrderV1 {
   @JsonProperty("_id")
   private final String id;
 
@@ -15,7 +15,7 @@ public class Order {
   private final double amount;
 
   @JsonCreator
-  public Order(
+  public OrderV1(
       @JsonProperty("_id") String id,
       @JsonProperty("customerId") String customerId,
       @JsonProperty("amount") double amount) {
@@ -40,7 +40,7 @@ public class Order {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Order order = (Order) o;
+    OrderV1 order = (OrderV1) o;
     return Double.compare(order.amount, amount) == 0
         && Objects.equals(id, order.id)
         && Objects.equals(customerId, order.customerId);

@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 
 public class BasicIT extends AbstractMongoIT {
 
-  private MongoCollection<Order> orderCollection;
-  private final Order order1 = new Order("1", "BigCorp", 100.0);
+  private MongoCollection<OrderV1> orderCollection;
+  private final OrderV1 order1 = new OrderV1("1", "BigCorp", 100.0);
 
   @BeforeEach
   void setUp() {
-    orderCollection = db.getCollection("orders", Order.class);
+    orderCollection = db.getCollection("orders", OrderV1.class);
   }
 
   @Test
