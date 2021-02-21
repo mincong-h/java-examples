@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -13,9 +15,25 @@ import org.junit.Test;
  */
 public class MongoCollectionIT extends AbstractMongoIT {
 
+  private MongoDatabase db;
+
   @Override
   protected Class<?> getTestClass() {
     return MongoCollectionIT.class;
+  }
+
+  @Override
+  @Before
+  public void setUp() {
+    super.setUp();
+    db = client.getDatabase("local");
+  }
+
+  @Override
+  @After
+  public void tearDown() {
+    db.getCollection(collectionName()).drop();
+    super.tearDown();
   }
 
   @Test
@@ -33,7 +51,7 @@ public class MongoCollectionIT extends AbstractMongoIT {
      * you do not need to explicitly create the collection since MongoDB
      * creates new collections when you first store data for the collections.
      */
-    MongoDatabase db = client.getDatabase("local");
+    db = client.getDatabase("local");
     db.createCollection(collectionName());
     MongoCollection<Document> collection = db.getCollection(collectionName());
     assertThat(collection.countDocuments()).isZero();

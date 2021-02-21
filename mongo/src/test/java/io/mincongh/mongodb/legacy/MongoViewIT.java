@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import org.bson.BsonDocument;
 import org.bson.Document;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,6 +25,13 @@ public class MongoViewIT extends AbstractMongoIT {
   public void setUp() {
     super.setUp();
     db = client.getDatabase("local");
+  }
+
+  @Override
+  @After
+  public void tearDown() {
+    db.getCollection(collectionName()).drop();
+    super.tearDown();
   }
 
   @Override
