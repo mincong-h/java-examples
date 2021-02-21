@@ -2,61 +2,35 @@ package io.mincongh.mongodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.github.fakemongo.junit.FongoRule;
-import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
-import io.mincongh.mongodb.utils.*;
 import java.util.List;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.bson.Document;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test "find" operation in MongoDB.
  *
  * @author Mincong Huang
  */
-@RunWith(Parameterized.class)
-public class FindIT {
+public class FindIT extends AbstractMongoIT {
 
-  @Parameters
-  public static Object[] data() {
-    return MongoProviderFactory.implementations();
-  }
+  private MongoCollection<Document> userCollection;
 
-  @Rule public FongoRule fakeMongoRule = new FongoRule(false);
-  @Rule public FongoRule realMongoRule = new FongoRule(true);
-
-  private final String providerName;
-  private MongoProvider provider;
-
-  public FindIT(String providerName) {
-    this.providerName = providerName;
-  }
-
-  @Before
+  @BeforeEach
   public void setUp() {
-    provider =
-        MongoProviderFactory.newBuilder()
-            .providerName(providerName)
-            .fakeMongoRule(fakeMongoRule)
-            .realMongoRule(realMongoRule)
-            .createProvider();
-  }
-
-  @After
-  public void tearDown() {
-    provider.close();
+    db.createCollection("users");
+    userCollection = db.getCollection("users");
   }
 
   @Test
   public void find_eq() {
     var foo = parse("{'name':'Foo', 'age':20}");
     var bar = parse("{'name':'Bar', 'age':20}");
-    provider.userCollection().insertMany(List.of(foo, bar));
+    userCollection.insertMany(List.of(foo, bar));
 
-    var results = provider.userCollection().find(Filters.eq("name", "Foo"));
+    var results = userCollection.find(Filters.eq("name", "Foo"));
     assertThat(results).containsExactly(foo);
   }
 
@@ -64,19 +38,18 @@ public class FindIT {
   public void find_elemMatch() {
     var foo = parse("{'name':'Foo', 'exams':[{'type':'C1', score:58}, {'type':'C1', score:80}]}");
     var bar = parse("{'name':'Bar', 'exams':[{'type':'B1', score:83}, {'type':'B2', score:85}]}");
-    provider.userCollection().insertMany(List.of(foo, bar));
+    userCollection.insertMany(List.of(foo, bar));
 
     var f = Filters.and(Filters.eq("type", "C1"), Filters.lt("score", 60));
-    var results = provider.userCollection().find(Filters.elemMatch("exams", f));
+    var results = userCollection.find(Filters.elemMatch("exams", f));
     assertThat(results).containsExactly(foo);
 
-    var results2 =
-        provider.userCollection().find(Filters.elemMatch("exams", Filters.gt("score", 60)));
+    var results2 = userCollection.find(Filters.elemMatch("exams", Filters.gt("score", 60)));
     assertThat(results2).containsExactly(foo, bar);
   }
 
-  private BasicDBObject parse(String json) {
+  private Document parse(String json) {
     var content = json.replace("'", "\"");
-    return BasicDBObject.parse(content);
+    return Document.parse(content);
   }
 }

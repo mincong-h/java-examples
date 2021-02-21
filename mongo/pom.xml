@@ -13,31 +13,15 @@
   <name>Java Examples - MongoDB</name>
 
   <properties>
-    <fongo.version>2.2.0-RC2</fongo.version>
-    <logback.version>1.2.3</logback.version>
-    <mongo.version>3.6</mongo.version>
-    <mongo.driver.version>3.6.2</mongo.driver.version>
-    <mongoJavaServer.version>1.36.0</mongoJavaServer.version>
-    <slf4jVersion>1.7.30</slf4jVersion>
+    <mongo.version>4.2</mongo.version>
+    <mongo.driver.version>4.2.1</mongo.driver.version>
   </properties>
 
   <dependencies>
     <!-- test -->
     <dependency>
-      <groupId>com.github.fakemongo</groupId>
-      <artifactId>fongo</artifactId>
-      <version>${fongo.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>de.bwaldvogel</groupId>
-      <artifactId>mongo-java-server</artifactId>
-      <version>${mongoJavaServer.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.mongodb</groupId>
-      <artifactId>mongo-java-driver</artifactId>
+      <artifactId>mongodb-driver-sync</artifactId>
       <version>${mongo.driver.version}</version>
       <scope>test</scope>
     </dependency>
@@ -58,31 +42,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-      <version>${logback.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4jVersion}</version>
     </dependency>
   </dependencies>
 

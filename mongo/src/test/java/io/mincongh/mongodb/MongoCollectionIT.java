@@ -1,25 +1,19 @@
-package io.mincongh.mongodb.legacy;
+package io.mincongh.mongodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Mincong Huang
  * @since 0.1.0
  */
-public class MongoCollectionIT extends AbstractMongoIT {
-
-  @Override
-  protected Class<?> getTestClass() {
-    return MongoCollectionIT.class;
-  }
+class MongoCollectionIT extends AbstractMongoIT {
 
   @Test
-  public void createCollection() {
+  void createCollection() {
     /*
      * MongoDB stores documents in collections. Collections are analogous to
      * tables in relational database.
@@ -33,9 +27,9 @@ public class MongoCollectionIT extends AbstractMongoIT {
      * you do not need to explicitly create the collection since MongoDB
      * creates new collections when you first store data for the collections.
      */
-    MongoDatabase db = client.getDatabase("local");
-    db.createCollection(collectionName());
-    MongoCollection<Document> collection = db.getCollection(collectionName());
-    assertThat(collection.count()).isZero();
+    db = client.getDatabase("local");
+    db.createCollection("users");
+    MongoCollection<Document> collection = db.getCollection("users");
+    assertThat(collection.countDocuments()).isZero();
   }
 }
