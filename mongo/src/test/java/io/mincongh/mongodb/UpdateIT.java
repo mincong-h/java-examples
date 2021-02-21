@@ -2,8 +2,6 @@ package io.mincongh.mongodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -18,9 +16,8 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class UpdateIT {
+public class UpdateIT extends AbstractMongoIT {
 
-  private MongoClient client;
   private MongoCollection<Document> userCollection;
 
   private Document foo;
@@ -28,10 +25,9 @@ public class UpdateIT {
 
   @Before
   public void setUp() {
-    client = MongoClients.create("mongodb://localhost:27017");
-    var database = client.getDatabase("test");
-    database.createCollection("users");
-    userCollection = database.getCollection("users");
+    super.setUp();
+
+    userCollection = db.getCollection("users");
 
     foo = parse("{'name':'Foo', 'exams':[{'type':'C1', score:58}, {'type':'C1', score:80}]}");
     bar = parse("{'name':'Bar', 'exams':[{'type':'B1', score:83}, {'type':'B2', score:85}]}");

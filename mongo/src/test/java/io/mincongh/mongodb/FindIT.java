@@ -2,13 +2,10 @@ package io.mincongh.mongodb;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import java.util.List;
 import org.bson.Document;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,26 +14,16 @@ import org.junit.Test;
  *
  * @author Mincong Huang
  */
-public class FindIT {
+public class FindIT extends AbstractMongoIT {
 
-  private MongoClient client;
   private MongoCollection<Document> userCollection;
 
   @Before
   public void setUp() {
-    client = MongoClients.create("mongodb://localhost:27017");
-    var database = client.getDatabase("test");
-    database.createCollection("users");
-    userCollection = database.getCollection("users");
-  }
+    super.setUp();
 
-  @After
-  public void tearDown() {
-    try {
-      userCollection.drop();
-    } finally {
-      client.close();
-    }
+    db.createCollection("users");
+    userCollection = db.getCollection("users");
   }
 
   @Test

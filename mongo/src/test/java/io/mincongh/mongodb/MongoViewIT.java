@@ -3,13 +3,10 @@ package io.mincongh.mongodb;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import java.util.Arrays;
 import java.util.Collections;
 import org.bson.BsonDocument;
 import org.bson.Document;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,30 +15,9 @@ import org.junit.Test;
  */
 public class MongoViewIT extends AbstractMongoIT {
 
-  private MongoDatabase db;
-
-  @Override
-  @Before
-  public void setUp() {
-    super.setUp();
-    db = client.getDatabase("local");
-  }
-
-  @Override
-  @After
-  public void tearDown() {
-    db.getCollection(collectionName()).drop();
-    super.tearDown();
-  }
-
-  @Override
-  protected Class<?> getTestClass() {
-    return MongoViewIT.class;
-  }
-
   @Test
   public void createView() {
-    db.getCollection(collectionName())
+    db.getCollection("users")
         .insertMany(
             Arrays.asList(
                 Document.parse("{\"firstName\":\"Robb\",\"lastName\":\"Stark\"}"),
@@ -77,9 +53,9 @@ public class MongoViewIT extends AbstractMongoIT {
      *
      * See: https://docs.mongodb.com/manual/core/views/
      */
-    db.createView("view", collectionName(), Collections.<BsonDocument>emptyList());
+    db.createView("view", "users", Collections.<BsonDocument>emptyList());
 
-    MongoCollection<Document> users = db.getCollection(collectionName());
+    MongoCollection<Document> users = db.getCollection("users");
     assertThat(users.countDocuments()).isEqualTo(6);
   }
 }

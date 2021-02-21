@@ -3,10 +3,7 @@ package io.mincongh.mongodb;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -14,27 +11,6 @@ import org.junit.Test;
  * @since 0.1.0
  */
 public class MongoCollectionIT extends AbstractMongoIT {
-
-  private MongoDatabase db;
-
-  @Override
-  protected Class<?> getTestClass() {
-    return MongoCollectionIT.class;
-  }
-
-  @Override
-  @Before
-  public void setUp() {
-    super.setUp();
-    db = client.getDatabase("local");
-  }
-
-  @Override
-  @After
-  public void tearDown() {
-    db.getCollection(collectionName()).drop();
-    super.tearDown();
-  }
 
   @Test
   public void createCollection() {
@@ -52,8 +28,8 @@ public class MongoCollectionIT extends AbstractMongoIT {
      * creates new collections when you first store data for the collections.
      */
     db = client.getDatabase("local");
-    db.createCollection(collectionName());
-    MongoCollection<Document> collection = db.getCollection(collectionName());
+    db.createCollection("users");
+    MongoCollection<Document> collection = db.getCollection("users");
     assertThat(collection.countDocuments()).isZero();
   }
 }
