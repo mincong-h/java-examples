@@ -4,4 +4,4 @@
  *
  * @author Mincong Huang
  */
-package io.mincongh.mongodb.model_changes;
+package io.mincong.mongodb.model_changes;
