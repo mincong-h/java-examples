@@ -7,7 +7,7 @@
 Start the MongoDB Docker image via Docker:
 
 ```sh
-> docker run --rm --name mongo-demos --detach -p 27017:27017 mongo:3.6
+> docker run --rm --name mongo-demos --detach -p 27017:27017 mongo:4.2
 ```
 
 Don't forget to stop it when you finish:
@@ -112,7 +112,7 @@ companies
 Create a new collection
 ([`db.createCollection`](https://docs.mongodb.com/manual/reference/method/db.createCollection/)):
 
-```
+```js
 > db.createCollection("users")
 { "ok" : 1 }
 ```
