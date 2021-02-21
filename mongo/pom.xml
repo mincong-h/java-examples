@@ -30,12 +30,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>de.bwaldvogel</groupId>
-      <artifactId>mongo-java-server</artifactId>
-      <version>${mongoJavaServer.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-sync</artifactId>
       <version>${mongo.driver.version}</version>

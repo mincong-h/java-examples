@@ -6,10 +6,9 @@ import java.util.Objects;
 public class MongoProviderFactory {
   private static final String FAKE_MONGO = "FakeMongo";
   private static final String REAL_MONGO = "RealMongo";
-  private static final String MONGO_JAVA_SERVER = "MongoJavaServer";
 
   public static Object[] implementations() {
-    return new Object[] {FAKE_MONGO, REAL_MONGO, MONGO_JAVA_SERVER};
+    return new Object[] {FAKE_MONGO, REAL_MONGO};
   }
 
   public static Builder newBuilder() {
@@ -46,8 +45,6 @@ public class MongoProviderFactory {
         case REAL_MONGO:
           Objects.requireNonNull(realFongoRule);
           return new FongoProvider(realFongoRule.getDatabase(), true);
-        case MONGO_JAVA_SERVER:
-          return new MongoJavaServerProvider();
         default:
           throw new IllegalArgumentException("Unknown provider " + providerName);
       }

@@ -11,14 +11,6 @@ public interface MongoProvider {
   MongoCollection<BasicDBObject> userCollection();
 
   /**
-   * Whether this provider is implemented by Mongo Java Server.
-   *
-   * @return true if this provider is implemented by Mongo Java Server, else false
-   * @see <a href="https://github.com/bwaldvogel/mongo-java-server">Mongo Java Server</a>
-   */
-  boolean isMongoJavaServer();
-
-  /**
    * Whether this provider is implemented by a real MongoDB.
    *
    * @return true if this provider is implemented by a real MongoDB, else false

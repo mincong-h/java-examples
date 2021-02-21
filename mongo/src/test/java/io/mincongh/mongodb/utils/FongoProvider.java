@@ -26,11 +26,6 @@ public class FongoProvider implements MongoProvider {
   }
 
   @Override
-  public boolean isMongoJavaServer() {
-    return false;
-  }
-
-  @Override
   public boolean isRealMongo() {
     return isReal;
   }
