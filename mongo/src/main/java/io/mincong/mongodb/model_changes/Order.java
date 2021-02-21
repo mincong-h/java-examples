@@ -9,7 +9,7 @@ public class Order {
   private final String id;
 
   @JsonProperty("customerId")
-  private final String customer;
+  private final String customerId;
 
   @JsonProperty("amount")
   private final double amount;
@@ -17,10 +17,10 @@ public class Order {
   @JsonCreator
   public Order(
       @JsonProperty("_id") String id,
-      @JsonProperty("customerId") String customer,
+      @JsonProperty("customerId") String customerId,
       @JsonProperty("amount") double amount) {
     this.id = id;
-    this.customer = customer;
+    this.customerId = customerId;
     this.amount = amount;
   }
 
@@ -28,8 +28,8 @@ public class Order {
     return id;
   }
 
-  public String getCustomer() {
-    return customer;
+  public String getCustomerId() {
+    return customerId;
   }
 
   public double getAmount() {
@@ -43,12 +43,12 @@ public class Order {
     Order order = (Order) o;
     return Double.compare(order.amount, amount) == 0
         && Objects.equals(id, order.id)
-        && Objects.equals(customer, order.customer);
+        && Objects.equals(customerId, order.customerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, customer, amount);
+    return Objects.hash(id, customerId, amount);
   }
 
   @Override
@@ -57,8 +57,8 @@ public class Order {
         + "id='"
         + id
         + '\''
-        + ", customer='"
-        + customer
+        + ", customerId='"
+        + customerId
         + '\''
         + ", amount="
         + amount
