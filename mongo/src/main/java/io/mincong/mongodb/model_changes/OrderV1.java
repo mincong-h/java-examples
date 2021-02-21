@@ -1,10 +1,13 @@
 package io.mincong.mongodb.model_changes;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderV1 {
+
   @JsonProperty("_id")
   private final String id;
 
