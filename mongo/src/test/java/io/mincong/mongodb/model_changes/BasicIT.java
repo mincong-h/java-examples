@@ -16,15 +16,16 @@ public class BasicIT extends AbstractMongoIT {
   @BeforeEach
   void setUp() {
     orderCollection = db.getCollection("orders", Order.class);
+    var result = orderCollection.insertOne(order1);
+    assertThat(result.wasAcknowledged()).isTrue();
   }
 
   @Test
   void it_should_deserialize_existing_order() {
     // Given
-    orderCollection.insertOne(order1);
 
     // When
-    var results = orderCollection.find(Filters.eq("customer", "BigCorp"));
+    var results = orderCollection.find(Filters.eq("customerId", "BigCorp"));
 
     // Then
     assertThat(results).containsExactly(order1);

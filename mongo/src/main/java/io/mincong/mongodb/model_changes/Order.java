@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 public class Order {
-  @JsonProperty("id")
+  @JsonProperty("_id")
   private final String id;
 
   @JsonProperty("customerId")
@@ -16,7 +16,7 @@ public class Order {
 
   @JsonCreator
   public Order(
-      @JsonProperty("id") String id,
+      @JsonProperty("_id") String id,
       @JsonProperty("customerId") String customer,
       @JsonProperty("amount") double amount) {
     this.id = id;
