@@ -105,6 +105,7 @@ JUnit, the programmer-friendly testing framework for Java and the JVM:
 - [Use Auto Value and Jackson in REST API](https://mincong.io/2018/06/19/auto-value-and-jackson/)
 - [Jackson XML Mapper](https://mincong.io/2019/03/19/jackson-xml-mapper/)
 - [Vavr Jackson 1.0.0 Alpha 3 release notes](https://mincong.io/2020/07/11/vavr-jackson-1.0.0-alpha-3/)
+- [Making Backward-Compatible Schema Changes in MongoDB](https://mincong.io/2021/02/27/mongodb-schema-compatibility/)
 
 ### Reliability
 
