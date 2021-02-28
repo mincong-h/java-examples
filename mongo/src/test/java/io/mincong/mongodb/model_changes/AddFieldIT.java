@@ -48,11 +48,11 @@ public class AddFieldIT extends AbstractMongoIT {
    *
    * <p>"java.io.UncheckedIOException:
    * com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field
-   * "isCancelled" (class io.mincong.mongodb.model_changes.OrderV1), not marked as ignorable (3
-   * known properties: "amount", "customerId", "_id"]) at [Source: (String)"{"_id": "2",
-   * "customerId": "Customer2", "amount": 200.0, "isCancelled": true, "operator":
-   * "emea@example.com", "productIds": ["A", "B", "C"]}"; line: 1, column: 77] (through reference
-   * chain: io.mincong.mongodb.model_changes.OrderV1["isCancelled"])"
+   * "isCanceled" (class io.mincong.mongodb.model_changes.OrderV1), not marked as ignorable (3 known
+   * properties: "amount", "customerId", "_id"]) at [Source: (String)"{"_id": "2", "customerId":
+   * "Customer2", "amount": 200.0, "isCanceled": true, "operator": "emea@example.com", "productIds":
+   * ["A", "B", "C"]}"; line: 1, column: 77] (through reference chain:
+   * io.mincong.mongodb.model_changes.OrderV1["isCanceled"])"
    */
   @Test
   void it_should_be_fine_when_revert_to_V1() {
