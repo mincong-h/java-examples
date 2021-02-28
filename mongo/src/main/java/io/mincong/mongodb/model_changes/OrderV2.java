@@ -28,8 +28,8 @@ public class OrderV2 {
    * <p>For existing documents which do not contain this field, the deserialization defaults to
    * `false`.
    */
-  @JsonProperty("isCancelled")
-  private final boolean isCancelled;
+  @JsonProperty("isCanceled")
+  private final boolean isCanceled;
 
   /**
    * This is a new operator.
@@ -54,7 +54,7 @@ public class OrderV2 {
       @JsonProperty("_id") String id,
       @JsonProperty("customerId") String customerId,
       @JsonProperty("amount") double amount,
-      @JsonProperty("isCancelled") boolean isCancelled,
+      @JsonProperty("isCanceled") boolean isCanceled,
       @JsonProperty("operator") String operator,
       @JsonProperty("productIds") List<String> productIds) {
     this.id = id;
@@ -62,7 +62,7 @@ public class OrderV2 {
     this.amount = amount;
 
     // when missing value, defaults to `false`
-    this.isCancelled = isCancelled;
+    this.isCanceled = isCanceled;
 
     // when missing value, handle null explicitly
     if (operator == null) {
@@ -91,8 +91,8 @@ public class OrderV2 {
     return amount;
   }
 
-  public boolean getIsCancelled() {
-    return isCancelled;
+  public boolean getIsCanceled() {
+    return isCanceled;
   }
 
   @Override
@@ -103,14 +103,14 @@ public class OrderV2 {
     return Double.compare(order.amount, amount) == 0
         && Objects.equals(id, order.id)
         && Objects.equals(customerId, order.customerId)
-        && Objects.equals(isCancelled, order.isCancelled)
+        && Objects.equals(isCanceled, order.isCanceled)
         && Objects.equals(operator, order.operator)
         && Objects.equals(productIds, order.productIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, customerId, amount, isCancelled, operator, productIds);
+    return Objects.hash(id, customerId, amount, isCanceled, operator, productIds);
   }
 
   @Override
@@ -124,8 +124,8 @@ public class OrderV2 {
         + '\''
         + ", amount="
         + amount
-        + ", isCancelled="
-        + isCancelled
+        + ", isCanceled="
+        + isCanceled
         + ", operator='"
         + operator
         + '\''
