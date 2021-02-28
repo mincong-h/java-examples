@@ -35,9 +35,15 @@ public abstract class AbstractMongoIT {
 
   private CodecRegistry createCodecRegistry() {
     var defaultRegistry = MongoClientSettings.getDefaultCodecRegistry();
+    var objectMapper = new ObjectMapper();
+
+    // Enable one of the following two statements to disable the FAIL_ON_UNKNOWN_PROPERTIES feature
+    // objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    // objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
     var jacksonRegistry =
         CodecRegistries.fromProviders(
-            new BsonValueCodecProvider(), new JacksonCodecProvider(new ObjectMapper()));
+            new BsonValueCodecProvider(), new JacksonCodecProvider(objectMapper));
     return CodecRegistries.fromRegistries(defaultRegistry, jacksonRegistry);
   }
 
