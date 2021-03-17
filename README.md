@@ -19,6 +19,7 @@ CLI | [Apache Commons CLI][commons-cli].
 Date | Date manipulation using `java.util.*` and `java.time.*`.
 Elasticsearch | [Elasticsearch](https://github.com/elastic/elasticsearch): Open source, distributed, RESTful search engine
 Encoding | Encoding challenge in Java.
+gRPC | A high performance, open source universal RPC framework. <https://www.grpc.io/>
 IO | Java File I/O.
 Immutables | Generate simple, safe and consistent value objects. <https://immutables.github.io/>
 Jackson | Jackson, a high-performance JSON processor for Java.

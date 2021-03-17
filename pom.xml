@@ -62,6 +62,7 @@
     <module>protobuf</module>
     <module>reliability</module>
     <module>junit5</module>
+    <module>grpc</module>
   </modules>
 
   <dependencyManagement>
