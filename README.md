@@ -99,7 +99,7 @@ Java unit tests. https://site.mockito.org
 JUnit, the programmer-friendly testing framework for Java and the JVM:
 
 - [Writing Parameterized Tests in JUnit 5](https://mincong.io/2021/01/31/juni5-parameterized-tests/)
-- [JUnit 5: Dynamic Tests with `TestFactory`](https://mincong.io/2021/04/09/junit-5-dynamic-tests/)
+- [JUnit 5: Dynamic Tests with TestFactory](https://mincong.io/2021/04/09/junit-5-dynamic-tests/)
 
 ### Java Serialization
 
