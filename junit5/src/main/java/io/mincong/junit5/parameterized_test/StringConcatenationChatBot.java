@@ -1,4 +1,4 @@
-package io.mincong.junit5;
+package io.mincong.junit5.parameterized_test;
 
 public class StringConcatenationChatBot implements ChatBot {
 
