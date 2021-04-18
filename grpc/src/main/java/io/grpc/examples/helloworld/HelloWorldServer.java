@@ -27,12 +27,22 @@ import java.util.logging.Logger;
 public class HelloWorldServer {
   private static final Logger logger = Logger.getLogger(HelloWorldServer.class.getName());
 
+  /** This is the gRPC server. */
   private Server server;
 
   private void start() throws IOException {
     /* The port on which the server should run */
     int port = 50051;
-    server = ServerBuilder.forPort(port).addService(new GreeterImpl()).build().start();
+    server =
+        ServerBuilder.forPort(port)
+            /*
+             * This is how the hello-world service "Geeter" gets added into the
+             * gRPC server. In other words, a server contains one or multiple
+             * services.
+             */
+            .addService(new GreeterImpl())
+            .build()
+            .start();
     logger.info("Server started, listening on " + port);
     Runtime.getRuntime()
         .addShutdownHook(
@@ -42,6 +52,7 @@ public class HelloWorldServer {
                 // Use stderr here since the logger may have been reset by its JVM shutdown hook.
                 System.err.println("*** shutting down gRPC server since JVM is shutting down");
                 try {
+                  // control the lifecycle in a JVM shutdown hook
                   HelloWorldServer.this.stop();
                 } catch (InterruptedException e) {
                   e.printStackTrace(System.err);
@@ -72,7 +83,7 @@ public class HelloWorldServer {
   }
 
   /**
-   * This is the implementation of the greeter.
+   * This is the actual implementation of the greeter.
    *
    * <p>Developer needs the write the logic himself.
    */
