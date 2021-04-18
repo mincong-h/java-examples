@@ -95,6 +95,8 @@ public class HelloWorldClientTest {
   /**
    * To test the client, call from the client against the fake server, and verify behaviors or state
    * changes from the server side.
+   *
+   * <p>This is a mock test. To see a real gRPC server test, visit the HelloWorldServerTest.
    */
   @Test
   public void greet_messageDeliveredToServer() {
