@@ -25,6 +25,7 @@
     <junit4.version>4.13.1</junit4.version>
     <junit5.version>5.7.0</junit5.version>
     <errorprone.version>2.4.0</errorprone.version>
+    <mockito.version>3.7.7</mockito.version>
   </properties>
 
   <modules>
@@ -62,6 +63,7 @@
     <module>protobuf</module>
     <module>reliability</module>
     <module>junit5</module>
+    <module>grpc</module>
   </modules>
 
   <dependencyManagement>

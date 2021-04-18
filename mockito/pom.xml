@@ -13,10 +13,6 @@
   <artifactId>java-examples-mockito-parent</artifactId>
   <name>Java Examples - Mockito</name>
 
-  <properties>
-    <mockito.version>3.7.7</mockito.version>
-  </properties>
-
   <modules>
     <module>mockito-junit4</module>
     <module>mockito-junit5</module>
