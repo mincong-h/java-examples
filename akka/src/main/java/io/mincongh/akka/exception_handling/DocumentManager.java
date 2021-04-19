@@ -1,7 +1,11 @@
 package io.mincongh.akka.exception_handling;
 
+import static akka.actor.SupervisorStrategy.*;
+
 import akka.actor.AbstractActor;
+import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
+import akka.japi.pf.DeciderBuilder;
 import akka.pattern.BackoffOpts;
 import akka.pattern.BackoffSupervisor;
 import java.io.IOException;
@@ -47,15 +51,21 @@ public class DocumentManager extends AbstractActor {
 
     // min=1s, max=16s
     // 1s
-    // 2s (+100%)
-    // 4s (+100%)
-    // 8s (+100%)
-    // 16s (+100%)
+    // 2s (±10%)
+    // 4s (±10%)
+    // 8s (±10%)
+    // 16s (±10%)
     var childProps = DocumentCreator.props(externalServiceClient, "Tom");
+
     context()
         .actorOf(
             BackoffSupervisor.props(
-                BackoffOpts.onFailure(childProps, "document-creator", minBackOff, maxBackOff, 1.0)
-                    .withMaxNrOfRetries(5)));
+                BackoffOpts.onFailure(childProps, "document-creator", minBackOff, maxBackOff, 0.1)
+                    .withSupervisorStrategy(
+                        new OneForOneStrategy(
+                                DeciderBuilder.match(TooManyRequestsException.class, e -> restart())
+                                    .matchAny(o -> stop())
+                                    .build())
+                            .withMaxNrOfRetries(5))));
   }
 }

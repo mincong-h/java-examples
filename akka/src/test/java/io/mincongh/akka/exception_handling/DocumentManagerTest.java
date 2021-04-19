@@ -40,14 +40,14 @@ class DocumentManagerTest {
 
   @Test
   @Timeout(60) // avoid incorrect implementation
-  void exceptionBackoff() {
+  void exceptionBackoff_TooManyRequestsException() {
     // Given
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(anyString()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
-                  throw new TooManyRequestException("" + count.getAndIncrement());
+                  throw new TooManyRequestsException("" + count.getAndIncrement());
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
@@ -60,5 +60,29 @@ class DocumentManagerTest {
     // Then
     testKit.expectNoMessage(maxBackOff);
     assertThat(count.get()).isEqualTo(6);
+  }
+
+  @Test
+  @Timeout(60) // avoid incorrect implementation
+  void exceptionBackoff_OtherException() {
+    // Given
+    var count = new AtomicInteger();
+    when(externalServiceClient.createDocument(anyString()))
+        .thenAnswer(
+            (Answer<String>)
+                invocation -> {
+                  throw new IllegalStateException("" + count.getAndIncrement());
+                });
+    var maxBackOff = Duration.ofSeconds(3);
+    var docWriter =
+        system.actorOf(
+            DocumentManager.props(externalServiceClient, Duration.ofMillis(1), maxBackOff));
+
+    // When
+    docWriter.tell(DocumentManager.WRITE_DOC, testKit.getRef());
+
+    // Then
+    testKit.expectNoMessage(maxBackOff);
+    assertThat(count.get()).isEqualTo(1);
   }
 }
