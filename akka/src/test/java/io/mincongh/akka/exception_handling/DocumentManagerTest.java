@@ -1,15 +1,13 @@
 package io.mincongh.akka.exception_handling;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 import akka.actor.ActorSystem;
 import akka.testkit.javadsl.TestKit;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.transport.RemoteTransportException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -33,7 +31,7 @@ class DocumentManagerTest {
 
   private TestKit testKit;
 
-  @Mock IndicesClient indicesClient;
+  @Mock ExternalServiceClient externalServiceClient;
 
   @BeforeEach
   void setUp() {
@@ -45,15 +43,16 @@ class DocumentManagerTest {
   void exceptionBackoff() {
     // Given
     var count = new AtomicInteger();
-    when(indicesClient.create(any(CreateIndexRequest.class), any()))
+    when(externalServiceClient.create(anyString()))
         .thenAnswer(
-            (Answer<Void>)
+            (Answer<String>)
                 invocation -> {
-                  throw new RemoteTransportException("" + count.getAndIncrement(), null);
+                  throw new TooManyRequestException("" + count.getAndIncrement());
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
-        system.actorOf(DocumentManager.props(indicesClient, Duration.ofMillis(1), maxBackOff));
+        system.actorOf(
+            DocumentManager.props(externalServiceClient, Duration.ofMillis(1), maxBackOff));
 
     // When
     docWriter.tell(DocumentManager.WRITE_DOC, testKit.getRef());

@@ -13,19 +13,22 @@ public class DocumentManager extends AbstractActor {
   private static final Logger logger = LoggerFactory.getLogger(DocumentManager.class);
   public static final String WRITE_DOC = "write_doc";
 
-  private final IndicesClient indicesClient;
+  private final ExternalServiceClient externalServiceClient;
   private final Duration minBackOff;
   private final Duration maxBackOff;
 
-  private DocumentManager(IndicesClient indicesClient, Duration minBackOff, Duration maxBackOff) {
-    this.indicesClient = indicesClient;
+  private DocumentManager(
+      ExternalServiceClient externalServiceClient, Duration minBackOff, Duration maxBackOff) {
+    this.externalServiceClient = externalServiceClient;
     this.minBackOff = minBackOff;
     this.maxBackOff = maxBackOff;
   }
 
-  public static Props props(IndicesClient indicesClient, Duration minBackOff, Duration maxBackOff) {
+  public static Props props(
+      ExternalServiceClient externalServiceClient, Duration minBackOff, Duration maxBackOff) {
     return Props.create(
-        DocumentManager.class, () -> new DocumentManager(indicesClient, minBackOff, maxBackOff));
+        DocumentManager.class,
+        () -> new DocumentManager(externalServiceClient, minBackOff, maxBackOff));
   }
 
   @Override
@@ -48,7 +51,7 @@ public class DocumentManager extends AbstractActor {
     // 4s (+100%)
     // 8s (+100%)
     // 16s (+100%)
-    var childProps = DocumentWriter.props(indicesClient);
+    var childProps = DocumentWriter.props(externalServiceClient);
     context()
         .actorOf(
             BackoffSupervisor.props(

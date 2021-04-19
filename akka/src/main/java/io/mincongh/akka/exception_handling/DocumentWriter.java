@@ -3,8 +3,6 @@ package io.mincongh.akka.exception_handling;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,14 +12,14 @@ public class DocumentWriter extends AbstractActor {
 
   public static final String WRITE = "write";
 
-  private final IndicesClient indicesClient;
+  private final ExternalServiceClient externalServiceClient;
 
-  private DocumentWriter(IndicesClient indicesClient) {
-    this.indicesClient = indicesClient;
+  private DocumentWriter(ExternalServiceClient externalServiceClient) {
+    this.externalServiceClient = externalServiceClient;
   }
 
-  public static Props props(IndicesClient indicesClient) {
-    return Props.create(DocumentWriter.class, () -> new DocumentWriter(indicesClient));
+  public static Props props(ExternalServiceClient externalServiceClient) {
+    return Props.create(DocumentWriter.class, () -> new DocumentWriter(externalServiceClient));
   }
 
   @Override
@@ -44,9 +42,6 @@ public class DocumentWriter extends AbstractActor {
 
   private void writeDoc(String user) {
     logger.info("Writing document for user {}", user);
-    var response = indicesClient.create(new CreateIndexRequest("users"), RequestOptions.DEFAULT);
-    if (!response.isAcknowledged()) {
-      throw new IllegalStateException("Failed to handle create-document request for user " + user);
-    }
+    externalServiceClient.create(user);
   }
 }
