@@ -12,7 +12,7 @@ This project is tested under Java 11 and Java 15.
 
 Module | Description
 :--- | :---
-Akka | Build highly concurrent, distributed, and resilient message-driven applications on the JVM <https://akka.io>
+Akka (Typed) | Build highly concurrent, distributed, and resilient message-driven applications on the JVM <https://akka.io>
 AssertJ | [AssertJ][assertj] testing framework.
 Basic | Basic usage of Java core APIs.
 CLI | [Apache Commons CLI][commons-cli].
