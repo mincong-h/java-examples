@@ -14,13 +14,13 @@ public class DocumentWriter extends AbstractActor {
 
   public static final String WRITE = "write";
 
-  private final DocumentManager.IndicesClient indicesClient;
+  private final IndicesClient indicesClient;
 
-  private DocumentWriter(DocumentManager.IndicesClient indicesClient) {
+  private DocumentWriter(IndicesClient indicesClient) {
     this.indicesClient = indicesClient;
   }
 
-  public static Props props(DocumentManager.IndicesClient indicesClient) {
+  public static Props props(IndicesClient indicesClient) {
     return Props.create(DocumentWriter.class, () -> new DocumentWriter(indicesClient));
   }
 

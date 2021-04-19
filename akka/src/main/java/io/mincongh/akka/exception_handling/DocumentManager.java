@@ -6,9 +6,6 @@ import akka.pattern.BackoffOpts;
 import akka.pattern.BackoffSupervisor;
 import java.io.IOException;
 import java.time.Duration;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.indices.CreateIndexRequest;
-import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,13 +54,5 @@ public class DocumentManager extends AbstractActor {
             BackoffSupervisor.props(
                 BackoffOpts.onFailure(childProps, "document-writer", minBackOff, maxBackOff, 1.0)
                     .withMaxNrOfRetries(5)));
-  }
-
-  /**
-   * Create an interface for indices because the default indices client provided by Elasticsearch is
-   * "final", so it cannot be mocked.
-   */
-  interface IndicesClient {
-    CreateIndexResponse create(CreateIndexRequest request, RequestOptions options);
   }
 }

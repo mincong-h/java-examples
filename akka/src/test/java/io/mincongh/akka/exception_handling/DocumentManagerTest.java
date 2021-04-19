@@ -33,7 +33,7 @@ class DocumentManagerTest {
 
   private TestKit testKit;
 
-  @Mock DocumentManager.IndicesClient indicesClient;
+  @Mock IndicesClient indicesClient;
 
   @BeforeEach
   void setUp() {
