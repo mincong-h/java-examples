@@ -1,5 +1,5 @@
 package io.mincongh.akka.exception_handling;
 
 interface ExternalServiceClient {
-  String create(String user);
+  String createDocument(String user);
 }

@@ -33,7 +33,7 @@ public class DocumentManager extends AbstractActor {
 
   @Override
   public Receive createReceive() {
-    return receiveBuilder().matchEquals(WRITE_DOC, this::writeDoc).build();
+    return receiveBuilder().matchEquals(WRITE_DOC, this::createDoc).build();
   }
 
   @Override
@@ -42,7 +42,7 @@ public class DocumentManager extends AbstractActor {
     super.postStop();
   }
 
-  private void writeDoc(String user) throws IOException {
+  private void createDoc(String user) throws IOException {
     logger.info("Creating task for user {}", user);
 
     // min=1s, max=16s
@@ -51,11 +51,11 @@ public class DocumentManager extends AbstractActor {
     // 4s (+100%)
     // 8s (+100%)
     // 16s (+100%)
-    var childProps = DocumentWriter.props(externalServiceClient);
+    var childProps = DocumentCreator.props(externalServiceClient, "Tom");
     context()
         .actorOf(
             BackoffSupervisor.props(
-                BackoffOpts.onFailure(childProps, "document-writer", minBackOff, maxBackOff, 1.0)
+                BackoffOpts.onFailure(childProps, "document-creator", minBackOff, maxBackOff, 1.0)
                     .withMaxNrOfRetries(5)));
   }
 }

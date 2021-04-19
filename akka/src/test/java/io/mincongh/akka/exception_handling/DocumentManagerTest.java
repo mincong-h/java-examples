@@ -43,7 +43,7 @@ class DocumentManagerTest {
   void exceptionBackoff() {
     // Given
     var count = new AtomicInteger();
-    when(externalServiceClient.create(anyString()))
+    when(externalServiceClient.createDocument(anyString()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
