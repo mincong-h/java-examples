@@ -80,7 +80,7 @@ public class DocumentManager extends AbstractActor {
                                 DeciderBuilder.match(TooManyRequestsException.class, e -> restart())
                                     .matchAny(o -> stop())
                                     .build())
-                            .withMaxNrOfRetries(5))));
+                            .withMaxNrOfRetries(maxRetries))));
   }
 
   private void createDocWithoutBackoff() throws IOException {
