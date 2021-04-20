@@ -52,10 +52,10 @@ public class DocumentCreator extends AbstractActor {
     // min=1s, max=16s
     //
     // 1s
-    // 2s (±10%)
-    // 4s (±10%)
-    // 8s (±10%)
-    // 16s (±10%)
+    // 2s (+ ≤10%)
+    // 4s (+ ≤10%)
+    // 8s (+ ≤10%)
+    // 16s (+ ≤10%)
     //
     return BackoffSupervisor.props(
         BackoffOpts.onFailure(childProps, "document-creator", minBackOff, maxBackOff, 0.1)

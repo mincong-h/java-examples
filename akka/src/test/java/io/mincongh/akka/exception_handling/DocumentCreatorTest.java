@@ -52,13 +52,11 @@ class DocumentCreatorTest {
                   }
                   return new CreateDocumentResponse();
                 });
-    var docWriter =
-        system.actorOf(
-            DocumentCreator.props(
-                externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
 
     // When
-    docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
+    system.actorOf(
+        DocumentCreator.props(
+            externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
 
     // Then
     testKit.expectMsgClass(CreateDocumentResponse.class);
@@ -79,13 +77,10 @@ class DocumentCreatorTest {
                   }
                   return new CreateDocumentResponse();
                 });
-    var docWriter =
-        system.actorOf(
-            DocumentCreator.props(
-                externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
-
     // When
-    docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
+    system.actorOf(
+        DocumentCreator.props(
+            externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
 
     // Then
     testKit.expectMsgClass(CreateDocumentResponse.class);
@@ -104,18 +99,16 @@ class DocumentCreatorTest {
                   throw new TooManyRequestsException("" + count.getAndIncrement());
                 });
     var maxBackOff = Duration.ofSeconds(3);
-    var docWriter =
-        system.actorOf(
-            DocumentCreator.propsWithBackoff(
-                externalServiceClient,
-                testKit.getRef(),
-                new CreateDocumentRequest("Tom"),
-                Duration.ofMillis(1),
-                maxBackOff,
-                MAX_RETRIES));
 
     // When
-    docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
+    system.actorOf(
+        DocumentCreator.propsWithBackoff(
+            externalServiceClient,
+            testKit.getRef(),
+            new CreateDocumentRequest("Tom"),
+            Duration.ofMillis(1),
+            maxBackOff,
+            MAX_RETRIES));
 
     // Then
     testKit.expectNoMessage(maxBackOff);
@@ -134,18 +127,16 @@ class DocumentCreatorTest {
                   throw new IllegalStateException("" + count.getAndIncrement());
                 });
     var maxBackOff = Duration.ofSeconds(3);
-    var docWriter =
-        system.actorOf(
-            DocumentCreator.propsWithBackoff(
-                externalServiceClient,
-                testKit.getRef(),
-                new CreateDocumentRequest("Tom"),
-                Duration.ofMillis(1),
-                maxBackOff,
-                MAX_RETRIES));
 
     // When
-    docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
+    system.actorOf(
+        DocumentCreator.propsWithBackoff(
+            externalServiceClient,
+            testKit.getRef(),
+            new CreateDocumentRequest("Tom"),
+            Duration.ofMillis(1),
+            maxBackOff,
+            MAX_RETRIES));
 
     // Then
     testKit.expectNoMessage(maxBackOff);
