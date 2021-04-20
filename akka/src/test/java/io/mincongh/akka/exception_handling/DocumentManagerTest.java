@@ -55,14 +55,14 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(
-                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+            DocumentCreator.props(
+                externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
 
     // When
     docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
 
     // Then
-    testKit.expectNoMessage(maxBackOff);
+    testKit.expectMsgClass(CreateDocumentResponse.class);
     assertThat(count.get()).isGreaterThan(1 + MAX_RETRIES); // initial (1) + retries (N)
   }
 
@@ -83,14 +83,14 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(
-                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+            DocumentCreator.props(
+                externalServiceClient, testKit.getRef(), new CreateDocumentRequest("Tom")));
 
     // When
     docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
 
     // Then
-    testKit.expectNoMessage(maxBackOff);
+    testKit.expectMsgClass(CreateDocumentResponse.class);
     assertThat(count.get()).isGreaterThan(1 + MAX_RETRIES); // initial (1) + retries (N)
   }
 
@@ -108,8 +108,13 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(
-                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+            DocumentCreator.propsWithBackoff(
+                externalServiceClient,
+                testKit.getRef(),
+                new CreateDocumentRequest("Tom"),
+                Duration.ofMillis(1),
+                maxBackOff,
+                MAX_RETRIES));
 
     // When
     docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
@@ -133,8 +138,13 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(
-                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+            DocumentCreator.propsWithBackoff(
+                externalServiceClient,
+                testKit.getRef(),
+                new CreateDocumentRequest("Tom"),
+                Duration.ofMillis(1),
+                maxBackOff,
+                MAX_RETRIES));
 
     // When
     docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
@@ -145,6 +155,7 @@ class DocumentManagerTest {
   }
 
   @Test
+  @Timeout(60) // avoid incorrect implementation
   void successfulResponse() {
     // Given
     when(externalServiceClient.createDocument(any())).thenReturn(new CreateDocumentResponse());
