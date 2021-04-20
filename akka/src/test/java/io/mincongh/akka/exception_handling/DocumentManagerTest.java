@@ -45,12 +45,12 @@ class DocumentManagerTest {
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(any()))
         .thenAnswer(
-            (Answer<String>)
+            (Answer<CreateDocumentResponse>)
                 invocation -> {
                   if (count.get() < 10) { // avoid too spamming the logs
                     throw new TooManyRequestsException("" + count.getAndIncrement());
                   }
-                  return "created";
+                  return new CreateDocumentResponse();
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
@@ -73,12 +73,12 @@ class DocumentManagerTest {
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(any()))
         .thenAnswer(
-            (Answer<String>)
+            (Answer<CreateDocumentResponse>)
                 invocation -> {
                   if (count.get() < 10) { // avoid too spamming the logs
                     throw new IllegalStateException("" + count.getAndIncrement());
                   }
-                  return "created";
+                  return new CreateDocumentResponse();
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
@@ -101,7 +101,7 @@ class DocumentManagerTest {
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(any()))
         .thenAnswer(
-            (Answer<String>)
+            (Answer<CreateDocumentResponse>)
                 invocation -> {
                   throw new TooManyRequestsException("" + count.getAndIncrement());
                 });
@@ -126,7 +126,7 @@ class DocumentManagerTest {
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(any()))
         .thenAnswer(
-            (Answer<String>)
+            (Answer<CreateDocumentResponse>)
                 invocation -> {
                   throw new IllegalStateException("" + count.getAndIncrement());
                 });
@@ -142,5 +142,25 @@ class DocumentManagerTest {
     // Then
     testKit.expectNoMessage(maxBackOff);
     assertThat(count.get()).isEqualTo(1);
+  }
+
+  @Test
+  void successfulResponse() {
+    // Given
+    when(externalServiceClient.createDocument(any())).thenReturn(new CreateDocumentResponse());
+    var maxBackOff = Duration.ofSeconds(3);
+
+    // When
+    system.actorOf(
+        DocumentCreator.propsWithBackoff(
+            externalServiceClient,
+            testKit.getRef(),
+            new CreateDocumentRequest("Tom"),
+            Duration.ofMillis(1),
+            maxBackOff,
+            MAX_RETRIES));
+
+    // Then
+    testKit.expectMsgClass(CreateDocumentResponse.class);
   }
 }

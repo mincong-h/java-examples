@@ -1,14 +1,7 @@
 package io.mincongh.akka.exception_handling;
 
-import static akka.actor.SupervisorStrategy.*;
-
 import akka.actor.AbstractActor;
-import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
-import akka.japi.pf.DeciderBuilder;
-import akka.pattern.BackoffOpts;
-import akka.pattern.BackoffSupervisor;
-import java.io.IOException;
 import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,8 +41,9 @@ public class DocumentManager extends AbstractActor {
   @Override
   public Receive createReceive() {
     return receiveBuilder()
-        .matchEquals(CREATE_DOC_WITH_BACKOFF, ignored -> createDocWithBackoff())
-        .matchEquals(CREATE_DOC_WITHOUT_BACKOFF, ignored -> createDocWithoutBackoff())
+        .matchEquals(CREATE_DOC_WITH_BACKOFF, ignored -> createDocWithBackoff(true))
+        .matchEquals(CREATE_DOC_WITHOUT_BACKOFF, ignored -> createDocWithBackoff(false))
+        .match(CreateDocumentResponse.class, this::handleResponse)
         .build();
   }
 
@@ -59,38 +53,25 @@ public class DocumentManager extends AbstractActor {
     super.postStop();
   }
 
-  private void createDocWithBackoff() throws IOException {
+  private void createDocWithBackoff(boolean withBackoff) {
     var user = "Tom";
     var request = new CreateDocumentRequest(user);
-    logger.info("Creating task for user {} with backoff", user);
 
-    // min=1s, max=16s
-    // 1s
-    // 2s (±10%)
-    // 4s (±10%)
-    // 8s (±10%)
-    // 16s (±10%)
-    var childProps = DocumentCreator.props(externalServiceClient, request);
+    final Props creatorProps;
+    if (withBackoff) {
+      logger.info("Creating task for user {} with backoff", user);
+      creatorProps =
+          DocumentCreator.propsWithBackoff(
+              externalServiceClient, self(), request, minBackOff, maxBackOff, maxRetries);
+    } else {
+      logger.info("Creating task for user {} without backoff", user);
+      creatorProps = DocumentCreator.props(externalServiceClient, self(), request);
+    }
 
-    context()
-        .actorOf(
-            BackoffSupervisor.props(
-                BackoffOpts.onFailure(childProps, "document-creator", minBackOff, maxBackOff, 0.1)
-                    .withSupervisorStrategy(
-                        new OneForOneStrategy(
-                                DeciderBuilder.match(TooManyRequestsException.class, e -> restart())
-                                    .matchAny(o -> stop())
-                                    .build())
-                            .withMaxNrOfRetries(maxRetries))));
+    context().actorOf(creatorProps);
   }
 
-  private void createDocWithoutBackoff() throws IOException {
-    var user = "Tom";
-    logger.info("Creating task for user {} without backoff", user);
-
-    var request = new CreateDocumentRequest(user);
-    var childProps = DocumentCreator.props(externalServiceClient, request);
-
-    context().actorOf(childProps);
+  private void handleResponse(CreateDocumentResponse response) {
+    logger.info("Creation finished: {}", response);
   }
 }
