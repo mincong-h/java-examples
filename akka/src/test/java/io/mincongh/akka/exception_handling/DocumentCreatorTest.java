@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 @ExtendWith(MockitoExtension.class)
-class DocumentManagerTest {
+class DocumentCreatorTest {
   private static final int MAX_RETRIES = 5;
 
   private ActorSystem system;
