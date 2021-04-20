@@ -52,7 +52,6 @@ class DocumentCreatorTest {
                   }
                   return new CreateDocumentResponse();
                 });
-    var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
             DocumentCreator.props(
@@ -80,7 +79,6 @@ class DocumentCreatorTest {
                   }
                   return new CreateDocumentResponse();
                 });
-    var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
             DocumentCreator.props(
