@@ -8,7 +8,10 @@ import akka.actor.ActorSystem;
 import akka.testkit.javadsl.TestKit;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -44,7 +47,10 @@ class DocumentManagerTest {
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
-                  throw new TooManyRequestsException("" + count.getAndIncrement());
+                  if (count.get() < 10) { // avoid too spamming the logs
+                    throw new TooManyRequestsException("" + count.getAndIncrement());
+                  }
+                  return "created";
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
@@ -62,14 +68,17 @@ class DocumentManagerTest {
 
   @Test
   @Timeout(60) // avoid incorrect implementation
-  void exceptionWithoutBackoff_OtherException() {
+  void exceptionWithoutBackoff_OtherException() throws Exception {
     // Given
     var count = new AtomicInteger();
     when(externalServiceClient.createDocument(anyString()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
-                  throw new IllegalStateException("" + count.getAndIncrement());
+                  if (count.get() < 10) { // avoid too spamming the logs
+                    throw new IllegalStateException("" + count.getAndIncrement());
+                  }
+                  return "created";
                 });
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
