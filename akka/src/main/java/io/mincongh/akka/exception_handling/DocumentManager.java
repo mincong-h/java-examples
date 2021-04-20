@@ -15,29 +15,42 @@ import org.slf4j.LoggerFactory;
 
 public class DocumentManager extends AbstractActor {
   private static final Logger logger = LoggerFactory.getLogger(DocumentManager.class);
-  public static final String WRITE_DOC = "write_doc";
+
+  public static final String CREATE_DOC_WITH_BACKOFF = "create_doc_with_backoff";
+  public static final String CREATE_DOC_WITHOUT_BACKOFF = "create_doc_without_backoff";
 
   private final ExternalServiceClient externalServiceClient;
   private final Duration minBackOff;
   private final Duration maxBackOff;
+  private final int maxRetries;
 
   private DocumentManager(
-      ExternalServiceClient externalServiceClient, Duration minBackOff, Duration maxBackOff) {
+      ExternalServiceClient externalServiceClient,
+      Duration minBackOff,
+      Duration maxBackOff,
+      int maxRetries) {
     this.externalServiceClient = externalServiceClient;
     this.minBackOff = minBackOff;
     this.maxBackOff = maxBackOff;
+    this.maxRetries = maxRetries;
   }
 
   public static Props props(
-      ExternalServiceClient externalServiceClient, Duration minBackOff, Duration maxBackOff) {
+      ExternalServiceClient externalServiceClient,
+      Duration minBackOff,
+      Duration maxBackOff,
+      int maxRetries) {
     return Props.create(
         DocumentManager.class,
-        () -> new DocumentManager(externalServiceClient, minBackOff, maxBackOff));
+        () -> new DocumentManager(externalServiceClient, minBackOff, maxBackOff, maxRetries));
   }
 
   @Override
   public Receive createReceive() {
-    return receiveBuilder().matchEquals(WRITE_DOC, this::createDoc).build();
+    return receiveBuilder()
+        .matchEquals(CREATE_DOC_WITH_BACKOFF, ignored -> createDocWithBackoff())
+        .matchEquals(CREATE_DOC_WITHOUT_BACKOFF, ignored -> createDocWithoutBackoff())
+        .build();
   }
 
   @Override
@@ -46,8 +59,9 @@ public class DocumentManager extends AbstractActor {
     super.postStop();
   }
 
-  private void createDoc(String user) throws IOException {
-    logger.info("Creating task for user {}", user);
+  private void createDocWithBackoff() throws IOException {
+    var user = "Tom";
+    logger.info("Creating task for user {} with backoff", user);
 
     // min=1s, max=16s
     // 1s
@@ -55,7 +69,7 @@ public class DocumentManager extends AbstractActor {
     // 4s (±10%)
     // 8s (±10%)
     // 16s (±10%)
-    var childProps = DocumentCreator.props(externalServiceClient, "Tom");
+    var childProps = DocumentCreator.props(externalServiceClient, user);
 
     context()
         .actorOf(
@@ -67,5 +81,14 @@ public class DocumentManager extends AbstractActor {
                                     .matchAny(o -> stop())
                                     .build())
                             .withMaxNrOfRetries(5))));
+  }
+
+  private void createDocWithoutBackoff() throws IOException {
+    var user = "Tom";
+    logger.info("Creating task for user {} without backoff", user);
+
+    var childProps = DocumentCreator.props(externalServiceClient, user);
+
+    context().actorOf(childProps);
   }
 }

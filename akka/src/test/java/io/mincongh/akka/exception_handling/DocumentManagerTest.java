@@ -16,6 +16,7 @@ import org.mockito.stubbing.Answer;
 
 @ExtendWith(MockitoExtension.class)
 class DocumentManagerTest {
+  private static final int MAX_RETRIES = 5;
   private static ActorSystem system;
 
   @BeforeAll
@@ -40,6 +41,56 @@ class DocumentManagerTest {
 
   @Test
   @Timeout(60) // avoid incorrect implementation
+  void exceptionWithoutBackoff_TooManyRequestsException() {
+    // Given
+    var count = new AtomicInteger();
+    when(externalServiceClient.createDocument(anyString()))
+        .thenAnswer(
+            (Answer<String>)
+                invocation -> {
+                  throw new TooManyRequestsException("" + count.getAndIncrement());
+                });
+    var maxBackOff = Duration.ofSeconds(3);
+    var docWriter =
+        system.actorOf(
+            DocumentManager.props(
+                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+
+    // When
+    docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
+
+    // Then
+    testKit.expectNoMessage(maxBackOff);
+    assertThat(count.get()).isGreaterThan(1 + MAX_RETRIES); // initial (1) + retries (N)
+  }
+
+  @Test
+  @Timeout(60) // avoid incorrect implementation
+  void exceptionWithoutBackoff_OtherException() {
+    // Given
+    var count = new AtomicInteger();
+    when(externalServiceClient.createDocument(anyString()))
+        .thenAnswer(
+            (Answer<String>)
+                invocation -> {
+                  throw new IllegalStateException("" + count.getAndIncrement());
+                });
+    var maxBackOff = Duration.ofSeconds(3);
+    var docWriter =
+        system.actorOf(
+            DocumentManager.props(
+                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
+
+    // When
+    docWriter.tell(DocumentManager.CREATE_DOC_WITHOUT_BACKOFF, testKit.getRef());
+
+    // Then
+    testKit.expectNoMessage(maxBackOff);
+    assertThat(count.get()).isGreaterThan(1 + MAX_RETRIES); // initial (1) + retries (N)
+  }
+
+  @Test
+  @Timeout(60) // avoid incorrect implementation
   void exceptionBackoff_TooManyRequestsException() {
     // Given
     var count = new AtomicInteger();
@@ -52,14 +103,15 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(externalServiceClient, Duration.ofMillis(1), maxBackOff));
+            DocumentManager.props(
+                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
 
     // When
-    docWriter.tell(DocumentManager.WRITE_DOC, testKit.getRef());
+    docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
 
     // Then
     testKit.expectNoMessage(maxBackOff);
-    assertThat(count.get()).isEqualTo(6);
+    assertThat(count.get()).isEqualTo(1 + MAX_RETRIES); // initial (1) + retries (N)
   }
 
   @Test
@@ -76,10 +128,11 @@ class DocumentManagerTest {
     var maxBackOff = Duration.ofSeconds(3);
     var docWriter =
         system.actorOf(
-            DocumentManager.props(externalServiceClient, Duration.ofMillis(1), maxBackOff));
+            DocumentManager.props(
+                externalServiceClient, Duration.ofMillis(1), maxBackOff, MAX_RETRIES));
 
     // When
-    docWriter.tell(DocumentManager.WRITE_DOC, testKit.getRef());
+    docWriter.tell(DocumentManager.CREATE_DOC_WITH_BACKOFF, testKit.getRef());
 
     // Then
     testKit.expectNoMessage(maxBackOff);
