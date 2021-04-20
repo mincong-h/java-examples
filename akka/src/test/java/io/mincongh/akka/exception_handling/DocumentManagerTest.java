@@ -17,26 +17,22 @@ import org.mockito.stubbing.Answer;
 @ExtendWith(MockitoExtension.class)
 class DocumentManagerTest {
   private static final int MAX_RETRIES = 5;
-  private static ActorSystem system;
 
-  @BeforeAll
-  static void beforeClass() {
-    system = ActorSystem.create();
-  }
-
-  @AfterAll
-  static void teardown() {
-    TestKit.shutdownActorSystem(system);
-    system = null;
-  }
-
+  private ActorSystem system;
   private TestKit testKit;
 
   @Mock ExternalServiceClient externalServiceClient;
 
   @BeforeEach
   void setUp() {
+    system = ActorSystem.create();
     testKit = new TestKit(system);
+  }
+
+  @AfterEach
+  void tearDown() {
+    TestKit.shutdownActorSystem(system);
+    system = null;
   }
 
   @Test
