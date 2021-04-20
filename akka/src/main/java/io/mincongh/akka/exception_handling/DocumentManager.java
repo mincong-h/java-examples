@@ -61,6 +61,7 @@ public class DocumentManager extends AbstractActor {
 
   private void createDocWithBackoff() throws IOException {
     var user = "Tom";
+    var request = new CreateDocumentRequest(user);
     logger.info("Creating task for user {} with backoff", user);
 
     // min=1s, max=16s
@@ -69,7 +70,7 @@ public class DocumentManager extends AbstractActor {
     // 4s (±10%)
     // 8s (±10%)
     // 16s (±10%)
-    var childProps = DocumentCreator.props(externalServiceClient, user);
+    var childProps = DocumentCreator.props(externalServiceClient, request);
 
     context()
         .actorOf(
@@ -87,7 +88,8 @@ public class DocumentManager extends AbstractActor {
     var user = "Tom";
     logger.info("Creating task for user {} without backoff", user);
 
-    var childProps = DocumentCreator.props(externalServiceClient, user);
+    var request = new CreateDocumentRequest(user);
+    var childProps = DocumentCreator.props(externalServiceClient, request);
 
     context().actorOf(childProps);
   }

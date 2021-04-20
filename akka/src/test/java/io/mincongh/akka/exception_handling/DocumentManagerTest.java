@@ -1,7 +1,7 @@
 package io.mincongh.akka.exception_handling;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import akka.actor.ActorSystem;
@@ -43,7 +43,7 @@ class DocumentManagerTest {
   void exceptionWithoutBackoff_TooManyRequestsException() {
     // Given
     var count = new AtomicInteger();
-    when(externalServiceClient.createDocument(anyString()))
+    when(externalServiceClient.createDocument(any()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
@@ -71,7 +71,7 @@ class DocumentManagerTest {
   void exceptionWithoutBackoff_OtherException() throws Exception {
     // Given
     var count = new AtomicInteger();
-    when(externalServiceClient.createDocument(anyString()))
+    when(externalServiceClient.createDocument(any()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
@@ -99,7 +99,7 @@ class DocumentManagerTest {
   void exceptionBackoff_TooManyRequestsException() {
     // Given
     var count = new AtomicInteger();
-    when(externalServiceClient.createDocument(anyString()))
+    when(externalServiceClient.createDocument(any()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {
@@ -124,7 +124,7 @@ class DocumentManagerTest {
   void exceptionBackoff_OtherException() {
     // Given
     var count = new AtomicInteger();
-    when(externalServiceClient.createDocument(anyString()))
+    when(externalServiceClient.createDocument(any()))
         .thenAnswer(
             (Answer<String>)
                 invocation -> {

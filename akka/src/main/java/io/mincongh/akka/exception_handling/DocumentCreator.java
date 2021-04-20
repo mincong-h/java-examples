@@ -10,31 +10,31 @@ public class DocumentCreator extends AbstractActor {
 
   private static final Logger logger = LoggerFactory.getLogger(DocumentCreator.class);
 
-  public static final String CREATE = "write";
-
   private final ExternalServiceClient externalServiceClient;
-  private final String user;
+  private final CreateDocumentRequest request;
 
-  private DocumentCreator(ExternalServiceClient externalServiceClient, String user) {
+  private DocumentCreator(
+      ExternalServiceClient externalServiceClient, CreateDocumentRequest request) {
     this.externalServiceClient = externalServiceClient;
-    this.user = user;
+    this.request = request;
   }
 
-  public static Props props(ExternalServiceClient externalServiceClient, String user) {
+  public static Props props(
+      ExternalServiceClient externalServiceClient, CreateDocumentRequest request) {
     return Props.create(
-        DocumentCreator.class, () -> new DocumentCreator(externalServiceClient, user));
+        DocumentCreator.class, () -> new DocumentCreator(externalServiceClient, request));
   }
 
   @Override
   public Receive createReceive() {
-    return receiveBuilder().matchEquals(CREATE, ignored -> createDoc()).build();
+    return receiveBuilder().match(CreateDocumentRequest.class, this::createDoc).build();
   }
 
   @Override
   public void preStart() throws Exception {
     super.preStart();
     logger.info("Starting actor");
-    self().tell(CREATE, ActorRef.noSender());
+    self().tell(request, ActorRef.noSender());
   }
 
   @Override
@@ -43,8 +43,8 @@ public class DocumentCreator extends AbstractActor {
     super.postStop();
   }
 
-  private void createDoc() {
-    logger.info("Creating document for user {}", user);
-    externalServiceClient.createDocument(user);
+  private void createDoc(CreateDocumentRequest request) {
+    logger.info("Creating document for user {}", request.user());
+    externalServiceClient.createDocument(request);
   }
 }

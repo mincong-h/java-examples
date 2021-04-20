@@ -6,4 +6,8 @@ public class CreateDocumentRequest {
   public CreateDocumentRequest(String user) {
     this.user = user;
   }
+
+  public String user() {
+    return user;
+  }
 }
