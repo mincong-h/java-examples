@@ -23,7 +23,7 @@
     <jackson.version>2.12.0</jackson.version>
     <jmh.version>1.27</jmh.version>
     <junit4.version>4.13.1</junit4.version>
-    <junit5.version>5.7.1</junit5.version>
+    <junit5.version>5.7.2</junit5.version>
     <errorprone.version>2.4.0</errorprone.version>
     <mockito.version>3.7.7</mockito.version>
   </properties>
