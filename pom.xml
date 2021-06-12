@@ -64,6 +64,7 @@
     <module>reliability</module>
     <module>junit5</module>
     <module>grpc</module>
+    <module>spring-boot</module>
   </modules>
 
   <dependencyManagement>
