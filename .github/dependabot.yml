@@ -1,0 +1,33 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.fasterxml.jackson:jackson-bom
+    versions:
+    - 2.12.1
+    - 2.12.2
+  - dependency-name: org.eclipse.jetty:jetty-servlet
+    versions:
+    - 11.0.0
+    - 11.0.1
+  - dependency-name: org.eclipse.jetty:jetty-server
+    versions:
+    - 11.0.0
+    - 11.0.1
+  - dependency-name: org.eclipse.jgit:org.eclipse.jgit
+    versions:
+    - 5.10.0.202012080955-r
+  - dependency-name: com.thoughtworks.xstream:xstream
+    versions:
+    - 1.4.15
+  - dependency-name: org.mongodb:bson
+    versions:
+    - 3.12.7
+  - dependency-name: org.mongodb:mongo-java-driver
+    versions:
+    - 3.12.7
