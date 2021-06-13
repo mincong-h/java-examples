@@ -14,7 +14,7 @@
 
   <properties>
     <mongo.version>4.2</mongo.version>
-    <mongo.driver.version>4.2.1</mongo.driver.version>
+    <mongo.driver.version>4.2.3</mongo.driver.version>
   </properties>
 
   <dependencies>
