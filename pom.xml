@@ -65,6 +65,7 @@
     <module>junit5</module>
     <module>grpc</module>
     <module>spring-boot</module>
+    <module>spring-mongo</module>
   </modules>
 
   <dependencyManagement>
