@@ -7,7 +7,15 @@ public class Person {
   private String name;
   private int age;
 
+  public Person() {} // for spring
+
   public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public Person(String id, String name, int age) {
+    this.id = id;
     this.name = name;
     this.age = age;
   }
