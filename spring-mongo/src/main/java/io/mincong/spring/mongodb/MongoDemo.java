@@ -12,9 +12,9 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
 
-public class MongoApp {
+public class MongoDemo {
 
-  private static final Logger log = LoggerFactory.getLogger(MongoApp.class);
+  private static final Logger log = LoggerFactory.getLogger(MongoDemo.class);
 
   public static void main(String[] args) {
 
