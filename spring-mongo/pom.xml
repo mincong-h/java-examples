@@ -12,4 +12,11 @@
     <artifactId>java-examples-spring-mongo</artifactId>
     <name>Java Examples - Spring Data MongoDB</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+    </dependencies>
 </project>
