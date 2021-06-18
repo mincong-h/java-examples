@@ -2,10 +2,11 @@ package io.mincong.spring.mongodb;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@SpringBootApplication
+// What is the difference with org.springframework.context.annotation.Configuration?
 public class AppConfig {
 
   /*

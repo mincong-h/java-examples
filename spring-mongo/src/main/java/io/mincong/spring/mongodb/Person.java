@@ -1,5 +1,7 @@
 package io.mincong.spring.mongodb;
 
+import java.util.Objects;
+
 public class Person {
   private String id;
   private String name;
@@ -20,6 +22,19 @@ public class Person {
 
   public int getAge() {
     return age;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Person person = (Person) o;
+    return age == person.age && id.equals(person.id) && name.equals(person.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, age);
   }
 
   @Override
