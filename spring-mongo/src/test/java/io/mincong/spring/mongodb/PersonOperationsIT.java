@@ -11,7 +11,7 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 
 @DataMongoTest
-class PersonServiceIT {
+class PersonOperationsIT {
   @Autowired MongoOperations operations;
 
   Person sansa, arya;
