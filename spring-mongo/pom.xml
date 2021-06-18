@@ -12,10 +12,6 @@
   <artifactId>java-examples-spring-mongo</artifactId>
   <name>Java Examples - Spring Data MongoDB</name>
 
-  <properties>
-    <mongo.version>4.2</mongo.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.data</groupId>
