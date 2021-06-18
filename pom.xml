@@ -26,6 +26,8 @@
     <junit5.version>5.7.1</junit5.version>
     <errorprone.version>2.4.0</errorprone.version>
     <mockito.version>3.7.7</mockito.version>
+    <mongo.version>4.2</mongo.version>
+    <mongo.driver.version>4.2.3</mongo.driver.version>
   </properties>
 
   <modules>
@@ -65,6 +67,7 @@
     <module>junit5</module>
     <module>grpc</module>
     <module>spring-boot</module>
+    <module>spring-mongo</module>
   </modules>
 
   <dependencyManagement>

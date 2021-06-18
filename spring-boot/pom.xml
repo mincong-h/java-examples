@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-boot</artifactId>
+    <artifactId>java-examples-spring-boot</artifactId>
+    <name>Java Examples - Spring Boot</name>
 
     <properties>
         <spring.version>2.1.5.RELEASE</spring.version>
