@@ -12,10 +12,6 @@
   <artifactId>java-examples-mongo</artifactId>
   <name>Java Examples - MongoDB</name>
 
-  <properties>
-    <mongo.driver.version>4.2.3</mongo.driver.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
