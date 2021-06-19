@@ -28,7 +28,6 @@
     <lombok.version>1.18.20</lombok.version>
     <mockito.version>3.7.7</mockito.version>
     <mongo.version>4.2</mongo.version>
-    <mongo.driver.version>4.2.3</mongo.driver.version>
   </properties>
 
   <modules>
