@@ -20,11 +20,12 @@ class PersonServiceIT {
 
   @BeforeEach
   void setUp() {
-    this.sansa = new Person("60ccca5197813b3eb8b607a1", "Sansa Stark", 20);
-    this.arya = new Person("60ccbd71880d9a1c9e1f6c78", "Arya Stark", 20);
+    this.sansa = Person.builder().name("Sansa Stark").age(20).build();
+    this.arya = Person.builder().name("Arya Stark").age(20).build();
 
     operations.save(sansa);
     operations.save(arya);
+    assertThat(operations.findAll(Person.class)).hasSize(2);
   }
 
   @AfterEach

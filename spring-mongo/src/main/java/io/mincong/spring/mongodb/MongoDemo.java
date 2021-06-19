@@ -20,7 +20,7 @@ public class MongoDemo {
 
     MongoOperations mongoOps =
         new MongoTemplate(new SimpleMongoClientDatabaseFactory(MongoClients.create(), "database"));
-    Person p = new Person("Joe", 34);
+    Person p = Person.builder().name("Joe").age(34).build();
 
     // Insert is used to initially store the object into the database.
     mongoOps.insert(p);
