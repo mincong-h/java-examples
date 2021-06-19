@@ -5,13 +5,12 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
-@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Builder
 @Document(collection = "people")
 public class Person {
   private final String name;
-  private final Integer age;
+  private final int age;
   private @Getter ObjectId id;
 }
