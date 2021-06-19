@@ -7,13 +7,13 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@RequiredArgsConstructor
 @Getter
+@RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Document(collection = "people")
 public class Person {
-  private ObjectId id;
-  private String name;
-  private int age;
+  private final String name;
+  private final Integer age;
+  private @Getter ObjectId id;
 }

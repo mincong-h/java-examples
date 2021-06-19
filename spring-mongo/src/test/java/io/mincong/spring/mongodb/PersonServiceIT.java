@@ -20,11 +20,8 @@ class PersonServiceIT {
 
   @BeforeEach
   void setUp() {
-    this.sansa = new Person("60ccca5197813b3eb8b607a1", "Sansa Stark", 20);
-    this.arya = new Person("60ccbd71880d9a1c9e1f6c78", "Arya Stark", 20);
-
-    operations.save(sansa);
-    operations.save(arya);
+    this.sansa = operations.save(new Person("Sansa Stark", 20));
+    this.arya = operations.save(new Person("Arya Stark", 20));
   }
 
   @AfterEach
