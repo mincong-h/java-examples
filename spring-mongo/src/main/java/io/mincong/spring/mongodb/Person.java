@@ -1,9 +1,6 @@
 package io.mincong.spring.mongodb;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @RequiredArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 @Document(collection = "people")
 public class Person {
   private final String name;

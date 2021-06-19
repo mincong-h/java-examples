@@ -20,8 +20,8 @@ class PersonServiceIT {
 
   @BeforeEach
   void setUp() {
-    this.sansa = new Person("Sansa Stark", 20);
-    this.arya = new Person("Arya Stark", 20);
+    this.sansa = Person.builder().name("Sansa Stark").age(20).build();
+    this.arya = Person.builder().name("Arya Stark").age(20).build();
 
     operations.save(sansa);
     operations.save(arya);
