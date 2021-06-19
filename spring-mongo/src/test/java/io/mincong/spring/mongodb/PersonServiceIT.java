@@ -20,8 +20,12 @@ class PersonServiceIT {
 
   @BeforeEach
   void setUp() {
-    this.sansa = operations.save(new Person("Sansa Stark", 20));
-    this.arya = operations.save(new Person("Arya Stark", 20));
+    this.sansa = new Person("Sansa Stark", 20);
+    this.arya = new Person("Arya Stark", 20);
+
+    operations.save(sansa);
+    operations.save(arya);
+    assertThat(operations.findAll(Person.class)).hasSize(2);
   }
 
   @AfterEach
