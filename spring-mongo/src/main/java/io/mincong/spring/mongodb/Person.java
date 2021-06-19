@@ -1,52 +1,19 @@
 package io.mincong.spring.mongodb;
 
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@RequiredArgsConstructor
+@Getter
+@EqualsAndHashCode
+@ToString
+@Document(collection = "people")
 public class Person {
-  private String id;
+  private ObjectId id;
   private String name;
   private int age;
-
-  public Person() {} // for spring
-
-  public Person(String name, int age) {
-    this.name = name;
-    this.age = age;
-  }
-
-  public Person(String id, String name, int age) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Person person = (Person) o;
-    return age == person.age && id.equals(person.id) && name.equals(person.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name, age);
-  }
-
-  @Override
-  public String toString() {
-    return "Person [id=" + id + ", name=" + name + ", age=" + age + "]";
-  }
 }
