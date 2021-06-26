@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Query;
 
-@SpringBootTest(classes = AppConfig.class)
+@SpringBootTest(classes = MongoConfig.class)
 class PersonOperationsIT {
   @Autowired MongoOperations operations;
 

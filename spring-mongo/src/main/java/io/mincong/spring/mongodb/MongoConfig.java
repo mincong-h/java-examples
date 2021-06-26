@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 
 @Configuration
-public class AppConfig extends AbstractMongoClientConfiguration {
+public class MongoConfig extends AbstractMongoClientConfiguration {
 
   @Override
   public MongoClient mongoClient() {
