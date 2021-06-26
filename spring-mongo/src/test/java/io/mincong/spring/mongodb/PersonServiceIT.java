@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Query;
 
-@SpringBootTest(classes = {PersonService.class, AppConfig.class})
+@SpringBootTest(classes = {PersonService.class, MongoConfig.class})
 class PersonServiceIT {
 
   @Autowired MongoOperations operations;
