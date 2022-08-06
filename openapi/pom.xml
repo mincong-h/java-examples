@@ -42,12 +42,10 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <!-- Here we point to the Open API spec -->
-              <inputSpec>
-                ${project.basedir}/src/main/resources/jimi-search.yml
-              </inputSpec>
-              <!-- https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/spring.md -->
-              <generatorName>spring</generatorName>
+              <!-- Is it possible to plug multiple files? -->
+              <inputSpec>${project.basedir}/src/main/resources/jimi-search.yml</inputSpec>
+              <!-- https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/jaxrs-spec.md -->
+              <generatorName>jaxrs-spec</generatorName>
               <!-- This is the Java package base on which the generated files will
               be located -->
               <apiPackage>com.baeldung.openapi.api</apiPackage>
