@@ -14,7 +14,7 @@
   <name>Java Examples - JGit</name>
 
   <properties>
-    <jgit.version>5.10.0.202012080955-r</jgit.version>
+    <jgit.version>6.0.0.202111291000-r</jgit.version>
   </properties>
 
   <dependencies>
