@@ -1,9 +1,8 @@
-# Here we have the Open API specification
-# How do we generate the documentation??
+# Here is the specification of the Open API
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore
+  title: Jimi Search
   license:
     name: MIT
 servers:
@@ -11,10 +10,8 @@ servers:
 paths:
   # The generated class PetsApi.java is located in:
   # target/generated-sources/openapi/src/main/java/com/baeldung/openapi/api/PetsApi.java
-  #
-  # However the generated file is not a standard JAX-RS resource but Spring resource.
-  /pets:
-    get: # method GET
+  /sites:
+    get:
       summary: List all pets
       operationId: listPets
       tags:
@@ -59,17 +56,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  /pets/{petId}:
+  /sites/{siteId}/posts/{postId}:
     get:
       summary: Info for a specific pet
       operationId: showPetById
       tags:
         - pets
       parameters:
-        - name: petId
+        - name: siteId
           in: path
           required: true
-          description: The id of the pet to retrieve
+          description: The id (domain) of the website, such as 'mincong.io'
+          schema:
+            type: string
+        - name: postId
+          in: path
+          required: true
+          description: The id of the post
           schema:
             type: string
       responses:
