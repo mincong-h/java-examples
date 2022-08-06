@@ -44,7 +44,7 @@
             <configuration>
               <!-- Here we point to the Open API spec -->
               <inputSpec>
-                ${project.basedir}/src/main/resources/petstore.yml
+                ${project.basedir}/src/main/resources/jimi-search.yml
               </inputSpec>
               <!-- https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/spring.md -->
               <generatorName>spring</generatorName>
