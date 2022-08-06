@@ -119,27 +119,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.jboss.jandex</groupId>
-        <artifactId>jandex-maven-plugin</artifactId>
-        <version>1.2.3</version>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <id>make-index</id>
-            <goals>
-              <goal>jandex</goal>
-            </goals>
-            <configuration>
-              <fileSets>
-                <fileSet>
-                  <directory>${project.build.outputDirectory}</directory>
-                </fileSet>
-              </fileSets>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
