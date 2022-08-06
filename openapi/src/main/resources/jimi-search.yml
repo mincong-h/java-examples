@@ -29,11 +29,11 @@ paths:
             type: string
       responses:
         '200':
-          description: Expected response to a valid request
+          description: Acknowledgement response from the server. However, the request is not guaranteed to be completed.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pet"
+                $ref: "#/components/schemas/AckResponse"
         default:
           description: unexpected error
           content:
@@ -65,7 +65,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pet"
+                $ref: "#/components/schemas/JekyllSearchResponse"
         default:
           description: unexpected error
           content:
@@ -74,25 +74,35 @@ paths:
                 $ref: "#/components/schemas/Error"
 components:
   schemas:
-    # Here is how we define the Pet object
-    # This file will be super huge if we put all the objects there, but I think this pb can be solved later on.
-    Pet:
+    JekyllBlogPost:
       type: object
       required:
-        - id
-        - name
+        - title
+        - url
+        - content
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
+        title:
           type: string
-        tag:
+        url:
           type: string
-    Pets:
-      type: array
-      items:
-        $ref: "#/components/schemas/Pet"
+        content:
+          type: string
+    JekyllSearchResponse:
+      type: object
+      required:
+        - posts
+      properties:
+        posts:
+          type: array
+          items:
+            $ref: "#/components/schemas/JekyllBlogPost"
+    AckResponse:
+      type: object
+      required:
+        - isAcknowledged
+      properties:
+        isAcknowledged:
+          type: boolean
     Error:
       type: object
       required:
