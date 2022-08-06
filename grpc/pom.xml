@@ -13,7 +13,7 @@
     <name>Java Examples - gRPC</name>
 
     <properties>
-        <grpc.version>1.36.0</grpc.version>
+        <grpc.version>1.38.0</grpc.version>
         <protoc.version>3.12.0</protoc.version>
         <tomcat.annotation.version>6.0.53</tomcat.annotation.version>
     </properties>
