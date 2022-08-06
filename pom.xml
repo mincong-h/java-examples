@@ -57,6 +57,7 @@
     <module>mongo</module>
     <module>oca</module>
     <module>ocp</module>
+    <module>openapi</module>
     <module>restful-api</module>
     <module>typesafe-config</module>
     <module>vavr</module>

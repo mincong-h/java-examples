@@ -1,0 +1,116 @@
+# Here is the specification of the Open API
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Jimi Search
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8080/
+paths:
+  /sites/{siteId}/posts/{postId}:
+    put:
+      summary: Create or update a blog post of a given website.
+      operationId: upsertPostOfWebsite
+      tags:
+        - blog
+      parameters:
+        - name: siteId
+          in: path
+          required: true
+          description: The id (domain) of the website, such as 'mincong.io'
+          schema:
+            type: string
+        - name: postId
+          in: path
+          required: true
+          description: The id of the post
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Acknowledgement response from the server. However, the request is not guaranteed to be completed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AckResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /sites/{siteId}/posts/search:
+    get:
+      summary: Search blog posts of a given website.
+      operationId: searchPostsOfWebsite
+      tags:
+        - blog
+      parameters:
+        - name: siteId
+          in: path
+          required: true
+          description: The id (domain) of the website, such as 'mincong.io'
+          schema:
+            type: string
+        - name: postId
+          in: path
+          required: true
+          description: The id of the post
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JekyllSearchResponse"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    JekyllBlogPost:
+      type: object
+      required:
+        - title
+        - url
+        - content
+      properties:
+        title:
+          type: string
+        url:
+          type: string
+        content:
+          type: string
+    JekyllSearchResponse:
+      type: object
+      required:
+        - posts
+      properties:
+        posts:
+          type: array
+          items:
+            $ref: "#/components/schemas/JekyllBlogPost"
+    AckResponse:
+      type: object
+      required:
+        - isAcknowledged
+      properties:
+        isAcknowledged:
+          type: boolean
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
